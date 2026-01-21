@@ -1,24 +1,29 @@
-import { Calculator, DollarSign, Activity, Calendar, Lock, ArrowLeftRight, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase } from 'lucide-react';
+import { Calculator, DollarSign, Activity, Calendar, Lock, ArrowLeftRight, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle } from 'lucide-react';
 import { lazy } from 'react';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
 const ScientificCalculator = lazy(() => import('./math/ScientificCalculator'));
+const TriangleCalculator = lazy(() => import('./math/TriangleCalculator'));
 const MortgageCalculator = lazy(() => import('./financial/MortgageCalculator'));
 const LoanCalculator = lazy(() => import('./financial/LoanCalculator'));
+const AutoLoanCalculator = lazy(() => import('./financial/AutoLoanCalculator'));
 const InvestmentCalculator = lazy(() => import('./financial/InvestmentCalculator'));
+const RetirementCalculator = lazy(() => import('./financial/RetirementCalculator'));
 const SalaryCalculator = lazy(() => import('./financial/SalaryCalculator'));
 const BMICalculator = lazy(() => import('./health/BMICalculator'));
 const CalorieCalculator = lazy(() => import('./health/CalorieCalculator'));
 const BodyFatCalculator = lazy(() => import('./health/BodyFatCalculator'));
 const BMRCalculator = lazy(() => import('./health/BMRCalculator'));
 const IdealWeightCalculator = lazy(() => import('./health/IdealWeightCalculator'));
+const PregnancyCalculator = lazy(() => import('./health/PregnancyCalculator'));
 const AgeCalculator = lazy(() => import('./other/AgeCalculator'));
 const PasswordGenerator = lazy(() => import('./other/PasswordGenerator'));
 const UnitConverter = lazy(() => import('./other/UnitConverter'));
 const FractionCalculator = lazy(() => import('./other/FractionCalculator'));
 const PercentageCalculator = lazy(() => import('./other/PercentageCalculator'));
 const RandomNumberGenerator = lazy(() => import('./other/RandomNumberGenerator'));
+const GPACalculator = lazy(() => import('./other/GPACalculator'));
 
 export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'math' | 'other';
 
@@ -47,6 +52,14 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'basic',
         icon: Calculator,
         component: ScientificCalculator,
+    },
+    {
+        id: 'triangle',
+        name: 'Triangle Calculator',
+        description: 'Solve for missing sides, angles, area, and perimeter of a triangle.',
+        category: 'math',
+        icon: Triangle,
+        component: TriangleCalculator,
     },
     {
         id: 'fraction',
@@ -81,12 +94,28 @@ export const calculatorRegistry: CalculatorDef[] = [
         component: LoanCalculator,
     },
     {
+        id: 'auto-loan',
+        name: 'Auto Loan Calculator',
+        description: 'Calculate monthly car payments with trade-in value, taxes, and down payment.',
+        category: 'financial',
+        icon: Car,
+        component: AutoLoanCalculator,
+    },
+    {
         id: 'investment',
         name: 'Investment Calculator',
         description: 'Plan your investment growth with compound interest and regular contributions.',
         category: 'financial',
         icon: TrendingUp,
         component: InvestmentCalculator,
+    },
+    {
+        id: 'retirement',
+        name: 'Retirement Calculator',
+        description: 'Estimate how much you need to save for retirement and your potential growth.',
+        category: 'financial',
+        icon: Sunset,
+        component: RetirementCalculator,
     },
     {
         id: 'salary',
@@ -137,12 +166,28 @@ export const calculatorRegistry: CalculatorDef[] = [
         component: IdealWeightCalculator,
     },
     {
+        id: 'pregnancy',
+        name: 'Pregnancy Calculator',
+        description: 'Estimate your due date based on your last menstrual period.',
+        category: 'health',
+        icon: Baby,
+        component: PregnancyCalculator,
+    },
+    {
         id: 'age',
         name: 'Age Calculator',
         description: 'Calculate your exact age in years, months, and days based on your date of birth.',
         category: 'other',
         icon: Calendar,
         component: AgeCalculator,
+    },
+    {
+        id: 'gpa',
+        name: 'GPA Calculator',
+        description: 'Calculate your semester and cumulative GPA with ease.',
+        category: 'other',
+        icon: GraduationCap,
+        component: GPACalculator,
     },
     {
         id: 'password',

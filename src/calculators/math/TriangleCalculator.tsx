@@ -1,0 +1,127 @@
+import { useState } from 'react';
+import { Triangle } from 'lucide-react';
+
+export default function TriangleCalculator() {
+    const [a, setA] = useState('');
+    const [b, setB] = useState('');
+    const [c, setC] = useState('');
+
+    const [result, setResult] = useState<{ area: number; perimeter: number; angles: number[] } | string | null>(null);
+
+    const calculate = () => {
+        const sa = parseFloat(a);
+        const sb = parseFloat(b);
+        const sc = parseFloat(c);
+
+        if (!sa || !sb || !sc) return;
+
+        if (sa + sb <= sc || sa + sc <= sb || sb + sc <= sa) {
+            setResult("Invalid Triangle: Sum of two sides must be greater than the third.");
+            return;
+        }
+
+        // Law of Cosines for angles
+        // c^2 = a^2 + b^2 - 2ab cos(C)
+        // C = acos((a^2 + b^2 - c^2) / 2ab)
+
+        const angleA_rad = Math.acos((sb * sb + sc * sc - sa * sa) / (2 * sb * sc));
+        const angleB_rad = Math.acos((sa * sa + sc * sc - sb * sb) / (2 * sa * sc));
+        const angleC_rad = Math.PI - angleA_rad - angleB_rad;
+
+        const toDeg = (rad: number) => rad * (180 / Math.PI);
+
+        // Heron's Formula for Area
+        const s = (sa + sb + sc) / 2;
+        const area = Math.sqrt(s * (s - sa) * (s - sb) * (s - sc));
+
+        setResult({
+            area,
+            perimeter: sa + sb + sc,
+            angles: [toDeg(angleA_rad), toDeg(angleB_rad), toDeg(angleC_rad)]
+        });
+    };
+
+    const inputClass = "block w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-violet-500 bg-slate-50 text-center";
+    const labelClass = "block text-sm font-medium text-slate-700 mb-1 text-center";
+
+    return (
+        <div className="max-w-xl mx-auto space-y-8">
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+                <div className="text-center mb-6">
+                    <div className="inline-block relative w-48 h-32 mx-auto">
+                        {/* Simple Triangle SVG visualization hint */}
+                        <svg viewBox="0 0 100 80" className="w-full h-full text-violet-200 fill-current">
+                            <path d="M10,70 L90,70 L50,10 Z" stroke="currentColor" strokeWidth="2" fill="none" className="text-violet-400" />
+                            <text x="50" y="76" fontSize="8" textAnchor="middle" fill="currentColor" className="text-slate-500">Side C</text>
+                            <text x="25" y="40" fontSize="8" textAnchor="middle" fill="currentColor" className="text-slate-500">Side B</text>
+                            <text x="75" y="40" fontSize="8" textAnchor="middle" fill="currentColor" className="text-slate-500">Side A</text>
+                        </svg>
+                    </div>
+                    <p className="text-sm text-slate-500 mt-2">Enter the lengths of all 3 sides</p>
+                </div>
+
+                <div className="flex gap-4 items-end">
+                    <div className="flex-1">
+                        <label className={labelClass}>Side A</label>
+                        <input type="number" value={a} onChange={e => setA(e.target.value)} className={inputClass} placeholder="3" />
+                    </div>
+                    <div className="flex-1">
+                        <label className={labelClass}>Side B</label>
+                        <input type="number" value={b} onChange={e => setB(e.target.value)} className={inputClass} placeholder="4" />
+                    </div>
+                    <div className="flex-1">
+                        <label className={labelClass}>Side C</label>
+                        <input type="number" value={c} onChange={e => setC(e.target.value)} className={inputClass} placeholder="5" />
+                    </div>
+                </div>
+
+                <button
+                    onClick={calculate}
+                    className="w-full py-4 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-700 transition-colors shadow-lg shadow-violet-200 flex items-center justify-center gap-2"
+                >
+                    <Triangle size={20} />
+                    Calculate
+                </button>
+
+                {typeof result === 'string' && (
+                    <div className="p-4 bg-red-50 text-red-600 rounded-xl text-center font-medium">
+                        {result}
+                    </div>
+                )}
+
+                {result && typeof result !== 'string' && (
+                    <div className="mt-8 space-y-4">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="p-4 bg-violet-50 rounded-2xl border border-violet-100 text-center">
+                                <span className="text-xs font-bold text-violet-800 uppercase">Perimeter</span>
+                                <div className="text-2xl font-bold text-slate-900 mt-1">{result.perimeter.toFixed(2)}</div>
+                            </div>
+                            <div className="p-4 bg-violet-50 rounded-2xl border border-violet-100 text-center">
+                                <span className="text-xs font-bold text-violet-800 uppercase">Area</span>
+                                <div className="text-2xl font-bold text-slate-900 mt-1">{result.area.toFixed(2)}</div>
+                            </div>
+                        </div>
+
+                        <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
+                            <span className="text-xs font-bold text-slate-500 uppercase block mb-3 text-center">Internal Angles</span>
+                            <div className="flex justify-between items-center text-center">
+                                <div>
+                                    <div className="text-slate-400 text-xs mb-1">Angle A</div>
+                                    <div className="text-xl font-bold text-slate-800">{result.angles[0].toFixed(1)}°</div>
+                                </div>
+                                <div>
+                                    <div className="text-slate-400 text-xs mb-1">Angle B</div>
+                                    <div className="text-xl font-bold text-slate-800">{result.angles[1].toFixed(1)}°</div>
+                                </div>
+                                <div>
+                                    <div className="text-slate-400 text-xs mb-1">Angle C</div>
+                                    <div className="text-xl font-bold text-slate-800">{result.angles[2].toFixed(1)}°</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
