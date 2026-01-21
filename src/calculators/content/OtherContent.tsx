@@ -1,51 +1,112 @@
 
-export default function OtherContent() {
+import React from 'react';
+
+const intros: Record<string, React.ReactNode> = {
+    'age': (
+        <>
+            <p className="lead">
+                Time flies, but exactly how much? The <strong>Age Calculator</strong> is a fun and precise tool that calculates your chronological age down to the minute.
+            </p>
+            <p>
+                While you know your age in years, seeing it broken down into 10,000+ days or 800,000+ hours offers a new perspective. It helps calculate the exact age difference between two people, find out what day of the week you were born on, or celebrate unique milestones like your "10,000th day" birthday.
+            </p>
+        </>
+    ),
+    'gpa': (
+        <>
+            <p className="lead">
+                Your Grade Point Average (GPA) is the most critical metric for college admissions and academic scholarships. This <strong>GPA Calculator</strong> helps high school and college students track their academic performance accurately.
+            </p>
+            <p>
+                It supports both weighted and unweighted scales (4.0 and 5.0). By inputting your course grades and credit hours, you can calculate your semester GPA and see how it impacts your cumulative GPA. Use it to scenario plan: "What grades do I need this semester to raise my GPA to a 3.5?"
+            </p>
+        </>
+    ),
+    'password': (
+        <>
+            <p className="lead">
+                In an era of data breaches, your digital security is only as strong as your weakest password. Our <strong>Password Generator</strong> creates cryptographically strong, random passwords that are virtually uncrackable.
+            </p>
+            <p>
+                Avoid using "Password123" or pet names. This tool lets you control the length and complexity (symbols, numbers, uppercase) to generate secure credentials for your banking, email, and social media accounts. Strong entropy is your first line of defense against cyber threats.
+            </p>
+        </>
+    ),
+    'converter': (
+        <>
+            <p className="lead">
+                The world is divided by two major measurement systems, but this <strong>Unit Converter</strong> bridges the gap. It is an all-in-one tool for converting between Metric (SI) and Imperial/US Customary units.
+            </p>
+            <p>
+                Whether you are cooking a recipe that uses grams instead of ounces, traveling to a country that uses Celsius instead of Fahrenheit, or working on a DIY project requiring precise length conversions, this tool handles it all. It supports Length, Weight, Volume, Temperature, and more.
+            </p>
+        </>
+    ),
+    'random': (
+        <>
+            <p className="lead">
+                Need to make unbiased decision? The <strong>Random Number Generator (RNG)</strong> produces truly unpredictable numbers within a range you define.
+            </p>
+            <p>
+                It's perfect for picking lottery numbers, determining a winner for a contest, rolling dice for board games, or scientific sampling. Unlike a human, who might subconsciously pick "favorite" numbers, this algorithm ensures mathematical randomness for fair and impartial results.
+            </p>
+        </>
+    ),
+    'date-diff': (
+        <>
+            <p className="lead">
+                "How many days until..." is a question we ask constantly. The <strong>Date Calculator</strong> provides the precise duration between any two calendar dates.
+            </p>
+            <p>
+                Use it to count down to a wedding, calculate project timelines, determine legal deadlines, or simply find out how many days correspond to "6 weeks from now." It accounts for leap years and varying month lengths to give you an exact count in years, months, and days.
+            </p>
+        </>
+    ),
+};
+
+export default function OtherContent({ calculatorId }: { calculatorId?: string; calculatorName?: string }) {
+    const specificIntro = calculatorId ? intros[calculatorId] : null;
+
     return (
-        <div className="prose prose-slate max-w-none mt-12 text-left">
+        <article className="prose prose-slate max-w-none">
+            {specificIntro && (
+                <div className="mb-10 p-6 bg-purple-50 rounded-2xl border border-purple-100 not-prose">
+                    <div className="prose prose-slate max-w-none">
+                        {specificIntro}
+                    </div>
+                </div>
+            )}
+
             <h2>Essential Utilities for Everyday Life</h2>
             <p>
-                In the digital age, efficiency is king. Our collection of utility tools—from password generation to unit conversion—is
-                built to handle the specific, practical tasks that pop up in daily life, saving you time and ensuring accuracy.
+                Not every calculation involves complex calculus or finance. Sometimes, you just need a reliable tool to handle life's daily logistics.
+                Our "Other" category encompasses these essential utilities that help organize, secure, and quantify your day-to-day activities.
             </p>
 
-            <h3>Digital Security & Privacy</h3>
-            <div className="my-4">
-                <h4 className="mt-0">The Importance of Strong Passwords</h4>
-                <p>
-                    With cyber threats on the rise, your first line of defense is a strong password. A secure password should represent
-                    high <strong>entropy</strong> (randomness). Humans are notoriously bad at being random; we pick birthdays, pet names,
-                    or patterns like "123456".
-                </p>
-                <p><strong>A strong password should be:</strong></p>
-                <ul className="mt-2">
-                    <li>At least 12-16 characters long</li>
-                    <li>A mix of uppercase, lowercase, numbers, and symbols</li>
-                    <li>Unique (never used on another site)</li>
-                </ul>
-            </div>
-
-            <h3>Universal Standards: Unit Conversion</h3>
+            <h3>Digital Security & Entropy</h3>
             <p>
-                Whether you are following an international recipe, traveling abroad, or working on a science project,
-                dealing with different measurement systems (Metric vs. Imperial) is inevitable.
+                Randomness is the core of digital security. Humans are notably bad at being random—we tend to pick patterns (1234, qwerty) or personal dates.
+                A <strong>Password Generator</strong> relies on high math entropy (disorder) to create strings that would take a supercomputer millions of years to guess through brute force.
+                Length is often more important than complexity; a 20-character password is exponentially stronger than an 8-character one.
+            </p>
+
+            <h3>The Metric vs. Imperial Divide</h3>
+            <p>
+                The United States, Liberia, and Myanmar are the only countries that primarily use the Imperial system. The rest of the world uses Metric.
+                This creates a constant need for conversion, especially in:
             </p>
             <ul>
-                <li><strong>Metric System</strong>: Based on powers of 10. Used by almost the entire world and the scientific community. (Meters, Liters, Grams)</li>
-                <li><strong>Imperial System</strong>: Used primarily in the United States. (Inches, Gallons, Pounds)</li>
+                <li><strong>Cooking:</strong> Grams vs. Cups/Ounces.</li>
+                <li><strong>Travel:</strong> Kilometers vs. Miles and Celsius vs. Fahrenheit.</li>
+                <li><strong>Science:</strong> The scientific community exclusively uses Metric (SI units) for consistency.</li>
             </ul>
-            <p>
-                Accurate conversion is vital. In 1999, a NASA Mars orbiter was lost in space because one team used metric units and another used imperial!
-            </p>
 
-            <h3>Academic Success</h3>
+            <h3>Academic Success Metrics</h3>
             <p>
-                Tools like our GPA Calculator help students visualize their academic standing. Tracking your Grade Point Average allows you to:
+                GPA (Grade Point Average) serves as a standardized measurement of varying levels of achievement in a course.
+                Most colleges use a 4.0 scale, where an 'A' is 4 points. Honors and AP classes often use a "weighted" 5.0 scale to reward the difficulty of the curriculum.
+                Tracking this continuously prevents end-of-semester surprises.
             </p>
-            <ul className="list-disc pl-5 space-y-1">
-                <li>Set realistic semester goals</li>
-                <li>Understand requirements for scholarships and honors</li>
-                <li>Plan course loads effectively</li>
-            </ul>
-        </div>
+        </article>
     );
 }
