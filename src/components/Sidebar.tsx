@@ -31,9 +31,7 @@ export function Sidebar() {
                 )}
             >
                 <div className="flex items-center gap-2 p-6 border-b border-slate-100">
-                    <div className="bg-blue-600 p-2 rounded-lg">
-                        <Calculator className="text-white" size={24} />
-                    </div>
+                    <img src="/favicon.png" alt="CalcSuite" className="w-10 h-10 rounded-xl shadow-sm" />
                     <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
                         CalcSuite
                     </span>

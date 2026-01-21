@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
-import { Calculator } from 'lucide-react';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -21,9 +20,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                     <div className="md:col-span-1 space-y-4">
                         <div className="flex items-center gap-2 text-white mb-4">
-                            <div className="p-2 bg-blue-600 rounded-lg">
-                                <Calculator className="text-white" size={24} />
-                            </div>
+                            <img src="/favicon.png" alt="CalcSuite" className="w-10 h-10 rounded-lg shadow-sm" />
                             <span className="text-xl font-bold tracking-tight">CalcSuite</span>
                         </div>
                         <p className="text-slate-400 text-sm leading-relaxed">
