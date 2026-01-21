@@ -21,6 +21,7 @@ export function CalculatorPage() {
     }
 
     const Component = calculatorDef.component;
+    const Content = calculatorDef.content;
 
     return (
         <div className="max-w-4xl mx-auto">
@@ -35,6 +36,12 @@ export function CalculatorPage() {
                 <p className="text-slate-500">{calculatorDef.description}</p>
             </div>
             <Component />
+
+            {Content && (
+                <div className="mt-16 border-t border-slate-200 pt-12">
+                    <Content />
+                </div>
+            )}
         </div>
     );
 }

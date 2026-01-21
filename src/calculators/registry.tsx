@@ -27,6 +27,10 @@ const GPACalculator = lazy(() => import('./other/GPACalculator'));
 
 export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'math' | 'other';
 
+// Content Components
+import MortgageContent from './content/MortgageContent';
+import BMIContent from './content/BMIContent';
+
 export interface CalculatorDef {
     id: string;
     name: string;
@@ -34,6 +38,7 @@ export interface CalculatorDef {
     category: CalculatorCategory;
     icon: any;
     component: React.LazyExoticComponent<React.ComponentType<any>>;
+    content?: React.ComponentType<any>;
 }
 
 export const calculatorRegistry: CalculatorDef[] = [
@@ -84,6 +89,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: DollarSign,
         component: MortgageCalculator,
+        content: MortgageContent,
     },
     {
         id: 'loan',
@@ -132,6 +138,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'health',
         icon: Activity,
         component: BMICalculator,
+        content: BMIContent,
     },
     {
         id: 'calorie',
