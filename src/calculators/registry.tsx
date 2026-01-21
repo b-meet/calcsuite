@@ -1,4 +1,4 @@
-import { Calculator, DollarSign, Activity, Calendar, Lock, ArrowLeftRight, MoreHorizontal, Divide, Percent, Dices } from 'lucide-react';
+import { Calculator, DollarSign, Activity, Calendar, Lock, ArrowLeftRight, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler } from 'lucide-react';
 import { lazy } from 'react';
 
 // Lazy load calculators
@@ -7,6 +7,9 @@ const ScientificCalculator = lazy(() => import('./math/ScientificCalculator'));
 const MortgageCalculator = lazy(() => import('./financial/MortgageCalculator'));
 const BMICalculator = lazy(() => import('./health/BMICalculator'));
 const CalorieCalculator = lazy(() => import('./health/CalorieCalculator'));
+const BodyFatCalculator = lazy(() => import('./health/BodyFatCalculator'));
+const BMRCalculator = lazy(() => import('./health/BMRCalculator'));
+const IdealWeightCalculator = lazy(() => import('./health/IdealWeightCalculator'));
 const AgeCalculator = lazy(() => import('./other/AgeCalculator'));
 const PasswordGenerator = lazy(() => import('./other/PasswordGenerator'));
 const UnitConverter = lazy(() => import('./other/UnitConverter'));
@@ -79,8 +82,32 @@ export const calculatorRegistry: CalculatorDef[] = [
         name: 'Calorie Calculator',
         description: 'Estimate the number of calories you need to consume daily to maintain, lose, or gain weight.',
         category: 'health',
-        icon: Activity,
+        icon: Flame,
         component: CalorieCalculator,
+    },
+    {
+        id: 'body-fat',
+        name: 'Body Fat Calculator',
+        description: 'Estimate your body fat percentage based on your body measurements.',
+        category: 'health',
+        icon: Ruler,
+        component: BodyFatCalculator,
+    },
+    {
+        id: 'bmr',
+        name: 'BMR Calculator',
+        description: 'Calculate your Basal Metabolic Rate to know how many calories you burn at rest.',
+        category: 'health',
+        icon: Flame,
+        component: BMRCalculator,
+    },
+    {
+        id: 'ideal-weight',
+        name: 'Ideal Weight Calculator',
+        description: 'Determine your ideal weight range based on height and gender.',
+        category: 'health',
+        icon: Scale,
+        component: IdealWeightCalculator,
     },
     {
         id: 'age',
