@@ -1,4 +1,4 @@
-import { Calculator, DollarSign, Activity, Calendar, Lock, ArrowLeftRight, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle } from 'lucide-react';
+import { Calculator, DollarSign, Activity, Calendar, Lock, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight } from 'lucide-react';
 import { lazy } from 'react';
 
 // Lazy load calculators
@@ -24,6 +24,11 @@ const FractionCalculator = lazy(() => import('./other/FractionCalculator'));
 const PercentageCalculator = lazy(() => import('./other/PercentageCalculator'));
 const RandomNumberGenerator = lazy(() => import('./other/RandomNumberGenerator'));
 const GPACalculator = lazy(() => import('./other/GPACalculator'));
+const OvulationCalculator = lazy(() => import('./health/OvulationCalculator'));
+const DateCalculator = lazy(() => import('./other/DateCalculator'));
+const InflationCalculator = lazy(() => import('./financial/InflationCalculator'));
+const TipCalculator = lazy(() => import('./basic/TipCalculator'));
+const SIPCalculator = lazy(() => import('./financial/SIPCalculator'));
 
 export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'math' | 'other';
 
@@ -243,6 +248,51 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: Dices,
         component: RandomNumberGenerator,
         content: OtherContent,
+    },
+    {
+        id: 'ovulation',
+        name: 'Ovulation Calculator',
+        description: 'Track your fertility cycle. Estimate your most fertile days, ovulation date, and next period to help with planning pregnancy or understanding your body.',
+        category: 'health',
+        icon: Heart,
+        component: OvulationCalculator,
+        content: HealthContent,
+    },
+    {
+        id: 'date-diff',
+        name: 'Date Calculator',
+        description: 'Calculate the duration between two dates. Find out exactly how many days, weeks, months, and years are between any two events.',
+        category: 'other',
+        icon: Calendar,
+        component: DateCalculator,
+        content: OtherContent,
+    },
+    {
+        id: 'inflation',
+        name: 'Inflation Calculator',
+        description: 'Calculate future value and purchasing power. Estimate how much money you will need in the future to maintain your current standard of living.',
+        category: 'financial',
+        icon: TrendingUp,
+        component: InflationCalculator,
+        content: FinancialContent,
+    },
+    {
+        id: 'tip',
+        name: 'Tip Calculator',
+        description: 'Easy tip and split bill calculator. Calculate the precise tip amount and total cost per person for dining out or services.',
+        category: 'basic',
+        icon: DollarSign,
+        component: TipCalculator,
+        content: MathContent,
+    },
+    {
+        id: 'sip',
+        name: 'SIP Calculator',
+        description: 'Systematic Investment Plan (SIP) calculator. Estimate the returns on your monthly mutual fund investments over time with compound interest.',
+        category: 'financial',
+        icon: TrendingUp,
+        component: SIPCalculator,
+        content: FinancialContent,
     },
 ];
 

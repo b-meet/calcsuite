@@ -1,0 +1,93 @@
+
+import { useState } from 'react';
+import { DollarSign, TrendingUp } from 'lucide-react';
+
+export default function SIPCalculator() {
+    const [monthlyInvestment, setMonthlyInvestment] = useState(5000);
+    const [rate, setRate] = useState(12);
+    const [years, setYears] = useState(10);
+    const [result, setResult] = useState<{ invested: string; returns: string; total: string } | null>(null);
+
+    const calculateSIP = () => {
+        const i = rate / 100 / 12;
+        const n = years * 12;
+
+        // SIP Formula: P * [ (1+i)^n - 1 ] * (1+i) / i
+        const futureValue = monthlyInvestment * (Math.pow(1 + i, n) - 1) * (1 + i) / i;
+        const totalInvested = monthlyInvestment * n;
+        const estReturns = futureValue - totalInvested;
+
+        setResult({
+            invested: totalInvested.toLocaleString(undefined, { maximumFractionDigits: 0 }),
+            returns: estReturns.toLocaleString(undefined, { maximumFractionDigits: 0 }),
+            total: futureValue.toLocaleString(undefined, { maximumFractionDigits: 0 })
+        });
+    };
+
+    return (
+        <div className="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <div className="space-y-4">
+                <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Monthly Investment</label>
+                    <div className="relative">
+                        <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                        <input
+                            type="number"
+                            value={monthlyInvestment}
+                            onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
+                            className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Exp. Return (%)</label>
+                        <input
+                            type="number"
+                            value={rate}
+                            onChange={(e) => setRate(Number(e.target.value))}
+                            className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-slate-700 mb-1">Time Period (Years)</label>
+                        <input
+                            type="number"
+                            value={years}
+                            onChange={(e) => setYears(Number(e.target.value))}
+                            className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                        />
+                    </div>
+                </div>
+
+                <button
+                    onClick={calculateSIP}
+                    className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center gap-2"
+                >
+                    <TrendingUp size={20} />
+                    Calculate SIP
+                </button>
+            </div>
+
+            {result && (
+                <div className="mt-6 space-y-4 animate-fade-in">
+                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div className="flex justify-between mb-2">
+                            <span className="text-sm text-slate-500">Invested Amount</span>
+                            <span className="font-semibold text-slate-900">{result.invested}</span>
+                        </div>
+                        <div className="flex justify-between mb-2">
+                            <span className="text-sm text-slate-500">Est. Returns</span>
+                            <span className="font-semibold text-green-600">+{result.returns}</span>
+                        </div>
+                        <div className="flex justify-between pt-3 border-t border-slate-200 mt-2">
+                            <span className="font-bold text-slate-800">Total Value</span>
+                            <span className="font-bold text-blue-700 text-lg">{result.total}</span>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
