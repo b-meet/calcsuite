@@ -4,6 +4,7 @@ import SEO from '../components/SEO';
 import NotFound from './NotFound';
 import { useEffect } from 'react';
 import { trackCalculatorUse } from '../utils/analytics';
+import RelatedCalculators from '../components/RelatedCalculators';
 
 export function CalculatorPage() {
     const { calculatorId } = useParams();
@@ -36,6 +37,11 @@ export function CalculatorPage() {
                 <p className="text-slate-500">{calculatorDef.description}</p>
             </div>
             <Component />
+
+            <RelatedCalculators
+                currentCalculatorId={calculatorDef.id}
+                category={calculatorDef.category}
+            />
 
             {Content && (
                 <div className="mt-16 border-t border-slate-200 pt-12">

@@ -5,6 +5,7 @@ import { calculatorRegistry, categories } from '../calculators/registry';
 export default function Breadcrumbs() {
     const location = useLocation();
     const pathnames = location.pathname.split('/').filter((x) => x);
+    const visiblePathnames = pathnames.filter(x => x !== 'calculator' && x !== 'category');
 
     if (pathnames.length === 0) return null;
 
@@ -17,21 +18,20 @@ export default function Breadcrumbs() {
                         Home
                     </Link>
                 </li>
-                {pathnames.map((value, index) => {
-                    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-                    const isLast = index === pathnames.length - 1;
+                {visiblePathnames.map((value, index) => {
+                    // Reconstruct the actual path for the link
+                    let to = '/' + pathnames.slice(0, pathnames.indexOf(value) + 1).join('/');
 
+                    // Determine display name
                     let displayName = value.charAt(0).toUpperCase() + value.slice(1);
+                    const isLast = index === visiblePathnames.length - 1;
 
-                    // Try to get a nicer name if it's a calculator ID
-                    if (pathnames[0] === 'calculator') { // Assuming route is /calculator/:id
-                        const calc = calculatorRegistry.find(c => c.id === value);
-                        if (calc) displayName = calc.name;
-                    }
+                    // Check if it's a calculator or category to improve display name
+                    const calc = calculatorRegistry.find(c => c.id === value);
+                    if (calc) displayName = calc.name;
 
-                    // Static mapping for cleaner names
-                    if (value === 'calculator') displayName = 'Calculators';
-                    if (value === 'category') displayName = 'Category';
+                    const category = categories.find(c => c.id === value);
+                    if (category) displayName = category.name;
 
                     return (
                         <li key={to}>
