@@ -1,10 +1,13 @@
-import { Calculator, DollarSign, Activity, Calendar, Lock, ArrowLeftRight, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler } from 'lucide-react';
+import { Calculator, DollarSign, Activity, Calendar, Lock, ArrowLeftRight, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase } from 'lucide-react';
 import { lazy } from 'react';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
 const ScientificCalculator = lazy(() => import('./math/ScientificCalculator'));
 const MortgageCalculator = lazy(() => import('./financial/MortgageCalculator'));
+const LoanCalculator = lazy(() => import('./financial/LoanCalculator'));
+const InvestmentCalculator = lazy(() => import('./financial/InvestmentCalculator'));
+const SalaryCalculator = lazy(() => import('./financial/SalaryCalculator'));
 const BMICalculator = lazy(() => import('./health/BMICalculator'));
 const CalorieCalculator = lazy(() => import('./health/CalorieCalculator'));
 const BodyFatCalculator = lazy(() => import('./health/BodyFatCalculator'));
@@ -68,6 +71,30 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: DollarSign,
         component: MortgageCalculator,
+    },
+    {
+        id: 'loan',
+        name: 'Loan Calculator',
+        description: 'Determine your monthly payments and total interest for any loan.',
+        category: 'financial',
+        icon: DollarSign,
+        component: LoanCalculator,
+    },
+    {
+        id: 'investment',
+        name: 'Investment Calculator',
+        description: 'Plan your investment growth with compound interest and regular contributions.',
+        category: 'financial',
+        icon: TrendingUp,
+        component: InvestmentCalculator,
+    },
+    {
+        id: 'salary',
+        name: 'Salary Calculator',
+        description: 'Convert your salary between hourly, weekly, monthly, and yearly rates.',
+        category: 'financial',
+        icon: Briefcase,
+        component: SalaryCalculator,
     },
     {
         id: 'bmi',
