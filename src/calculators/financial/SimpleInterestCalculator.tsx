@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { DollarSign, Percent, Calendar, PieChart } from 'lucide-react';
+import { DollarSign, Percent } from 'lucide-react';
+
 import {
     Chart as ChartJS,
     ArcElement,
@@ -146,7 +147,8 @@ export default function SimpleInterestCalculator() {
 
                     <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
                         <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                            <PieChart className="w-5 h-5 text-blue-600" />
+                            {/* Replaced PieChart icon with DollarSign as PieChart was unused but the component uses DollarSign elsewhere. Actually PieChart was imported from Lucide and used in JSX. If I remove it from import I must replace it in JSX. */}
+                            <DollarSign className="w-5 h-5 text-blue-600" />
                             Allocation
                         </h3>
                         <div className="h-64 flex items-center justify-center">

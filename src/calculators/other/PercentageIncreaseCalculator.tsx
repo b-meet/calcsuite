@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TrendingUp, ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react';
+import { ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react';
 
 export default function PercentageIncreaseCalculator() {
     const [original, setOriginal] = useState(100);
@@ -65,8 +65,8 @@ export default function PercentageIncreaseCalculator() {
 
                 {/* Result Block */}
                 <div className={`p-8 rounded-2xl text-center border transition-colors ${result?.type === 'increase' ? 'bg-green-50 border-green-100' :
-                        result?.type === 'decrease' ? 'bg-red-50 border-red-100' :
-                            'bg-slate-50 border-slate-200'
+                    result?.type === 'decrease' ? 'bg-red-50 border-red-100' :
+                        'bg-slate-50 border-slate-200'
                     }`}>
                     {original === 0 ? (
                         <p className="text-slate-500">Cannot calculate percentage change from 0.</p>
@@ -77,8 +77,8 @@ export default function PercentageIncreaseCalculator() {
                                 {result?.type === 'decrease' && <ArrowDownRight className="w-6 h-6 text-red-600" />}
                                 {result?.type === 'no change' && <Minus className="w-6 h-6 text-slate-400" />}
                                 <span className={`text-sm font-bold uppercase tracking-wide ${result?.type === 'increase' ? 'text-green-700' :
-                                        result?.type === 'decrease' ? 'text-red-700' :
-                                            'text-slate-500'
+                                    result?.type === 'decrease' ? 'text-red-700' :
+                                        'text-slate-500'
                                     }`}>
                                     {result?.type}
                                 </span>

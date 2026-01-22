@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Tag, ShoppingBag, PieChart } from 'lucide-react';
+import { Tag, ShoppingBag } from 'lucide-react';
 import {
     Chart as ChartJS,
     ArcElement,
@@ -187,6 +187,9 @@ export default function DiscountCalculator() {
                                     {discountDetails}% Off
                                 </p>
                             </div>
+                        </div>
+                        <div className="h-48 flex items-center justify-center">
+                            <Doughnut data={chartData} options={{ responsive: true, maintainAspectRatio: false, cutout: '70%' }} />
                         </div>
                     </div>
                 </div>
