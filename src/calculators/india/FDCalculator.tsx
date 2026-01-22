@@ -122,11 +122,13 @@ export default function FDCalculator() {
         calculateFD();
     }, [principal, rate, tenure, tenureType, compounding]);
 
+
+
     const pieData = {
         labels: ['Principal', 'Total Interest'],
         datasets: [
             {
-                data: result ? [principal, result.totalInterest] : [0, 0],
+                data: result ? [principal, result.totalInterest] : [1, 1],
                 backgroundColor: ['#e2e8f0', '#3b82f6'],
                 borderColor: ['#cbd5e1', '#2563eb'],
                 borderWidth: 1,

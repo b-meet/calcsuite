@@ -1,5 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Home, CheckCircle } from 'lucide-react';
+import { Home, CheckCircle, PieChart } from 'lucide-react';
+import {
+    Chart as ChartJS,
+    ArcElement,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function HomeLoanEligibilityCalculator() {
     const [monthlyIncome, setMonthlyIncome] = useState(100000);
@@ -49,6 +58,22 @@ export default function HomeLoanEligibilityCalculator() {
     useEffect(() => {
         calculateEligibility();
     }, [monthlyIncome, obligations, rate, tenure, foir]);
+
+    const doughnutData = {
+        labels: ['Proposed Home Loan EMI', 'Existing EMIs', 'Living Expenses & Savings'],
+        datasets: [
+            {
+                data: result ? [
+                    result.maxAffordableEMI,
+                    obligations,
+                    Math.max(0, monthlyIncome - result.maxAffordableEMI - obligations)
+                ] : [1, 1, 1],
+                backgroundColor: ['#3b82f6', '#ef4444', '#e2e8f0'],
+                borderColor: ['#2563eb', '#dc2626', '#cbd5e1'],
+                borderWidth: 1,
+            },
+        ],
+    };
 
     return (
         <div className="space-y-8">
@@ -186,6 +211,16 @@ export default function HomeLoanEligibilityCalculator() {
                         <p className="text-blue-800 text-sm">
                             With a <strong>{foir}% FOIR</strong>, banks estimate you can spare <strong>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format((monthlyIncome * foir / 100))}</strong> monthly for all loan repayments. Since you already pay <strong>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(obligations)}</strong>, your remaining capacity is <strong>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.maxAffordableEMI || 0)}</strong>.
                         </p>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                            <PieChart className="w-5 h-5 text-blue-600" />
+                            Income Allocation
+                        </h3>
+                        <div className="h-64 flex items-center justify-center">
+                            <Doughnut data={doughnutData} options={{ responsive: true, maintainAspectRatio: false }} />
+                        </div>
                     </div>
                 </div>
             </div>

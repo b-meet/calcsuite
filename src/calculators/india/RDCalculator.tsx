@@ -117,7 +117,7 @@ export default function RDCalculator() {
         labels: ['Total Investment', 'Total Interest'],
         datasets: [
             {
-                data: result ? [result.totalInvested, result.totalInterest] : [0, 0],
+                data: result ? [result.totalInvested, result.totalInterest] : [1, 1],
                 backgroundColor: ['#e2e8f0', '#3b82f6'],
                 borderColor: ['#cbd5e1', '#2563eb'],
                 borderWidth: 1,

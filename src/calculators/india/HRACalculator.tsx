@@ -6,6 +6,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
 
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -59,7 +60,17 @@ export default function HRACalculator() {
         calculateHRA();
     }, [basicSalary, hraReceived, rentPaid, isMetro]);
 
-
+    const pieData = {
+        labels: ['Exempt HRA', 'Taxable HRA'],
+        datasets: [
+            {
+                data: result ? [result.exemptHRA, result.taxableHRA] : [1, 1],
+                backgroundColor: ['#22c55e', '#ef4444'],
+                borderColor: ['#16a34a', '#dc2626'],
+                borderWidth: 1,
+            },
+        ],
+    };
 
     return (
         <div className="space-y-8">
@@ -176,6 +187,13 @@ export default function HRACalculator() {
                             <p className="text-2xl font-bold text-red-700">
                                 {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.taxableHRA || 0)}
                             </p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <h3 className="text-sm font-semibold text-slate-900 mb-4 uppercase tracking-wider text-xs">Exemption Ratio</h3>
+                        <div className="h-64 flex items-center justify-center">
+                            <Pie data={pieData} options={{ responsive: true, maintainAspectRatio: false }} />
                         </div>
                     </div>
 
