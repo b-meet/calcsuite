@@ -132,9 +132,29 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600">
-                    <p>&copy; {currentYear} CalcSuite. All rights reserved.</p>
+                {/* Bottom Bar & Legal */}
+                <div className="border-t border-slate-800 mt-12 pt-8">
+
+                    {/* Global Disclaimer */}
+                    <div className="bg-slate-800/50 rounded-xl p-6 mb-8 text-xs text-slate-500 leading-relaxed border border-slate-700/50">
+                        <p className="font-semibold text-slate-400 mb-2">Disclaimer & Usage Agreement:</p>
+                        <p className="mb-2">
+                            The results provided by CalcSuite are for informational purposes only and should not be considered as professional financial, tax, or medical advice.
+                            While we take updates seriously and strive to keep our formulas current with the latest regulations (including FY 2025-26 tax laws), there may be a lag in reflecting new changes.
+                            We are not responsible for any decisions or losses incurred based on these calculations.
+                        </p>
+                        <p className="text-slate-400">
+                            By performing any calculation on this site, you automatically agree to our <Link to="/terms" className="text-blue-400 hover:underline">Terms of Service</Link>. No further confirmation is required.
+                        </p>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 gap-4">
+                        <p>&copy; {currentYear} CalcSuite. All rights reserved.</p>
+                        <div className="flex gap-6">
+                            <Link to="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
+                            <Link to="/terms" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
+                        </div>
+                    </div>
                 </div>
 
             </div>

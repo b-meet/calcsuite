@@ -3,6 +3,8 @@ import { MainLayout } from './layouts/MainLayout';
 import { Home } from './pages/Home';
 import { CalculatorPage } from './pages/CalculatorPage';
 import NotFound from './pages/NotFound';
+import TermsOfService from './pages/legal/TermsOfService';
+import PrivacyPolicy from './pages/legal/PrivacyPolicy';
 import { Suspense, useEffect } from 'react';
 import { trackPageView } from './utils/analytics';
 
@@ -16,9 +18,20 @@ function AnalyticsTracker() {
   return null;
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <AnalyticsTracker />
       <Routes>
         <Route path="/" element={<MainLayout />}>
@@ -32,6 +45,8 @@ function App() {
               </Suspense>
             }
           />
+          <Route path="terms" element={<TermsOfService />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
