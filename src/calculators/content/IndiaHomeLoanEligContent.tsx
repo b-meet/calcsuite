@@ -25,7 +25,7 @@ const IndiaHomeLoanEligContent = () => {
                 </div>
             </section>
 
-            <section className="bg-white rounded-2xl">
+            <section className="bg-white rounded-2xl p-6">
                 <h2 className="text-3xl font-bold text-slate-900 mb-6">
                     4 Ways to Increase Your Loan Eligibility
                 </h2>

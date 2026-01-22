@@ -49,7 +49,7 @@ const IndiaHRAContent = () => {
                 </div>
             </section>
 
-            <section className="bg-white rounded-2xl">
+            <section className="bg-white rounded-2xl p-6">
                 <h2 className="text-2xl font-bold text-slate-900 mb-4">
                     Metro vs Non-Metro City Rule
                 </h2>
