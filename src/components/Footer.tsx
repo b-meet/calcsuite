@@ -10,6 +10,7 @@ export default function Footer() {
         health: calculatorRegistry.filter(c => c.category === 'health'),
         math: calculatorRegistry.filter(c => c.category === 'math'),
         other: calculatorRegistry.filter(c => c.category === 'other'),
+        india: calculatorRegistry.filter(c => c.category === 'india'),
     };
 
     return (
@@ -30,7 +31,20 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                        <div>
+                            <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">India Tools</h4>
+                            <ul className="space-y-2 text-sm">
+                                {categories.india.map(calc => (
+                                    <li key={calc.id}>
+                                        <Link to={`/calculator/${calc.id}`} className="hover:text-amber-400 text-amber-100 transition-colors">
+                                            {calc.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
                         <div>
                             <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Financial</h4>
                             <ul className="space-y-2 text-sm">
@@ -109,7 +123,7 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div>
                             <h5 className="text-slate-400 font-medium mb-2">Financial Planning</h5>
                             <p>
@@ -118,6 +132,15 @@ export default function Footer() {
                                 or the <strong>Salary Calculator</strong> to break down your earnings.
                                 Our <strong>Auto Loan</strong> and <strong>Retirement Calculators</strong>
                                 are essential for long-term financial health.
+                            </p>
+                        </div>
+                        <div>
+                            <h5 className="text-slate-400 font-medium mb-2">India Specific Tools</h5>
+                            <p>
+                                We offer specialized tools for the Indian market, updated for FY 2025-26.
+                                Calculate your <strong>HRA Exemption</strong>, check <strong>Home Loan Eligibility</strong> with FOIR,
+                                or plan investments with our <strong>PPF</strong>, <strong>FD</strong>, and <strong>RD Calculators</strong>.
+                                Navigate Indian tax laws with confidence.
                             </p>
                         </div>
                         <div>

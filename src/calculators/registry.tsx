@@ -1,4 +1,4 @@
-import { Calculator, DollarSign, Activity, Calendar, Lock, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight, Landmark } from 'lucide-react';
+import { Calculator, DollarSign, Activity, Calendar, Lock, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight, Landmark, Home } from 'lucide-react';
 import { lazy } from 'react';
 
 // Lazy load calculators
@@ -34,7 +34,7 @@ const IndiaSalaryCalculator = lazy(() => import('./financial/IndiaSalaryCalculat
 const IndiaGSTCalculator = lazy(() => import('./financial/IndiaGSTCalculator'));
 const IndiaEMICalculator = lazy(() => import('./financial/IndiaEMICalculator'));
 
-export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'math' | 'other';
+export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'math' | 'other' | 'india';
 
 // Content Components
 import MortgageContent from './content/MortgageContent';
@@ -43,6 +43,28 @@ import FinancialContent from './content/FinancialContent';
 import HealthContent from './content/HealthContent';
 import MathContent from './content/MathContent';
 import OtherContent from './content/OtherContent';
+import IndiaFDContent from './content/IndiaFDContent';
+import IndiaRDContent from './content/IndiaRDContent';
+import IndiaPPFContent from './content/IndiaPPFContent';
+import IndiaHomeLoanEligContent from './content/IndiaHomeLoanEligContent';
+import IndiaHRAContent from './content/IndiaHRAContent';
+
+const FDCalculator = lazy(() => import('./india/FDCalculator'));
+const RDCalculator = lazy(() => import('./india/RDCalculator'));
+const PPFCalculator = lazy(() => import('./india/PPFCalculator'));
+const HomeLoanEligibilityCalculator = lazy(() => import('./india/HomeLoanEligibilityCalculator'));
+const HRACalculator = lazy(() => import('./india/HRACalculator'));
+
+// New Financial/Math Calculators
+const CompoundInterestCalculator = lazy(() => import('./financial/CompoundInterestCalculator'));
+const SimpleInterestCalculator = lazy(() => import('./financial/SimpleInterestCalculator'));
+const PercentageIncreaseCalculator = lazy(() => import('./other/PercentageIncreaseCalculator'));
+const DiscountCalculator = lazy(() => import('./other/DiscountCalculator'));
+
+import CompoundInterestContent from './content/CompoundInterestContent';
+import SimpleInterestContent from './content/SimpleInterestContent';
+import PercentageIncreaseContent from './content/PercentageIncreaseContent';
+import DiscountContent from './content/DiscountContent';
 
 export interface CalculatorDef {
     id: string;
@@ -302,7 +324,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'india-tax',
         name: 'India Income Tax Calculator',
         description: 'Calculate your Indian Income Tax for FY 2025-26. Compare New vs Old Regime tax liability instantly.',
-        category: 'financial',
+        category: 'india',
         icon: DollarSign,
         component: IndiaTaxCalculator,
         content: lazy(() => import('./content/IndiaTaxContent')),
@@ -311,7 +333,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'india-salary',
         name: 'Salary Calculator (India)',
         description: 'Calculate your in-hand salary from CTC. Breakdown of Basic, HRA, Special Allowance, and PF deductions.',
-        category: 'financial',
+        category: 'india',
         icon: Briefcase,
         component: IndiaSalaryCalculator,
         content: FinancialContent,
@@ -320,7 +342,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'india-gst',
         name: 'GST Calculator (India)',
         description: 'Calculate GST amounts instantly. Find GST inclusive and exclusive prices for 5%, 12%, 18%, and 28% tax slabs.',
-        category: 'financial',
+        category: 'india',
         icon: Percent,
         component: IndiaGSTCalculator,
         content: FinancialContent,
@@ -329,10 +351,91 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'india-emi',
         name: 'EMI Calculator (India)',
         description: 'Calculate monthly EMIs for Home Loan, Car Loan, or Personal Loan. Plan your repayment with total interest breakdown.',
-        category: 'financial',
+        category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
         content: FinancialContent,
+    },
+    {
+        id: 'india-fd',
+        name: 'FD Calculator (India)',
+        description: 'Calculate maturity amount and interest for Fixed Deposits (FD). Supports quarterly, monthly, and yearly compounding with detailed year-wise breakdown.',
+        category: 'india',
+        icon: Landmark,
+        component: FDCalculator,
+        content: IndiaFDContent,
+    },
+    {
+        id: 'india-rd',
+        name: 'RD Calculator (India)',
+        description: 'Plan your Recurring Deposits (RD) accurately. Calculate maturity value for monthly savings with compounding logic suitable for Indian banks.',
+        category: 'india',
+        icon: TrendingUp,
+        component: RDCalculator,
+        content: IndiaRDContent,
+    },
+    {
+        id: 'india-ppf',
+        name: 'PPF Calculator',
+        description: 'Public Provident Fund calculator. Estimate returns for 15-year tax-saving PPF investments with exempt-exempt-exempt (EEE) benefits.',
+        category: 'india',
+        icon: Briefcase,
+        component: PPFCalculator,
+        content: IndiaPPFContent,
+    },
+    {
+        id: 'india-home-loan-eligibility',
+        name: 'Home Loan Eligibility',
+        description: 'Check how much Home Loan you can get. Estimates maximum eligible loan amount based on your income, existing EMIs, and FOIR norms.',
+        category: 'india',
+        icon: Home,
+        component: HomeLoanEligibilityCalculator,
+        content: IndiaHomeLoanEligContent,
+    },
+    {
+        id: 'india-hra',
+        name: 'HRA Calculator',
+        description: 'Calculate House Rent Allowance (HRA) exemption. Determine taxable and exempt HRA based on salary, rent paid, and metro city rules.',
+        category: 'india',
+        icon: DollarSign,
+        component: HRACalculator,
+        content: IndiaHRAContent,
+    },
+    {
+        id: 'compound-interest',
+        name: 'Compound Interest Calculator',
+        description: 'Compute compound growth for investments. Supports lump sum plus regular contributions, different compounding frequencies, and detailed breakdowns.',
+        category: 'financial',
+        icon: TrendingUp,
+        component: CompoundInterestCalculator,
+        content: CompoundInterestContent,
+    },
+    {
+        id: 'simple-interest',
+        name: 'Simple Interest Calculator',
+        description: 'Calculate simple interest on loans or savings. Easy and quick interest calculation using the principal, rate, and time formula.',
+        category: 'financial',
+        icon: Percent,
+        component: SimpleInterestCalculator,
+        content: SimpleInterestContent,
+    },
+    {
+        id: 'percentage-increase',
+        name: 'Percentage Increase Calculator',
+        description: 'Calculate percentage increase or decrease between two values. Determine growth or decline and see the difference instantly.',
+        category: 'basic',
+        icon: TrendingUp,
+        component: PercentageIncreaseCalculator,
+        content: PercentageIncreaseContent,
+    },
+    {
+        id: 'discount',
+        name: 'Discount Calculator',
+        description: 'Calculate final price after discount and tax. Perfect for shopping sales, double discounts, and finding out exactly how much you save.',
+        category: 'basic',
+        icon: Percent,
+        component: DiscountCalculator,
+        content: DiscountContent,
     },
 ];
 
@@ -340,5 +443,6 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
     { id: 'basic', name: 'Basic & Math', icon: Calculator },
     { id: 'financial', name: 'Finance', icon: DollarSign },
     { id: 'health', name: 'Health & Fitness', icon: Activity },
+    { id: 'india', name: 'India Specific', icon: Landmark },
     { id: 'other', name: 'Other Tools', icon: MoreHorizontal },
 ];
