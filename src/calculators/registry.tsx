@@ -1,4 +1,4 @@
-import { Calculator, DollarSign, Activity, Calendar, Lock, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight, Landmark } from 'lucide-react';
+import { Calculator, DollarSign, Activity, Calendar, Lock, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight, Landmark, Home } from 'lucide-react';
 import { lazy } from 'react';
 
 // Lazy load calculators
@@ -34,7 +34,7 @@ const IndiaSalaryCalculator = lazy(() => import('./financial/IndiaSalaryCalculat
 const IndiaGSTCalculator = lazy(() => import('./financial/IndiaGSTCalculator'));
 const IndiaEMICalculator = lazy(() => import('./financial/IndiaEMICalculator'));
 
-export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'math' | 'other';
+export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'math' | 'other' | 'india';
 
 // Content Components
 import MortgageContent from './content/MortgageContent';
@@ -43,6 +43,17 @@ import FinancialContent from './content/FinancialContent';
 import HealthContent from './content/HealthContent';
 import MathContent from './content/MathContent';
 import OtherContent from './content/OtherContent';
+import IndiaFDContent from './content/IndiaFDContent';
+import IndiaRDContent from './content/IndiaRDContent';
+import IndiaPPFContent from './content/IndiaPPFContent';
+import IndiaHomeLoanEligContent from './content/IndiaHomeLoanEligContent';
+import IndiaHRAContent from './content/IndiaHRAContent';
+
+const FDCalculator = lazy(() => import('./india/FDCalculator'));
+const RDCalculator = lazy(() => import('./india/RDCalculator'));
+const PPFCalculator = lazy(() => import('./india/PPFCalculator'));
+const HomeLoanEligibilityCalculator = lazy(() => import('./india/HomeLoanEligibilityCalculator'));
+const HRACalculator = lazy(() => import('./india/HRACalculator'));
 
 export interface CalculatorDef {
     id: string;
@@ -334,11 +345,57 @@ export const calculatorRegistry: CalculatorDef[] = [
         component: IndiaEMICalculator,
         content: FinancialContent,
     },
+    {
+        id: 'india-fd',
+        name: 'FD Calculator (India)',
+        description: 'Calculate maturity amount and interest for Fixed Deposits (FD). Supports quarterly, monthly, and yearly compounding with detailed year-wise breakdown.',
+        category: 'india',
+        icon: Landmark,
+        component: FDCalculator,
+        content: IndiaFDContent,
+    },
+    {
+        id: 'india-rd',
+        name: 'RD Calculator (India)',
+        description: 'Plan your Recurring Deposits (RD) accurately. Calculate maturity value for monthly savings with compounding logic suitable for Indian banks.',
+        category: 'india',
+        icon: TrendingUp,
+        component: RDCalculator,
+        content: IndiaRDContent,
+    },
+    {
+        id: 'india-ppf',
+        name: 'PPF Calculator',
+        description: 'Public Provident Fund calculator. Estimate returns for 15-year tax-saving PPF investments with exempt-exempt-exempt (EEE) benefits.',
+        category: 'india',
+        icon: Briefcase,
+        component: PPFCalculator,
+        content: IndiaPPFContent,
+    },
+    {
+        id: 'india-home-loan-eligibility',
+        name: 'Home Loan Eligibility',
+        description: 'Check how much Home Loan you can get. Estimates maximum eligible loan amount based on your income, existing EMIs, and FOIR norms.',
+        category: 'india',
+        icon: Home,
+        component: HomeLoanEligibilityCalculator,
+        content: IndiaHomeLoanEligContent,
+    },
+    {
+        id: 'india-hra',
+        name: 'HRA Calculator',
+        description: 'Calculate House Rent Allowance (HRA) exemption. Determine taxable and exempt HRA based on salary, rent paid, and metro city rules.',
+        category: 'india',
+        icon: DollarSign,
+        component: HRACalculator,
+        content: IndiaHRAContent,
+    },
 ];
 
 export const categories: { id: CalculatorCategory; name: string; icon: any }[] = [
     { id: 'basic', name: 'Basic & Math', icon: Calculator },
     { id: 'financial', name: 'Finance', icon: DollarSign },
     { id: 'health', name: 'Health & Fitness', icon: Activity },
+    { id: 'india', name: 'India Specific', icon: Landmark },
     { id: 'other', name: 'Other Tools', icon: MoreHorizontal },
 ];
