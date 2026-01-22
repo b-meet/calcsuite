@@ -55,6 +55,17 @@ const PPFCalculator = lazy(() => import('./india/PPFCalculator'));
 const HomeLoanEligibilityCalculator = lazy(() => import('./india/HomeLoanEligibilityCalculator'));
 const HRACalculator = lazy(() => import('./india/HRACalculator'));
 
+// New Financial/Math Calculators
+const CompoundInterestCalculator = lazy(() => import('./financial/CompoundInterestCalculator'));
+const SimpleInterestCalculator = lazy(() => import('./financial/SimpleInterestCalculator'));
+const PercentageIncreaseCalculator = lazy(() => import('./other/PercentageIncreaseCalculator'));
+const DiscountCalculator = lazy(() => import('./other/DiscountCalculator'));
+
+import CompoundInterestContent from './content/CompoundInterestContent';
+import SimpleInterestContent from './content/SimpleInterestContent';
+import PercentageIncreaseContent from './content/PercentageIncreaseContent';
+import DiscountContent from './content/DiscountContent';
+
 export interface CalculatorDef {
     id: string;
     name: string;
@@ -389,6 +400,42 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: DollarSign,
         component: HRACalculator,
         content: IndiaHRAContent,
+    },
+    {
+        id: 'compound-interest',
+        name: 'Compound Interest Calculator',
+        description: 'Compute compound growth for investments. Supports lump sum plus regular contributions, different compounding frequencies, and detailed breakdowns.',
+        category: 'financial',
+        icon: TrendingUp,
+        component: CompoundInterestCalculator,
+        content: CompoundInterestContent,
+    },
+    {
+        id: 'simple-interest',
+        name: 'Simple Interest Calculator',
+        description: 'Calculate simple interest on loans or savings. Easy and quick interest calculation using the principal, rate, and time formula.',
+        category: 'financial',
+        icon: Percent,
+        component: SimpleInterestCalculator,
+        content: SimpleInterestContent,
+    },
+    {
+        id: 'percentage-increase',
+        name: 'Percentage Increase Calculator',
+        description: 'Calculate percentage increase or decrease between two values. Determine growth or decline and see the difference instantly.',
+        category: 'basic',
+        icon: TrendingUp,
+        component: PercentageIncreaseCalculator,
+        content: PercentageIncreaseContent,
+    },
+    {
+        id: 'discount',
+        name: 'Discount Calculator',
+        description: 'Calculate final price after discount and tax. Perfect for shopping sales, double discounts, and finding out exactly how much you save.',
+        category: 'basic',
+        icon: Percent,
+        component: DiscountCalculator,
+        content: DiscountContent,
     },
 ];
 
