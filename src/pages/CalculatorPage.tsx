@@ -5,6 +5,7 @@ import NotFound from './NotFound';
 import { useEffect } from 'react';
 import { trackCalculatorUse } from '../utils/analytics';
 import RelatedCalculators from '../components/RelatedCalculators';
+import { AdPlaceholder } from '../components/AdPlaceholder';
 
 export function CalculatorPage() {
     const { calculatorId } = useParams();
@@ -36,6 +37,9 @@ export function CalculatorPage() {
                 <h1 className="text-3xl font-bold text-slate-900 mb-2">{calculatorDef.name}</h1>
                 <p className="text-slate-500">{calculatorDef.description}</p>
             </div>
+
+            <AdPlaceholder variant="banner" label="Top Banner Ad" className="mb-8 mx-auto" />
+
             <Component />
 
             <RelatedCalculators

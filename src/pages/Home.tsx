@@ -3,6 +3,7 @@ import { calculatorRegistry } from '../calculators/registry';
 import { CalculatorCard } from '../components/CalculatorCard';
 import { Search } from 'lucide-react';
 import SEO from '../components/SEO';
+import { AdPlaceholder } from '../components/AdPlaceholder';
 
 export function Home() {
     const { categoryId } = useParams();
@@ -45,6 +46,8 @@ export function Home() {
                     {pageDescription}
                 </p>
             </div>
+
+            <AdPlaceholder variant="banner" label="Home Banner Ad" className="mx-auto" />
 
             <section>
                 <div className="flex items-center justify-between mb-6">

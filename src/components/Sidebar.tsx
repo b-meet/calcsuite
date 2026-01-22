@@ -3,6 +3,7 @@ import { Calculator, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '../utils/cn';
 import { categories } from '../calculators/registry';
+import { AdPlaceholder } from './AdPlaceholder';
 
 export function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -26,18 +27,18 @@ export function Sidebar() {
 
             <aside
                 className={cn(
-                    "fixed top-0 left-0 z-40 h-screen w-64 bg-white border-r border-slate-200 transition-transform duration-300 ease-in-out lg:translate-x-0",
+                    "fixed top-0 left-0 z-40 h-screen w-64 bg-white border-r border-slate-200 transition-transform duration-300 ease-in-out lg:translate-x-0 flex flex-col",
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 )}
             >
-                <div className="flex items-center gap-2 p-6 border-b border-slate-100">
+                <div className="flex items-center gap-2 p-6 border-b border-slate-100 flex-shrink-0">
                     <img src="/favicon.png" alt="CalcSuite" className="w-10 h-10 rounded-xl shadow-sm" />
                     <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
                         CalcSuite
                     </span>
                 </div>
 
-                <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100vh-80px)]">
+                <nav className="p-4 space-y-1 overflow-y-auto flex-1">
                     <div className="mb-4">
                         <p className="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
                             Menu
@@ -84,7 +85,14 @@ export function Sidebar() {
                         })}
                     </div>
                 </nav>
-            </aside>
+
+                {/* Sidebar Ad - Bottom fixed, desktop only, hidden on legal pages */}
+                {!['/privacy', '/terms'].includes(window.location.pathname) && (
+                    <div className="p-4 border-t border-slate-100 hidden lg:block mt-auto flex-shrink-0">
+                        <AdPlaceholder variant="rectangle" label="Nav Ad" className="h-[200px]" />
+                    </div>
+                )}
+            </aside >
         </>
     );
 }
