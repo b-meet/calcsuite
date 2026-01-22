@@ -1,4 +1,4 @@
-import { Calculator, DollarSign, Activity, Calendar, Lock, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight } from 'lucide-react';
+import { Calculator, DollarSign, Activity, Calendar, Lock, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight, Landmark } from 'lucide-react';
 import { lazy } from 'react';
 
 // Lazy load calculators
@@ -29,6 +29,10 @@ const DateCalculator = lazy(() => import('./other/DateCalculator'));
 const InflationCalculator = lazy(() => import('./financial/InflationCalculator'));
 const TipCalculator = lazy(() => import('./basic/TipCalculator'));
 const SIPCalculator = lazy(() => import('./financial/SIPCalculator'));
+const IndiaTaxCalculator = lazy(() => import('./financial/IndiaTaxCalculator'));
+const IndiaSalaryCalculator = lazy(() => import('./financial/IndiaSalaryCalculator'));
+const IndiaGSTCalculator = lazy(() => import('./financial/IndiaGSTCalculator'));
+const IndiaEMICalculator = lazy(() => import('./financial/IndiaEMICalculator'));
 
 export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'math' | 'other';
 
@@ -292,6 +296,42 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
+        content: FinancialContent,
+    },
+    {
+        id: 'india-tax',
+        name: 'India Income Tax Calculator',
+        description: 'Calculate your Indian Income Tax for FY 2025-26. Compare New vs Old Regime tax liability instantly.',
+        category: 'financial',
+        icon: DollarSign,
+        component: IndiaTaxCalculator,
+        content: lazy(() => import('./content/IndiaTaxContent')),
+    },
+    {
+        id: 'india-salary',
+        name: 'Salary Calculator (India)',
+        description: 'Calculate your in-hand salary from CTC. Breakdown of Basic, HRA, Special Allowance, and PF deductions.',
+        category: 'financial',
+        icon: Briefcase,
+        component: IndiaSalaryCalculator,
+        content: FinancialContent,
+    },
+    {
+        id: 'india-gst',
+        name: 'GST Calculator (India)',
+        description: 'Calculate GST amounts instantly. Find GST inclusive and exclusive prices for 5%, 12%, 18%, and 28% tax slabs.',
+        category: 'financial',
+        icon: Percent,
+        component: IndiaGSTCalculator,
+        content: FinancialContent,
+    },
+    {
+        id: 'india-emi',
+        name: 'EMI Calculator (India)',
+        description: 'Calculate monthly EMIs for Home Loan, Car Loan, or Personal Loan. Plan your repayment with total interest breakdown.',
+        category: 'financial',
+        icon: Landmark,
+        component: IndiaEMICalculator,
         content: FinancialContent,
     },
 ];
