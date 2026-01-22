@@ -1,4 +1,4 @@
-import { Percent, Calendar, DollarSign, Calculator } from 'lucide-react';
+import { Percent, Calendar, Calculator } from 'lucide-react';
 
 export default function SimpleInterestContent() {
     return (
