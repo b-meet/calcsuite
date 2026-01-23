@@ -43,7 +43,7 @@ export function CalculatorPage() {
                 title={calculatorDef.name}
                 description={calculatorDef.description}
                 keywords={[calculatorDef.category, calculatorDef.name.toLowerCase(), 'calculator', 'free online calculator']}
-                image={`https://calcsuite.com/og/${calculatorDef.id}.png`}
+                image={`https://calcsuite.in/og/${calculatorDef.id}.png`}
             />
 
             {/* Rich Snippet for Software App */}
@@ -69,9 +69,9 @@ export function CalculatorPage() {
             <StructuredData
                 type="BreadcrumbList"
                 data={[
-                    { name: 'Home', item: 'https://calcsuite.com/' },
-                    { name: calculatorDef.category.charAt(0).toUpperCase() + calculatorDef.category.slice(1), item: `https://calcsuite.com/category/${calculatorDef.category}` },
-                    { name: calculatorDef.name, item: `https://calcsuite.com/calculator/${calculatorDef.id}` }
+                    { name: 'Home', item: 'https://calcsuite.in/' },
+                    { name: calculatorDef.category.charAt(0).toUpperCase() + calculatorDef.category.slice(1), item: `https://calcsuite.in/category/${calculatorDef.category}` },
+                    { name: calculatorDef.name, item: `https://calcsuite.in/calculator/${calculatorDef.id}` }
                 ]}
             />
 

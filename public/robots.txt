@@ -1,3 +1,28 @@
 User-agent: *
 Allow: /
-Sitemap: https://calcsuite.com/sitemap.xml
+
+# Optimizing for Google standard bot
+User-agent: Googlebot
+Allow: /
+
+# Block Common AI Scrapers (Optional - adjust based on strategy)
+# Blocking these prevents training but might limit "AI Search" visibility
+# For "Zero-Click" optimization, we generally WANT to be seen by Search AIs (like SGE),
+# but maybe not generic LLM scrapers.
+# Google-Extended controls Bard/Vertex training but allows Search.
+User-agent: Google-Extended
+Disallow: /
+
+# GPTBot (OpenAI)
+User-agent: GPTBot
+Disallow: /
+
+# CCBot (Common Crawl - used by many models)
+User-agent: CCBot
+Disallow: /
+
+# Anthropic
+User-agent: anthropic-ai
+Disallow: /
+
+Sitemap: https://calcsuite.in/sitemap.xml
