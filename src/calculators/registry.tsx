@@ -74,6 +74,7 @@ export interface CalculatorDef {
     icon: any;
     component: React.LazyExoticComponent<React.ComponentType<any>>;
     content?: React.ComponentType<any>;
+    faqs?: { question: string; answer: string }[];
 }
 
 export const calculatorRegistry: CalculatorDef[] = [
@@ -409,6 +410,20 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: TrendingUp,
         component: CompoundInterestCalculator,
         content: CompoundInterestContent,
+        faqs: [
+            {
+                question: "What is Compound Interest?",
+                answer: "Compound interest is the \"interest on interest.\" It is the result of reinvesting interest, calculating interest on both the initial principal and the accumulated interest from previous periods."
+            },
+            {
+                question: "How does compounding frequency affect growth?",
+                answer: "The frequency of compounding (daily, monthly, quarterly, yearly) significantly impacts the final amount. More frequent compounding leads to faster growth as interest is added to the principal more often."
+            },
+            {
+                question: "What is the compound interest formula?",
+                answer: "The formula is A = P(1 + r/n)^(nt), where A is the future value, P is the principal investment, r is the annual interest rate (decimal), n is the number of times interest is compounded per year, and t is the number of years."
+            }
+        ]
     },
     {
         id: 'simple-interest',
