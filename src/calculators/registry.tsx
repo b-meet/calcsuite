@@ -83,6 +83,7 @@ export interface CalculatorDef {
         description: string;
         steps: { name: string; text: string; image?: string; url?: string }[];
     };
+    popular?: boolean;
 }
 
 export const calculatorRegistry: CalculatorDef[] = [
@@ -130,6 +131,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: Percent,
         component: PercentageCalculator,
         content: MathContent,
+        popular: true,
     },
     {
         id: 'mortgage',
@@ -188,7 +190,7 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'bmi',
         name: 'BMI Calculator',
-        description: 'Calculate your Body Mass Index (BMI) instantly. Determine if you are underweight, normal weight, overweight, or obese based on your height and weight.',
+        description: 'Calculate your Body Mass Index (BMI). Accurate BMI Calculator for men, women, and kids with weight categories (underweight, normal, overweight, obese).',
         category: 'health',
         icon: Activity,
         component: BMICalculator,
@@ -216,7 +218,8 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Input Height", text: "Enter your height accurately." },
                 { name: "Get Result", text: "The calculator will instantly display your BMI value and weight category." }
             ]
-        }
+        },
+        popular: true,
     },
     {
         id: 'calorie',
@@ -266,11 +269,12 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'age',
         name: 'Age Calculator',
-        description: 'Calculate your precise age. Find out exactly how many years, months, days, hours, and minutes you have been alive based on your date of birth.',
+        description: 'Calculate your exact age in years, months, and days. Best online Age Calculator to find days between dates and next birthday countdown.',
         category: 'other',
         icon: Calendar,
         component: AgeCalculator,
         content: OtherContent,
+        popular: true,
     },
     {
         id: 'gpa',
@@ -347,7 +351,7 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'sip',
         name: 'SIP Calculator',
-        description: 'Calculate SIP returns online instantly. Estimate maturity amount and wealth gain from your monthly mutual fund investments with our free SIP calculator.',
+        description: 'Best SIP Calculator 2025. Estimate mutual fund returns with our Systematic Investment Plan calculator. Check monthly investment growth and maturity value.',
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
@@ -375,7 +379,8 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Choose Tenure", text: "Select the number of years you want to stay invested." },
                 { name: "View Corpus", text: "See your total invested amount and estimated future value instantly." }
             ]
-        }
+        },
+        popular: true,
     },
     {
         id: 'india-tax',
@@ -407,7 +412,7 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'india-emi',
         name: 'EMI Calculator (India)',
-        description: 'Free online EMI Calculator for Home, Car & Personal Loans. Calculate monthly EMI and total interest payable with amortization schedule.',
+        description: 'Calculate Home Loan, Car Loan & Personal Loan EMI. Best online Equated Monthly Installment calculator with amortization schedule and interest repayment.',
         category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
@@ -435,7 +440,8 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Loan Tenure", text: "Select the duration of the loan in years." },
                 { name: "Analyze", text: "Check the calculated EMI and total interest breakdown below." }
             ]
-        }
+        },
+        popular: true,
     },
     {
         id: 'india-fd',

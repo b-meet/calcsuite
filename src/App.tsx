@@ -6,17 +6,6 @@ import NotFound from './pages/NotFound';
 import TermsOfService from './pages/legal/TermsOfService';
 import PrivacyPolicy from './pages/legal/PrivacyPolicy';
 import { Suspense, useEffect } from 'react';
-import { trackPageView } from './utils/analytics';
-
-function AnalyticsTracker() {
-  const location = useLocation();
-
-  useEffect(() => {
-    trackPageView(location.pathname);
-  }, [location]);
-
-  return null;
-}
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -32,7 +21,6 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <AnalyticsTracker />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

@@ -10,12 +10,19 @@ export function Home() {
     const searchQuery = searchParams.get('q') || '';
 
 
-    const filteredCalculators = calculatorRegistry.filter((calc) => {
-        const matchesCategory = categoryId ? calc.category === categoryId : true;
-        const matchesSearch = calc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            calc.description.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesCategory && matchesSearch;
-    });
+    const filteredCalculators = calculatorRegistry
+        .filter((calc) => {
+            const matchesCategory = categoryId ? calc.category === categoryId : true;
+            const matchesSearch = calc.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                calc.description.toLowerCase().includes(searchQuery.toLowerCase());
+            return matchesCategory && matchesSearch;
+        })
+        .sort((a, b) => {
+            // Sort by popularity (true comes first)
+            const popA = a.popular ? 1 : 0;
+            const popB = b.popular ? 1 : 0;
+            return popB - popA;
+        });
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const query = e.target.value;
@@ -45,7 +52,6 @@ export function Home() {
                     {pageDescription}
                 </p>
             </div>
-
             <section>
                 <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
@@ -76,6 +82,7 @@ export function Home() {
                                 description={calc.description}
                                 icon={calc.icon}
                                 category={calc.category}
+                                popular={calc.popular}
                             />
                         ))}
                     </div>

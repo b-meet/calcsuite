@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 
 interface CalculatorCardProps {
     id: string;
@@ -7,9 +7,10 @@ interface CalculatorCardProps {
     description: string;
     icon: any;
     category: string;
+    popular?: boolean;
 }
 
-export function CalculatorCard({ id, name, description, icon: Icon, category }: CalculatorCardProps) {
+export function CalculatorCard({ id, name, description, icon: Icon, category, popular }: CalculatorCardProps) {
     return (
         <Link
             to={`/calculator/${id}`}
@@ -18,6 +19,7 @@ export function CalculatorCard({ id, name, description, icon: Icon, category }: 
             <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <ArrowRight className="text-blue-500" size={20} />
             </div>
+
 
             <div className="mb-4 p-3 bg-blue-50 rounded-xl w-fit group-hover:bg-blue-100 transition-colors duration-300">
                 <Icon className="text-blue-600" size={24} />
@@ -32,9 +34,15 @@ export function CalculatorCard({ id, name, description, icon: Icon, category }: 
             </p>
 
             <div className="mt-4 flex items-center gap-2">
-                <span className="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full capitalize">
+                <span className="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-600 rounded-full capitalize border border-slate-200">
                     {category}
                 </span>
+                {popular && (
+                    <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-1 bg-gradient-to-r from-amber-50 to-orange-50 text-orange-600 rounded-full border border-orange-100 shadow-sm uppercase tracking-wider">
+                        <Star size={10} fill="currentColor" />
+                        Popular
+                    </span>
+                )}
             </div>
         </Link>
     );
