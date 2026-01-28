@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
 import NotFound from './NotFound';
-import NotFound from './NotFound';
 
 import RelatedCalculators from '../components/RelatedCalculators';
 import StructuredData from '../components/StructuredData';
