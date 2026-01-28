@@ -49,6 +49,9 @@ import IndiaPPFContent from './content/IndiaPPFContent';
 import IndiaHomeLoanEligContent from './content/IndiaHomeLoanEligContent';
 import IndiaHRAContent from './content/IndiaHRAContent';
 
+import SIPContent from './content/SIPContent';
+import IndiaEMIContent from './content/IndiaEMIContent';
+
 const FDCalculator = lazy(() => import('./india/FDCalculator'));
 const RDCalculator = lazy(() => import('./india/RDCalculator'));
 const PPFCalculator = lazy(() => import('./india/PPFCalculator'));
@@ -75,6 +78,12 @@ export interface CalculatorDef {
     component: React.LazyExoticComponent<React.ComponentType<any>>;
     content?: React.ComponentType<any>;
     faqs?: { question: string; answer: string }[];
+    howTo?: {
+        name: string;
+        description: string;
+        steps: { name: string; text: string; image?: string; url?: string }[];
+    };
+    popular?: boolean;
 }
 
 export const calculatorRegistry: CalculatorDef[] = [
@@ -122,6 +131,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: Percent,
         component: PercentageCalculator,
         content: MathContent,
+        popular: true,
     },
     {
         id: 'mortgage',
@@ -180,11 +190,36 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'bmi',
         name: 'BMI Calculator',
-        description: 'Calculate your Body Mass Index (BMI) instantly. Determine if you are underweight, normal weight, overweight, or obese based on your height and weight.',
+        description: 'Calculate your Body Mass Index (BMI). Accurate BMI Calculator for men, women, and kids with weight categories (underweight, normal, overweight, obese).',
         category: 'health',
         icon: Activity,
         component: BMICalculator,
         content: BMIContent,
+        faqs: [
+            {
+                question: "What is a normal BMI for adults?",
+                answer: "A normal or healthy BMI range for adults is generally considered to be between 18.5 and 24.9."
+            },
+            {
+                question: "Is BMI accurate for athletes?",
+                answer: "BMI can be misleading for athletes or muscular individuals because it doesn't distinguish between muscle and fat. A bodybuilder might have a high BMI but low body fat."
+            },
+            {
+                question: "What happens if my BMI is over 30?",
+                answer: "A BMI of 30 or higher falls into the 'obese' category, which can increase the risk of health issues like diabetes, heart disease, and high blood pressure. Consulting a doctor is recommended."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate BMI",
+            description: "Step-by-step guide to calculating your Body Mass Index using our tool.",
+            steps: [
+                { name: "Choose Unit", text: "Select your preferred unit system: Metric (kg/cm) or Imperial (lbs/in)." },
+                { name: "Input Weight", text: "Enter your current body weight in the appropriate field." },
+                { name: "Input Height", text: "Enter your height accurately." },
+                { name: "Get Result", text: "The calculator will instantly display your BMI value and weight category." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'calorie',
@@ -234,11 +269,12 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'age',
         name: 'Age Calculator',
-        description: 'Calculate your precise age. Find out exactly how many years, months, days, hours, and minutes you have been alive based on your date of birth.',
+        description: 'Calculate your exact age in years, months, and days. Best online Age Calculator to find days between dates and next birthday countdown.',
         category: 'other',
         icon: Calendar,
         component: AgeCalculator,
         content: OtherContent,
+        popular: true,
     },
     {
         id: 'gpa',
@@ -315,11 +351,36 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'sip',
         name: 'SIP Calculator',
-        description: 'Systematic Investment Plan (SIP) calculator. Estimate the returns on your monthly mutual fund investments over time with compound interest.',
+        description: 'Best SIP Calculator 2025. Estimate mutual fund returns with our Systematic Investment Plan calculator. Check monthly investment growth and maturity value.',
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
-        content: FinancialContent,
+        content: SIPContent,
+        faqs: [
+            {
+                question: "What is SIP?",
+                answer: "SIP stands for Systematic Investment Plan. It is a method of investing a fixed sum regularly in a mutual fund scheme."
+            },
+            {
+                question: "How is SIP return calculated?",
+                answer: "SIP returns are calculated using the compound interest formula with monthly compounding. Our calculator automates this complex math for you."
+            },
+            {
+                question: "Can I stop my SIP anytime?",
+                answer: "Yes, SIPs are voluntary. You can stop, pause, or increase your SIP amount at any time without penalty in most open-ended funds."
+            }
+        ],
+        howTo: {
+            name: "How to Use SIP Calculator",
+            description: "Follow these simple steps to estimate your investment returns.",
+            steps: [
+                { name: "Enter Investment", text: "Input the amount you plan to invest every month." },
+                { name: "Set Returns", text: "Enter the expected annual rate of return (e.g., 12% for equity funds)." },
+                { name: "Choose Tenure", text: "Select the number of years you want to stay invested." },
+                { name: "View Corpus", text: "See your total invested amount and estimated future value instantly." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'india-tax',
@@ -351,11 +412,36 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'india-emi',
         name: 'EMI Calculator (India)',
-        description: 'Calculate monthly EMIs for Home Loan, Car Loan, or Personal Loan. Plan your repayment with total interest breakdown.',
+        description: 'Calculate Home Loan, Car Loan & Personal Loan EMI. Best online Equated Monthly Installment calculator with amortization schedule and interest repayment.',
         category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
-        content: FinancialContent,
+        content: IndiaEMIContent,
+        faqs: [
+            {
+                question: "What is EMI?",
+                answer: "EMI stands for Equated Monthly Installment. It is the fixed amount you pay to the bank every month to repay your loan."
+            },
+            {
+                question: "How does loan tenure affect EMI?",
+                answer: "A longer tenure reduces your monthly EMI amount but increases the total interest you pay over the life of the loan."
+            },
+            {
+                question: "Is having a co-applicant beneficial?",
+                answer: "Yes, adding a co-applicant with a good income can increase your loan eligibility and help share the repayment burden."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate Loan EMI",
+            description: "Calculate your monthly loan repayment in 3 easy steps.",
+            steps: [
+                { name: "Loan Amount", text: "Enter the total principal amount you wish to borrow." },
+                { name: "Interest Rate", text: "Input the annual interest rate offered by your bank." },
+                { name: "Loan Tenure", text: "Select the duration of the loan in years." },
+                { name: "Analyze", text: "Check the calculated EMI and total interest breakdown below." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'india-fd',

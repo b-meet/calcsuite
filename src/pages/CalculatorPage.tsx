@@ -2,8 +2,7 @@ import { useParams } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
 import NotFound from './NotFound';
-import { useEffect } from 'react';
-import { trackCalculatorUse } from '../utils/analytics';
+
 import RelatedCalculators from '../components/RelatedCalculators';
 import StructuredData from '../components/StructuredData';
 
@@ -12,11 +11,6 @@ export function CalculatorPage() {
 
     const calculatorDef = calculatorRegistry.find(c => c.id === calculatorId);
 
-    useEffect(() => {
-        if (calculatorDef) {
-            trackCalculatorUse(calculatorDef.id, calculatorDef.name);
-        }
-    }, [calculatorDef]);
 
     if (!calculatorDef) {
         return <NotFound />;
@@ -74,6 +68,14 @@ export function CalculatorPage() {
                     { name: calculatorDef.name, item: `https://calcsuite.in/calculator/${calculatorDef.id}` }
                 ]}
             />
+
+            {/* Rich Snippet for HowTo */}
+            {calculatorDef.howTo && (
+                <StructuredData
+                    type="HowTo"
+                    data={calculatorDef.howTo}
+                />
+            )}
 
             <div className="mb-6 text-center">
                 <h1 className="text-3xl font-bold text-slate-900 mb-2">{calculatorDef.name}</h1>
