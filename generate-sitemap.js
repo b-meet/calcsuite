@@ -1,12 +1,33 @@
 
 import fs from 'fs';
 import path from 'path';
-import { calculatorRegistry } from './src/calculators/registry';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const REGISTRY_PATH = path.resolve(__dirname, 'src/calculators/registry.tsx');
 const SITEMAP_PATH = path.resolve(__dirname, 'public/sitemap.xml');
 const DOMAIN = 'https://calcsuite.in';
 
 const generateSitemap = () => {
+    // Read registry.tsx as text to avoid compiling TS/JSX
+    let registryContent;
+    try {
+        registryContent = fs.readFileSync(REGISTRY_PATH, 'utf-8');
+    } catch (e) {
+        console.error('Could not read registry.tsx:', e);
+        return;
+    }
+
+    // Extract Calculator IDs using Regex
+    // Looking for patterns like: id: 'bmi'
+    const calculatorMatches = registryContent.matchAll(/id:\s*'([^']+)'/g);
+
+    // Extract Popular IDs using simple text search or regex context
+    // Since regex context is hard, let's just assume popular calculators for now or try a smarter regex
+    // We can match the whole block for each calculator roughly
+
     const urls = [
         { loc: DOMAIN, priority: 1.0, changefreq: 'daily' },
         { loc: `${DOMAIN}/terms`, priority: 0.3, changefreq: 'monthly' },
@@ -14,7 +35,7 @@ const generateSitemap = () => {
     ];
 
     // Add Category Pages
-    const categories = Array.from(new Set(calculatorRegistry.map(c => c.category)));
+    const categories = ['health', 'financial', 'math', 'basic', 'other', 'india'];
     categories.forEach(category => {
         urls.push({
             loc: `${DOMAIN}/category/${category}`,
@@ -23,11 +44,21 @@ const generateSitemap = () => {
         });
     });
 
-    // Add Calculator Pages
-    calculatorRegistry.forEach(calc => {
+    const calculators = [];
+    const blockRegex = /{\s*id:\s*'([^']+)'[\s\S]*?}/g;
+    let match;
+
+    while ((match = blockRegex.exec(registryContent)) !== null) {
+        const block = match[0];
+        const id = match[1];
+        const isPopular = block.includes('popular: true');
+        calculators.push({ id, isPopular });
+    }
+
+    calculators.forEach(calc => {
         urls.push({
             loc: `${DOMAIN}/calculator/${calc.id}`,
-            priority: calc.popular ? 0.9 : 0.7, // Higher priority for popular calculators
+            priority: calc.isPopular ? 0.9 : 0.7,
             changefreq: 'weekly'
         });
     });
