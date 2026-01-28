@@ -19,7 +19,7 @@ export function KofiWidget() {
                 {isOpen && (
                     <iframe
                         id="kofiframe"
-                        src="https://ko-fi.com/bmeet/?hidefeed=true&widget=true&embed=true&preview=true"
+                        src="https://ko-fi.com/bmeet/?hidefeed=true&widget=true&embed=true"
                         className="border-none w-full h-full"
                         title="bmeet"
                         allow="payment; fullscreen; clipboard-read; clipboard-write"
