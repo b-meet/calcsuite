@@ -49,6 +49,9 @@ import IndiaPPFContent from './content/IndiaPPFContent';
 import IndiaHomeLoanEligContent from './content/IndiaHomeLoanEligContent';
 import IndiaHRAContent from './content/IndiaHRAContent';
 
+import SIPContent from './content/SIPContent';
+import IndiaEMIContent from './content/IndiaEMIContent';
+
 const FDCalculator = lazy(() => import('./india/FDCalculator'));
 const RDCalculator = lazy(() => import('./india/RDCalculator'));
 const PPFCalculator = lazy(() => import('./india/PPFCalculator'));
@@ -75,6 +78,11 @@ export interface CalculatorDef {
     component: React.LazyExoticComponent<React.ComponentType<any>>;
     content?: React.ComponentType<any>;
     faqs?: { question: string; answer: string }[];
+    howTo?: {
+        name: string;
+        description: string;
+        steps: { name: string; text: string; image?: string; url?: string }[];
+    };
 }
 
 export const calculatorRegistry: CalculatorDef[] = [
@@ -185,6 +193,30 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: Activity,
         component: BMICalculator,
         content: BMIContent,
+        faqs: [
+            {
+                question: "What is a normal BMI for adults?",
+                answer: "A normal or healthy BMI range for adults is generally considered to be between 18.5 and 24.9."
+            },
+            {
+                question: "Is BMI accurate for athletes?",
+                answer: "BMI can be misleading for athletes or muscular individuals because it doesn't distinguish between muscle and fat. A bodybuilder might have a high BMI but low body fat."
+            },
+            {
+                question: "What happens if my BMI is over 30?",
+                answer: "A BMI of 30 or higher falls into the 'obese' category, which can increase the risk of health issues like diabetes, heart disease, and high blood pressure. Consulting a doctor is recommended."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate BMI",
+            description: "Step-by-step guide to calculating your Body Mass Index using our tool.",
+            steps: [
+                { name: "Choose Unit", text: "Select your preferred unit system: Metric (kg/cm) or Imperial (lbs/in)." },
+                { name: "Input Weight", text: "Enter your current body weight in the appropriate field." },
+                { name: "Input Height", text: "Enter your height accurately." },
+                { name: "Get Result", text: "The calculator will instantly display your BMI value and weight category." }
+            ]
+        }
     },
     {
         id: 'calorie',
@@ -315,11 +347,35 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'sip',
         name: 'SIP Calculator',
-        description: 'Systematic Investment Plan (SIP) calculator. Estimate the returns on your monthly mutual fund investments over time with compound interest.',
+        description: 'Calculate SIP returns online instantly. Estimate maturity amount and wealth gain from your monthly mutual fund investments with our free SIP calculator.',
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
-        content: FinancialContent,
+        content: SIPContent,
+        faqs: [
+            {
+                question: "What is SIP?",
+                answer: "SIP stands for Systematic Investment Plan. It is a method of investing a fixed sum regularly in a mutual fund scheme."
+            },
+            {
+                question: "How is SIP return calculated?",
+                answer: "SIP returns are calculated using the compound interest formula with monthly compounding. Our calculator automates this complex math for you."
+            },
+            {
+                question: "Can I stop my SIP anytime?",
+                answer: "Yes, SIPs are voluntary. You can stop, pause, or increase your SIP amount at any time without penalty in most open-ended funds."
+            }
+        ],
+        howTo: {
+            name: "How to Use SIP Calculator",
+            description: "Follow these simple steps to estimate your investment returns.",
+            steps: [
+                { name: "Enter Investment", text: "Input the amount you plan to invest every month." },
+                { name: "Set Returns", text: "Enter the expected annual rate of return (e.g., 12% for equity funds)." },
+                { name: "Choose Tenure", text: "Select the number of years you want to stay invested." },
+                { name: "View Corpus", text: "See your total invested amount and estimated future value instantly." }
+            ]
+        }
     },
     {
         id: 'india-tax',
@@ -351,11 +407,35 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'india-emi',
         name: 'EMI Calculator (India)',
-        description: 'Calculate monthly EMIs for Home Loan, Car Loan, or Personal Loan. Plan your repayment with total interest breakdown.',
+        description: 'Free online EMI Calculator for Home, Car & Personal Loans. Calculate monthly EMI and total interest payable with amortization schedule.',
         category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
-        content: FinancialContent,
+        content: IndiaEMIContent,
+        faqs: [
+            {
+                question: "What is EMI?",
+                answer: "EMI stands for Equated Monthly Installment. It is the fixed amount you pay to the bank every month to repay your loan."
+            },
+            {
+                question: "How does loan tenure affect EMI?",
+                answer: "A longer tenure reduces your monthly EMI amount but increases the total interest you pay over the life of the loan."
+            },
+            {
+                question: "Is having a co-applicant beneficial?",
+                answer: "Yes, adding a co-applicant with a good income can increase your loan eligibility and help share the repayment burden."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate Loan EMI",
+            description: "Calculate your monthly loan repayment in 3 easy steps.",
+            steps: [
+                { name: "Loan Amount", text: "Enter the total principal amount you wish to borrow." },
+                { name: "Interest Rate", text: "Input the annual interest rate offered by your bank." },
+                { name: "Loan Tenure", text: "Select the duration of the loan in years." },
+                { name: "Analyze", text: "Check the calculated EMI and total interest breakdown below." }
+            ]
+        }
     },
     {
         id: 'india-fd',

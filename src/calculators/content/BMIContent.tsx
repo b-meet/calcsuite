@@ -8,6 +8,16 @@ export default function BMIContent() {
                 It applies to most adult men and women aged 20 and over. For children and teens, BMI is interpreted differently.
             </p>
 
+            <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 my-8 not-prose">
+                <h3 className="text-lg font-bold text-blue-900 mb-4">How to Use This BMI Calculator</h3>
+                <ol className="list-decimal pl-5 space-y-2 text-blue-800">
+                    <li><strong>Select your unit system:</strong> Choose Metric (kg/cm) or Imperial (lbs/in).</li>
+                    <li><strong>Enter your weight:</strong> Input your current body weight.</li>
+                    <li><strong>Enter your height:</strong> Input your height accurately.</li>
+                    <li><strong>View your result:</strong> The calculator instantly shows your BMI score and category.</li>
+                </ol>
+            </div>
+
             <h3>How is BMI Calculated?</h3>
             <p>
                 BMI is calculated by dividing a person's weight in kilograms by the square of their height in meters.

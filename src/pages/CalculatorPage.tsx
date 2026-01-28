@@ -75,6 +75,14 @@ export function CalculatorPage() {
                 ]}
             />
 
+            {/* Rich Snippet for HowTo */}
+            {calculatorDef.howTo && (
+                <StructuredData
+                    type="HowTo"
+                    data={calculatorDef.howTo}
+                />
+            )}
+
             <div className="mb-6 text-center">
                 <h1 className="text-3xl font-bold text-slate-900 mb-2">{calculatorDef.name}</h1>
                 <p className="text-slate-500">{calculatorDef.description}</p>
