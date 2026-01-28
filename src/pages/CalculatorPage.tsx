@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
 import NotFound from './NotFound';
-import { useEffect } from 'react';
-import { trackCalculatorUse } from '../utils/analytics';
+import NotFound from './NotFound';
+
 import RelatedCalculators from '../components/RelatedCalculators';
 import StructuredData from '../components/StructuredData';
 
@@ -12,11 +12,6 @@ export function CalculatorPage() {
 
     const calculatorDef = calculatorRegistry.find(c => c.id === calculatorId);
 
-    useEffect(() => {
-        if (calculatorDef) {
-            trackCalculatorUse(calculatorDef.id, calculatorDef.name);
-        }
-    }, [calculatorDef]);
 
     if (!calculatorDef) {
         return <NotFound />;
