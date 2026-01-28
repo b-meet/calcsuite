@@ -16,7 +16,7 @@ const calculators = [
 
 const categories = ['financial', 'health', 'math', 'other', 'basic'];
 
-const baseUrl = 'https://calcsuite.com';
+const baseUrl = 'https://calcsuite.in';
 const today = new Date().toISOString().split('T')[0];
 
 let sitemap = `<?xml version="1.0" encoding="UTF-8"?>

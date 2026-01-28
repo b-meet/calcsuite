@@ -1,54 +1,70 @@
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronRight, Home } from 'lucide-react';
+import { cn } from '../utils/cn';
 import { calculatorRegistry, categories } from '../calculators/registry';
 
-export default function Breadcrumbs() {
+export default function Breadcrumbs({ items, className }: { items?: { label: string; href: string }[], className?: string }) {
     const location = useLocation();
-    const pathnames = location.pathname.split('/').filter((x) => x);
-    const visiblePathnames = pathnames.filter(x => x !== 'calculator' && x !== 'category');
 
-    if (pathnames.length === 0) return null;
+    // Default logic if no items provided
+    let breadcrumbItems = items;
+
+    if (!breadcrumbItems) {
+        const pathnames = location.pathname.split('/').filter((x) => x);
+        const visiblePathnames = pathnames.filter(x => x !== 'calculator' && x !== 'category');
+
+        // Check if we are on a calculator page
+        const calculatorId = pathnames.includes('calculator') ? pathnames[pathnames.length - 1] : null;
+        const calculator = calculatorId ? calculatorRegistry.find(c => c.id === calculatorId) : null;
+
+        if (calculator) {
+            // Custom trail for calculators: Home > Category > Calculator
+            const category = categories.find(c => c.id === calculator.category);
+            breadcrumbItems = [
+                { label: category?.name || calculator.category, href: `/category/${calculator.category}` },
+                { label: calculator.name, href: location.pathname } // Current Page
+            ];
+        } else {
+            // Standard fallback
+            breadcrumbItems = visiblePathnames.map((value) => {
+                const to = '/' + pathnames.slice(0, pathnames.indexOf(value) + 1).join('/');
+                let displayName = value.charAt(0).toUpperCase() + value.slice(1);
+
+                const category = categories.find(c => c.id === value);
+                if (category) displayName = category.name;
+
+                return { label: displayName, href: to };
+            });
+        }
+    }
+
+    if (!breadcrumbItems || breadcrumbItems.length === 0) return null;
 
     return (
-        <nav className="flex mb-6" aria-label="Breadcrumb">
-            <ol className="inline-flex items-center space-x-1 md:space-x-3">
-                <li className="inline-flex items-center">
-                    <Link to="/" className="inline-flex items-center text-sm font-medium text-slate-500 hover:text-blue-600">
-                        <Home size={16} className="mr-2" />
-                        Home
+        <nav aria-label="Breadcrumb" className={cn("flex items-center text-sm text-slate-500 mb-6 font-medium overflow-x-auto whitespace-nowrap pb-1", className)}>
+            <Link
+                to="/"
+                className="flex items-center hover:text-blue-600 transition-colors"
+                title="Home"
+            >
+                <Home size={16} />
+            </Link>
+
+            {breadcrumbItems.map((item, index) => (
+                <div key={item.href} className="flex items-center">
+                    <ChevronRight size={16} className="mx-2 text-slate-400 flex-shrink-0" />
+                    <Link
+                        to={item.href}
+                        className={cn(
+                            "hover:text-blue-600 transition-colors",
+                            index === breadcrumbItems.length - 1 ? "text-slate-900 pointer-events-none" : ""
+                        )}
+                        aria-current={index === breadcrumbItems.length - 1 ? "page" : undefined}
+                    >
+                        {item.label}
                     </Link>
-                </li>
-                {visiblePathnames.map((value, index) => {
-                    // Reconstruct the actual path for the link
-                    let to = '/' + pathnames.slice(0, pathnames.indexOf(value) + 1).join('/');
-
-                    // Determine display name
-                    let displayName = value.charAt(0).toUpperCase() + value.slice(1);
-                    const isLast = index === visiblePathnames.length - 1;
-
-                    // Check if it's a calculator or category to improve display name
-                    const calc = calculatorRegistry.find(c => c.id === value);
-                    if (calc) displayName = calc.name;
-
-                    const category = categories.find(c => c.id === value);
-                    if (category) displayName = category.name;
-
-                    return (
-                        <li key={to}>
-                            <div className="flex items-center">
-                                <ChevronRight size={16} className="text-slate-400" />
-                                {isLast ? (
-                                    <span className="ml-1 text-sm font-medium text-slate-800 md:ml-2">{displayName}</span>
-                                ) : (
-                                    <Link to={to} className="ml-1 text-sm font-medium text-slate-500 hover:text-blue-600 md:ml-2">
-                                        {displayName}
-                                    </Link>
-                                )}
-                            </div>
-                        </li>
-                    );
-                })}
-            </ol>
+                </div>
+            ))}
         </nav>
     );
 }

@@ -11,7 +11,7 @@ interface SEOProps {
 
 export default function SEO({ title, description, keywords, type = 'website', image }: SEOProps) {
     const location = useLocation();
-    const canonicalUrl = `https://calcsuite.com${location.pathname}`; // Replace with actual domain
+    const canonicalUrl = `https://calcsuite.in${location.pathname}`; // Replace with actual domain
     const siteName = 'CalcSuite';
 
     const defaultKeywords = ['calculator', 'online calculator', 'free calculator', 'math', 'finance', 'health'];

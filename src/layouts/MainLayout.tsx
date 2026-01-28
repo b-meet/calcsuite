@@ -3,6 +3,7 @@ import { Sidebar } from '../components/Sidebar';
 import Footer from '../components/Footer';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { AdPlaceholder } from '../components/AdPlaceholder';
+import { KofiWidget } from '../components/KofiWidget';
 
 export function MainLayout() {
     const location = useLocation();
@@ -13,6 +14,7 @@ export function MainLayout() {
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col">
             <Sidebar />
+            <KofiWidget />
             <div className="lg:ml-64 min-h-screen flex flex-col transition-all duration-300">
                 <main className="flex-1 max-w-[1600px] w-full mx-auto p-4 lg:p-8 flex items-start gap-8">
                     {/* Main Content Area */}

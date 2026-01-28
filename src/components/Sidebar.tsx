@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Calculator, Menu, X } from 'lucide-react';
+
 import { useState } from 'react';
 import { cn } from '../utils/cn';
 import { categories } from '../calculators/registry';
