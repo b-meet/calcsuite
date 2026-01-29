@@ -29,6 +29,11 @@ export default function Footer() {
                             Whether you need to plan your mortgage, track your health, or solve complex math problems,
                             we have the right tool for you.
                         </p>
+                        <div className="mt-6">
+                            <a href="https://www.producthunt.com/products/calcsuite?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-calcsuite" target="_blank" rel="noopener noreferrer">
+                                <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1069486&theme=light" alt="CalcSuite - Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
+                            </a>
+                        </div>
                     </div>
 
                     <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
