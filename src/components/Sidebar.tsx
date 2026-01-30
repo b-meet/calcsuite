@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Calculator, Menu, X } from 'lucide-react';
+import { Calculator, Menu, X, Code } from 'lucide-react';
 
 import { useState } from 'react';
 import { cn } from '../utils/cn';
@@ -57,6 +57,33 @@ export function Sidebar() {
                             <Calculator size={18} />
                             All Calculators
                         </NavLink>
+
+                        <NavLink
+                            to="/widget-generator"
+                            className={({ isActive }) =>
+                                cn(
+                                    "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 mt-2",
+                                    isActive
+                                        ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-md shadow-indigo-200"
+                                        : "bg-white border border-violet-100 text-violet-600 hover:bg-violet-50 hover:border-violet-200"
+                                )
+                            }
+                        >
+                            {({ isActive }) => (
+                                <>
+                                    <Code size={18} />
+                                    Add to your site
+                                    <span className={cn(
+                                        "ml-auto px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm",
+                                        isActive
+                                            ? "bg-white text-violet-600"
+                                            : "bg-violet-100 text-violet-600"
+                                    )}>
+                                        NEW
+                                    </span>
+                                </>
+                            )}
+                        </NavLink>
                     </div>
 
                     <div>
@@ -85,7 +112,7 @@ export function Sidebar() {
                         })}
                     </div>
                 </nav>
-            </aside>
+            </aside >
         </>
     );
 }

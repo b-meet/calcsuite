@@ -5,6 +5,7 @@ import { CalculatorPage } from './pages/CalculatorPage';
 import NotFound from './pages/NotFound';
 import TermsOfService from './pages/legal/TermsOfService';
 import PrivacyPolicy from './pages/legal/PrivacyPolicy';
+import { WidgetGenerator } from './pages/WidgetGenerator';
 import { Suspense, useEffect } from 'react';
 
 function ScrollToTop() {
@@ -35,6 +36,7 @@ function App() {
           />
           <Route path="terms" element={<TermsOfService />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
+          <Route path="widget-generator" element={<WidgetGenerator />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
