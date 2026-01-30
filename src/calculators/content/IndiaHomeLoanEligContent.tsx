@@ -4,66 +4,66 @@ const IndiaHomeLoanEligContent = () => {
     return (
         <div className="space-y-12">
             <section>
-                <h2 className="text-3xl font-bold text-slate-900 mb-6">
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
                     How Banks Decide Your Home Loan Limit
                 </h2>
-                <p className="text-slate-600 leading-relaxed mb-6">
+                <p className="text-slate-600 dark:text-slate-200 leading-relaxed mb-6">
                     Before sanctioning a home loan, Indian banks (SBI, HDFC, ICICI, etc.) strictly evaluate your repayment capacity.
                     The golden rule they follow is the <strong>FOIR (Fixed Obligation to Income Ratio)</strong>.
                 </p>
-                <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100">
-                    <h3 className="flex items-center gap-2 text-lg font-semibold text-blue-900 mb-3">
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-2xl border border-blue-100 dark:border-blue-800">
+                    <h3 className="flex items-center gap-2 text-lg font-semibold text-blue-900 dark:text-blue-100 mb-3">
                         <Percent className="w-5 h-5" />
                         What is FOIR?
                     </h3>
-                    <p className="text-blue-800 mb-3">
+                    <p className="text-blue-800 dark:text-blue-100 mb-3">
                         Banks assume you need 40-50% of your income for living expenses (food, travel, utilities). They will only lend an amount where the new EMI + existing EMIs do not exceed <strong>50% to 60%</strong> of your Net Monthly Income.
                     </p>
-                    <p className="text-blue-800 text-sm font-medium">
+                    <p className="text-blue-800 dark:text-blue-200 text-sm font-medium">
                         Formula: Max EMI = (Net Monthly Income * FOIR%) - Existing Obligations
                     </p>
                 </div>
             </section>
 
-            <section className="bg-white rounded-2xl p-6">
-                <h2 className="text-3xl font-bold text-slate-900 mb-6">
+            <section className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-transparent dark:border-slate-800">
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
                     4 Ways to Increase Your Loan Eligibility
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-8 mb-8">
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
-                            <UserCheck className="w-5 h-5 text-green-600" />
+                    <div className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <UserCheck className="w-5 h-5 text-green-600 dark:text-green-400" />
                             Add a Co-Applicant
                         </h3>
-                        <p className="text-sm text-slate-600">
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
                             Adding a working spouse or parent as a co-applicant clubs both incomes. This drastically increases the net monthly income and can often double your eligible loan amount.
                         </p>
                     </div>
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
-                            <TrendingUp className="w-5 h-5 text-blue-600" />
+                    <div className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Clear Existing Debts
                         </h3>
-                        <p className="text-sm text-slate-600">
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
                             Close any running personal loans or car loans. Reducing your "Existing Obligations" directly increases the room for your Home Loan EMI.
                         </p>
                     </div>
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
-                            <TrendingUp className="w-5 h-5 text-purple-600" />
+                    <div className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <TrendingUp className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                             Increase Tenure
                         </h3>
-                        <p className="text-sm text-slate-600">
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
                             Opting for a 25 or 30-year tenure instead of 20 years reduces the EMI, allowing you to qualify for a higher principal amount for the same monthly income.
                         </p>
                     </div>
-                    <div className="p-6 bg-slate-50 rounded-xl border border-slate-100">
-                        <h3 className="font-semibold text-slate-900 mb-3 flex items-center gap-2">
-                            <UserCheck className="w-5 h-5 text-orange-600" />
+                    <div className="p-6 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <UserCheck className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                             Improve Credit Score
                         </h3>
-                        <p className="text-sm text-slate-600">
+                        <p className="text-sm text-slate-600 dark:text-slate-300">
                             A CIBIL score of 750+ not only ensures approval but can also get you a lower interest rate (repo-linked), which slightly increases eligibility.
                         </p>
                     </div>

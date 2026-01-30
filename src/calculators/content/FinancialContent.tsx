@@ -78,46 +78,46 @@ export default function FinancialContent({ calculatorId }: { calculatorId?: stri
     const specificIntro = calculatorId ? intros[calculatorId] : null;
 
     return (
-        <article className="prose prose-slate max-w-none">
+        <article className="prose prose-slate dark:prose-invert max-w-none">
             {specificIntro && (
-                <div className="mb-10 p-6 bg-slate-50 rounded-2xl border border-slate-100 not-prose">
-                    <div className="prose prose-slate max-w-none">
+                <div className="mb-10 p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 not-prose">
+                    <div className="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-200">
                         {specificIntro}
                     </div>
                 </div>
             )}
 
-            <h2>Comprehensive Financial Planning Guide</h2>
-            <p>
+            <h2 className="text-slate-900 dark:text-white">Comprehensive Financial Planning Guide</h2>
+            <p className="text-slate-600 dark:text-slate-200">
                 Financial success is rarely an accident; it is the result of planning, discipline, and understanding the numbers.
                 Whether you are calculating a mortgage payment, planning for retirement, or estimating investment growth,
                 the underlying principles of personal finance remain consistent.
             </p>
 
-            <h3>Core Financial Concepts</h3>
+            <h3 className="text-slate-900 dark:text-white">Core Financial Concepts</h3>
 
-            <h4>1. Principal and Interest</h4>
-            <p>
+            <h4 className="text-slate-900 dark:text-white">1. Principal and Interest</h4>
+            <p className="text-slate-600 dark:text-slate-200">
                 At the heart of most financial calculations—be it loans or investments—is the relationship between <strong>principal</strong> (the original amount of money)
                 and <strong>interest</strong> (the cost of borrowing money or the reward for lending/investing it).
                 Understanding this dynamic is crucial for debt management and wealth building.
             </p>
 
-            <h4>2. Amortization</h4>
-            <p>
+            <h4 className="text-slate-900 dark:text-white">2. Amortization</h4>
+            <p className="text-slate-600 dark:text-slate-200">
                 For loans like mortgages and auto loans, amortization refers to the process of paying off debt with a fixed repayment schedule in regular installments over a period of time.
                 Early in the loan term, a higher percentage of your payment goes toward interest. As the loan matures, more of your payment goes toward reducing the principal.
             </p>
 
-            <h4>3. Compound Growth</h4>
-            <p>
+            <h4 className="text-slate-900 dark:text-white">3. Compound Growth</h4>
+            <p className="text-slate-600 dark:text-slate-200">
                 Albert Einstein reportedly called compound interest the "eighth wonder of the world."
                 It is the principle where you earn interest on your interest. In investing, this causes your wealth to grow exponentially rather than linearly.
                 Time is the most important factor in compounding—starting five years earlier can often double your end result.
             </p>
 
-            <h3>Smart Money Rules of Thumb</h3>
-            <ul>
+            <h3 className="text-slate-900 dark:text-white">Smart Money Rules of Thumb</h3>
+            <ul className="text-slate-600 dark:text-slate-200">
                 <li>
                     <strong>The 50/30/20 Rule:</strong> A simple budgeting framework where 50% of income goes to needs, 30% to wants, and 20% to savings and debt repayment.
                 </li>
@@ -129,34 +129,34 @@ export default function FinancialContent({ calculatorId }: { calculatorId?: stri
                 </li>
             </ul>
 
-            <h3>Frequently Asked Questions</h3>
+            <h3 className="text-slate-900 dark:text-white">Frequently Asked Questions</h3>
             <div className="space-y-4">
-                <details className="group p-4 bg-white rounded-lg border border-slate-200 open:ring-1 open:ring-blue-500">
-                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800">
+                <details className="group p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 open:ring-1 open:ring-blue-500">
+                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800 dark:text-slate-100">
                         What is the difference between APR and interest rate?
                         <span className="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
-                    <p className="mt-2 text-slate-600">
+                    <p className="mt-2 text-slate-600 dark:text-slate-200">
                         The interest rate is the cost of borrowing the principal loan amount. The APR (Annual Percentage Rate) is a broader measure of the cost of borrowing that includes the interest rate plus other costs like broker fees, discount points, and some closing costs. APR is usually higher than the interest rate and is a better tool for comparing loan offers.
                     </p>
                 </details>
 
-                <details className="group p-4 bg-white rounded-lg border border-slate-200 open:ring-1 open:ring-blue-500">
-                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800">
+                <details className="group p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 open:ring-1 open:ring-blue-500">
+                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800 dark:text-slate-100">
                         How often should I review my financial plan?
                         <span className="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
-                    <p className="mt-2 text-slate-600">
+                    <p className="mt-2 text-slate-600 dark:text-slate-200">
                         It's recommended to review your major financial goals and budget at least once a year, or whenever you experience a significant life event such as a marriage, new job, buying a home, or having a child.
                     </p>
                 </details>
 
-                <details className="group p-4 bg-white rounded-lg border border-slate-200 open:ring-1 open:ring-blue-500">
-                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800">
+                <details className="group p-4 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 open:ring-1 open:ring-blue-500">
+                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800 dark:text-slate-100">
                         Is it better to pay off debt or invest?
                         <span className="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
-                    <p className="mt-2 text-slate-600">
+                    <p className="mt-2 text-slate-600 dark:text-slate-200">
                         This generally depends on the interest rates. If you have "bad debt" (like credit cards) with interest rates above 10-15%, it's usually better to pay that off first, as that is a guaranteed "return" on your money. If your debt is low-interest (like a mortgage at 3-4%), you might earn more by investing in the market, which historically returns around 7-10% annually.
                     </p>
                 </details>

@@ -38,10 +38,10 @@ export default function MortgageCalculator() {
 
     const InputGroup = ({ label, icon: Icon, value, onChange, type = "number", min = 0, step = 1, suffix }: any) => (
         <div className="space-y-2">
-            <label className="block text-sm font-medium text-slate-700">{label}</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">{label}</label>
             <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Icon className="h-4 w-4 text-slate-400" />
+                    <Icon className="h-4 w-4 text-slate-400 dark:text-slate-500" />
                 </div>
                 <input
                     type={type}
@@ -49,11 +49,11 @@ export default function MortgageCalculator() {
                     step={step}
                     value={value}
                     onChange={(e) => onChange(Number(e.target.value))}
-                    className="block w-full pl-10 pr-12 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 hover:bg-white"
+                    className="block w-full pl-10 pr-12 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
                 />
                 {suffix && (
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                        <span className="text-slate-500 sm:text-sm">{suffix}</span>
+                        <span className="text-slate-500 dark:text-slate-400 sm:text-sm">{suffix}</span>
                     </div>
                 )}
             </div>
@@ -63,8 +63,8 @@ export default function MortgageCalculator() {
     return (
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
             {/* Input Section */}
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-6">
-                <h3 className="text-lg font-semibold text-slate-800 mb-4">Loan Details</h3>
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+                <h3 className="text-lg font-semibold text-slate-800 dark:text-white mb-4">Loan Details</h3>
 
                 <InputGroup
                     label="Loan Amount"
@@ -98,7 +98,7 @@ export default function MortgageCalculator() {
             </div>
 
             {/* Results Section */}
-            <div className="bg-blue-600 p-6 rounded-3xl shadow-lg text-white flex flex-col justify-between">
+            <div className="bg-blue-600 dark:bg-blue-700 p-6 rounded-3xl shadow-lg text-white flex flex-col justify-between border border-blue-500 dark:border-blue-600">
                 <div>
                     <h3 className="text-blue-100 font-medium mb-1">Estimated Monthly Payment</h3>
                     <div className="text-5xl font-bold mb-8">
@@ -114,7 +114,7 @@ export default function MortgageCalculator() {
                             <span className="text-blue-100">Total Interest</span>
                             <span className="font-semibold">${totalInterest.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                         </div>
-                        <div className="flex justify-between items-center py-3 border-t border-blue-400 mt-4">
+                        <div className="flex justify-between items-center py-3 border-t border-blue-400 dark:border-blue-500 mt-4">
                             <span className="text-lg font-medium">Total Cost</span>
                             <span className="text-2xl font-bold">${totalPayment.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                         </div>

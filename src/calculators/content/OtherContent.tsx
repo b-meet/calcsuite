@@ -68,41 +68,41 @@ export default function OtherContent({ calculatorId }: { calculatorId?: string; 
     const specificIntro = calculatorId ? intros[calculatorId] : null;
 
     return (
-        <article className="prose prose-slate max-w-none">
+        <article className="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-200">
             {specificIntro && (
-                <div className="mb-10 p-6 bg-purple-50 rounded-2xl border border-purple-100 not-prose">
-                    <div className="prose prose-slate max-w-none">
+                <div className="mb-10 p-6 bg-purple-50 dark:bg-purple-900/20 rounded-2xl border border-purple-100 dark:border-purple-800 not-prose">
+                    <div className="prose prose-slate dark:prose-invert max-w-none">
                         {specificIntro}
                     </div>
                 </div>
             )}
 
-            <h2>Essential Utilities for Everyday Life</h2>
-            <p>
+            <h2 className="text-slate-900 dark:text-white">Essential Utilities for Everyday Life</h2>
+            <p className="text-slate-600 dark:text-slate-200">
                 Not every calculation involves complex calculus or finance. Sometimes, you just need a reliable tool to handle life's daily logistics.
                 Our "Other" category encompasses these essential utilities that help organize, secure, and quantify your day-to-day activities.
             </p>
 
-            <h3>Digital Security & Entropy</h3>
-            <p>
+            <h3 className="text-slate-900 dark:text-white">Digital Security & Entropy</h3>
+            <p className="text-slate-600 dark:text-slate-200">
                 Randomness is the core of digital security. Humans are notably bad at being random—we tend to pick patterns (1234, qwerty) or personal dates.
                 A <strong>Password Generator</strong> relies on high math entropy (disorder) to create strings that would take a supercomputer millions of years to guess through brute force.
                 Length is often more important than complexity; a 20-character password is exponentially stronger than an 8-character one.
             </p>
 
-            <h3>The Metric vs. Imperial Divide</h3>
-            <p>
+            <h3 className="text-slate-900 dark:text-white">The Metric vs. Imperial Divide</h3>
+            <p className="text-slate-600 dark:text-slate-200">
                 The United States, Liberia, and Myanmar are the only countries that primarily use the Imperial system. The rest of the world uses Metric.
                 This creates a constant need for conversion, especially in:
             </p>
-            <ul>
+            <ul className="text-slate-600 dark:text-slate-200">
                 <li><strong>Cooking:</strong> Grams vs. Cups/Ounces.</li>
                 <li><strong>Travel:</strong> Kilometers vs. Miles and Celsius vs. Fahrenheit.</li>
                 <li><strong>Science:</strong> The scientific community exclusively uses Metric (SI units) for consistency.</li>
             </ul>
 
-            <h3>Academic Success Metrics</h3>
-            <p>
+            <h3 className="text-slate-900 dark:text-white">Academic Success Metrics</h3>
+            <p className="text-slate-600 dark:text-slate-200">
                 GPA (Grade Point Average) serves as a standardized measurement of varying levels of achievement in a course.
                 Most colleges use a 4.0 scale, where an 'A' is 4 points. Honors and AP classes often use a "weighted" 5.0 scale to reward the difficulty of the curriculum.
                 Tracking this continuously prevents end-of-semester surprises.

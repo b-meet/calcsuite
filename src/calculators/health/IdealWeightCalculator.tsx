@@ -46,25 +46,25 @@ export default function IdealWeightCalculator() {
         });
     };
 
-    const inputClass = "block w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-green-500 bg-slate-50";
-    const labelClass = "block text-sm font-medium text-slate-700 mb-1";
+    const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-green-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
+    const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     return (
         <div className="max-w-xl mx-auto space-y-8">
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
 
                 {/* Gender Selection */}
-                <div className="flex bg-slate-100 p-1 rounded-xl">
+                <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
                     <button
                         onClick={() => setGender('male')}
-                        className={`flex-1 py-3 rounded-lg text-sm font-semibold transition-all ${gender === 'male' ? 'bg-white text-green-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                        className={`flex-1 py-3 rounded-lg text-sm font-semibold transition-all ${gender === 'male' ? 'bg-white dark:bg-slate-700 text-green-600 dark:text-green-400 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                             }`}
                     >
                         Male
                     </button>
                     <button
                         onClick={() => setGender('female')}
-                        className={`flex-1 py-3 rounded-lg text-sm font-semibold transition-all ${gender === 'female' ? 'bg-white text-green-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                        className={`flex-1 py-3 rounded-lg text-sm font-semibold transition-all ${gender === 'female' ? 'bg-white dark:bg-slate-700 text-green-600 dark:text-green-400 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                             }`}
                     >
                         Female
@@ -78,7 +78,7 @@ export default function IdealWeightCalculator() {
 
                 <button
                     onClick={calculate}
-                    className="w-full py-4 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors shadow-lg shadow-green-200 flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors shadow-lg shadow-green-200 dark:shadow-green-900/20 flex items-center justify-center gap-2"
                 >
                     <Scale size={20} />
                     Calculate Ideal Weight
@@ -86,21 +86,21 @@ export default function IdealWeightCalculator() {
 
                 {result !== null && (
                     <div className="mt-8 space-y-4">
-                        <div className="p-6 bg-green-50 rounded-2xl border border-green-100 text-center">
-                            <span className="text-sm font-medium text-green-800 uppercase tracking-wide">Ideal Weight (Devine)</span>
-                            <div className="text-4xl font-bold text-slate-900 mt-2">
-                                {result.ideal.toFixed(1)} <span className="text-xl font-medium text-slate-500">kg</span>
+                        <div className="p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl border border-green-100 dark:border-green-900/30 text-center">
+                            <span className="text-sm font-medium text-green-800 dark:text-green-300 uppercase tracking-wide">Ideal Weight (Devine)</span>
+                            <div className="text-4xl font-bold text-slate-900 dark:text-white mt-2">
+                                {result.ideal.toFixed(1)} <span className="text-xl font-medium text-slate-500 dark:text-slate-400">kg</span>
                             </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
-                                <span className="text-xs font-bold text-slate-500 uppercase">Healthy Min</span>
-                                <div className="text-xl font-bold text-slate-800 mt-1">{result.min.toFixed(1)} kg</div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-center">
+                                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Healthy Min</span>
+                                <div className="text-xl font-bold text-slate-800 dark:text-slate-200 mt-1">{result.min.toFixed(1)} kg</div>
                             </div>
-                            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
-                                <span className="text-xs font-bold text-slate-500 uppercase">Healthy Max</span>
-                                <div className="text-xl font-bold text-slate-800 mt-1">{result.max.toFixed(1)} kg</div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-center">
+                                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Healthy Max</span>
+                                <div className="text-xl font-bold text-slate-800 dark:text-slate-200 mt-1">{result.max.toFixed(1)} kg</div>
                             </div>
                         </div>
                     </div>

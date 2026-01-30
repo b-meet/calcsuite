@@ -2,8 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Disable default fade when handling it manually */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Ensure the new view sits on top for the circle reveal */
+::view-transition-new(root) {
+  z-index: 2147483646;
+}
+
+/* Dark mode overrides - removed as we now always animate new view on top */
+
+
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900;
+    @apply bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-50;
   }
 }

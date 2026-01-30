@@ -125,35 +125,35 @@ export default function PPFCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Input Section */}
                 <div className="space-y-6">
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
-                        <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
-                            <ShieldCheck className="w-5 h-5 text-blue-600" />
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+                        <h2 className="text-xl font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                            <ShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             PPF Details
                         </h2>
 
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                     Yearly Contribution
                                 </label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <span className="text-slate-500">₹</span>
+                                        <span className="text-slate-500 dark:text-slate-400">₹</span>
                                     </div>
                                     <input
                                         type="number"
                                         value={yearlyContribution}
                                         onChange={(e) => setYearlyContribution(Number(e.target.value))}
-                                        className="block w-full pl-8 pr-4 py-2 text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         step="500"
                                         max="150000" // Standard limit, but keeping it flexible as per request? User said "typical max is capped by govt, but don’t hardcode"
                                     />
-                                    <p className="text-xs text-slate-500 mt-1">Max Tax-Exempt Limit: ₹1,50,000</p>
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Max Tax-Exempt Limit: ₹1,50,000</p>
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                     Duration (Years)
                                 </label>
                                 <input
@@ -163,21 +163,21 @@ export default function PPFCalculator() {
                                     step="5"
                                     value={years}
                                     onChange={(e) => setYears(Number(e.target.value))}
-                                    className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer mb-2"
+                                    className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer mb-2"
                                 />
                                 <div className="relative">
                                     <input
                                         type="number"
                                         value={years}
                                         onChange={(e) => setYears(Number(e.target.value))}
-                                        className="block w-full px-4 py-2 text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
                                 </div>
-                                <p className="text-xs text-slate-500 mt-1">Min 15 Years. Extendable in blocks of 5.</p>
+                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Min 15 Years. Extendable in blocks of 5.</p>
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                     Annual Interest Rate
                                 </label>
                                 <div className="relative">
@@ -185,17 +185,17 @@ export default function PPFCalculator() {
                                         type="number"
                                         value={rate}
                                         onChange={(e) => setRate(Number(e.target.value))}
-                                        className="block w-full px-4 py-2 text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         step="0.1"
                                     />
                                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                        <Percent className="w-4 h-4 text-slate-500" />
+                                        <Percent className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                                     </div>
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                     Contribution Timing
                                 </label>
                                 <div className="flex gap-4">
@@ -207,7 +207,7 @@ export default function PPFCalculator() {
                                             onChange={() => setContributionTiming('START_OF_YEAR')}
                                             className="text-blue-600 focus:ring-blue-500"
                                         />
-                                        <span className="text-sm text-slate-700">Start of Year (April)</span>
+                                        <span className="text-sm text-slate-700 dark:text-slate-300">Start of Year (April)</span>
                                     </label>
                                     <label className="flex items-center gap-2 cursor-pointer">
                                         <input
@@ -217,7 +217,7 @@ export default function PPFCalculator() {
                                             onChange={() => setContributionTiming('END_OF_YEAR')}
                                             className="text-blue-600 focus:ring-blue-500"
                                         />
-                                        <span className="text-sm text-slate-700">End of Year (March)</span>
+                                        <span className="text-sm text-slate-700 dark:text-slate-300">End of Year (March)</span>
                                     </label>
                                 </div>
                             </div>
@@ -267,9 +267,9 @@ export default function PPFCalculator() {
                         </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                            <PieChart className="w-5 h-5 text-blue-600" />
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <PieChart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Breakdown
                         </h3>
                         <div className="h-64 flex items-center justify-center">
@@ -280,8 +280,8 @@ export default function PPFCalculator() {
             </div>
 
             {/* Growth Chart */}
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                <h3 className="text-lg font-semibold text-slate-900 mb-4">Growth Trajectory</h3>
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4">Growth Trajectory</h3>
                 <div className="h-72">
                     <Bar data={chartData} options={{ responsive: true, maintainAspectRatio: false }} />
                 </div>
@@ -289,16 +289,16 @@ export default function PPFCalculator() {
 
             {/* Breakdown Table */}
             {result?.breakdown && result.breakdown.length > 0 && (
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                    <div className="p-6 border-b border-slate-100">
-                        <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-                            <Calendar className="w-5 h-5 text-blue-600" />
+                <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
+                    <div className="p-6 border-b border-slate-100 dark:border-slate-800">
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                            <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Year-wise Breakdown
                         </h3>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
-                            <thead className="bg-slate-50 text-slate-600 font-medium border-b border-slate-200">
+                            <thead className="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium border-b border-slate-200 dark:border-slate-700">
                                 <tr>
                                     <th className="px-6 py-3">Year</th>
                                     <th className="px-6 py-3">Opening</th>
@@ -307,17 +307,17 @@ export default function PPFCalculator() {
                                     <th className="px-6 py-3">Closing Balance</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-100">
+                            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                                 {result.breakdown.map((row) => (
-                                    <tr key={row.year} className="hover:bg-slate-50">
-                                        <td className="px-6 py-3 font-medium text-slate-900">{row.year}</td>
+                                    <tr key={row.year} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300">
+                                        <td className="px-6 py-3 font-medium text-slate-900 dark:text-white">{row.year}</td>
                                         <td className="px-6 py-3">
                                             {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.openingBalance)}
                                         </td>
                                         <td className="px-6 py-3">
                                             {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.contribution)}
                                         </td>
-                                        <td className="px-6 py-3 text-green-600">
+                                        <td className="px-6 py-3 text-green-600 dark:text-green-400">
                                             +{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.interestEarned)}
                                         </td>
                                         <td className="px-6 py-3 font-medium">

@@ -73,64 +73,64 @@ export default function DiscountCalculator() {
         <div className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
-                        <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
-                            <Tag className="w-5 h-5 text-blue-600" />
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+                        <h2 className="text-xl font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                            <Tag className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Product Details
                         </h2>
 
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">Original Price (per item)</label>
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Original Price (per item)</label>
                                 <input
                                     type="number"
                                     value={price}
                                     onChange={(e) => setPrice(Number(e.target.value))}
-                                    className="block w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                    className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                 />
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">Discount (%)</label>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Discount (%)</label>
                                     <input
                                         type="number"
                                         value={discountDetails}
                                         onChange={(e) => setDiscountDetails(Number(e.target.value))}
-                                        className="block w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                        className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">Quantity</label>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Quantity</label>
                                     <input
                                         type="number"
                                         value={quantity}
                                         onChange={(e) => setQuantity(Number(e.target.value))}
-                                        className="block w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                        className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                     />
                                 </div>
                             </div>
 
-                            <div className="pt-2 border-t border-slate-100">
-                                <h3 className="text-xs font-semibold uppercase text-slate-500 mb-3">Optional Extras</h3>
+                            <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
+                                <h3 className="text-xs font-semibold uppercase text-slate-500 dark:text-slate-400 mb-3">Optional Extras</h3>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-1">Tax / VAT (%)</label>
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tax / VAT (%)</label>
                                         <input
                                             type="number"
                                             value={taxRate}
                                             onChange={(e) => setTaxRate(Number(e.target.value))}
-                                            className="block w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                            className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                             placeholder="0"
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-medium text-slate-700 mb-1">Extra Flat Discount</label>
+                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Extra Flat Discount</label>
                                         <input
                                             type="number"
                                             value={flatDiscount}
                                             onChange={(e) => setFlatDiscount(Number(e.target.value))}
-                                            className="block w-full px-4 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500"
+                                            className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                             placeholder="0"
                                         />
                                     </div>
@@ -141,16 +141,16 @@ export default function DiscountCalculator() {
                 </div>
 
                 <div className="space-y-6">
-                    <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-lg">
+                    <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-lg border border-slate-800">
                         <h3 className="text-lg font-medium text-slate-300 mb-6">Final Bill</h3>
                         <div className="space-y-6">
                             <div>
                                 <p className="text-slate-400 text-sm mb-1">You Pay</p>
-                                <p className="text-4xl font-bold">
+                                <p className="text-4xl font-bold text-white">
                                     {result?.finalPayable.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                                 </p>
                             </div>
-                            <div className="pt-6 border-t border-slate-800">
+                            <div className="pt-6 border-t border-slate-800/50">
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-slate-400">Total Savings</span>
                                     <span className="text-xl font-bold text-green-400">
@@ -169,21 +169,21 @@ export default function DiscountCalculator() {
                         </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                            <ShoppingBag className="w-5 h-5 text-blue-600" />
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <ShoppingBag className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Price Summary
                         </h3>
-                        <div className="flex justify-between items-end border-b border-slate-50 pb-4 mb-4">
+                        <div className="flex justify-between items-end border-b border-slate-50 dark:border-slate-800 pb-4 mb-4">
                             <div className="text-left">
-                                <p className="text-xs text-slate-500 uppercase">Original Price</p>
-                                <p className="text-lg font-medium text-slate-900 line-through decoration-red-400 decoration-2">
+                                <p className="text-xs text-slate-500 dark:text-slate-400 uppercase">Original Price</p>
+                                <p className="text-lg font-medium text-slate-900 dark:text-slate-300 line-through decoration-red-400 decoration-2">
                                     {result?.totalMRP.toLocaleString()}
                                 </p>
                             </div>
                             <div className="text-right">
-                                <p className="text-xs text-slate-500 uppercase">Discount</p>
-                                <p className="text-lg font-medium text-green-600">
+                                <p className="text-xs text-slate-500 dark:text-slate-400 uppercase">Discount</p>
+                                <p className="text-lg font-medium text-green-600 dark:text-green-400">
                                     {discountDetails}% Off
                                 </p>
                             </div>

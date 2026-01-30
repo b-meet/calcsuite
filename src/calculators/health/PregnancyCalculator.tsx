@@ -91,8 +91,8 @@ export default function PregnancyCalculator() {
         });
     };
 
-    const inputClass = "block w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-pink-400 bg-slate-50";
-    const labelClass = "block text-sm font-medium text-slate-700 mb-1";
+    const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-pink-400 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
+    const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     const renderInputs = () => {
         switch (method) {
@@ -167,7 +167,7 @@ export default function PregnancyCalculator() {
 
     return (
         <div className="max-w-xl mx-auto space-y-8">
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
 
                 <div>
                     <label className={labelClass}>Calculate Based On:</label>
@@ -191,7 +191,7 @@ export default function PregnancyCalculator() {
 
                 <button
                     onClick={calculate}
-                    className="w-full py-4 bg-pink-500 text-white font-bold rounded-xl hover:bg-pink-600 transition-colors shadow-lg shadow-pink-200 flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-pink-500 text-white font-bold rounded-xl hover:bg-pink-600 transition-colors shadow-lg shadow-pink-200 dark:shadow-pink-900/20 flex items-center justify-center gap-2"
                 >
                     <Baby size={20} />
                     Calculate Due Date
@@ -199,22 +199,22 @@ export default function PregnancyCalculator() {
 
                 {result && (
                     <div className="mt-8 space-y-6 animate-in fade-in slide-in-from-bottom-4">
-                        <div className="p-6 bg-pink-50 rounded-2xl border border-pink-100 text-center">
-                            <span className="text-sm font-medium text-pink-700 uppercase tracking-wide">Estimated Due Date</span>
-                            <div className="text-3xl font-bold text-slate-900 mt-2 flex items-center justify-center gap-2">
-                                <CalendarDays className="text-pink-500" />
+                        <div className="p-6 bg-pink-50 dark:bg-pink-900/20 rounded-2xl border border-pink-100 dark:border-pink-900/30 text-center">
+                            <span className="text-sm font-medium text-pink-700 dark:text-pink-400 uppercase tracking-wide">Estimated Due Date</span>
+                            <div className="text-3xl font-bold text-slate-900 dark:text-white mt-2 flex items-center justify-center gap-2">
+                                <CalendarDays className="text-pink-500 dark:text-pink-400" />
                                 {result.dueDate.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                             </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
-                                <span className="text-xs font-bold text-slate-500 uppercase">Current Progress</span>
-                                <div className="text-xl font-bold text-slate-800 mt-1">{result.weeks} Weeks, {result.days} Days</div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-center">
+                                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Current Progress</span>
+                                <div className="text-xl font-bold text-slate-800 dark:text-slate-200 mt-1">{result.weeks} Weeks, {result.days} Days</div>
                             </div>
-                            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
-                                <span className="text-xs font-bold text-slate-500 uppercase">Trimester</span>
-                                <div className="text-xl font-bold text-slate-800 mt-1">{result.trimester}</div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-center">
+                                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Trimester</span>
+                                <div className="text-xl font-bold text-slate-800 dark:text-slate-200 mt-1">{result.trimester}</div>
                             </div>
                         </div>
                     </div>

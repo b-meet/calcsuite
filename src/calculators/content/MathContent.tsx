@@ -68,61 +68,61 @@ export default function MathContent({ calculatorId }: { calculatorId?: string; c
     const specificIntro = calculatorId ? intros[calculatorId] : null;
 
     return (
-        <article className="prose prose-slate max-w-none">
+        <article className="prose prose-slate dark:prose-invert max-w-none">
             {specificIntro && (
-                <div className="mb-10 p-6 bg-blue-50 rounded-2xl border border-blue-100 not-prose">
-                    <div className="prose prose-slate max-w-none">
+                <div className="mb-10 p-6 bg-blue-50 dark:bg-blue-900/30 rounded-2xl border border-blue-100 dark:border-blue-800 not-prose">
+                    <div className="prose prose-slate dark:prose-invert max-w-none">
                         {specificIntro}
                     </div>
                 </div>
             )}
 
-            <h2>Mathematics: The Language of the Universe</h2>
-            <p>
+            <h2 className="text-slate-900 dark:text-white">Mathematics: The Language of the Universe</h2>
+            <p className="text-slate-600 dark:text-slate-200">
                 Mathematics is more than just numbers on a page; it is the fundamental language used to describe the world around us.
                 From the symmetry of a flower to the orbit of planets, math provides the structure for understanding reality.
                 Our suite of math calculators provides the precision you need for both academic and real-world problem solving.
             </p>
 
-            <h3>Core Concepts</h3>
+            <h3 className="text-slate-900 dark:text-white">Core Concepts</h3>
 
-            <h4>Trigonometry</h4>
-            <p>
+            <h4 className="text-slate-900 dark:text-white">Trigonometry</h4>
+            <p className="text-slate-600 dark:text-slate-200">
                 Trigonometry deals with the relationships between the sides and angles of triangles. It has vast applications in fields like architecture, astronomy, video game development, and navigation.
                 The primary functions—Sine, Cosine, and Tangent—are ratios that define these relationships.
             </p>
 
-            <h4>Percentages and Ratios</h4>
-            <p>
+            <h4 className="text-slate-900 dark:text-white">Percentages and Ratios</h4>
+            <p className="text-slate-600 dark:text-slate-200">
                 A percentage is simply a ratio expressed as a fraction of 100. It is the universal standard for comparing quantities.
                 Understanding percentages is vital for financial literacy (interest rates), shopping (discounts), and analyzing statistics (polls and data).
             </p>
 
-            <h3>Tips for Calculation Accuracy</h3>
-            <ul>
+            <h3 className="text-slate-900 dark:text-white">Tips for Calculation Accuracy</h3>
+            <ul className="text-slate-700 dark:text-slate-300">
                 <li><strong>Order of Operations (PEMDAS):</strong> Always remember the order: Parentheses, Exponents, Multiplication/Division, Addition/Subtraction. Most errors come from doing these out of sequence.</li>
                 <li><strong>Significant Figures:</strong> In science and engineering, precision matters. Don't simply write down every decimal point your calculator gives you; consider the precision of your input data.</li>
                 <li><strong>Estimation:</strong> Before reaching for the calculator, estimate the answer in your head. If you're multiplying 98 by 5, the answer should be close to 500. If your calculator says 4500, you know you made a typo.</li>
             </ul>
 
-            <h3>Frequently Asked Questions</h3>
+            <h3 className="text-slate-900 dark:text-white">Frequently Asked Questions</h3>
             <div className="space-y-4">
-                <details className="group p-4 bg-white rounded-lg border border-slate-200 open:ring-1 open:ring-blue-500">
-                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800">
+                <details className="group p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 open:ring-1 open:ring-blue-500">
+                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800 dark:text-white">
                         Why does 0.1 + 0.2 not equal 0.3 on some computers?
                         <span className="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
-                    <p className="mt-2 text-slate-600">
+                    <p className="mt-2 text-slate-600 dark:text-slate-300">
                         This is a classic floating-point error. Computers store numbers in binary (base 2). Some fractions like 1/10 (0.1) cannot be represented perfectly in binary, resulting in tiny component errors that can accumulate. High-precision calculators use special logic to correct for this.
                     </p>
                 </details>
 
-                <details className="group p-4 bg-white rounded-lg border border-slate-200 open:ring-1 open:ring-blue-500">
-                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800">
+                <details className="group p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 open:ring-1 open:ring-blue-500">
+                    <summary className="font-semibold cursor-pointer list-none flex justify-between items-center text-slate-800 dark:text-white">
                         What is the difference between odds and probability?
                         <span className="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
                     </summary>
-                    <p className="mt-2 text-slate-600">
+                    <p className="mt-2 text-slate-600 dark:text-slate-300">
                         Probability is the ratio of favorable outcomes to <em>total</em> outcomes (e.g., rolling a six is 1/6). Odds are the ratio of favorable outcomes to <em>unfavorable</em> outcomes (e.g., odds of rolling a six are 1:5).
                     </p>
                 </details>

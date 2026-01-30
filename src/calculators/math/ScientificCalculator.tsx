@@ -66,21 +66,21 @@ export default function ScientificCalculator() {
     }
 
     const btnClass = "h-12 md:h-14 rounded-xl font-medium text-lg transition-all duration-150 active:scale-95 flex items-center justify-center shadow-sm relative";
-    const numBtn = "bg-white text-slate-900 hover:bg-slate-50 border border-slate-200";
-    const opBtn = "bg-blue-50 text-blue-600 hover:bg-blue-100 border border-blue-100";
-    const fnBtn = "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 text-sm font-semibold";
-    const actionBtn = "bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200";
+    const numBtn = "bg-white dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700";
+    const opBtn = "bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/60 border border-blue-100 dark:border-blue-900/50";
+    const fnBtn = "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-sm font-semibold";
+    const actionBtn = "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700";
 
     return (
         <div className="max-w-2xl mx-auto">
-            <div className="bg-white p-6 rounded-3xl shadow-xl border border-slate-100">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800">
 
                 {/* Display */}
-                <div className="mb-6 bg-slate-50 p-4 rounded-2xl text-right border border-slate-100 overflow-visible relative">
+                <div className="mb-6 bg-slate-50 dark:bg-slate-800 p-4 rounded-2xl text-right border border-slate-100 dark:border-slate-700 overflow-visible relative">
                     {memory !== 0 && (
                         <span className="absolute top-2 left-3 text-xs font-bold text-blue-500 uppercase">M</span>
                     )}
-                    <div className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight overflow-x-auto no-scrollbar whitespace-nowrap min-h-[3rem]">
+                    <div className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white tracking-tight overflow-x-auto no-scrollbar whitespace-nowrap min-h-[3rem]">
                         {display}
                     </div>
                 </div>
@@ -91,14 +91,14 @@ export default function ScientificCalculator() {
                     <button onClick={() => functionBtn('sin')} className={cn(btnClass, fnBtn)}>sin</button>
                     <button onClick={() => functionBtn('cos')} className={cn(btnClass, fnBtn)}>cos</button>
                     <button onClick={() => functionBtn('tan')} className={cn(btnClass, fnBtn)}>tan</button>
-                    <button onClick={clear} className={cn(btnClass, actionBtn, "text-red-500 col-span-2")}>AC</button>
+                    <button onClick={clear} className={cn(btnClass, actionBtn, "text-red-500 dark:text-red-400 col-span-2")}>AC</button>
 
                     {/* Row 2 */}
                     <button onClick={() => functionBtn('asin')} className={cn(btnClass, fnBtn)}>sin⁻¹</button>
                     <button onClick={() => functionBtn('acos')} className={cn(btnClass, fnBtn)}>cos⁻¹</button>
                     <button onClick={() => functionBtn('atan')} className={cn(btnClass, fnBtn)}>tan⁻¹</button>
                     <button onClick={backspace} className={cn(btnClass, actionBtn, "col-span-2")}>
-                        <Delete size={20} />
+                        <Delete size={20} className="text-slate-700 dark:text-slate-300" />
                     </button>
 
                     {/* Row 3 */}
@@ -134,7 +134,7 @@ export default function ScientificCalculator() {
                     <button onClick={() => handleInput('e')} className={cn(btnClass, fnBtn)}>e</button>
                     <button onClick={() => handleInput('0')} className={cn(btnClass, numBtn)}>0</button>
                     <button onClick={() => handleInput('.')} className={cn(btnClass, numBtn)}>.</button>
-                    <button onClick={calculate} className={cn(btnClass, "bg-blue-600 text-white hover:bg-blue-700")}>=</button>
+                    <button onClick={calculate} className={cn(btnClass, "bg-blue-600 text-white hover:bg-blue-700 shadow-blue-200 dark:shadow-blue-900/20")}>=</button>
                     <button onClick={() => handleInput('+')} className={cn(btnClass, opBtn)}>+</button>
                 </div>
             </div>

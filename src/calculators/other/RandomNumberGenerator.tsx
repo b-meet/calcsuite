@@ -41,36 +41,36 @@ export default function RandomNumberGenerator() {
 
     return (
         <div className="max-w-xl mx-auto space-y-6">
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 grid grid-cols-2 gap-4">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Min Value</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-400">Min Value</label>
                     <input
                         type="number"
                         value={min}
                         onChange={e => setMin(Number(e.target.value))}
-                        className="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 font-semibold"
+                        className="w-full p-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white"
                     />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-700">Max Value</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-400">Max Value</label>
                     <input
                         type="number"
                         value={max}
                         onChange={e => setMax(Number(e.target.value))}
-                        className="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 font-semibold"
+                        className="w-full p-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white"
                     />
                 </div>
                 <div className="col-span-2 space-y-2">
-                    <label className="text-sm font-medium text-slate-700">How many numbers?</label>
+                    <label className="text-sm font-medium text-slate-700 dark:text-slate-400">How many numbers?</label>
                     <input
                         type="range"
                         min="1"
                         max="10"
                         value={count}
                         onChange={e => setCount(Number(e.target.value))}
-                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                        className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600"
                     />
-                    <div className="text-center font-bold text-blue-600">{count}</div>
+                    <div className="text-center font-bold text-blue-600 dark:text-blue-400">{count}</div>
                 </div>
 
                 <div className="col-span-2 flex items-center gap-2">
@@ -79,15 +79,15 @@ export default function RandomNumberGenerator() {
                         id="duplicates"
                         checked={allowDuplicates}
                         onChange={e => setAllowDuplicates(e.target.checked)}
-                        className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 border-gray-300"
+                        className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 border-gray-300 dark:border-slate-600"
                     />
-                    <label htmlFor="duplicates" className="text-slate-600">Allow Duplicates</label>
+                    <label htmlFor="duplicates" className="text-slate-600 dark:text-slate-400">Allow Duplicates</label>
                 </div>
             </div>
 
             <button
                 onClick={generate}
-                className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 flex items-center justify-center gap-2"
+                className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-none flex items-center justify-center gap-2"
             >
                 <Dices size={24} />
                 Generate
@@ -96,7 +96,7 @@ export default function RandomNumberGenerator() {
             {results.length > 0 && (
                 <div className="flex flex-wrap gap-4 justify-center">
                     {results.map((r, i) => (
-                        <div key={i} className="w-24 h-24 flex items-center justify-center bg-white border border-slate-200 rounded-2xl shadow-sm text-3xl font-bold text-slate-800 animate-in zoom-in duration-300 fill-mode-backwards" style={{ animationDelay: `${i * 100}ms` }}>
+                        <div key={i} className="w-24 h-24 flex items-center justify-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm text-3xl font-bold text-slate-800 dark:text-white animate-in zoom-in duration-300 fill-mode-backwards" style={{ animationDelay: `${i * 100}ms` }}>
                             {r}
                         </div>
                     ))}

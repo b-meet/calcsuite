@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { Calculator, Menu, X, Code } from 'lucide-react';
+import { Calculator, Menu, X, Code, Coffee } from 'lucide-react';
 
 import { useState } from 'react';
 import { cn } from '../utils/cn';
 import { categories } from '../calculators/registry';
+import { ThemeToggle } from './ThemeToggle';
 
 export function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,20 +28,20 @@ export function Sidebar() {
 
             <aside
                 className={cn(
-                    "fixed top-0 left-0 z-40 h-screen w-64 bg-white border-r border-slate-200 transition-transform duration-300 ease-in-out lg:translate-x-0",
+                    "fixed top-0 left-0 z-40 h-screen w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out lg:translate-x-0",
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 )}
             >
-                <div className="flex items-center gap-2 p-6 border-b border-slate-100">
+                <div className="flex items-center gap-2 p-6 border-b border-slate-100 dark:border-slate-800">
                     <img src="/favicon.png" alt="CalcSuite" className="w-10 h-10 rounded-xl shadow-sm" />
-                    <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+                    <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">
                         CalcSuite
                     </span>
                 </div>
 
-                <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100vh-80px)]">
+                <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100vh-80px)] pb-20">
                     <div className="mb-4">
-                        <p className="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                        <p className="px-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                             Menu
                         </p>
                         <NavLink
@@ -49,8 +50,8 @@ export function Sidebar() {
                                 cn(
                                     "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                                     isActive
-                                        ? "bg-blue-50 text-blue-700 shadow-sm"
-                                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                        ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 shadow-sm"
+                                        : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
                                 )
                             }
                         >
@@ -62,10 +63,10 @@ export function Sidebar() {
                             to="/widget-generator"
                             className={({ isActive }) =>
                                 cn(
-                                    "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 mt-2",
+                                    "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 mt-1",
                                     isActive
-                                        ? "bg-gradient-to-r from-violet-600 to-indigo-600 text-white shadow-md shadow-indigo-200"
-                                        : "bg-white border border-violet-100 text-violet-600 hover:bg-violet-50 hover:border-violet-200"
+                                        ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 shadow-sm"
+                                        : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
                                 )
                             }
                         >
@@ -76,18 +77,32 @@ export function Sidebar() {
                                     <span className={cn(
                                         "ml-auto px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm",
                                         isActive
-                                            ? "bg-white text-violet-600"
-                                            : "bg-violet-100 text-violet-600"
+                                            ? "bg-white text-blue-600"
+                                            : "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300"
                                     )}>
                                         NEW
                                     </span>
                                 </>
                             )}
                         </NavLink>
+
+                        <div className="mt-2 hidden lg:block">
+                            <a
+                                href="https://ko-fi.com/bmeet"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 group"
+                            >
+                                <Coffee size={18} className="animate-bounce" />
+                                <span className="font-semibold text-sm">Buy me a coffee</span>
+                            </a>
+                        </div>
                     </div>
 
+                    <div className="my-4 border-t border-slate-100 dark:border-slate-800" />
+
                     <div>
-                        <p className="px-3 text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                        <p className="px-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                             Categories
                         </p>
                         {categories.map((category) => {
@@ -100,8 +115,8 @@ export function Sidebar() {
                                         cn(
                                             "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
                                             isActive
-                                                ? "bg-blue-50 text-blue-700 shadow-sm"
-                                                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                                                ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 shadow-sm"
+                                                : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
                                         )
                                     }
                                 >
@@ -111,7 +126,15 @@ export function Sidebar() {
                             );
                         })}
                     </div>
+
                 </nav>
+
+                <div className="absolute bottom-0 left-0 w-full p-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                    <div className="flex items-center justify-between">
+                        <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Theme</span>
+                        <ThemeToggle />
+                    </div>
+                </div>
             </aside >
         </>
     );

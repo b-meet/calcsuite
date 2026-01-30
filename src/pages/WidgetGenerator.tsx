@@ -30,66 +30,66 @@ export function WidgetGenerator() {
 
             {/* Hero Section */}
             <section className="text-center space-y-6 py-12">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-full text-sm font-medium mb-4">
                     <span className="relative flex h-3 w-3">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
                     </span>
                     Free for everyone
                 </div>
-                <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight">
+                <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                     Add Powerful Calculators <br className="hidden md:block" />
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">to Your Website</span>
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">to Your Website</span>
                 </h1>
-                <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                     Boost user engagement and SEO with our collection of premium, responsive calculator widgets. Copy and paste one line of code. Zero cost.
                 </p>
             </section>
 
             {/* Benefits Grid */}
             <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-4">
+                <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-4">
                         <DollarSign size={24} />
                     </div>
-                    <h3 className="font-semibold text-slate-900 mb-2">100% Free</h3>
-                    <p className="text-slate-600 text-sm">No monthly fees, no credit card required. Use our widgets on as many sites as you want.</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">100% Free</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">No monthly fees, no credit card required. Use our widgets on as many sites as you want.</p>
                 </div>
-                <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center mb-4">
+                <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center mb-4">
                         <Zap size={24} />
                     </div>
-                    <h3 className="font-semibold text-slate-900 mb-2">Boost Engagement</h3>
-                    <p className="text-slate-600 text-sm">Interactive tools keep visitors on your page longer, reducing bounce rates.</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Boost Engagement</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">Interactive tools keep visitors on your page longer, reducing bounce rates.</p>
                 </div>
-                <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mb-4">
+                <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-4">
                         <Globe size={24} />
                     </div>
-                    <h3 className="font-semibold text-slate-900 mb-2">SEO Friendly</h3>
-                    <p className="text-slate-600 text-sm">Rich content and increased dwell time signals quality to search engines.</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">SEO Friendly</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">Rich content and increased dwell time signals quality to search engines.</p>
                 </div>
-                <div className="p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-orange-100 text-orange-600 rounded-xl flex items-center justify-center mb-4">
+                <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center mb-4">
                         <Layout size={24} />
                     </div>
-                    <h3 className="font-semibold text-slate-900 mb-2">Fully Responsive</h3>
-                    <p className="text-slate-600 text-sm">Looks perfect on desktop, tablet, and mobile devices automatically.</p>
+                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Fully Responsive</h3>
+                    <p className="text-slate-600 dark:text-slate-400 text-sm">Looks perfect on desktop, tablet, and mobile devices automatically.</p>
                 </div>
             </section>
 
             {/* Generator Section */}
-            <section className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xl">
-                <div className="border-b border-slate-200 bg-slate-50/50 p-6 md:p-8">
-                    <h2 className="text-2xl font-bold text-slate-900 mb-6">Customize Your Widget</h2>
+            <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl">
+                <div className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-6 md:p-8">
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Customize Your Widget</h2>
 
                     <div className="flex flex-col md:flex-row gap-6">
                         <div className="flex-1">
-                            <label className="block text-sm font-medium text-slate-700 mb-2">Select Calculator</label>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Select Calculator</label>
                             <select
                                 value={selectedCalculatorId}
                                 onChange={(e) => setSelectedCalculatorId(e.target.value)}
-                                className="w-full px-4 py-2 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all bg-white"
+                                className="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                             >
                                 {calculatorRegistry.map((calc) => (
                                     <option key={calc.id} value={calc.id}>
@@ -100,13 +100,13 @@ export function WidgetGenerator() {
                         </div>
 
                         <div className="w-full md:w-48">
-                            <label className="block text-sm font-medium text-slate-700 mb-2">Theme</label>
-                            <div className="flex bg-slate-200 p-1 rounded-xl">
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Theme</label>
+                            <div className="flex bg-slate-200 dark:bg-slate-800 p-1 rounded-xl">
                                 <button
                                     onClick={() => setTheme('light')}
                                     className={`flex-1 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${theme === 'light'
-                                            ? 'bg-white text-slate-900 shadow-sm'
-                                            : 'text-slate-600 hover:text-slate-900'
+                                        ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
+                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                                         }`}
                                 >
                                     Light
@@ -114,8 +114,8 @@ export function WidgetGenerator() {
                                 <button
                                     onClick={() => setTheme('dark')}
                                     className={`flex-1 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${theme === 'dark'
-                                            ? 'bg-slate-800 text-white shadow-sm'
-                                            : 'text-slate-600 hover:text-slate-900'
+                                        ? 'bg-slate-800 dark:bg-slate-600 text-white shadow-sm'
+                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                                         }`}
                                 >
                                     Dark
@@ -137,8 +137,8 @@ export function WidgetGenerator() {
                         </div>
 
                         <div className={`rounded-2xl shadow-sm border p-4 md:p-6 overflow-hidden transition-colors duration-300 ${theme === 'dark'
-                                ? 'bg-slate-900 border-slate-800 text-white'
-                                : 'bg-white border-slate-100'
+                            ? 'bg-slate-900 border-slate-800 text-white'
+                            : 'bg-white border-slate-100'
                             }`}>
                             <div className={theme === 'dark' ? 'dark' : ''}>
                                 <React.Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400">Loading calculator...</div>}>

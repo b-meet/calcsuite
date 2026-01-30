@@ -6,7 +6,7 @@ import { KofiWidget } from '../components/KofiWidget';
 
 export function MainLayout() {
     return (
-        <div className="min-h-screen bg-slate-50 flex flex-col">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300">
             <Sidebar />
             <KofiWidget />
             <div className="lg:ml-64 min-h-screen flex flex-col transition-all duration-300">
