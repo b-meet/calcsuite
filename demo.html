@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalcSuite Widget Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 min-h-screen py-10 px-4">
+
+    <div class="max-w-3xl mx-auto space-y-12">
+        <header class="text-center space-y-4">
+            <h1 class="text-3xl font-bold text-slate-900">CalcSuite Widget Demo</h1>
+            <p class="text-slate-600">Embeddable calculators for your website.</p>
+        </header>
+
+        <!-- Widget Section -->
+        <section class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-xl font-semibold mb-6 pb-2 border-b border-slate-100">BMI Calculator Widget</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <div class="space-y-4">
+                    <p class="text-slate-600 text-sm">
+                        This is how the widget looks when embedded on a white background.
+                        It's fully responsive and encapsulated within a Shadow DOM to prevent style conflicts.
+                    </p>
+                    <div class="p-4 bg-slate-50 rounded-lg text-xs font-mono text-slate-500 overflow-x-auto">
+                        &lt;div class="calcsuite-widget" data-type="bmi" data-theme="light"&gt;&lt;/div&gt;
+                        &lt;script src="./dist-widget/widget.iife.js"&gt;&lt;/script&gt;
+                    </div>
+                </div>
+
+
+                <!-- The Widget Container -->
+                <div class="calcsuite-widget" data-type="bmi" data-theme="light"></div>
+            </div>
+        </section>
+
+        <section class="bg-slate-900 p-8 rounded-2xl shadow-lg border border-slate-800">
+            <h2 class="text-xl font-semibold mb-6 pb-2 border-b border-slate-800 text-white">Dark Mode Widget</h2>
+
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                <!-- The Widget Container (Dark) -->
+                <!-- Note: Since ID must be unique, the script currently looks for 'calcsuite-widget' only. 
+                     We need to modify the script to support multiple widgets or classes. 
+                     Currently, my implementation uses getElementById, so only one widget per page is supported.
+                     I should update index.tsx to support querySelectorAll('.calcsuite-widget') or similar.
+                -->
+                <div class="calcsuite-widget text-white" data-type="bmi" data-theme="dark">
+                    (Multiple widgets support pending...)
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Load the widget -->
+    <script src="./dist-widget/widget.iife.js"></script>
+
+</body>
+
+</html>
