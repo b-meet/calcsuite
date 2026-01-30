@@ -40,22 +40,22 @@ export default function SalaryCalculator() {
     const results = calculate();
     const hasInput = amount.length > 0;
 
-    const inputClass = "block w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-cyan-500 bg-slate-50";
+    const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-cyan-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
 
     return (
         <div className="max-w-2xl mx-auto space-y-8">
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Salary Amount</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Salary Amount</label>
                         <div className="relative">
                             <span className="absolute left-4 top-3.5 text-slate-400">$</span>
                             <input type="number" value={amount} onChange={e => setAmount(e.target.value)} className={`${inputClass} pl-8`} placeholder="0.00" />
                         </div>
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">Per</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Per</label>
                         <select
                             value={period}
                             onChange={e => setPeriod(e.target.value as any)}
@@ -69,7 +69,7 @@ export default function SalaryCalculator() {
                     </div>
                     {period === 'hourly' && (
                         <div className="md:col-span-2">
-                            <label className="block text-sm font-medium text-slate-700 mb-2">Hours per Week</label>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Hours per Week</label>
                             <input type="number" value={hoursPerWeek} onChange={e => setHoursPerWeek(e.target.value)} className={inputClass} placeholder="40" />
                         </div>
                     )}
@@ -84,9 +84,9 @@ export default function SalaryCalculator() {
                                 { label: 'Weekly', value: results.weekly },
                                 { label: 'Hourly', value: results.hourly }
                             ].map((item, i) => (
-                                <div key={i} className="flex justify-between items-center p-4 rounded-xl border border-slate-100 hover:bg-slate-50 transition-colors">
-                                    <span className="text-slate-500 font-medium">{item.label}</span>
-                                    <span className="text-xl font-bold text-slate-900">${item.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                                <div key={i} className="flex justify-between items-center p-4 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                    <span className="text-slate-500 dark:text-slate-400 font-medium">{item.label}</span>
+                                    <span className="text-xl font-bold text-slate-900 dark:text-white">${item.value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                                 </div>
                             ))}
                         </div>

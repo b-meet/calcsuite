@@ -49,7 +49,7 @@ export default function PercentageCalculator() {
                             "px-4 py-2 rounded-full text-sm font-medium transition-all border",
                             mode === m.id
                                 ? "bg-blue-600 text-white border-blue-600 shadow-md"
-                                : "bg-white text-slate-600 border-slate-200 hover:bg-slate-50"
+                                : "bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700"
                         )}
                     >
                         {m.label}
@@ -57,35 +57,35 @@ export default function PercentageCalculator() {
                 ))}
             </div>
 
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
-                <div className="flex flex-col md:flex-row items-center gap-4 text-lg font-medium text-slate-700 justify-center">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+                <div className="flex flex-col md:flex-row items-center gap-4 text-lg font-medium text-slate-700 dark:text-slate-300 justify-center">
                     {mode === 'whatIs' && (
                         <>
                             <span>What is</span>
                             <div className="relative w-24">
-                                <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-full p-2 pr-8 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50" />
-                                <Percent className="absolute right-2 top-3 text-slate-400 h-4 w-4" />
+                                <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-full p-2 pr-8 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
+                                <Percent className="absolute right-2 top-3 text-slate-400 dark:text-slate-500 h-4 w-4" />
                             </div>
                             <span>of</span>
-                            <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-32 p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50" />
+                            <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-32 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                         </>
                     )}
 
                     {mode === 'isWhatPercent' && (
                         <>
-                            <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-24 p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50" />
+                            <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-24 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                             <span>is what % of</span>
-                            <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-24 p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50" />
+                            <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-24 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                         </>
                     )}
 
                     {mode === 'isPercentOf' && (
                         <>
-                            <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-24 p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50" />
+                            <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-24 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                             <span>is</span>
                             <div className="relative w-24">
-                                <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-full p-2 pr-8 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50" />
-                                <Percent className="absolute right-2 top-3 text-slate-400 h-4 w-4" />
+                                <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-full p-2 pr-8 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
+                                <Percent className="absolute right-2 top-3 text-slate-400 dark:text-slate-500 h-4 w-4" />
                             </div>
                             <span>of what?</span>
                         </>
@@ -93,16 +93,16 @@ export default function PercentageCalculator() {
                 </div>
 
                 <div className="flex justify-center">
-                    <button onClick={calculate} className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
+                    <button onClick={calculate} className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20">
                         Calculate
                     </button>
                 </div>
 
                 {result !== null && (
                     <div className="mt-6 text-center">
-                        <div className="inline-block px-6 py-4 bg-slate-50 rounded-2xl border border-slate-200 min-w-[200px]">
-                            <span className="text-slate-500 text-sm font-medium uppercase tracking-wide">Result</span>
-                            <div className="text-4xl font-bold text-slate-900 mt-1">
+                        <div className="inline-block px-6 py-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 min-w-[200px]">
+                            <span className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wide">Result</span>
+                            <div className="text-4xl font-bold text-slate-900 dark:text-white mt-1">
                                 {Number.isInteger(result) ? result : result.toFixed(2)}
                                 {mode === 'isWhatPercent' ? '%' : ''}
                             </div>

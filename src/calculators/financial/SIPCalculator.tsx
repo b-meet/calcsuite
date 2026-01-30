@@ -25,38 +25,38 @@ export default function SIPCalculator() {
     };
 
     return (
-        <div className="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div className="max-w-md mx-auto bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
             <div className="space-y-4">
                 <div>
-                    <label className="block text-sm font-medium text-slate-700 mb-1">Monthly Investment</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Monthly Investment</label>
                     <div className="relative">
                         <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                         <input
                             type="number"
                             value={monthlyInvestment}
                             onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
-                            className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                            className="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                         />
                     </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Exp. Return (%)</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Exp. Return (%)</label>
                         <input
                             type="number"
                             value={rate}
                             onChange={(e) => setRate(Number(e.target.value))}
-                            className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                            className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-1">Time Period (Years)</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Time Period (Years)</label>
                         <input
                             type="number"
                             value={years}
                             onChange={(e) => setYears(Number(e.target.value))}
-                            className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+                            className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                         />
                     </div>
                 </div>
@@ -72,18 +72,18 @@ export default function SIPCalculator() {
 
             {result && (
                 <div className="mt-6 space-y-4 animate-fade-in">
-                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                    <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
                         <div className="flex justify-between mb-2">
-                            <span className="text-sm text-slate-500">Invested Amount</span>
-                            <span className="font-semibold text-slate-900">{result.invested}</span>
+                            <span className="text-sm text-slate-500 dark:text-slate-400">Invested Amount</span>
+                            <span className="font-semibold text-slate-900 dark:text-white">{result.invested}</span>
                         </div>
                         <div className="flex justify-between mb-2">
-                            <span className="text-sm text-slate-500">Est. Returns</span>
-                            <span className="font-semibold text-green-600">+{result.returns}</span>
+                            <span className="text-sm text-slate-500 dark:text-slate-400">Est. Returns</span>
+                            <span className="font-semibold text-green-600 dark:text-green-400">+{result.returns}</span>
                         </div>
-                        <div className="flex justify-between pt-3 border-t border-slate-200 mt-2">
-                            <span className="font-bold text-slate-800">Total Value</span>
-                            <span className="font-bold text-blue-700 text-lg">{result.total}</span>
+                        <div className="flex justify-between pt-3 border-t border-slate-200 dark:border-slate-700 mt-2">
+                            <span className="font-bold text-slate-800 dark:text-slate-200">Total Value</span>
+                            <span className="font-bold text-blue-700 dark:text-blue-400 text-lg">{result.total}</span>
                         </div>
                     </div>
                 </div>

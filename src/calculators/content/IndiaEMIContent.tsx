@@ -1,7 +1,7 @@
 
 export default function IndiaEMIContent() {
     return (
-        <article className="prose prose-slate max-w-none">
+        <article className="prose prose-slate dark:prose-invert max-w-none">
             <h2>Understanding Your EMI (Equated Monthly Installment)</h2>
             <p>
                 An <strong>Equated Monthly Installment (EMI)</strong> is the fixed amount you pay to your bank or lender each month to repay a loan.
@@ -13,12 +13,12 @@ export default function IndiaEMIContent() {
             <p>
                 Banks use the reducing balance method to calculate EMI. The formula may look complex, but it ensures you pay off your loan precisely by the end of the tenure.
             </p>
-            <div className="not-prose bg-slate-100 p-4 rounded-xl border border-slate-200 overflow-x-auto">
-                <code className="text-sm font-mono text-slate-800">
+            <div className="not-prose bg-slate-100 dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 overflow-x-auto">
+                <code className="text-sm font-mono text-slate-800 dark:text-slate-200">
                     E = P x R x (1+R)^N / [ (1+R)^N - 1 ]
                 </code>
             </div>
-            <p className="text-sm text-slate-500 mt-2">
+            <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
                 Where: <br />
                 <strong>E</strong> = EMI Amount<br />
                 <strong>P</strong> = Principal Loan Amount<br />
@@ -27,35 +27,35 @@ export default function IndiaEMIContent() {
             </p>
 
             <h3>Factors Affecting Your EMI</h3>
-            <ul className="list-disc pl-5 space-y-2">
+            <ul className="list-disc pl-5 space-y-2 text-slate-800 dark:text-slate-200">
                 <li>
-                    <strong>Principal Amount:</strong> A higher loan amount directly increases your EMI.
+                    <strong className="text-slate-900 dark:text-white">Principal Amount:</strong> A higher loan amount directly increases your EMI.
                 </li>
                 <li>
-                    <strong>Interest Rate:</strong> Even a 0.5% difference can save you lakhs over a long tenure. Always negotiate with your lender.
+                    <strong className="text-slate-900 dark:text-white">Interest Rate:</strong> Even a 0.5% difference can save you lakhs over a long tenure. Always negotiate with your lender.
                 </li>
                 <li>
-                    <strong>Loan Tenure:</strong> Choosing a longer tenure reduces your monthly EMI but <em>significantly increases</em> the total interest payout.
+                    <strong className="text-slate-900 dark:text-white">Loan Tenure:</strong> Choosing a longer tenure reduces your monthly EMI but <em>significantly increases</em> the total interest payout.
                 </li>
             </ul>
 
             <h3>Loan Types Covered</h3>
             <div className="grid md:grid-cols-3 gap-6 my-8 not-prose">
-                <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                    <h4 className="font-bold text-blue-900 mb-2">Home Loan</h4>
-                    <p className="text-sm text-blue-800">
+                <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-900/30">
+                    <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-2">Home Loan</h4>
+                    <p className="text-sm text-blue-800 dark:text-blue-200">
                         Usually long-term (15-30 years) with lower interest rates. Offers tax benefits under Section 80C and 24(b).
                     </p>
                 </div>
-                <div className="bg-green-50 p-6 rounded-xl border border-green-100">
-                    <h4 className="font-bold text-green-900 mb-2">Car Loan</h4>
-                    <p className="text-sm text-green-800">
+                <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-xl border border-green-100 dark:border-green-900/30">
+                    <h4 className="font-bold text-green-900 dark:text-green-300 mb-2">Car Loan</h4>
+                    <p className="text-sm text-green-800 dark:text-green-200">
                         Medium-term (3-7 years). Interest rates are fixed or floating. Your car serves as collateral.
                     </p>
                 </div>
-                <div className="bg-purple-50 p-6 rounded-xl border border-purple-100">
-                    <h4 className="font-bold text-purple-900 mb-2">Personal Loan</h4>
-                    <p className="text-sm text-purple-800">
+                <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-xl border border-purple-100 dark:border-purple-900/30">
+                    <h4 className="font-bold text-purple-900 dark:text-purple-300 mb-2">Personal Loan</h4>
+                    <p className="text-sm text-purple-800 dark:text-purple-200">
                         Short-term (1-5 years) with higher interest rates. Unsecured loan useful for emergencies or consolidation.
                     </p>
                 </div>

@@ -59,41 +59,41 @@ export default function GPACalculator() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
                 <div className="md:col-span-2 space-y-4">
-                    <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800">
                         <div className="flex justify-between items-center mb-6">
-                            <h3 className="font-semibold text-slate-800">Courses</h3>
-                            <button onClick={addCourse} className="flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700">
+                            <h3 className="font-semibold text-slate-800 dark:text-white">Courses</h3>
+                            <button onClick={addCourse} className="flex items-center gap-1 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300">
                                 <Plus size={16} /> Add Course
                             </button>
                         </div>
 
                         <div className="space-y-4">
                             {courses.map(course => (
-                                <div key={course.id} className="flex gap-3 items-center p-3 bg-slate-50 rounded-xl border border-slate-100">
+                                <div key={course.id} className="flex gap-3 items-center p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700">
                                     <input
                                         type="text"
                                         value={course.name}
                                         onChange={e => updateCourse(course.id, 'name', e.target.value)}
-                                        className="flex-1 bg-transparent border-none text-sm font-medium focus:ring-0 p-0"
+                                        className="flex-1 bg-transparent border-none text-sm font-medium focus:ring-0 p-0 text-slate-900 dark:text-white placeholder-slate-400"
                                         placeholder="Course Name"
                                     />
-                                    <div className="w-px h-6 bg-slate-200"></div>
+                                    <div className="w-px h-6 bg-slate-200 dark:bg-slate-600"></div>
                                     <select
                                         value={course.grade}
                                         onChange={e => updateCourse(course.id, 'grade', e.target.value)}
-                                        className="bg-transparent border-none text-sm font-bold text-slate-700 focus:ring-0 cursor-pointer"
+                                        className="bg-transparent border-none text-sm font-bold text-slate-700 dark:text-slate-200 focus:ring-0 cursor-pointer"
                                     >
                                         {Object.keys(gradePoints).map(g => (
-                                            <option key={g} value={g}>{g}</option>
+                                            <option key={g} value={g} className="text-slate-900">{g}</option>
                                         ))}
                                     </select>
-                                    <div className="w-px h-6 bg-slate-200"></div>
+                                    <div className="w-px h-6 bg-slate-200 dark:bg-slate-600"></div>
                                     <div className="flex items-center gap-1">
                                         <input
                                             type="number"
                                             value={course.credits}
                                             onChange={e => updateCourse(course.id, 'credits', e.target.value)}
-                                            className="w-10 bg-transparent border-none text-sm text-right font-medium focus:ring-0 p-0"
+                                            className="w-10 bg-transparent border-none text-sm text-right font-medium focus:ring-0 p-0 text-slate-900 dark:text-white"
                                         />
                                         <span className="text-xs text-slate-400">cr</span>
                                     </div>
@@ -107,7 +107,7 @@ export default function GPACalculator() {
                 </div>
 
                 <div className="md:col-span-1">
-                    <div className="bg-slate-900 text-white p-8 rounded-3xl shadow-lg sticky top-6">
+                    <div className="bg-slate-900 dark:bg-slate-800 text-white p-8 rounded-3xl shadow-lg sticky top-6">
                         <div className="flex flex-col items-center text-center">
                             <div className="p-3 bg-white/10 rounded-2xl mb-4">
                                 <GraduationCap size={32} className="text-yellow-400" />

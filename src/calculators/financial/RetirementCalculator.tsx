@@ -41,12 +41,12 @@ export default function RetirementCalculator() {
         setResult({ total, interest });
     };
 
-    const inputClass = "block w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 bg-slate-50";
-    const labelClass = "block text-sm font-medium text-slate-700 mb-1";
+    const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-amber-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
+    const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     return (
         <div className="max-w-xl mx-auto space-y-8">
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
                 <div className="grid grid-cols-2 gap-6">
                     <div>
                         <label className={labelClass}>Current Age</label>
@@ -59,14 +59,14 @@ export default function RetirementCalculator() {
                     <div className="col-span-2">
                         <label className={labelClass}>Current Savings</label>
                         <div className="relative">
-                            <span className="absolute left-4 top-3.5 text-slate-400">$</span>
+                            <span className="absolute left-4 top-3.5 text-slate-400 dark:text-slate-500">$</span>
                             <input type="number" value={currentSavings} onChange={e => setCurrentSavings(e.target.value)} className={`${inputClass} pl-8`} placeholder="50000" />
                         </div>
                     </div>
                     <div className="col-span-2">
                         <label className={labelClass}>Annual Contribution</label>
                         <div className="relative">
-                            <span className="absolute left-4 top-3.5 text-slate-400">$</span>
+                            <span className="absolute left-4 top-3.5 text-slate-400 dark:text-slate-500">$</span>
                             <input type="number" value={annualContribution} onChange={e => setAnnualContribution(e.target.value)} className={`${inputClass} pl-8`} placeholder="10000" />
                         </div>
                     </div>
@@ -78,7 +78,7 @@ export default function RetirementCalculator() {
 
                 <button
                     onClick={calculate}
-                    className="w-full py-4 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200 flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200 dark:shadow-amber-900/20 flex items-center justify-center gap-2"
                 >
                     <Sunset size={20} />
                     Calculate Retirement
@@ -86,14 +86,14 @@ export default function RetirementCalculator() {
 
                 {result !== null && (
                     <div className="mt-8 space-y-4">
-                        <div className="p-6 bg-amber-50 rounded-2xl border border-amber-100 text-center">
-                            <span className="text-sm font-medium text-amber-800 uppercase tracking-wide">Retirement Savings</span>
-                            <div className="text-4xl font-bold text-slate-900 mt-2">
+                        <div className="p-6 bg-amber-50 dark:bg-amber-900/20 rounded-2xl border border-amber-100 dark:border-amber-900/30 text-center">
+                            <span className="text-sm font-medium text-amber-800 dark:text-amber-300 uppercase tracking-wide">Retirement Savings</span>
+                            <div className="text-4xl font-bold text-slate-900 dark:text-white mt-2">
                                 ${result.total.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                             </div>
                         </div>
-                        <p className="text-center text-sm text-slate-500">
-                            You will earn <span className="font-semibold text-amber-600">${result.interest.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span> in interest!
+                        <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+                            You will earn <span className="font-semibold text-amber-600 dark:text-amber-400">${result.interest.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span> in interest!
                         </p>
                     </div>
                 )}

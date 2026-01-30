@@ -56,25 +56,25 @@ export default function BodyFatCalculator() {
         }
     };
 
-    const inputClass = "block w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50";
-    const labelClass = "block text-sm font-medium text-slate-700 mb-1";
+    const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
+    const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     return (
         <div className="max-w-2xl mx-auto space-y-8">
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
 
                 {/* Gender Selection */}
-                <div className="flex bg-slate-100 p-1 rounded-xl">
+                <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
                     <button
                         onClick={() => setGender('male')}
-                        className={`flex-1 py-3 rounded-lg text-sm font-semibold transition-all ${gender === 'male' ? 'bg-white text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                        className={`flex-1 py-3 rounded-lg text-sm font-semibold transition-all ${gender === 'male' ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                             }`}
                     >
                         Male
                     </button>
                     <button
                         onClick={() => setGender('female')}
-                        className={`flex-1 py-3 rounded-lg text-sm font-semibold transition-all ${gender === 'female' ? 'bg-white text-pink-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                        className={`flex-1 py-3 rounded-lg text-sm font-semibold transition-all ${gender === 'female' ? 'bg-white dark:bg-slate-700 text-pink-600 dark:text-pink-400 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
                             }`}
                     >
                         Female
@@ -112,22 +112,22 @@ export default function BodyFatCalculator() {
 
                 <button
                     onClick={calculate}
-                    className={`w-full py-4 text-white font-bold rounded-xl transition-colors shadow-lg ${gender === 'male' ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-200' : 'bg-pink-600 hover:bg-pink-700 shadow-pink-200'
+                    className={`w-full py-4 text-white font-bold rounded-xl transition-colors shadow-lg ${gender === 'male' ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-200 dark:shadow-blue-900/20' : 'bg-pink-600 hover:bg-pink-700 shadow-pink-200 dark:shadow-pink-900/20'
                         }`}
                 >
                     Calculate Body Fat
                 </button>
 
                 {result !== null && (
-                    <div className={`mt-8 p-6 rounded-2xl border text-center ${gender === 'male' ? 'bg-blue-50 border-blue-100' : 'bg-pink-50 border-pink-100'
+                    <div className={`mt-8 p-6 rounded-2xl border text-center ${gender === 'male' ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-900/30' : 'bg-pink-50 dark:bg-pink-900/20 border-pink-100 dark:border-pink-900/30'
                         }`}>
-                        <span className={`text-sm font-medium uppercase tracking-wide ${gender === 'male' ? 'text-blue-600' : 'text-pink-600'
+                        <span className={`text-sm font-medium uppercase tracking-wide ${gender === 'male' ? 'text-blue-600 dark:text-blue-400' : 'text-pink-600 dark:text-pink-400'
                             }`}>Body Fat Percentage</span>
-                        <div className="text-4xl font-bold text-slate-900 mt-2">
+                        <div className="text-4xl font-bold text-slate-900 dark:text-white mt-2">
                             {result.toFixed(1)}%
                         </div>
-                        <div className="mt-2 text-lg font-medium text-slate-600">
-                            Category: <span className="font-bold text-slate-900">{category}</span>
+                        <div className="mt-2 text-lg font-medium text-slate-600 dark:text-slate-300">
+                            Category: <span className="font-bold text-slate-900 dark:text-white">{category}</span>
                         </div>
                     </div>
                 )}

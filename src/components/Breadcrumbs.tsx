@@ -41,10 +41,10 @@ export default function Breadcrumbs({ items, className }: { items?: { label: str
     if (!breadcrumbItems || breadcrumbItems.length === 0) return null;
 
     return (
-        <nav aria-label="Breadcrumb" className={cn("flex items-center text-sm text-slate-500 mb-6 font-medium overflow-x-auto whitespace-nowrap pb-1", className)}>
+        <nav aria-label="Breadcrumb" className={cn("flex items-center text-sm text-slate-500 dark:text-slate-400 mb-6 font-medium overflow-x-auto whitespace-nowrap pb-1", className)}>
             <Link
                 to="/"
-                className="flex items-center hover:text-blue-600 transition-colors"
+                className="flex items-center hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                 title="Home"
             >
                 <Home size={16} />
@@ -52,12 +52,12 @@ export default function Breadcrumbs({ items, className }: { items?: { label: str
 
             {breadcrumbItems.map((item, index) => (
                 <div key={item.href} className="flex items-center">
-                    <ChevronRight size={16} className="mx-2 text-slate-400 flex-shrink-0" />
+                    <ChevronRight size={16} className="mx-2 text-slate-400 dark:text-slate-600 flex-shrink-0" />
                     <Link
                         to={item.href}
                         className={cn(
-                            "hover:text-blue-600 transition-colors",
-                            index === breadcrumbItems.length - 1 ? "text-slate-900 pointer-events-none" : ""
+                            "hover:text-blue-600 dark:hover:text-blue-400 transition-colors",
+                            index === breadcrumbItems.length - 1 ? "text-slate-900 dark:text-white pointer-events-none" : ""
                         )}
                         aria-current={index === breadcrumbItems.length - 1 ? "page" : undefined}
                     >

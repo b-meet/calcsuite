@@ -29,16 +29,16 @@ export default function LoanCalculator() {
         });
     };
 
-    const inputClass = "block w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 bg-slate-50";
-    const labelClass = "block text-sm font-medium text-slate-700 mb-1";
+    const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
+    const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     return (
         <div className="max-w-xl mx-auto space-y-8">
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 space-y-6">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
                 <div>
                     <label className={labelClass}>Loan Amount</label>
                     <div className="relative">
-                        <span className="absolute left-4 top-3.5 text-slate-400">$</span>
+                        <span className="absolute left-4 top-3.5 text-slate-400 dark:text-slate-500">$</span>
                         <input type="number" value={amount} onChange={e => setAmount(e.target.value)} className={`${inputClass} pl-8`} placeholder="0.00" />
                     </div>
                 </div>
@@ -55,7 +55,7 @@ export default function LoanCalculator() {
 
                 <button
                     onClick={calculate}
-                    className="w-full py-4 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200 flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200 dark:shadow-emerald-900/20 flex items-center justify-center gap-2"
                 >
                     <DollarSign size={20} />
                     Calculate Loan
@@ -63,21 +63,21 @@ export default function LoanCalculator() {
 
                 {result !== null && (
                     <div className="mt-8 space-y-4">
-                        <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
-                            <span className="text-sm font-medium text-emerald-800 uppercase tracking-wide">Monthly Payment</span>
-                            <div className="text-4xl font-bold text-slate-900 mt-2">
+                        <div className="p-6 bg-emerald-50 dark:bg-emerald-900/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/30 text-center">
+                            <span className="text-sm font-medium text-emerald-800 dark:text-emerald-300 uppercase tracking-wide">Monthly Payment</span>
+                            <div className="text-4xl font-bold text-slate-900 dark:text-white mt-2">
                                 ${result.monthly.toFixed(2)}
                             </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
-                            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
-                                <span className="text-xs font-bold text-slate-500 uppercase">Total Interest</span>
-                                <div className="text-xl font-bold text-slate-800 mt-1">${result.totalInterest.toFixed(2)}</div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-center">
+                                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Total Interest</span>
+                                <div className="text-xl font-bold text-slate-800 dark:text-slate-200 mt-1">${result.totalInterest.toFixed(2)}</div>
                             </div>
-                            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-center">
-                                <span className="text-xs font-bold text-slate-500 uppercase">Total Cost</span>
-                                <div className="text-xl font-bold text-slate-800 mt-1">${result.totalPayment.toFixed(2)}</div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 text-center">
+                                <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Total Cost</span>
+                                <div className="text-xl font-bold text-slate-800 dark:text-slate-200 mt-1">${result.totalPayment.toFixed(2)}</div>
                             </div>
                         </div>
                     </div>

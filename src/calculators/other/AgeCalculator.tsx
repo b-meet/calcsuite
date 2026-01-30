@@ -31,10 +31,10 @@ export default function AgeCalculator() {
     };
 
     return (
-        <div className="max-w-2xl mx-auto bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+        <div className="max-w-2xl mx-auto bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800">
             <div className="space-y-6">
                 <div className="space-y-2">
-                    <label className="block text-sm font-medium text-slate-700">Date of Birth</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Date of Birth</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <Calendar className="h-5 w-5 text-slate-400" />
@@ -43,14 +43,14 @@ export default function AgeCalculator() {
                             type="date"
                             value={birthDate}
                             onChange={(e) => setBirthDate(e.target.value)}
-                            className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 hover:bg-white transition-all"
+                            className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-white dark:hover:bg-slate-700 transition-all"
                         />
                     </div>
                 </div>
 
                 <button
                     onClick={calculateAge}
-                    className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
+                    className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-none"
                 >
                     Calculate Age
                 </button>

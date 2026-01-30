@@ -130,32 +130,32 @@ export default function RDCalculator() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Input Section */}
                 <div className="space-y-6">
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
-                        <h2 className="text-xl font-semibold text-slate-900 flex items-center gap-2">
-                            <TrendingUp className="w-5 h-5 text-blue-600" />
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+                        <h2 className="text-xl font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                            <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             RD Scheme Details
                         </h2>
 
                         <div className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                     Monthly Deposit
                                 </label>
                                 <div className="relative">
                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <span className="text-slate-500">₹</span>
+                                        <span className="text-slate-500 dark:text-slate-400">₹</span>
                                     </div>
                                     <input
                                         type="number"
                                         value={monthlyDeposit}
                                         onChange={(e) => setMonthlyDeposit(Number(e.target.value))}
-                                        className="block w-full pl-8 pr-4 py-2 text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
                                 </div>
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-slate-700 mb-1">
+                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                     Annual Interest Rate
                                 </label>
                                 <div className="relative">
@@ -163,38 +163,38 @@ export default function RDCalculator() {
                                         type="number"
                                         value={rate}
                                         onChange={(e) => setRate(Number(e.target.value))}
-                                        className="block w-full px-4 py-2 text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         step="0.1"
                                     />
                                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                        <Percent className="w-4 h-4 text-slate-500" />
+                                        <Percent className="w-4 h-4 text-slate-500 dark:text-slate-400" />
                                     </div>
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                         Tenure (Months)
                                     </label>
                                     <input
                                         type="number"
                                         value={tenureMonths}
                                         onChange={(e) => setTenureMonths(Number(e.target.value))}
-                                        className="block w-full px-4 py-2 text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
-                                    <p className="text-xs text-slate-500 mt-1">
+                                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                                         {Math.floor(tenureMonths / 12)} Years {tenureMonths % 12} Months
                                     </p>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-slate-700 mb-1">
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                         Compounding
                                     </label>
                                     <select
                                         value={compounding}
                                         onChange={(e) => setCompounding(e.target.value as CompoundingFrequency)}
-                                        className="block w-full px-4 py-2 text-slate-900 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                        className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     >
                                         <option value="QUARTERLY">Quarterly (Standard)</option>
                                         <option value="MONTHLY">Monthly</option>
@@ -248,9 +248,9 @@ export default function RDCalculator() {
                         </div>
                     </div>
 
-                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                            <PieChart className="w-5 h-5 text-blue-600" />
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <PieChart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Breakdown
                         </h3>
                         <div className="h-64 flex items-center justify-center">
@@ -262,16 +262,16 @@ export default function RDCalculator() {
 
             {/* Breakdown Table */}
             {result?.breakdown && result.breakdown.length > 0 && (
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-                    <div className="p-6 border-b border-slate-100">
-                        <h3 className="text-lg font-semibold text-slate-900 flex items-center gap-2">
-                            <Calendar className="w-5 h-5 text-blue-600" />
+                <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
+                    <div className="p-6 border-b border-slate-100 dark:border-slate-800">
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                            <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Progress
                         </h3>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
-                            <thead className="bg-slate-50 text-slate-600 font-medium border-b border-slate-200">
+                            <thead className="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium border-b border-slate-200 dark:border-slate-700">
                                 <tr>
                                     <th className="px-6 py-3">Year</th>
                                     <th className="px-6 py-3">Total Deposited</th>
@@ -279,14 +279,14 @@ export default function RDCalculator() {
                                     <th className="px-6 py-3">Maturity Value</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-100">
+                            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                                 {result.breakdown.map((row) => (
-                                    <tr key={row.year} className="hover:bg-slate-50">
-                                        <td className="px-6 py-3 font-medium text-slate-900">{row.year}</td>
+                                    <tr key={row.year} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300">
+                                        <td className="px-6 py-3 font-medium text-slate-900 dark:text-white">{row.year}</td>
                                         <td className="px-6 py-3">
                                             {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.totalDeposited)}
                                         </td>
-                                        <td className="px-6 py-3 text-green-600">
+                                        <td className="px-6 py-3 text-green-600 dark:text-green-400">
                                             +{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.totalInterest)}
                                         </td>
                                         <td className="px-6 py-3 font-medium">

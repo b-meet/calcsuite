@@ -7,7 +7,7 @@ export function KofiWidget() {
             href="https://ko-fi.com/bmeet"
             target="_blank"
             rel="noopener noreferrer"
-            className="fixed bottom-4 left-4 z-50 flex flex-col items-start gap-4 no-underline"
+            className="fixed bottom-4 left-4 z-50 flex flex-col items-start gap-4 no-underline lg:hidden"
             aria-label="Support me on Ko-fi"
         >
             <div

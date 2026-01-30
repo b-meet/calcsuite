@@ -49,17 +49,17 @@ export default function BMICalculator() {
 
     return (
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 space-y-6">
-                <div className="flex bg-slate-100 p-1 rounded-xl w-fit mb-6">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+                <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit mb-6">
                     <button
                         onClick={() => setUnit('metric')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${unit === 'metric' ? 'bg-white shadow text-slate-900' : 'text-slate-500 hover:text-slate-700'}`}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${unit === 'metric' ? 'bg-white dark:bg-slate-700 shadow text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
                     >
                         Metric (kg/cm)
                     </button>
                     <button
                         onClick={() => setUnit('imperial')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${unit === 'imperial' ? 'bg-white shadow text-slate-900' : 'text-slate-500 hover:text-slate-700'}`}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${unit === 'imperial' ? 'bg-white dark:bg-slate-700 shadow text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
                     >
                         Imperial (lb/in)
                     </button>
@@ -67,53 +67,53 @@ export default function BMICalculator() {
 
                 <div className="space-y-4">
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium text-slate-700">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Scale className="h-4 w-4 text-slate-400" />
+                                <Scale className="h-4 w-4 text-slate-400 dark:text-slate-500" />
                             </div>
                             <input
                                 type="number"
                                 value={weight}
                                 onChange={(e) => setWeight(Number(e.target.value))}
-                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 hover:bg-white transition-all"
+                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
                             />
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="block text-sm font-medium text-slate-700">Height ({unit === 'metric' ? 'cm' : 'in'})</label>
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Height ({unit === 'metric' ? 'cm' : 'in'})</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Ruler className="h-4 w-4 text-slate-400" />
+                                <Ruler className="h-4 w-4 text-slate-400 dark:text-slate-500" />
                             </div>
                             <input
                                 type="number"
                                 value={height}
                                 onChange={(e) => setHeight(Number(e.target.value))}
-                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 hover:bg-white transition-all"
+                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
                             />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col items-center justify-center text-center">
+            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center text-center">
                 <div className="mb-4">
-                    <div className={`p-4 rounded-full ${category === 'Normal weight' ? 'bg-green-100 text-green-600' : 'bg-blue-50 text-blue-600'} transition-colors duration-500`}>
+                    <div className={`p-4 rounded-full ${category === 'Normal weight' ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' : 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'} transition-colors duration-500`}>
                         <Activity size={32} />
                     </div>
                 </div>
 
-                <h3 className="text-lg font-medium text-slate-500 mb-1">Your BMI</h3>
-                <div className="text-5xl font-bold text-slate-900 mb-2">
+                <h3 className="text-lg font-medium text-slate-500 dark:text-slate-400 mb-1">Your BMI</h3>
+                <div className="text-5xl font-bold text-slate-900 dark:text-white mb-2">
                     {bmi.toFixed(1)}
                 </div>
                 <div className={`text-xl font-semibold ${getCategoryColor()} transition-colors`}>
                     {category}
                 </div>
 
-                <p className="mt-6 text-sm text-slate-400 max-w-xs">
+                <p className="mt-6 text-sm text-slate-400 dark:text-slate-500 max-w-xs">
                     Body Mass Index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
                 </p>
             </div>

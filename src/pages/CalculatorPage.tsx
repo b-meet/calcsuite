@@ -78,8 +78,8 @@ export function CalculatorPage() {
             )}
 
             <div className="mb-6 text-center">
-                <h1 className="text-3xl font-bold text-slate-900 mb-2">{calculatorDef.name}</h1>
-                <p className="text-slate-500">{calculatorDef.description}</p>
+                <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{calculatorDef.name}</h1>
+                <p className="text-slate-500 dark:text-slate-400">{calculatorDef.description}</p>
             </div>
             <Component />
 
@@ -89,9 +89,9 @@ export function CalculatorPage() {
             />
 
             {Content && (
-                <div className="mt-16 border-t border-slate-200 pt-12">
+                <div className="mt-16 border-t border-slate-200 dark:border-slate-800 pt-12">
                     {/* Make content a semantic section */}
-                    <article className="prose prose-slate max-w-none">
+                    <article className="prose prose-slate dark:prose-invert max-w-none">
                         <Content />
                     </article>
                 </div>

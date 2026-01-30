@@ -93,14 +93,14 @@ export default function UnitConverter() {
 
     return (
         <div className="max-w-2xl mx-auto space-y-6">
-            <div className="flex justify-center bg-white p-1 rounded-2xl shadow-sm border border-slate-100">
+            <div className="flex justify-center bg-white dark:bg-slate-900 p-1 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
                 {(['length', 'weight', 'temperature'] as UnitType[]).map((t) => (
                     <button
                         key={t}
                         onClick={() => setType(t)}
                         className={cn(
                             "flex-1 py-3 rounded-xl text-sm font-medium capitalize transition-all",
-                            type === t ? "bg-blue-50 text-blue-700 shadow-sm" : "text-slate-500 hover:text-slate-700"
+                            type === t ? "bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-400 shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
                         )}
                     >
                         {t}
@@ -108,19 +108,19 @@ export default function UnitConverter() {
                 ))}
             </div>
 
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 flex flex-col md:flex-row items-center gap-6">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1 w-full space-y-2">
-                    <label className="block text-sm font-medium text-slate-700">From</label>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-400">From</label>
                     <input
                         type="number"
                         value={fromValue}
                         onChange={(e) => setFromValue(Number(e.target.value))}
-                        className="block w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 text-xl font-bold"
+                        className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-xl font-bold text-slate-900 dark:text-white"
                     />
                     <select
                         value={fromUnit}
                         onChange={(e) => setFromUnit(e.target.value)}
-                        className="block w-full px-4 py-2 border border-slate-200 rounded-xl bg-white text-slate-600 focus:ring-2 focus:ring-blue-500"
+                        className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:ring-2 focus:ring-blue-500"
                     >
                         {units[type].map(u => (
                             <option key={u.value} value={u.value}>{u.label}</option>
@@ -128,19 +128,19 @@ export default function UnitConverter() {
                     </select>
                 </div>
 
-                <div className="bg-slate-50 p-3 rounded-full text-slate-400">
+                <div className="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-full text-slate-400">
                     <ArrowLeftRight size={24} />
                 </div>
 
                 <div className="flex-1 w-full space-y-2">
-                    <label className="block text-sm font-medium text-slate-700">To</label>
-                    <div className="block w-full px-4 py-3 border border-slate-200 rounded-xl bg-slate-100 text-xl font-bold text-slate-700 break-all">
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-400">To</label>
+                    <div className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-100 dark:bg-slate-800 text-xl font-bold text-slate-700 dark:text-white break-all">
                         {toValue}
                     </div>
                     <select
                         value={toUnit}
                         onChange={(e) => setToUnit(e.target.value)}
-                        className="block w-full px-4 py-2 border border-slate-200 rounded-xl bg-white text-slate-600 focus:ring-2 focus:ring-blue-500"
+                        className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:ring-2 focus:ring-blue-500"
                     >
                         {units[type].map(u => (
                             <option key={u.value} value={u.value}>{u.label}</option>
