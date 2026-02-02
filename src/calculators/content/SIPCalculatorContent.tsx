@@ -1,4 +1,4 @@
-import { TrendingUp, Clock, FileText, HelpCircle, BarChart, Check, Target, Info, DollarSign, Calendar } from 'lucide-react';
+import { Clock, HelpCircle, BarChart, Check, Target, Info, DollarSign } from 'lucide-react';
 
 const SIPCalculatorContent = () => {
     return (

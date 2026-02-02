@@ -1,4 +1,4 @@
-import { Sunset, Leaf, Heart, Shield, Clock, TrendingUp, HelpCircle, CheckCircle, Target } from 'lucide-react';
+import { Leaf, Heart, Shield, Clock, HelpCircle, CheckCircle, Target } from 'lucide-react';
 
 const RetirementCalculatorContent = () => {
     return (

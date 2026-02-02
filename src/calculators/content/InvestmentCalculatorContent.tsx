@@ -1,4 +1,4 @@
-import { TrendingUp, Clock, DollarSign, PieChart, Target, AlertTriangle, HelpCircle, CheckCircle, BarChart } from 'lucide-react';
+import { TrendingUp, Clock, Target, AlertTriangle, HelpCircle, CheckCircle } from 'lucide-react';
 
 const InvestmentCalculatorContent = () => {
     return (

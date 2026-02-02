@@ -1,4 +1,4 @@
-import { Baby, Calendar, Clock, Heart, Info, HelpCircle, CheckCircle } from 'lucide-react';
+import { Baby, Clock, Heart, Info, HelpCircle, CheckCircle } from 'lucide-react';
 
 const PregnancyCalculatorContent = () => {
     return (

@@ -1,4 +1,4 @@
-import { Flame, Activity, Scale, Target, Apple, HelpCircle, CheckCircle, Smartphone, Heart } from 'lucide-react';
+import { Flame, Activity, Target, HelpCircle, CheckCircle, Heart } from 'lucide-react';
 
 const CalorieCalculatorContent = () => {
     return (

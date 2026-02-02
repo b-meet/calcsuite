@@ -1,4 +1,4 @@
-import { TrendingUp, DollarSign, Clock, AlertTriangle, HelpCircle, CheckCircle, ArrowRight, ShoppingCart, Target } from 'lucide-react';
+import { TrendingUp, AlertTriangle, HelpCircle, CheckCircle, ArrowRight, ShoppingCart, Target } from 'lucide-react';
 
 const InflationCalculatorContent = () => {
     return (

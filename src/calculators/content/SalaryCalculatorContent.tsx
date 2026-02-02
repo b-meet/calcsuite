@@ -1,4 +1,4 @@
-import { Briefcase, Clock, Calendar, DollarSign, HelpCircle, Calculator, Info } from 'lucide-react';
+import { Briefcase, HelpCircle, Calculator, Info } from 'lucide-react';
 
 const SalaryCalculatorContent = () => {
     return (

@@ -1,4 +1,4 @@
-import { Car, DollarSign, Percent, AlertCircle, HelpCircle, CheckCircle, Calculator } from 'lucide-react';
+import { Car, HelpCircle, CheckCircle, Calculator } from 'lucide-react';
 
 const AutoLoanCalculatorContent = () => {
     return (

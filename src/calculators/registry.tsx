@@ -24,6 +24,9 @@ import BMRCalculatorContent from './content/BMRCalculatorContent';
 import IdealWeightCalculatorContent from './content/IdealWeightCalculatorContent';
 import PregnancyCalculatorContent from './content/PregnancyCalculatorContent';
 import OvulationCalculatorContent from './content/OvulationCalculatorContent';
+import FDCalculatorContent from './content/FDCalculatorContent';
+import RDCalculatorContent from './content/RDCalculatorContent';
+import HRACalculatorContent from './content/HRACalculatorContent';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
@@ -1091,8 +1094,42 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: Landmark,
         component: FDCalculator,
+        content: FDCalculatorContent,
         longDescription: "Secure your savings. Fixed Deposits (FDs) are a safe investment choice in India. This calculator helps you compute the maturity amount and interest earned, supporting monthly, quarterly, and cumulative payout options.",
-        features: ["Quarterly/Monthly compounding", "Maturity value calculation", "Interest payout estimator"],
+        features: [
+            "Quarterly/Monthly compounding",
+            "Maturity value calculation",
+            "Interest payout estimator",
+            "Bank-standard formulas"
+        ],
+        faqs: [
+            {
+                question: "Is FD interest taxable?",
+                answer: "Yes. Interest above ₹40k/year is subject to TDS."
+            },
+            {
+                question: "What is the minimum tenure?",
+                answer: "Usually 7 days for most banks."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
+            },
+            {
+                question: "Does it support senior citizens?",
+                answer: "The calculator works for all rates. Seniors just get higher rates."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate FD Returns",
+            description: "Estimate your maturity amount.",
+            steps: [
+                { name: "Investment Amount", text: "Enter the principal amount you want to invest." },
+                { name: "Interest Rate", text: "Enter the annual interest rate offered by the bank." },
+                { name: "Tenure", text: "Select the duration in years or months." },
+                { name: "Compounding", text: "Choose compounding frequency (Standard is Quarterly)." }
+            ]
+        },
     },
     {
         id: 'india-rd',
@@ -1101,8 +1138,38 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: TrendingUp,
         component: RDCalculator,
+        content: RDCalculatorContent,
         longDescription: "Build wealth through small savings. Recurring Deposits (RD) let you save a fixed amount every month. This calculator accurately computes the maturity value based on the quarterly compounding logic used by most Indian banks.",
-        features: ["Monthly savings goal", "Quarterly compounding logic", "Bank-grade accuracy"],
+        features: [
+            "Monthly savings goal",
+            "Quarterly compounding logic",
+            "Bank-grade accuracy",
+            "Maturity planning"
+        ],
+        faqs: [
+            {
+                question: "Can I miss an installment?",
+                answer: "Banks may charge a penalty for missed payments."
+            },
+            {
+                question: "Is RD interest taxable?",
+                answer: "Yes. TDS is applicable just like Fixed Deposits."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate RD Maturity",
+            description: "Plan your monthly savings.",
+            steps: [
+                { name: "Monthly Deposit", text: "Enter the amount you can save each month." },
+                { name: "Interest Rate", text: "Enter the bank's RD interest rate." },
+                { name: "Duration", text: "Select the tenure in months or years." },
+                { name: "Result", text: "View the total maturity value and interest earned." }
+            ]
+        },
     },
     {
         id: 'india-ppf',
@@ -1131,8 +1198,42 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: DollarSign,
         component: HRACalculator,
+        content: HRACalculatorContent,
         longDescription: "Save tax on your rent. If you are a salaried employee receiving HRA, use this calculator to determine how much of it is tax-exempt based on your salary structure, rent paid, and city of residence.",
-        features: ["HRA Exemption calculation", "Metro vs Non-Metro logic", "Taxable HRA determination"],
+        features: [
+            "HRA Exemption calculation",
+            "Metro vs Non-Metro logic",
+            "Taxable HRA determination",
+            "Tax planning assistance"
+        ],
+        faqs: [
+            {
+                question: "Can I claim HRA if I live in my own house?",
+                answer: "No. You must be paying rent to claim HRA."
+            },
+            {
+                question: "Is landlord's PAN mandatory?",
+                answer: "Yes, if annual rent exceeds ₹1 Lakh."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
+            },
+            {
+                question: "Does it cover New Tax Regime?",
+                answer: "HRA exemption is only available in the Old Tax Regime."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate HRA Exemption",
+            description: "Maximize your tax savings.",
+            steps: [
+                { name: "Input Salary", text: "Enter your Basic Salary and DA." },
+                { name: "Input HRA", text: "Enter the HRA amount received from employer." },
+                { name: "Input Rent", text: "Enter the actual rent paid." },
+                { name: "Select City", text: "Choose Metro or Non-Metro for the correct limit." }
+            ]
+        },
     },
     {
         id: 'compound-interest',
