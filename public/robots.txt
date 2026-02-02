@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /private/
-
 Sitemap: https://calcsuite.in/sitemap.xml
