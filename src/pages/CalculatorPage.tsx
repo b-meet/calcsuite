@@ -88,11 +88,35 @@ export function CalculatorPage() {
                 category={calculatorDef.category}
             />
 
-            {Content && (
+            {(calculatorDef.longDescription || calculatorDef.features || calculatorDef.educationalContent || Content) && (
                 <div className="mt-16 border-t border-slate-200 dark:border-slate-800 pt-12">
-                    {/* Make content a semantic section */}
                     <article className="prose prose-slate dark:prose-invert max-w-none">
-                        <Content />
+                        {calculatorDef.longDescription && (
+                            <div className="mb-8">
+                                <p className="lead">{calculatorDef.longDescription}</p>
+                            </div>
+                        )}
+
+                        {calculatorDef.features && (
+                            <div className="mb-8">
+                                <h3>Key Features</h3>
+                                <ul>
+                                    {calculatorDef.features.map((feature, idx) => (
+                                        <li key={idx}>{feature}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {calculatorDef.educationalContent && calculatorDef.educationalContent.map((item, idx) => (
+                            <div key={idx} className="mb-8">
+                                <h3>{item.title}</h3>
+                                <p>{item.content}</p>
+                            </div>
+                        ))}
+
+                        {/* Fallback for legacy content */}
+                        {Content && <Content />}
                     </article>
                 </div>
             )}
