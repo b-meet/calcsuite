@@ -18,6 +18,12 @@ import RetirementCalculatorContent from './content/RetirementCalculatorContent';
 import SalaryCalculatorContent from './content/SalaryCalculatorContent';
 import InflationCalculatorContent from './content/InflationCalculatorContent';
 import CompoundInterestCalculatorContent from './content/CompoundInterestCalculatorContent';
+import CalorieCalculatorContent from './content/CalorieCalculatorContent';
+import BodyFatCalculatorContent from './content/BodyFatCalculatorContent';
+import BMRCalculatorContent from './content/BMRCalculatorContent';
+import IdealWeightCalculatorContent from './content/IdealWeightCalculatorContent';
+import PregnancyCalculatorContent from './content/PregnancyCalculatorContent';
+import OvulationCalculatorContent from './content/OvulationCalculatorContent';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
@@ -594,19 +600,43 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'health',
         icon: Flame,
         component: CalorieCalculator,
+        content: CalorieCalculatorContent,
         longDescription: "Unlock the science of weight management. Specifically designed to calculate your Total Daily Energy Expenditure (TDEE), this tool tells you exactly how many calories you need to eat to maintain, lose, or gain weight based on your activity level.",
         features: [
             "Calculates BMR and TDEE",
-            "Personalized for age, gender, height, and weight",
+            "Personalized for age, gender, height",
             "Activity level adjustments",
             "Clear daily calorie targets"
         ],
-        educationalContent: [
+        faqs: [
             {
-                title: "What is TDEE?",
-                content: "TDEE stands for Total Daily Energy Expenditure. It is the total number of calories you burn in a day, including your Basal Metabolic Rate (BMR) and your physical activity. To lose weight, you need to eat fewer calories than your TDEE."
+                question: "Are these calorie numbers exact?",
+                answer: "No. They are estimates based on averages and assumptions."
+            },
+            {
+                question: "Can calorie needs change over time?",
+                answer: "Yes. Weight, activity, and age can affect calorie requirements."
+            },
+            {
+                question: "Does this replace professional advice?",
+                answer: "No. It is an informational tool, not medical guidance."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
             }
-        ]
+        ],
+        howTo: {
+            name: "How to Calculate Daily Calories",
+            description: "Find your TDEE in seconds.",
+            steps: [
+                { name: "Personal Details", text: "Enter your age, gender, height, and weight." },
+                { name: "Activity Level", text: "Select your daily activity level accurately." },
+                { name: "Goal", text: "Choose your weight goal (maintain, lose, or gain)." },
+                { name: "Result", text: "See your daily calorie target instantly." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'body-fat',
@@ -615,6 +645,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'health',
         icon: Ruler,
         component: BodyFatCalculator,
+        content: BodyFatCalculatorContent,
         longDescription: "Get a clearer picture of your health than weight alone. Using the U.S. Navy Method, this calculator estimates your body fat percentage based on simple measurements, providing a key metric for fitness tracking.",
         features: [
             "U.S. Navy Method accuracy",
@@ -622,12 +653,34 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Requires only tape measure inputs",
             "Tracks lean body mass vs. fat mass"
         ],
-        educationalContent: [
+        faqs: [
             {
-                title: "Why Body Fat Percentage Matters",
-                content: "Body composition is a better indicator of health than weight. Two people can weigh the same but have vastly different health profiles depending on their ratio of muscle to fat."
+                question: "Is this body fat percentage exact?",
+                answer: "No. It is an estimate based on established formulas."
+            },
+            {
+                question: "How often should I calculate?",
+                answer: "Occasionally. Tracking monthly trends is best."
+            },
+            {
+                question: "Does this replace medical tests?",
+                answer: "No. It is informational, not diagnostic."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
             }
-        ]
+        ],
+        howTo: {
+            name: "How to Measure Body Fat",
+            description: "Estimate composition in 3 steps.",
+            steps: [
+                { name: "Measure", text: "Measure your neck, waist, height, and hips (females)." },
+                { name: "Input", text: "Enter your measurements accurately." },
+                { name: "Calculate", text: "See your body fat percentage instantly." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'bmr',
@@ -643,6 +696,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Basis for diet planning",
             "Activity factor integration"
         ],
+        content: BMRCalculatorContent,
         educationalContent: [
             {
                 title: "BMR vs. RMR",
@@ -657,8 +711,41 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'health',
         icon: Scale,
         component: IdealWeightCalculator,
-        longDescription: "Find your healthy weight range using medically standard formulas. We use the Robinson, Miller, Devine, and Hamwi formulas to give you a comprehensive estimate based on your height and gender.",
-        features: ["Multiple medical formulas", "Gender-specific results", "Healthy range estimation"]
+        content: IdealWeightCalculatorContent,
+        longDescription: "Find your healthy weight range using medically standard formulas. We use the Robinson, Miller, Devine, and Hamwi formulas to give you a comprehensive estimate based on your height and gender, providing a more balanced view than a single number.",
+        features: [
+            "Multiple medical formulas",
+            "Gender-specific results",
+            "Healthy range estimation",
+            "Clear context vs BMI"
+        ],
+        faqs: [
+            {
+                question: "Is ideal weight the same for everyone?",
+                answer: "No. It varies by height, gender, and body structure."
+            },
+            {
+                question: "Should I aim exactly for this number?",
+                answer: "No. Treat it as a reference range, not a strict goal."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
+            },
+            {
+                question: "Does this replace medical advice?",
+                answer: "No. Always consult a doctor for medical guidance."
+            }
+        ],
+        howTo: {
+            name: "How to Find Your Ideal Weight",
+            description: "Get a reference range in seconds.",
+            steps: [
+                { name: "Input Details", text: "Enter your height and gender." },
+                { name: "Calculate", text: "We apply multiple formulas instantly." },
+                { name: "Result", text: "View your estimated healthy weight range." }
+            ]
+        },
     },
     {
         id: 'pregnancy',
@@ -667,8 +754,41 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'health',
         icon: Baby,
         component: PregnancyCalculator,
+        content: PregnancyCalculatorContent,
         longDescription: "An exciting journey begins. Calculate your estimated due date based on your last menstrual period (LMP). This tool also breaks down your pregnancy into trimesters, helping you track significant developmental milestones.",
-        features: ["Due date estimation", "Trimester breakdown", "Milestone tracking"]
+        features: [
+            "Due date estimation",
+            "Trimester breakdown",
+            "Milestone tracking",
+            "Medical standard methods (LMP, IVF)"
+        ],
+        faqs: [
+            {
+                question: "Is the due date exact?",
+                answer: "No. Most births occur within 2 weeks of the date."
+            },
+            {
+                question: "Can my due date change?",
+                answer: "Yes. Doctors may update it based on ultrasound."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
+            },
+            {
+                question: "Does this replace a doctor?",
+                answer: "No. Always consult a professional."
+            }
+        ],
+        howTo: {
+            name: "How to Estimate Due Date",
+            description: "Track your timeline in seconds.",
+            steps: [
+                { name: "First Day of Period", text: "Enter the date of your last menstrual period." },
+                { name: "Cycle Length", text: "Adjust standard 28-day cycle if needed." },
+                { name: "Calculate", text: "See your EDD and trimester timeline instantly." }
+            ]
+        },
     },
     {
         id: 'age',
@@ -748,6 +868,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         description: 'Track your fertility cycle. Estimate your most fertile days and ovulation date.',
         category: 'health',
         icon: Heart,
+        content: OvulationCalculatorContent,
         component: OvulationCalculator,
         longDescription: "Planning specifically for pregnancy? This calculator estimates your ovulation window based on your last period date, helping you identify your most fertile days.",
         features: ["Fertility window", "Ovulation date", "Next period estimate"]
