@@ -1,4 +1,4 @@
-import { DollarSign, Users, CreditCard, Receipt, Coffee, Utensils, ThumbsUp, HelpCircle } from 'lucide-react';
+import { Users, CreditCard, Receipt, Coffee, Utensils, ThumbsUp, HelpCircle } from 'lucide-react';
 
 const TipCalculatorContent = () => {
     return (

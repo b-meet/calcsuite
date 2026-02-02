@@ -1,4 +1,4 @@
-import { ShoppingCart, Tag, Calculator, Percent, AlertCircle, Check, Briefcase, TrendingDown, HelpCircle, Package, Receipt } from 'lucide-react';
+import { ShoppingCart, Tag, Calculator, AlertCircle, Briefcase, TrendingDown, HelpCircle, Package, Receipt } from 'lucide-react';
 
 const DiscountCalculatorContent = () => {
     return (

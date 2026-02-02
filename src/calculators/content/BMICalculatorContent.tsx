@@ -1,4 +1,4 @@
-import { Activity, Scale, Info, Check, AlertTriangle, AlertCircle, TrendingUp, HelpCircle, User, Users } from 'lucide-react';
+import { Activity, Scale, Check, AlertTriangle, AlertCircle, HelpCircle, User, Users } from 'lucide-react';
 
 const BMICalculatorContent = () => {
     return (
