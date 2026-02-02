@@ -1,4 +1,4 @@
-import { TrendingUp, Calendar, AlertTriangle, HelpCircle, CheckCircle, PiggyBank, RefreshCw } from 'lucide-react';
+import { HelpCircle, CheckCircle, PiggyBank, RefreshCw } from 'lucide-react';
 
 const RDCalculatorContent = () => {
     return (
