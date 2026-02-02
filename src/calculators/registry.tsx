@@ -7,6 +7,8 @@ import FractionCalculatorContent from './content/FractionCalculatorContent';
 import TipCalculatorContent from './content/TipCalculatorContent';
 import PercentageChangeContent from './content/PercentageChangeContent';
 import DiscountCalculatorContent from './content/DiscountCalculatorContent';
+import IndiaEMICalculatorContent from './content/IndiaEMICalculatorContent';
+import BMICalculatorContent from './content/BMICalculatorContent';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
@@ -365,41 +367,40 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'health',
         icon: Activity,
         component: BMICalculator,
+        content: BMICalculatorContent,
         longDescription: "BMI (Body Mass Index) is a widely used screening tool for weight categories. This calculator provides a comprehensive assessment of your body weight relative to your height, helping you understand if you fall into the underweight, healthy weight, overweight, or obese range.",
         features: [
-            "Supports Metric (kg/cm) and Imperial (lbs/in)",
-            "Instant calculation",
-            "Color-coded result categories",
-            "World Health Organization (WHO) standards"
-        ],
-        educationalContent: [
-            {
-                title: "Limitations of BMI",
-                content: "While BMI is a useful screening tool, it does not diagnose body fatness or health. It is not accurate for athletes, pregnant women, or the elderly, as it does not distinguish between muscle mass and fat mass."
-            }
+            "Metric & Imperial Units",
+            "Weight category screening",
+            "WHO standard classifications",
+            "Instant health insight"
         ],
         faqs: [
             {
-                question: "What is a normal BMI for adults?",
-                answer: "A normal or healthy BMI range for adults is generally considered to be between 18.5 and 24.9."
+                question: "Is BMI accurate?",
+                answer: "BMI is a reliable screening tool for most adults, but it does not measure body fat directly."
             },
             {
-                question: "Is BMI accurate for athletes?",
-                answer: "BMI can be misleading for athletes or muscular individuals because it doesn't distinguish between muscle and fat. A bodybuilder might have a high BMI but low body fat."
+                question: "Can BMI predict health problems?",
+                answer: "BMI indicates risk levels, not specific health conditions. It should be used alongside other health indicators."
             },
             {
-                question: "What happens if my BMI is over 30?",
-                answer: "A BMI of 30 or higher falls into the 'obese' category, which can increase the risk of health issues like diabetes, heart disease, and high blood pressure. Consulting a doctor is recommended."
+                question: "Does BMI change with age?",
+                answer: "BMI categories remain the same for adults, but body composition may change with age."
+            },
+            {
+                question: "Is this BMI calculator free?",
+                answer: "Yes. It is completely free with no limitations."
             }
         ],
         howTo: {
-            name: "How to Calculate BMI",
-            description: "Step-by-step guide to calculating your Body Mass Index using our tool.",
+            name: "How to Use This BMI Calculator",
+            description: "Check your BMI in seconds.",
             steps: [
-                { name: "Choose Unit", text: "Select your preferred unit system: Metric (kg/cm) or Imperial (lbs/in)." },
-                { name: "Input Weight", text: "Enter your current body weight in the appropriate field." },
-                { name: "Input Height", text: "Enter your height accurately." },
-                { name: "Get Result", text: "The calculator will instantly display your BMI value and weight category." }
+                { name: "Choose Unit", text: "Select Metric (kg/cm) or Imperial (lbs/in)." },
+                { name: "Enter Weight", text: "Input your current weight." },
+                { name: "Enter Height", text: "Input your height accurately." },
+                { name: "View Result", text: "See your BMI value and weight category instantly." }
             ]
         },
         popular: true,
@@ -701,20 +702,26 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
+        content: IndiaEMICalculatorContent,
         longDescription: "Planning to take a loan? Whether it's for a home, car, or personal use, knowing your EMI (Equated Monthly Installment) is crucial. This calculator gives you an instant breakdown of your monthly outflow and total interest payable.",
-        features: ["Amortization schedule", "Interest vs Principal breakdown", "Loan tenure adjustment"],
+        features: [
+            "Home, Car, Personal Loan",
+            "Reducing Balance Method",
+            "Amortization schedule",
+            "Total interest analysis"
+        ],
         faqs: [
             {
-                question: "What is EMI?",
-                answer: "EMI stands for Equated Monthly Installment. It is the fixed amount you pay to the bank every month to repay your loan."
+                question: "Is this EMI calculator accurate for Indian banks?",
+                answer: "Yes. It follows standard reducing balance EMI formulas used by Indian banks and NBFCs."
             },
             {
                 question: "How does loan tenure affect EMI?",
                 answer: "A longer tenure reduces your monthly EMI amount but increases the total interest you pay over the life of the loan."
             },
             {
-                question: "Is having a co-applicant beneficial?",
-                answer: "Yes, adding a co-applicant with a good income can increase your loan eligibility and help share the repayment burden."
+                question: "Can I use it for any loan type?",
+                answer: "Yes, it works for Home Loans, Car Loans, Personal Loans, and Education Loans."
             }
         ],
         howTo: {
