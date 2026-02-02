@@ -1,5 +1,12 @@
 import { Calculator, DollarSign, Activity, Calendar, Lock, MoreHorizontal, Divide, Percent, Dices, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight, Landmark, Home } from 'lucide-react';
 import { lazy } from 'react';
+import PercentageContent from './content/PercentageContent';
+import BasicCalculatorContent from './content/BasicCalculatorContent';
+import ScientificCalculatorContent from './content/ScientificCalculatorContent';
+import FractionCalculatorContent from './content/FractionCalculatorContent';
+import TipCalculatorContent from './content/TipCalculatorContent';
+import PercentageChangeContent from './content/PercentageChangeContent';
+import DiscountCalculatorContent from './content/DiscountCalculatorContent';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
@@ -80,26 +87,39 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'basic',
         icon: Calculator,
         component: BasicCalculator,
-        longDescription: "A simple yet powerful tool tailored for your everyday mathematical needs. Whether you're balancing your monthly budget, splitting a dinner bill, or double-checking a homework assignment, this calculator provides a clean, distraction-free interface for instant results.",
+        content: BasicCalculatorContent,
+        longDescription: "The Basic Calculator is designed for quick and accurate everyday math. Whether you need to add numbers, subtract values, multiply quantities, or divide amounts, this calculator gives instant results without distractions. It is ideal for students, professionals, and anyone who wants a clean, reliable calculator that works on all devices.",
         features: [
-            "Instant addition, subtraction, multiplication, and division",
-            "Responsive design that works on mobile and desktop",
-            "Large, easy-to-read display",
-            "Keyboard support for faster input"
+            "Instant results for +, -, ×, ÷",
+            "Clear, distraction-free interface",
+            "Supports decimal values",
+            "Responsive for mobile & desktop"
         ],
-        educationalContent: [
+        faqs: [
             {
-                title: "Why use a Basic Calculator?",
-                content: "While mental math is a great skill, a calculator ensures accuracy and speed, especially when dealing with multiple digits or decimals. It minimizes the cognitive load, allowing you to focus on the problem-solving aspect of your task rather than the computation itself."
+                question: "Is this basic calculator free to use?",
+                answer: "Yes. This calculator is completely free and has no usage limits."
+            },
+            {
+                question: "Does it support decimal numbers?",
+                answer: "Yes. You can perform calculations with decimal values accurately."
+            },
+            {
+                question: "Can I use it on my phone?",
+                answer: "Yes. The calculator is fully responsive and works smoothly on mobile devices."
+            },
+            {
+                question: "Is any data stored?",
+                answer: "No. All calculations happen instantly in your browser and are not saved."
             }
         ],
         howTo: {
-            name: "How to use",
-            description: "Perform basic arithmetic calculations.",
+            name: "How to Use This Basic Math Calculator",
+            description: "Perform arithmetic calculations in 3 simple steps.",
             steps: [
-                { name: "Enter numbers", text: "Use the on-screen buttons or your keyboard to input numbers." },
-                { name: "Choose operation", text: "Select +, -, ×, or ÷." },
-                { name: "Get result", text: "Press equals (=) to see the answer." }
+                { name: "Enter numbers", text: "Use the on-screen keypad or your keyboard." },
+                { name: "Select operation", text: "Choose Addition (+), Subtraction (-), Multiplication (×), or Division (÷)." },
+                { name: "Get result", text: "Press the equals (=) button to see the answer instantly." }
             ]
         }
     },
@@ -110,19 +130,42 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'basic',
         icon: Calculator,
         component: ScientificCalculator,
-        longDescription: "A robust tool designed for students, engineers, and researchers. Unlike standard calculators, this scientific calculator handles complex operations including trigonometry, logarithms, and exponential functions, making it an essential companion for advanced mathematics and science curriculums.",
+        content: ScientificCalculatorContent,
+        longDescription: "This Scientific Calculator is built for complex mathematical tasks that go beyond basic arithmetic. It allows you to perform trigonometric calculations, logarithmic functions, powers, roots, and advanced expressions with precision. Designed for speed and accuracy, it is suitable for academic, professional, and technical use.",
         features: [
-            "Trigonometric functions (Sin, Cos, Tan)",
-            "Logarithmic functions (Log, Ln)",
-            "Exponents and Roots",
-            "Parentheses for complex expressions"
+            "Trigonometric functions (sin, cos, tan)",
+            "Logarithmic calculations (log, ln)",
+            "Powers and Roots support",
+            "Advanced expression handling"
         ],
-        educationalContent: [
+        faqs: [
             {
-                title: "Understanding Scientific Notation",
-                content: "Scientific calculators often use scientific notation to handle very large or very small numbers. For example, 3,000,000 can be expressed as 3 × 10^6, making it easier to read and compute."
+                question: "Does this calculator support trigonometric functions?",
+                answer: "Yes. It supports sin, cos, tan, and inverse trigonometric operations."
+            },
+            {
+                question: "Can I calculate logarithms and powers?",
+                answer: "Yes. Both logarithmic and exponential calculations are supported."
+            },
+            {
+                question: "Is this calculator suitable for students?",
+                answer: "Yes. It is designed to be intuitive while supporting advanced mathematical needs."
+            },
+            {
+                question: "Does it work on mobile devices?",
+                answer: "Yes. The calculator layout adapts smoothly to mobile and tablet screens."
             }
-        ]
+        ],
+        howTo: {
+            name: "How to Use the Scientific Calculator Effectively",
+            description: "Perform advanced mathematical calculations.",
+            steps: [
+                { name: "Enter numbers", text: "Use the numeric keypad to input values." },
+                { name: "Select function", text: "Choose the required function (sin, log, etc.) or operator." },
+                { name: "Structure expression", text: "Use parentheses for complex equations." },
+                { name: "Calculate", text: "Press equals to get the precise result." }
+            ]
+        }
     },
     {
         id: 'triangle',
@@ -152,8 +195,42 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'basic',
         icon: Divide,
         component: FractionCalculator,
-        longDescription: "Fractions can be tricky, but they don't have to be. This calculator handles all operations—addition, subtraction, multiplication, and division—on fractions and mixed numbers, providing results in simplest form.",
-        features: ["Handles mixed numbers", "Simplifies results", "Step-by-step breakdown"]
+        content: FractionCalculatorContent,
+        longDescription: "Fractions are a core part of mathematics. This Fraction Calculator helps you perform calculations with fractions and mixed numbers quickly and accurately, without needing to simplify or convert manually. It is designed to handle common fraction operations with ease.",
+        features: [
+            "Add, Subtract, Multiply, Divide",
+            "Support for mixed numbers",
+            "Automatic simplification",
+            "Visual explanation of fractions"
+        ],
+        faqs: [
+            {
+                question: "Can this calculator simplify fractions?",
+                answer: "Yes. Results are automatically reduced to their simplest form."
+            },
+            {
+                question: "Does it support mixed numbers?",
+                answer: "Yes. Mixed numbers and improper fractions are handled correctly."
+            },
+            {
+                question: "Is this tool free to use?",
+                answer: "Yes. There are no limits or restrictions on usage."
+            },
+            {
+                question: "Can I use it on my phone?",
+                answer: "Yes. The calculator is optimized for phones, tablets, and desktops."
+            }
+        ],
+        howTo: {
+            name: "How to Use the Fraction Calculator",
+            description: "Perform accurate fraction operations.",
+            steps: [
+                { name: "Enter 1st Fraction", text: "Input the numerator and denominator." },
+                { name: "Select Operation", text: "Choose +, -, ×, or ÷." },
+                { name: "Enter 2nd Fraction", text: "Input the second fraction." },
+                { name: "Calculate", text: "Click calculate to get the instant result." }
+            ]
+        }
     },
     {
         id: 'percentage',
@@ -162,9 +239,42 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'basic',
         icon: Percent,
         component: PercentageCalculator,
+        content: PercentageContent,
         popular: true,
-        longDescription: "Calculate percentages like a pro. Whether you need to find a percentage of a number, calculate a percentage increase/decrease, or figure out what percent X is of Y, this 3-in-1 tool does it instantly.",
-        features: ["3 calculation modes", "Instant results", "Clear formulas"]
+        longDescription: "Percentages are a fundamental part of everyday math. From shopping discounts and tax calculations to exam results and financial analysis, percentages help compare values quickly and clearly. This free Percentage Calculator allows you to solve common percentage problems instantly without manual calculations.",
+        features: [
+            "Solve 'What is X% of Y?' instantly",
+            "Visual formula explanation",
+            "No formulas required",
+            "100% Free & Secure"
+        ],
+        faqs: [
+            {
+                question: "What is the easiest way to calculate percentages?",
+                answer: "Using an online percentage calculator is the fastest and most reliable method."
+            },
+            {
+                question: "Can this calculator handle decimals?",
+                answer: "Yes. You can enter decimal percentages and decimal values."
+            },
+            {
+                question: "Is this calculator free to use?",
+                answer: "Yes. It is completely free with no usage limits."
+            },
+            {
+                question: "Does this calculator work on mobile?",
+                answer: "Yes. It is fully responsive and works on all devices."
+            }
+        ],
+        howTo: {
+            name: "How to Use This Percentage Calculator",
+            description: "Calculate percentages in seconds.",
+            steps: [
+                { name: "Enter Percentage", text: "Input the percentage value you want to calculate." },
+                { name: "Enter Total", text: "Input the total number." },
+                { name: "Calculate", text: "Click the button to get the result instantly." }
+            ]
+        }
     },
     {
         id: 'mortgage',
@@ -486,8 +596,38 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'basic',
         icon: DollarSign,
         component: TipCalculator,
-        longDescription: "Avoid the awkward math at the end of a meal. This Tip Calculator lets you instantly calculate gratuity and split the bill evenly among friends.",
-        features: ["Split bill functionality", "Custom tip percentages", "Total per person"]
+        content: TipCalculatorContent,
+        longDescription: "This Tip Calculator helps you calculate the correct tip amount and split the total bill evenly between people. Whether dining out, ordering delivery, or paying for services, this tool gives instant and accurate results without guesswork.",
+        features: [
+            "Split bills evenly",
+            "Fixed or % tip options",
+            "Instant total per person",
+            "Fair & fast calculations"
+        ],
+        faqs: [
+            {
+                question: "Can I split the bill between multiple people?",
+                answer: "Yes. Enter the number of people and the calculator divides the total fairly."
+            },
+            {
+                question: "Does it support percentage and fixed tips?",
+                answer: "Yes. You can choose either method based on preference."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. It is completely free with no limits."
+            }
+        ],
+        howTo: {
+            name: "How This Tip Calculator Works",
+            description: "Calculate accurate tips in seconds.",
+            steps: [
+                { name: "Enter Bill", text: "Input the total bill amount." },
+                { name: "Choose Tip", text: "Select a fixed amount or percentage." },
+                { name: "Split", text: "Enter number of people sharing the bill." },
+                { name: "View Result", text: "See the tip and total per person instantly." }
+            ]
+        }
     },
     {
         id: 'sip',
@@ -674,14 +814,43 @@ export const calculatorRegistry: CalculatorDef[] = [
         features: ["Principal, Rate, Time inputs", "Total interest output", "Comparison with compound interest"],
     },
     {
-        id: 'percentage-increase',
-        name: 'Percentage Increase Calculator',
+        id: 'percentage-change',
+        name: 'Percentage Change Calculator',
         description: 'Calculate percentage increase or decrease between two values. Determine growth or decline and see the difference instantly.',
         category: 'basic',
         icon: TrendingUp,
         component: PercentageIncreaseCalculator,
-        longDescription: "Track the change. Whether it's a price hike, salary increment, or investment growth, this calculator finds the percentage difference between an initial value and a final value instantly.",
-        features: ["Increase/Decrease detection", "Absolute difference", "Percentage delta"],
+        content: PercentageChangeContent,
+        longDescription: "This Percentage Change Calculator helps you measure how much a value has increased or decreased compared to its original amount. It clearly shows the percentage change, numerical difference, and overall growth or decline in one view.",
+        features: [
+            "Calculates Increase & Decrease",
+            "Shows exact value difference",
+            "Supports decimal values",
+            "Instant growth tracking"
+        ],
+        faqs: [
+            {
+                question: "Can it calculate percentage decrease?",
+                answer: "Yes. The calculator detects both increase and decrease automatically."
+            },
+            {
+                question: "Does it support decimals?",
+                answer: "Yes. Decimal values are supported for accurate results."
+            },
+            {
+                question: "Is it free to use?",
+                answer: "Yes. This calculator is completely free."
+            }
+        ],
+        howTo: {
+            name: "How to Use This Percentage Change Calculator",
+            description: "Determine value changes quickly.",
+            steps: [
+                { name: "Enter Original", text: "Input the starting value." },
+                { name: "Enter New", text: "Input the new value." },
+                { name: "See Change", text: "Instantly view the percentage increase or decrease." }
+            ]
+        }
     },
     {
         id: 'discount',
@@ -690,8 +859,42 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'basic',
         icon: Percent,
         component: DiscountCalculator,
-        longDescription: "Never miss a deal. Calculate the final price of an item after applying a percentage discount. You can also handle double discounts to find the true cost of that sale item.",
-        features: ["Single & Double discounts", "Tax inclusion", "Savings calculation"],
+        content: DiscountCalculatorContent,
+        longDescription: "This Discount Calculator helps you calculate the final payable price after applying discounts, taxes, quantities, and additional flat reductions. It is designed for shoppers who want to know exactly how much they save and what they actually pay before checkout.",
+        features: [
+            "Calculate final price & savings",
+            "Support for Tax & Quantity",
+            "Handle extra flat discounts",
+            "Clear cost breakdown"
+        ],
+        faqs: [
+            {
+                question: "Can this calculator handle multiple items?",
+                answer: "Yes. Quantity input allows accurate total price calculation."
+            },
+            {
+                question: "Does it support tax and VAT?",
+                answer: "Yes. Optional tax fields help calculate realistic final bills."
+            },
+            {
+                question: "Can I apply a flat discount along with a percentage discount?",
+                answer: "Yes. Both can be combined in the same calculation."
+            },
+            {
+                question: "Is this calculator free to use?",
+                answer: "Yes. There are no limits or restrictions."
+            }
+        ],
+        howTo: {
+            name: "How to Use the Discount Calculator",
+            description: "Find the real price in seconds.",
+            steps: [
+                { name: "Original Price", text: "Enter the item's listing price." },
+                { name: "Discount", text: "Add the discount percentage." },
+                { name: "Details", text: "Select quantity and optional tax." },
+                { name: "Result", text: "View final price and total savings." }
+            ]
+        }
     },
 ];
 
