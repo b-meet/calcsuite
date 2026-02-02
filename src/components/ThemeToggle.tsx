@@ -6,7 +6,7 @@ export function ThemeToggle() {
     const { theme, setTheme } = useTheme()
 
     const toggleTheme = (e: React.MouseEvent<HTMLButtonElement>) => {
-        // @ts-ignore - View Transition API is reliable but types might be missing
+        // @ts-expect-error - View Transition API is reliable but types might be missing
         if (!document.startViewTransition) {
             setTheme(theme === "light" ? "dark" : "light")
             return
@@ -19,7 +19,7 @@ export function ThemeToggle() {
             Math.max(y, innerHeight - y)
         )
 
-        // @ts-ignore
+        // @ts-expect-error - View Transition API types are currently experimental
         const transition = document.startViewTransition(() => {
             setTheme(theme === "light" ? "dark" : "light")
         })
