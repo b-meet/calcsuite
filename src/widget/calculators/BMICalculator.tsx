@@ -10,38 +10,38 @@ export default function BMICalculator() {
     const [category, setCategory] = useState('');
 
     useEffect(() => {
-        calculateBMI();
+        const determineCategory = (bmiVal: number) => {
+            if (!bmiVal || isNaN(bmiVal)) {
+                setCategory('');
+                return;
+            }
+            if (bmiVal < 18.5) setCategory('Underweight');
+            else if (bmiVal < 25) setCategory('Normal weight');
+            else if (bmiVal < 30) setCategory('Overweight');
+            else setCategory('Obese');
+        };
+
+        const calculate = () => {
+            let calculatedBmi = 0;
+            if (unit === 'metric') {
+                const heightInMeters = height / 100;
+                if (heightInMeters > 0) {
+                    calculatedBmi = weight / (heightInMeters * heightInMeters);
+                }
+            } else {
+                const h = height;
+                const w = weight;
+                // Imperial: weight in lbs, height in inches
+                if (h > 0) {
+                    calculatedBmi = (w / (h * h)) * 703;
+                }
+            }
+            setBmi(calculatedBmi);
+            determineCategory(calculatedBmi);
+        };
+
+        calculate();
     }, [weight, height, unit]);
-
-    const calculateBMI = () => {
-        let calculatedBmi = 0;
-        if (unit === 'metric') {
-            const heightInMeters = height / 100;
-            if (heightInMeters > 0) {
-                calculatedBmi = weight / (heightInMeters * heightInMeters);
-            }
-        } else {
-            let h = height;
-            let w = weight;
-            // Imperial: weight in lbs, height in inches
-            if (h > 0) {
-                calculatedBmi = (w / (h * h)) * 703;
-            }
-        }
-        setBmi(calculatedBmi);
-        determineCategory(calculatedBmi);
-    };
-
-    const determineCategory = (bmiVal: number) => {
-        if (!bmiVal || isNaN(bmiVal)) {
-            setCategory('');
-            return;
-        }
-        if (bmiVal < 18.5) setCategory('Underweight');
-        else if (bmiVal < 25) setCategory('Normal weight');
-        else if (bmiVal < 30) setCategory('Overweight');
-        else setCategory('Obese');
-    };
 
     const getCategoryColor = () => {
         if (category === 'Normal weight') return 'text-green-600 dark:text-green-400';

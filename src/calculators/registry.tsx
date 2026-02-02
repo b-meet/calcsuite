@@ -27,6 +27,11 @@ import OvulationCalculatorContent from './content/OvulationCalculatorContent';
 import FDCalculatorContent from './content/FDCalculatorContent';
 import RDCalculatorContent from './content/RDCalculatorContent';
 import HRACalculatorContent from './content/HRACalculatorContent';
+import IndiaTaxCalculatorContent from './content/IndiaTaxCalculatorContent';
+import IndiaSalaryCalculatorContent from './content/IndiaSalaryCalculatorContent';
+import IndiaGSTCalculatorContent from './content/IndiaGSTCalculatorContent';
+import PPFCalculatorContent from './content/PPFCalculatorContent';
+import HomeLoanEligibilityCalculatorContent from './content/HomeLoanEligibilityCalculatorContent';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
@@ -1023,8 +1028,37 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: DollarSign,
         component: IndiaTaxCalculator,
+        content: IndiaTaxCalculatorContent,
         longDescription: "Navigate the Indian Income Tax maze. Updated for FY 2025-26, this calculator compares your tax liability under the Old Regime vs. the New Regime, helping you decide which option saves you more money.",
-        features: ["FY definitions (2025-26)", "New vs Old Regime comparison", "Standard Deduction included"],
+        features: [
+            "FY 2025-26 Tax Slabs",
+            "New vs Old Regime comparison",
+            "Standard Deduction support",
+            "Surcharge & Cess calculation"
+        ],
+        faqs: [
+            {
+                question: "Is income tax zero up to ₹12 lakh?",
+                answer: "Yes, under the New Tax Regime due to rebate."
+            },
+            {
+                question: "Can I switch between regimes?",
+                answer: "Yes, salaried individuals can choose every year."
+            },
+            {
+                question: "Does this include cess?",
+                answer: "Yes. 4% Health & Education Cess is included."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate Income Tax",
+            description: "Find your tax liability.",
+            steps: [
+                { name: "Gross Income", text: "Enter your total annual income." },
+                { name: "Deductions", text: "Enter eligible deductions (80C, 80D, etc.) for Old Regime." },
+                { name: "Compare", text: "View tax liability under both regimes side-by-side." }
+            ]
+        },
     },
     {
         id: 'india-salary',
@@ -1033,8 +1067,37 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: Briefcase,
         component: IndiaSalaryCalculator,
+        content: IndiaSalaryCalculatorContent,
         longDescription: "Understand your payslip better. Convert your Cost to Company (CTC) into monthly in-hand salary by accounting for common Indian salary components like HRA, LTA, and Professional Tax.",
-        features: ["CTC to In-hand conversion", "PF & Tax breakdown", "HRA calculation"]
+        features: [
+            "CTC to In-Hand conversion",
+            "PF & Prof. Tax calculation",
+            "Detailed salary slip view",
+            "Bonus & deductions impact"
+        ],
+        faqs: [
+            {
+                question: "Is PF deducted from CTC?",
+                answer: "Yes. Employer PF is in CTC but Employee PF is deducted from salary."
+            },
+            {
+                question: "Is bonus included in monthly pay?",
+                answer: "No. Bonuses are usually variable and paid annually."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate In-Hand Salary",
+            description: "From CTC to Take-Home.",
+            steps: [
+                { name: "Annual CTC", text: "Enter your total Cost to Company." },
+                { name: "Bonus/Variables", text: "Add any annual bonus amounts (if any)." },
+                { name: "Calculated", text: "See your estimated monthly bank credit." }
+            ]
+        },
     },
     {
         id: 'india-gst',
@@ -1043,8 +1106,37 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: Percent,
         component: IndiaGSTCalculator,
+        content: IndiaGSTCalculatorContent,
         longDescription: "Simplify your tax calculations. Whether you're a business owner billing clients or a consumer checking a price, this tool calculates Goods and Services Tax (GST) for all standard Indian tax slabs.",
-        features: ["Inclusive/Exclusive modes", "Standard tax slabs", "Instant breakdown"]
+        features: [
+            "Inclusive & Exclusive modes",
+            "5%, 12%, 18%, 28% slabs",
+            "Instant tax breakdown",
+            "Billing tool"
+        ],
+        faqs: [
+            {
+                question: "Is GST inclusive meaning?",
+                answer: "Price already includes tax."
+            },
+            {
+                question: "Is GST exclusive meaning?",
+                answer: "Tax is added on top of price."
+            },
+            {
+                question: "Current GST rates?",
+                answer: "5% (Essentials), 12%, 18% (Services), 28% (Luxury)."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate GST",
+            description: "Find tax amounts in seconds.",
+            steps: [
+                { name: "Amount", text: "Enter the product price." },
+                { name: "Rate", text: "Select applicable GST slab." },
+                { name: "Type", text: "Choose Inclusive or Exclusive calculation." }
+            ]
+        },
     },
     {
         id: 'india-emi',
@@ -1178,8 +1270,37 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: Briefcase,
         component: PPFCalculator,
+        content: PPFCalculatorContent,
         longDescription: "Maximize your tax savings. The Public Provident Fund (PPF) is a government-backed scheme offering attractive tax-free returns. Calculate your maturity corpus over the 15-year lock-in period.",
-        features: ["15-year projection", "Tax-free returns (EEE)", "Annual investment planning"],
+        features: [
+            "15-year projection",
+            "Tax-free returns (EEE)",
+            "Annual investment planning",
+            "Contribution planner"
+        ],
+        faqs: [
+            {
+                question: "Limit per year?",
+                answer: "Max ₹1.5 Lakh per financial year."
+            },
+            {
+                question: "Is interest taxable?",
+                answer: "No, interest is fully tax-free."
+            },
+            {
+                question: "Lock-in period?",
+                answer: "15 years (extendable by 5 years)."
+            }
+        ],
+        howTo: {
+            name: "How to Plan PPF",
+            description: "Estimate your retirement corpus.",
+            steps: [
+                { name: "Investment", text: "Enter annual deposit amount." },
+                { name: "Duration", text: "Set tenure (Min 15 years)." },
+                { name: "Calculate", text: "View total interest and maturity value." }
+            ]
+        },
     },
     {
         id: 'india-home-loan-eligibility',
@@ -1188,8 +1309,38 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'india',
         icon: Home,
         component: HomeLoanEligibilityCalculator,
+        content: HomeLoanEligibilityCalculatorContent,
         longDescription: "How much home loan can you afford? Banks look at your income and existing obligations. This calculator estimates your maximum loan eligibility based on standard FOIR (Fixed Obligation to Income Ratio) norms.",
-        features: ["FOIR based calculation", "Income vs EMI analysis", "Max loan eligibility"],
+        features: [
+            "FOIR based calculation",
+            "Income vs EMI analysis",
+            "Max loan eligibility",
+            "Bank standard norms"
+        ],
+        faqs: [
+            {
+                question: "What is FOIR?",
+                answer: "Fixed Obligation to Income Ratio - % of salary used for EMIs."
+            },
+            {
+                question: "Does tenure affect eligibility?",
+                answer: "Yes, longer tenure increases eligibility."
+            },
+            {
+                question: "Co-applicant benefit?",
+                answer: "Adding a working spouse increases eligible amount."
+            }
+        ],
+        howTo: {
+            name: "Check Your Eligibility",
+            description: "Know your loan limit.",
+            steps: [
+                { name: "Income", text: "Enter net monthly income." },
+                { name: "Obligations", text: "Enter current EMI payments." },
+                { name: "Details", text: "Set interest rate and tenure." },
+                { name: "Result", text: "See maximum loan amount you may get." }
+            ]
+        },
     },
     {
         id: 'india-hra',

@@ -110,11 +110,11 @@ const IndiaEMICalculatorContent = () => {
                     </p>
                     <div className="grid sm:grid-cols-2 gap-4">
                         <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm">
-                            <h4 className="font-semibold text-slate-900 dark:text-white mb-2">Interest Rate Effect</h4>
+                            <h4 className="font-semibold text-slate-900 dark:text-white mb-2 m-0">Interest Rate Effect</h4>
                             <p className="text-xs text-slate-600 dark:text-slate-400">Higher rates increase total interest significantly. 0.5% matters.</p>
                         </div>
                         <div className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm">
-                            <h4 className="font-semibold text-slate-900 dark:text-white mb-2">Loan Tenure Effect</h4>
+                            <h4 className="font-semibold text-slate-900 dark:text-white mb-2 m-0">Loan Tenure Effect</h4>
                             <p className="text-xs text-slate-600 dark:text-slate-400">Longer tenure = Lower EMI but Higher Interest. Shorter tenure = Higher EMI but Lower Interest.</p>
                         </div>
                     </div>
