@@ -1,4 +1,4 @@
-import { DollarSign, Scale, HelpCircle, CheckCircle, AlertTriangle, FileText, TrendingUp, Users } from 'lucide-react';
+import { DollarSign, Scale, HelpCircle, CheckCircle, FileText, TrendingUp, Users } from 'lucide-react';
 
 const IndiaTaxCalculatorContent = () => {
     return (
