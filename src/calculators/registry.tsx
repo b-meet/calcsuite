@@ -9,6 +9,15 @@ import PercentageChangeContent from './content/PercentageChangeContent';
 import DiscountCalculatorContent from './content/DiscountCalculatorContent';
 import IndiaEMICalculatorContent from './content/IndiaEMICalculatorContent';
 import BMICalculatorContent from './content/BMICalculatorContent';
+import SIPCalculatorContent from './content/SIPCalculatorContent';
+import MortgageCalculatorContent from './content/MortgageCalculatorContent';
+import LoanCalculatorContent from './content/LoanCalculatorContent';
+import AutoLoanCalculatorContent from './content/AutoLoanCalculatorContent';
+import InvestmentCalculatorContent from './content/InvestmentCalculatorContent';
+import RetirementCalculatorContent from './content/RetirementCalculatorContent';
+import SalaryCalculatorContent from './content/SalaryCalculatorContent';
+import InflationCalculatorContent from './content/InflationCalculatorContent';
+import CompoundInterestCalculatorContent from './content/CompoundInterestCalculatorContent';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
@@ -285,19 +294,43 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: DollarSign,
         component: MortgageCalculator,
+        content: MortgageCalculatorContent,
         longDescription: "Planning to buy a home? Our Mortgage Calculator helps you estimate your monthly mortgage payments with precision. Be financially prepared by understanding the impact of interest rates, loan terms, and down payments on your monthly budget.",
         features: [
             "Calculates Principal & Interest",
-            "Includes Property Tax & Insurance estimates",
+            "Fixed-rate loan support",
             "Amortization schedule insights",
             "Visual breakdown of costs"
         ],
-        educationalContent: [
+        faqs: [
             {
-                title: "What is PITI?",
-                content: "PITI stands for Principal, Interest, Taxes, and Insurance. These are the four main components that make up your monthly mortgage payment. Understanding PITI helps you budget more accurately for homeownership."
+                question: "Is this mortgage calculator accurate?",
+                answer: "It uses standard mortgage formulas and provides reliable estimates. Actual lender terms may vary."
+            },
+            {
+                question: "Does it include taxes and insurance?",
+                answer: "This calculator focuses on principal and interest. Taxes and insurance may be added separately."
+            },
+            {
+                question: "Can I use it for refinancing?",
+                answer: "Yes. It can estimate payments for refinance scenarios as well."
+            },
+            {
+                question: "Is this tool free?",
+                answer: "Yes. It is completely free with no usage limits."
             }
-        ]
+        ],
+        howTo: {
+            name: "How to Calculate Mortgage Payments",
+            description: "Estimate your home loan repayment instantly.",
+            steps: [
+                { name: "Loan Amount", text: "Enter the total loan principal." },
+                { name: "Interest Rate", text: "Input the annual interest rate." },
+                { name: "Loan Term", text: "Select the repayment period (e.g., 15 or 30 years)." },
+                { name: "Calculate", text: "View your estimated monthly payment and total interest cost." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'loan',
@@ -306,6 +339,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: DollarSign,
         component: LoanCalculator,
+        content: LoanCalculatorContent,
         longDescription: "Take control of your debt. Whether it's a personal loan, business loan, or student loan, our calculator gives you a clear picture of your repayment schedule and total interest costs.",
         features: [
             "Monthly payment estimation",
@@ -313,22 +347,74 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Payoff date projection",
             "Simple and clean interface"
         ],
-        educationalContent: [
+        faqs: [
             {
-                title: "Amortization Explained",
-                content: "Amortization is the process of spreading out a loan into a series of fixed payments over time. While the total payment remains the same, the proportion of interest vs. principal changes with every payment."
+                question: "Is this loan calculator accurate?",
+                answer: "It uses standard loan formulas and provides reliable estimates. Actual lender terms may vary."
+            },
+            {
+                question: "Can I use it for different loan types?",
+                answer: "Yes. It works for most fixed-rate loans with regular payments including personal, student, and business loans."
+            },
+            {
+                question: "Does it include fees or taxes?",
+                answer: "No. It calculates payments based on loan amount, interest, and term only."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. It is completely free with no usage limits."
             }
-        ]
+        ],
+        howTo: {
+            name: "How to Calculate Loan Repayment",
+            description: "Plan your loan in 3 easy steps.",
+            steps: [
+                { name: "Loan Details", text: "Enter loan amount and interest rate." },
+                { name: "Term", text: "Select the loan duration." },
+                { name: "Calculate", text: "See your montly payment and total cost instantly." }
+            ]
+        }
     },
     {
         id: 'auto-loan',
         name: 'Auto Loan Calculator',
-        description: 'Estimate your car payments before you buy. Input vehicle price, trade-in value, down payment, and interest rate.',
+        description: 'Estimate your monthly car payments. Account for trade-in value, down payment, sales tax, and interest rates.',
         category: 'financial',
         icon: Car,
         component: AutoLoanCalculator,
-        longDescription: "Don't walk into a dealership unprepared. accurate Auto Loan Calculator lets you estimate your monthly payments based on text price, trade-in value, and interest rate, so you know exactly what you can afford.",
-        features: ["Trade-in value adjustment", "Sales tax inclusion", "Down payment calculation"]
+        content: AutoLoanCalculatorContent,
+        longDescription: "Before you head to the dealership, know your numbers. Our Auto Loan Calculator helps you estimate your monthly payments by factoring in the car details, trade-in value, and sales tax, giving you the upper hand in negotiations.",
+        features: [
+            "Trade-in value adjustment",
+            "Sales tax calculation",
+            "Down payment impact",
+            "Amortization schedule"
+        ],
+        faqs: [
+            {
+                question: "Can I use this for used cars?",
+                answer: "Yes. It works for both new and used vehicle financing."
+            },
+            {
+                question: "Does it include sales tax?",
+                answer: "Yes. You can include sales tax in the calculation."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. It is completely free to use."
+            }
+        ],
+        howTo: {
+            name: "How to Estimate Auto Loan Payments",
+            description: "Get a clear picture of your car financing.",
+            steps: [
+                { name: "Vehicle Price", text: "Enter the purchase price of the car." },
+                { name: "Adjustments", text: "Add down payment, trade-in value, and fees." },
+                { name: "Loan Terms", text: "Set the interest rate and loan duration." },
+                { name: "Result", text: "See your estimated monthly payment instantly." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'investment',
@@ -337,8 +423,43 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: TrendingUp,
         component: InvestmentCalculator,
+        content: InvestmentCalculatorContent,
         longDescription: "The power of compound interest is the eighth wonder of the world. Use this Investment Calculator to project how your money will grow over time with regular contributions and varying rates of return.",
-        features: ["Compound interest projection", "Annual contribution support", "Growth visualization"]
+        features: [
+            "Compound interest projection",
+            "Annual contribution support",
+            "Growth visualization",
+            "Inflation-adjustment insights"
+        ],
+        faqs: [
+            {
+                question: "Are investment returns guaranteed?",
+                answer: "No. Investment returns are market-linked and can vary over time."
+            },
+            {
+                question: "Is this calculator accurate?",
+                answer: "It provides reliable estimates based on standard compound growth models."
+            },
+            {
+                question: "Can I use this for retirement planning?",
+                answer: "Yes. It is well-suited for long-term financial planning."
+            },
+            {
+                question: "Is this tool free?",
+                answer: "Yes. It is completely free with no usage limits."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate Investment Growth",
+            description: "Visualize your financial future.",
+            steps: [
+                { name: "Initial Investment", text: "Enter your starting amount." },
+                { name: "Contributions", text: "Add monthly or annual contributions." },
+                { name: "Growth Rate", text: "Set the expected annual return percentage." },
+                { name: "Projection", text: "See how your money grows over 10, 20, or 30 years." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'retirement',
@@ -347,8 +468,43 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: Sunset,
         component: RetirementCalculator,
+        content: RetirementCalculatorContent,
         longDescription: "It's never too early to start planning. Our Retirement Calculator helps you determine if you're on track to meet your retirement goals by analyzing your current savings, annual contributions, and expected retirement age.",
-        features: ["Inflation adjustment", "Life expectancy modeling", "Savings gap analysis"]
+        features: [
+            "Inflation adjustment",
+            "Life expectancy modeling",
+            "Savings gap analysis",
+            "Early vs Late start comparison"
+        ],
+        faqs: [
+            {
+                question: "Is this retirement calculator accurate?",
+                answer: "It provides estimates based on standard growth assumptions. Actual outcomes depend on savings behavior and market performance."
+            },
+            {
+                question: "Does this replace financial advice?",
+                answer: "No. It is a planning and awareness tool, not personalized financial advice."
+            },
+            {
+                question: "Can I adjust assumptions later?",
+                answer: "Yes. You can experiment with different inputs to explore scenarios."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. It is completely free with no limitations."
+            }
+        ],
+        howTo: {
+            name: "How to Plan Your Retirement",
+            description: "Assess your readiness in minutes.",
+            steps: [
+                { name: "Personal Details", text: "Enter current age and desired retirement age." },
+                { name: "Financials", text: "Input current savings and annual contributions." },
+                { name: "Assumptions", text: "Set expected return and inflation rates." },
+                { name: "Result", text: "View your projected corpus and monthly income." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'salary',
@@ -357,8 +513,34 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: Briefcase,
         component: SalaryCalculator,
+        content: SalaryCalculatorContent,
         longDescription: "How much is that hourly rate a year? This Salary Calculator instantly converts your income across different timeframes—hourly, daily, weekly, monthly, and annually—giving you a complete picture of your earnings.",
-        features: ["Full timeframe conversion", "Work hours customization", "Simple interface"]
+        features: [
+            "Full timeframe conversion",
+            "Work hours customization",
+            "Simple interface",
+            "Gross income planning"
+        ],
+        faqs: [
+            {
+                question: "Does this include taxes?",
+                answer: "No. This calculator shows gross income only."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. It is completely free to use."
+            }
+        ],
+        howTo: {
+            name: "How to Use the Salary Calculator",
+            description: "Convert pay across time periods.",
+            steps: [
+                { name: "Salary Amount", text: "Enter your salary amount." },
+                { name: "Frequency", text: "Select the pay frequency." },
+                { name: "Result", text: "View instant conversions across other time periods." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'bmi',
@@ -587,8 +769,43 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: TrendingUp,
         component: InflationCalculator,
+        content: InflationCalculatorContent,
         longDescription: "See the real cost of living. This Inflation Calculator shows you how purchasing power declines over time, helping you plan for long-term financial stability.",
-        features: ["Purchasing power analysis", "Future value calculation", "Historical context"]
+        features: [
+            "Purchasing power analysis",
+            "Future value calculation",
+            "Historical context",
+            "Real vs Nominal value"
+        ],
+        faqs: [
+            {
+                question: "Is the inflation rate fixed?",
+                answer: "No. Inflation varies year to year. This calculator uses an average rate for estimation."
+            },
+            {
+                question: "Are the results guaranteed?",
+                answer: "No. Results are estimates based on assumptions, not predictions."
+            },
+            {
+                question: "Is inflation always bad?",
+                answer: "Moderate inflation is normal. The risk lies in not planning for it."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. It is completely free with no limits."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate Inflation Impact",
+            description: "Future-proof your money.",
+            steps: [
+                { name: "Current Amount", text: "Enter the amount of money you have today." },
+                { name: "Inflation Rate", text: "Set the expected annual inflation percentage." },
+                { name: "Time Period", text: "Choose the number of years." },
+                { name: "Result", text: "See how much you need in the future to match today's value." }
+            ]
+        },
+        popular: true,
     },
     {
         id: 'tip',
@@ -637,20 +854,30 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
+        content: SIPCalculatorContent,
         longDescription: "Achieve your financial dreams with disciplined investing. A Systematic Investment Plan (SIP) allows you to invest small amounts regularly in mutual funds. Use this calculator to visualize how small monthly contributions can grow into a significant corpus over time.",
-        features: ["Monthly investment projection", "Expected return estimation", "Inflation-adjusted wealth creation"],
+        features: [
+            "Monthly investment projection",
+            "Expected return estimation",
+            "Inflation-adjusted wealth creation",
+            "Visual compounding growth chart"
+        ],
         faqs: [
             {
-                question: "What is SIP?",
-                answer: "SIP stands for Systematic Investment Plan. It is a method of investing a fixed sum regularly in a mutual fund scheme."
+                question: "Is this SIP calculator accurate?",
+                answer: "It provides realistic estimates based on standard compounding assumptions but actual returns may vary."
             },
             {
-                question: "How is SIP return calculated?",
-                answer: "SIP returns are calculated using the compound interest formula with monthly compounding. Our calculator automates this complex math for you."
+                question: "Can SIP returns change over time?",
+                answer: "Yes. Mutual fund returns fluctuate with market conditions."
             },
             {
-                question: "Can I stop my SIP anytime?",
-                answer: "Yes, SIPs are voluntary. You can stop, pause, or increase your SIP amount at any time without penalty in most open-ended funds."
+                question: "Is SIP safe?",
+                answer: "SIP is a method of investing, not an investment product. Risk depends on the mutual fund chosen."
+            },
+            {
+                question: "Is this calculator free to use?",
+                answer: "Yes. It is completely free with no limits."
             }
         ],
         howTo: {
@@ -789,11 +1016,12 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'compound-interest',
         name: 'Compound Interest Calculator',
-        description: 'Compute compound growth for investments. Supports lump sum plus regular contributions, different compounding frequencies, and detailed breakdowns.',
+        description: 'See the power of compounding. Calculate how your investments grow over time with interest on interest.',
         category: 'financial',
         icon: TrendingUp,
         component: CompoundInterestCalculator,
-        longDescription: "Watch your money multiply. Compound interest allows your investments to grow exponentially. This tool lets you compare different compounding frequencies (daily, monthly, yearly) to see the true power of time.",
+        content: CompoundInterestCalculatorContent,
+        longDescription: "See the power of compounding. Calculate how your investments grow over time with interest on interest. This tool lets you compare different compounding frequencies (daily, monthly, yearly) to see the true power of time.",
         features: ["Frequency settings", "Additional contributions", "Growth chart"],
         faqs: [
             {
