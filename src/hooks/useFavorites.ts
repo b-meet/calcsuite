@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const STORAGE_KEY = 'calcsuite_favorites';
-const MAX_FAVORITES = 6;
+const MAX_FAVORITES = 5;
 
 // Dispatch a custom event whenever favorites change
 const dispatchUpdate = () => {
