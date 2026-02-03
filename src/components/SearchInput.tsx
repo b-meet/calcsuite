@@ -9,9 +9,10 @@ interface SearchInputProps {
     className?: string;
     autoFocus?: boolean;
     onSearch?: (query: string) => void;
+    onSelect?: () => void;
 }
 
-export function SearchInput({ placeholder = "Search...", className, autoFocus = false, onSearch }: SearchInputProps) {
+export function SearchInput({ placeholder = "Search...", className, autoFocus = false, onSearch, onSelect }: SearchInputProps) {
     const [query, setQuery] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -82,6 +83,7 @@ export function SearchInput({ placeholder = "Search...", className, autoFocus = 
         navigate(`/calculator/${id}`);
         setQuery('');
         setIsOpen(false);
+        if (onSelect) onSelect();
     };
 
     return (
