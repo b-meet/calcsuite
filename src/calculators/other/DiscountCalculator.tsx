@@ -84,9 +84,10 @@ export default function DiscountCalculator() {
                                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Original Price (per item)</label>
                                 <input
                                     type="number"
-                                    value={price}
+                                    value={price || ''}
                                     onChange={(e) => setPrice(Number(e.target.value))}
                                     className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                                    placeholder="0"
                                 />
                             </div>
 
@@ -95,18 +96,20 @@ export default function DiscountCalculator() {
                                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Discount (%)</label>
                                     <input
                                         type="number"
-                                        value={discountDetails}
+                                        value={discountDetails || ''}
                                         onChange={(e) => setDiscountDetails(Number(e.target.value))}
                                         className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                                        placeholder="0"
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Quantity</label>
                                     <input
                                         type="number"
-                                        value={quantity}
+                                        value={quantity || ''}
                                         onChange={(e) => setQuantity(Number(e.target.value))}
                                         className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                                        placeholder="1"
                                     />
                                 </div>
                             </div>
@@ -118,7 +121,7 @@ export default function DiscountCalculator() {
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tax / VAT (%)</label>
                                         <input
                                             type="number"
-                                            value={taxRate}
+                                            value={taxRate || ''}
                                             onChange={(e) => setTaxRate(Number(e.target.value))}
                                             className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                             placeholder="0"
@@ -128,7 +131,7 @@ export default function DiscountCalculator() {
                                         <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Extra Flat Discount</label>
                                         <input
                                             type="number"
-                                            value={flatDiscount}
+                                            value={flatDiscount || ''}
                                             onChange={(e) => setFlatDiscount(Number(e.target.value))}
                                             className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                             placeholder="0"

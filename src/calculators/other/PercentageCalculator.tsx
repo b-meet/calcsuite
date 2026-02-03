@@ -62,28 +62,28 @@ export default function PercentageCalculator() {
                     {mode === 'whatIs' && (
                         <>
                             <span>What is</span>
-                            <div className="relative w-24">
+                            <div className="relative w-40">
                                 <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-full p-2 pr-8 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                                 <Percent className="absolute right-2 top-3 text-slate-400 dark:text-slate-500 h-4 w-4" />
                             </div>
                             <span>of</span>
-                            <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-32 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
+                            <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-48 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                         </>
                     )}
 
                     {mode === 'isWhatPercent' && (
                         <>
-                            <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-24 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
+                            <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-40 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                             <span>is what % of</span>
-                            <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-24 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
+                            <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-40 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                         </>
                     )}
 
                     {mode === 'isPercentOf' && (
                         <>
-                            <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-24 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
+                            <input type="number" value={val1} onChange={e => setVal1(e.target.value)} className="w-40 p-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                             <span>is</span>
-                            <div className="relative w-24">
+                            <div className="relative w-40">
                                 <input type="number" value={val2} onChange={e => setVal2(e.target.value)} className="w-full p-2 pr-8 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white" />
                                 <Percent className="absolute right-2 top-3 text-slate-400 dark:text-slate-500 h-4 w-4" />
                             </div>

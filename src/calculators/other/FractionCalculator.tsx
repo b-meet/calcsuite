@@ -52,7 +52,7 @@ export default function FractionCalculator() {
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-center">
 
                 {/* Fraction 1 */}
-                <div className="flex flex-col gap-2 w-24">
+                <div className="flex flex-col gap-2 w-40">
                     <input
                         type="number"
                         value={num1}
@@ -87,7 +87,7 @@ export default function FractionCalculator() {
                 </div>
 
                 {/* Fraction 2 */}
-                <div className="flex flex-col gap-2 w-24">
+                <div className="flex flex-col gap-2 w-40">
                     <input
                         type="number"
                         value={num2}

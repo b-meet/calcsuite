@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Delete, Equal } from 'lucide-react';
 import { evaluate } from 'mathjs';
 import { cn } from '../../utils/cn';
@@ -7,6 +7,28 @@ export default function BasicCalculator() {
     const [display, setDisplay] = useState('0');
     const [equation, setEquation] = useState('');
     const [isResult, setIsResult] = useState(false);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            const key = e.key;
+
+            if (/[0-9.]/.test(key)) {
+                handleInput(key);
+            } else if (['+', '-', '*', '/'].includes(key)) {
+                handleOperator(key);
+            } else if (key === 'Enter' || key === '=') {
+                e.preventDefault();
+                calculate();
+            } else if (key === 'Escape') {
+                clear();
+            } else if (key === 'Backspace') {
+                backspace();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [display, equation, isResult]); // Add dependencies to ensure state is fresh
 
     const handleInput = (value: string) => {
         if (isResult) {

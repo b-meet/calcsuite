@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Delete } from 'lucide-react';
 import { evaluate, format } from 'mathjs';
 import { cn } from '../../utils/cn';
@@ -7,6 +7,33 @@ export default function ScientificCalculator() {
     const [display, setDisplay] = useState('0');
     const [isResult, setIsResult] = useState(false);
     const [memory] = useState(0); // Kept for future use
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            const key = e.key;
+
+            if (/[0-9.]/.test(key)) {
+                handleInput(key);
+            } else if (['+', '-', '*', '/', '(', ')', '^'].includes(key)) {
+                // Map keyboard operators to display symbols if needed
+                let op = key;
+                if (key === '*') op = '×';
+                if (key === '/') op = '÷';
+                if (key === '-') op = '-'; // Ensure using the same dash if specific char used
+                handleInput(op);
+            } else if (key === 'Enter' || key === '=') {
+                e.preventDefault();
+                calculate();
+            } else if (key === 'Escape') {
+                clear();
+            } else if (key === 'Backspace') {
+                backspace();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [display, isResult]);
 
     const handleInput = (value: string) => {
         if (isResult) {

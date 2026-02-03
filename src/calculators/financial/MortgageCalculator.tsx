@@ -47,9 +47,10 @@ export default function MortgageCalculator() {
                     type={type}
                     min={min}
                     step={step}
-                    value={value}
+                    value={value || ''}
                     onChange={(e) => onChange(Number(e.target.value))}
                     className="block w-full pl-10 pr-12 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
+                    placeholder="0"
                 />
                 {suffix && (
                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
