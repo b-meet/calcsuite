@@ -25,15 +25,15 @@ interface YearBreakdown {
 
 export default function CompoundInterestCalculator() {
     // Inputs
-    const [principal, setPrincipal] = useState(10000);
-    const [rate, setRate] = useState(7.0);
-    const [tenure, setTenure] = useState(10);
+    const [principal, setPrincipal] = useState<string>('10000');
+    const [rate, setRate] = useState<string>('7.0');
+    const [tenure, setTenure] = useState<string>('10');
     const [tenureType, setTenureType] = useState<'years' | 'months'>('years');
     const [compounding, setCompounding] = useState<CompoundingFrequency>('YEARLY');
 
     // Contribution Inputs
     const [withContribution, setWithContribution] = useState(false);
-    const [contribution, setContribution] = useState(0);
+    const [contribution, setContribution] = useState<string>('0');
     const [contributionFreq, setContributionFreq] = useState<ContributionFrequency>('MONTHLY');
     const [timing, setTiming] = useState<ContributionTiming>('END');
 
@@ -46,11 +46,14 @@ export default function CompoundInterestCalculator() {
     } | null>(null);
 
     const calculate = () => {
-        const P = principal;
-        const r = rate / 100;
+        const P = parseFloat(principal) || 0;
+        const r_val = parseFloat(rate) || 0;
+        const r = r_val / 100;
+        const contrib = parseFloat(contribution) || 0;
 
         // Normalize time to years
-        const t = tenureType === 'years' ? tenure : tenure / 12;
+        const t_val = parseFloat(tenure) || 0;
+        const t = tenureType === 'years' ? t_val : t_val / 12;
 
         let n = 1; // Compounds per year
         switch (compounding) {
@@ -119,7 +122,7 @@ export default function CompoundInterestCalculator() {
                 }
 
                 if (shouldAdd) {
-                    contributionAdded = contribution;
+                    contributionAdded = contrib;
                 }
             }
 
@@ -207,7 +210,7 @@ export default function CompoundInterestCalculator() {
                                 <input
                                     type="number"
                                     value={principal}
-                                    onChange={(e) => setPrincipal(Number(e.target.value))}
+                                    onChange={(e) => setPrincipal(e.target.value)}
                                     className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                 />
                             </div>
@@ -219,7 +222,7 @@ export default function CompoundInterestCalculator() {
                                     <input
                                         type="number"
                                         value={rate}
-                                        onChange={(e) => setRate(Number(e.target.value))}
+                                        onChange={(e) => setRate(e.target.value)}
                                         className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                     />
                                 </div>
@@ -229,7 +232,7 @@ export default function CompoundInterestCalculator() {
                                         <input
                                             type="number"
                                             value={tenure}
-                                            onChange={(e) => setTenure(Number(e.target.value))}
+                                            onChange={(e) => setTenure(e.target.value)}
                                             className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                         />
                                     </div>
@@ -282,7 +285,7 @@ export default function CompoundInterestCalculator() {
                                         <input
                                             type="number"
                                             value={contribution}
-                                            onChange={(e) => setContribution(Number(e.target.value))}
+                                            onChange={(e) => setContribution(e.target.value)}
                                             className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-900 text-slate-900 dark:text-white"
                                         />
                                     </div>

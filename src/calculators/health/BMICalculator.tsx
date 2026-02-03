@@ -3,8 +3,8 @@ import { Activity, Scale, Ruler } from 'lucide-react';
 
 export default function BMICalculator() {
     const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
-    const [weight, setWeight] = useState(70); // kg
-    const [height, setHeight] = useState(175); // cm
+    const [weight, setWeight] = useState<string>('70'); // kg
+    const [height, setHeight] = useState<string>('175'); // cm
     const [bmi, setBmi] = useState(0);
     const [category, setCategory] = useState('');
 
@@ -13,16 +13,21 @@ export default function BMICalculator() {
     }, [weight, height, unit]);
 
     const calculateBMI = () => {
+        const w = parseFloat(weight);
+        const h = parseFloat(height);
+
+        if (!w || !h || w <= 0 || h <= 0) {
+            setBmi(0);
+            setCategory('');
+            return;
+        }
+
         let calculatedBmi = 0;
         if (unit === 'metric') {
-            const heightInMeters = height / 100;
-            if (heightInMeters > 0) {
-                calculatedBmi = weight / (heightInMeters * heightInMeters);
-            }
+            const heightInMeters = h / 100;
+            calculatedBmi = w / (heightInMeters * heightInMeters);
         } else {
-            if (height > 0) {
-                calculatedBmi = (weight / (height * height)) * 703;
-            }
+            calculatedBmi = (w / (h * h)) * 703;
         }
 
         setBmi(calculatedBmi);
@@ -75,7 +80,7 @@ export default function BMICalculator() {
                             <input
                                 type="number"
                                 value={weight}
-                                onChange={(e) => setWeight(Number(e.target.value))}
+                                onChange={(e) => setWeight(e.target.value)}
                                 className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
                             />
                         </div>
@@ -90,7 +95,7 @@ export default function BMICalculator() {
                             <input
                                 type="number"
                                 value={height}
-                                onChange={(e) => setHeight(Number(e.target.value))}
+                                onChange={(e) => setHeight(e.target.value)}
                                 className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
                             />
                         </div>
