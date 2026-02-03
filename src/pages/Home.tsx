@@ -1,7 +1,8 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import { CalculatorCard } from '../components/CalculatorCard';
-import { Search } from 'lucide-react';
+import { SearchInput } from '../components/SearchInput';
+import { categoryContent } from '../calculators/categoryContent';
 import SEO from '../components/SEO';
 
 export function Home() {
@@ -37,6 +38,8 @@ export function Home() {
         ? `Browse our collection of free ${categoryId} calculators. Accurate, fast, and easy to use.`
         : 'CalcSuite offers a comprehensive collection of free online calculators for finance, health, math, and more.';
 
+    const currentCategoryContent = categoryId ? categoryContent[categoryId] : null;
+
     return (
         <div className="space-y-8">
             <SEO
@@ -44,13 +47,29 @@ export function Home() {
                 description={pageDescription}
                 keywords={['calculator', categoryId || 'all', 'online tools']}
             />
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-6 max-w-4xl mx-auto">
                 <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-                    {pageTitle}
+                    {currentCategoryContent ? currentCategoryContent.title : pageTitle}
                 </h1>
-                <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                    {pageDescription}
+                <p className="text-lg text-slate-600 dark:text-slate-400">
+                    {currentCategoryContent ? currentCategoryContent.description : pageDescription}
                 </p>
+
+                {currentCategoryContent && (
+                    <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border border-blue-100 dark:border-blue-900/50 text-left">
+                        <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+                            {currentCategoryContent.longDescription}
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm font-medium text-blue-700 dark:text-blue-300">
+                            {currentCategoryContent.features.map((feature, i) => (
+                                <div key={i} className="flex items-center gap-2">
+                                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
+                                    {feature}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
             <section>
                 <div className="flex items-center justify-between mb-6">
@@ -60,14 +79,10 @@ export function Home() {
                             {filteredCalculators.length}
                         </span>
                     </h2>
-                    <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                        <input
-                            type="text"
+                    <div className="relative w-full max-w-md z-10">
+                        <SearchInput
                             placeholder="Search calculators..."
-                            className="pl-9 pr-3 py-2 rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm w-48 transition-colors"
-                            value={searchQuery}
-                            onChange={handleSearch}
+                            onSearch={(query) => setSearchParams(query ? { q: query } : {})}
                         />
                     </div>
                 </div>
