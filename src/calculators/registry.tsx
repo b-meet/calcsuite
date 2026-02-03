@@ -32,6 +32,12 @@ import IndiaSalaryCalculatorContent from './content/IndiaSalaryCalculatorContent
 import IndiaGSTCalculatorContent from './content/IndiaGSTCalculatorContent';
 import PPFCalculatorContent from './content/PPFCalculatorContent';
 import HomeLoanEligibilityCalculatorContent from './content/HomeLoanEligibilityCalculatorContent';
+import AgeCalculatorContent from './content/AgeCalculatorContent';
+import GPACalculatorContent from './content/GPACalculatorContent';
+import PasswordGeneratorContent from './content/PasswordGeneratorContent';
+import UnitConverterContent from './content/UnitConverterContent';
+import RandomNumberGeneratorContent from './content/RandomNumberGeneratorContent';
+import DateCalculatorContent from './content/DateCalculatorContent';
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
@@ -805,6 +811,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'other',
         icon: Calendar,
         component: AgeCalculator,
+        content: AgeCalculatorContent,
         longDescription: "Curious about your exact age? This calculator goes beyond just years to calculate the precise number of months, days, hours, and even minutes you've been alive. It's also perfect for calculating the age difference between two people.",
         features: [
             "Exact age calculation",
@@ -812,12 +819,29 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Day of birth finder",
             "Leap year adjustment"
         ],
-        educationalContent: [
+        faqs: [
             {
-                title: "How we calculate age",
-                content: "We use the standard calendar system, accounting for the varying lengths of months and the occurrence of leap years every four years."
+                question: "Is this age calculator accurate?",
+                answer: "Yes. It accounts for leap years and exact date differences."
+            },
+            {
+                question: "Can I calculate age between two dates?",
+                answer: "Yes. It works for any date range."
+            },
+            {
+                question: "Does it work for future dates?",
+                answer: "Yes. You can calculate time remaining until a future event."
             }
-        ]
+        ],
+        howTo: {
+            name: "How to Calculate Age",
+            description: "Find your exact timeline.",
+            steps: [
+                { name: "Date of Birth", text: "Enter your birth date." },
+                { name: "Target Date", text: "Defaults to today, or select a specific date." },
+                { name: "Result", text: "See your age in years, months, and days." }
+            ]
+        },
     },
     {
         id: 'gpa',
@@ -826,8 +850,37 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'other',
         icon: GraduationCap,
         component: GPACalculator,
-        longDescription: "Stay on top of your academic goals. Input your course grades and credit hours to instantly calculate your semester and cumulative GPA.",
-        features: ["Weighted & Unweighted", "Semester tracking", "Credit hour support"]
+        content: GPACalculatorContent,
+        longDescription: "Track your academic success with precision. This GPA Calculator helps high school and college students calculate their semester and cumulative GPA, supporting weighted credits and various grading scales.",
+        features: [
+            "Semester & Cumulative GPA",
+            "Weighted course support",
+            "4.0 Scale & Custom Scales",
+            " Scholarship eligibility check"
+        ],
+        faqs: [
+            {
+                question: "Is this GPA calculator accurate?",
+                answer: "Yes. It uses standard GPA calculation methods used by most institutions."
+            },
+            {
+                question: "Can I calculate cumulative GPA?",
+                answer: "Yes. Add all courses and credits to see your overall GPA."
+            },
+            {
+                question: "How do credits affect GPA?",
+                answer: "Higher credit courses weigh more than lower credit ones."
+            }
+        ],
+        howTo: {
+            name: "Calculate Your GPA",
+            description: "Measure your performance.",
+            steps: [
+                { name: "Add Courses", text: "Enter course names and credits." },
+                { name: "Enter Grades", text: "Select grade achieved (A, B, C...)." },
+                { name: "Result", text: "See your calculated GPA instantly." }
+            ]
+        },
     },
     {
         id: 'password',
@@ -836,6 +889,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'other',
         icon: Lock,
         component: PasswordGenerator,
+        content: PasswordGeneratorContent,
         longDescription: "Security starts here. In an age of data breaches, using 'Password123' doesn't cut it. Our Password Generator creates cryptographically strong, unpredictable passwords that are virtually impossible for hackers to guess.",
         features: [
             "Customizable length (up to 50 chars)",
@@ -857,8 +911,33 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'other',
         icon: ArrowLeftRight,
         component: UnitConverter,
-        longDescription: "Bridge the gap between Metric and Imperial. Convert length, weight, temperature, and volume instantly with this all-in-one unit converter.",
-        features: ["Metric & Imperial", "Multiple categories", "Instant updates"]
+        content: UnitConverterContent,
+        longDescription: "Bridge the gap between Metric and Imperial. Convert length, weight, temperature, and volume instantly with this all-in-one unit converter. Perfect for students, travelers, and professionals.",
+        features: [
+            "Metric & Imperial",
+            "Multiple categories",
+            "Instant updates",
+            "No formulas needed"
+        ],
+        faqs: [
+            {
+                question: "Is this converter accurate?",
+                answer: "Yes. All conversions are mathematically standard and precise."
+            },
+            {
+                question: "What units are supported?",
+                answer: "Length, Weight, Temperature, and Volume across Metric and Imperial systems."
+            }
+        ],
+        howTo: {
+            name: "Convert Units Fast",
+            description: "Simple inputs, instant results.",
+            steps: [
+                { name: "Input Value", text: "Type the number you want to convert." },
+                { name: "Select Units", text: "Choose the starting unit (e.g., Meters)." },
+                { name: "Result", text: "See the converted value instantly (e.g., Feet)." }
+            ]
+        },
     },
     {
         id: 'random',
@@ -867,8 +946,33 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'other',
         icon: Dices,
         component: RandomNumberGenerator,
-        longDescription: "Need a decision maker? This robust RNG generates unpredictable numbers within any range you specify. Perfect for games, lotteries, or sampling.",
-        features: ["Custom range", "True randomness simulation", "Instant generation"]
+        content: RandomNumberGeneratorContent,
+        longDescription: "Generate truly random numbers for games, lotteries, and simulations. Customize your range and quantity with this unbiased Random Number Generator.",
+        features: [
+            "Custom Range (Min/Max)",
+            "Multiple Numbers",
+            "No Duplicates Option",
+            "Unbiased Algorithm"
+        ],
+        faqs: [
+            {
+                question: "Are the numbers truly random?",
+                answer: "Yes. We use a cryptographically secure pseudo-random number generator."
+            },
+            {
+                question: "Can I generate lottery numbers?",
+                answer: "Yes. Just set the range (e.g., 1-49) and quantity."
+            }
+        ],
+        howTo: {
+            name: "Generate Random Numbers",
+            description: "Get lucky instantly.",
+            steps: [
+                { name: "Set Range", text: "Enter Min and Max values." },
+                { name: "Quantity", text: "How many numbers do you need?" },
+                { name: "Generate", text: "Click to get your random results." }
+            ]
+        },
     },
     {
         id: 'ovulation',
@@ -888,8 +992,33 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'other',
         icon: Calendar,
         component: DateCalculator,
-        longDescription: "Planning an event? Find the exact duration between two calendar dates. This tool accounts for leap years and varying month lengths to give you a precise count.",
-        features: ["Year/Month/Day breakdown", "Total days calculation", "Leap year support"]
+        content: DateCalculatorContent,
+        longDescription: "The Date Calculator helps you calculate the exact duration between two dates in days, weeks, months, and years. Whether you are planning an event, tracking deadlines, calculating age gaps, or counting days between important milestones, this tool delivers accurate results instantly.",
+        features: [
+            "Exact duration calculation",
+            "Day/Week/Month/Year breakdown",
+            "Leap year adjustment",
+            "Business day calculation (optional)"
+        ],
+        faqs: [
+            {
+                question: "Does it include the end date?",
+                answer: "You can choose to include or exclude the end date in the calculation."
+            },
+            {
+                question: "How does it handle leap years?",
+                answer: "It accurately accounts for leap years (29 days in February)."
+            }
+        ],
+        howTo: {
+            name: "Calculate Date Difference",
+            description: "Find the gap between moments.",
+            steps: [
+                { name: "Start Date", text: "Select the beginning date." },
+                { name: "End Date", text: "Select the concluding date." },
+                { name: "Result", text: "See the exact time difference." }
+            ]
+        },
     },
     {
         id: 'inflation',
