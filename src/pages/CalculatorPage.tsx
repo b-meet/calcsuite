@@ -5,9 +5,13 @@ import NotFound from './NotFound';
 
 import RelatedCalculators from '../components/RelatedCalculators';
 import StructuredData from '../components/StructuredData';
+import { useFavorites } from '../hooks/useFavorites';
+import { Star } from 'lucide-react';
+import { cn } from '../utils/cn';
 
 export function CalculatorPage() {
     const { calculatorId } = useParams();
+    const { isFavorite, toggleFavorite, reachedMax } = useFavorites();
 
     const calculatorDef = calculatorRegistry.find(c => c.id === calculatorId);
 
@@ -29,6 +33,13 @@ export function CalculatorPage() {
             case 'india': return 'FinanceApplication';
             default: return 'UtilityApplication';
         }
+    };
+
+    const isFav = isFavorite(calculatorDef.id);
+    const getTooltip = () => {
+        if (isFav) return "Remove from Favorites";
+        if (reachedMax) return "Limit reached (Maximum 6)";
+        return "Add to Favorites";
     };
 
     return (
@@ -77,9 +88,27 @@ export function CalculatorPage() {
                 />
             )}
 
-            <div className="mb-6 text-center">
-                <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{calculatorDef.name}</h1>
-                <p className="text-slate-500 dark:text-slate-400">{calculatorDef.description}</p>
+            <div className="mb-6 text-center relative max-w-2xl mx-auto">
+                <button
+                    onClick={() => {
+                        if (!isFav && reachedMax) return;
+                        toggleFavorite(calculatorDef.id);
+                    }}
+                    className={cn(
+                        "absolute top-0 right-0 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors",
+                        (!isFav && reachedMax) && "opacity-50 cursor-not-allowed hover:bg-transparent"
+                    )}
+                    title={getTooltip()}
+                >
+                    <Star
+                        size={24}
+                        className={isFav ? "text-amber-400 fill-amber-400" : "text-slate-300 dark:text-slate-600"}
+                    />
+                </button>
+                <div className="pt-2">
+                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{calculatorDef.name}</h1>
+                    <p className="text-slate-500 dark:text-slate-400">{calculatorDef.description}</p>
+                </div>
             </div>
             <Component />
 

@@ -25,11 +25,6 @@ export function Home() {
             return popB - popA;
         });
 
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const query = e.target.value;
-        setSearchParams(query ? { q: query } : {});
-    };
-
     const pageTitle = categoryId
         ? `${categoryId.charAt(0).toUpperCase() + categoryId.slice(1)} Calculators`
         : 'Free Online Calculators';

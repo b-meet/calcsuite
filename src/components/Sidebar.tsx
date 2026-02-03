@@ -1,20 +1,27 @@
 import { NavLink } from 'react-router-dom';
-import { Calculator, Menu, X, Code, Coffee } from 'lucide-react';
+import { Calculator, Menu, X, Code, Coffee, Star } from 'lucide-react';
 
 import { useState } from 'react';
 import { cn } from '../utils/cn';
-import { categories } from '../calculators/registry';
+import { categories, calculatorRegistry } from '../calculators/registry';
 import { ThemeToggle } from './ThemeToggle';
 import { SearchInput } from './SearchInput';
+import { useFavorites } from '../hooks/useFavorites';
 
 export function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
+    const { favorites } = useFavorites();
+
+    const favCalculators = favorites
+        .map(id => calculatorRegistry.find(c => c.id === id))
+        .filter((c): c is typeof calculatorRegistry[0] => !!c);
 
     return (
         <>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-md"
+                className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-lg shadow-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                aria-label="Toggle Menu"
             >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -41,7 +48,10 @@ export function Sidebar() {
                         </span>
                     </div>
                     <div className="relative z-10">
-                        <SearchInput placeholder="Search tools..." />
+                        <SearchInput
+                            placeholder="Search tools..."
+                            onSelect={() => setIsOpen(false)}
+                        />
                     </div>
                 </div>
 
@@ -52,6 +62,7 @@ export function Sidebar() {
                         </p>
                         <NavLink
                             to="/"
+                            onClick={() => setIsOpen(false)}
                             className={({ isActive }) =>
                                 cn(
                                     "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
@@ -67,6 +78,7 @@ export function Sidebar() {
 
                         <NavLink
                             to="/widget-generator"
+                            onClick={() => setIsOpen(false)}
                             className={({ isActive }) =>
                                 cn(
                                     "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 mt-1",
@@ -79,7 +91,7 @@ export function Sidebar() {
                             {({ isActive }) => (
                                 <>
                                     <Code size={18} />
-                                    Add to your site
+                                    Widget Generator
                                     <span className={cn(
                                         "ml-auto px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm",
                                         isActive
@@ -117,6 +129,7 @@ export function Sidebar() {
                                 <NavLink
                                     key={category.id}
                                     to={`/category/${category.id}`}
+                                    onClick={() => setIsOpen(false)}
                                     className={({ isActive }) =>
                                         cn(
                                             "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
@@ -133,6 +146,35 @@ export function Sidebar() {
                         })}
                     </div>
 
+                    {favCalculators.length > 0 && (
+                        <div className="mb-6">
+                            <div className="my-4 border-t border-slate-100 dark:border-slate-800" />
+                            <p className="px-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                                <Star size={12} className="text-amber-400 fill-amber-400" />
+                                Favorites
+                            </p>
+                            <div className="space-y-1">
+                                {favCalculators.map(calc => (
+                                    <NavLink
+                                        key={calc.id}
+                                        to={`/calculator/${calc.id}`}
+                                        onClick={() => setIsOpen(false)}
+                                        className={({ isActive }) =>
+                                            cn(
+                                                "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                                                isActive
+                                                    ? "bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 shadow-sm"
+                                                    : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
+                                            )
+                                        }
+                                    >
+                                        <calc.icon size={18} className="text-amber-500 dark:text-amber-400" />
+                                        {calc.name}
+                                    </NavLink>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </nav>
 
                 <div className="absolute bottom-0 left-0 w-full p-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">

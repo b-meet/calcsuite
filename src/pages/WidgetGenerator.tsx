@@ -12,7 +12,14 @@ export function WidgetGenerator() {
     const SelectedComponent = selectedCalculator.component;
 
     const widgetCode = `<!-- CalcSuite Widget -->
-<div class="calcsuite-widget" data-type="${selectedCalculatorId}" data-theme="${theme}"></div>
+<div style="border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; max-width: 600px; margin: 0 auto; background: ${theme === 'dark' ? '#0f172a' : '#ffffff'};">
+    <div class="calcsuite-widget" data-type="${selectedCalculatorId}" data-theme="${theme}"></div>
+    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed ${theme === 'dark' ? '#1e293b' : '#e2e8f0'}; text-align: right; font-family: sans-serif; font-size: 10px; color: ${theme === 'dark' ? '#475569' : '#94a3b8'}; text-transform: uppercase; letter-spacing: 0.05em;">
+        <a href="https://calcsuite.com" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" target="_blank" rel="noopener">
+            ⚡ Powered by CalcSuite
+        </a>
+    </div>
+</div>
 <script async src="https://calcsuite.com/widget.js"></script>`;
 
     const handleCopy = () => {
@@ -145,6 +152,16 @@ export function WidgetGenerator() {
                                     <SelectedComponent />
                                 </React.Suspense>
                             </div>
+                            <div className="mt-3 text-right">
+                                <a
+                                    href="https://calcsuite.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`text-xs font-medium hover:underline ${theme === 'dark' ? 'text-slate-600 hover:text-slate-400' : 'text-slate-400 hover:text-slate-600'}`}
+                                >
+                                    Powered by CalcSuite
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -203,7 +220,7 @@ export function WidgetGenerator() {
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 }
