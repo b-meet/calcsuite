@@ -51,6 +51,9 @@ const generateSitemap = () => {
     while ((match = blockRegex.exec(registryContent)) !== null) {
         const block = match[0];
         const id = match[1];
+        // Exclude category IDs that are mistakenly picked up by the regex
+        if (categories.includes(id)) continue;
+
         const isPopular = block.includes('popular: true');
         calculators.push({ id, isPopular });
     }

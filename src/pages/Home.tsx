@@ -4,6 +4,8 @@ import { CalculatorCard } from '../components/CalculatorCard';
 import { SearchInput } from '../components/SearchInput';
 import { categoryContent } from '../calculators/categoryContent';
 import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
+
 
 export function Home() {
     const { categoryId } = useParams();
@@ -40,8 +42,39 @@ export function Home() {
             <SEO
                 title={pageTitle}
                 description={pageDescription}
-                keywords={['calculator', categoryId || 'all', 'online tools']}
+                keywords={['calculator', categoryId || 'all', 'online tools', 'free online calculator', 'india calculator', 'calculator online free']}
             />
+            {/* Organization Schema for Home Page */}
+            {!categoryId && (
+                <StructuredData
+                    type="Organization"
+                    data={{
+                        name: "CalcSuite",
+                        url: "https://calcsuite.in",
+                        logo: "https://calcsuite.in/logo.png",
+                        sameAs: []
+                    }}
+                />
+            )}
+
+            {/* Breadcrumb Schema for Category Pages */}
+            {categoryId && (
+                <StructuredData
+                    type="BreadcrumbList"
+                    data={[
+                        { name: 'Home', item: 'https://calcsuite.in/' },
+                        { name: categoryId.charAt(0).toUpperCase() + categoryId.slice(1), item: `https://calcsuite.in/category/${categoryId}` }
+                    ]}
+                />
+            )}
+
+            {/* FAQ Schema for Category Pages */}
+            {currentCategoryContent?.faqs && (
+                <StructuredData
+                    type="FAQPage"
+                    data={currentCategoryContent.faqs}
+                />
+            )}
             <div className="text-center space-y-6 max-w-4xl mx-auto">
                 <h1 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-5xl">
                     {currentCategoryContent ? currentCategoryContent.title : pageTitle}
@@ -60,6 +93,21 @@ export function Home() {
                                 <div key={i} className="flex items-center gap-2">
                                     <span className="w-1.5 h-1.5 bg-blue-500 rounded-full"></span>
                                     {feature}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+                {/* Visible FAQs for Category Pages */}
+                {currentCategoryContent?.faqs && (
+                    <div className="mt-8 text-left max-w-3xl mx-auto">
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Frequently Asked Questions</h2>
+                        <div className="space-y-4">
+                            {currentCategoryContent.faqs.map((faq, index) => (
+                                <div key={index} className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{faq.question}</h3>
+                                    <p className="text-slate-600 dark:text-slate-300">{faq.answer}</p>
                                 </div>
                             ))}
                         </div>

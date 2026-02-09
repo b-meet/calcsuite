@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
 interface StructuredDataProps {
-    type: 'SoftwareApplication' | 'FAQPage' | 'Article' | 'BreadcrumbList' | 'HowTo';
+    type: 'SoftwareApplication' | 'FAQPage' | 'Article' | 'BreadcrumbList' | 'HowTo' | 'Organization';
     data: any;
 }
 
@@ -61,6 +61,15 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
                 image: step.image,
                 url: step.url,
             })),
+        };
+    } else if (type === 'Organization') {
+        jsonLd = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: data.name,
+            url: data.url,
+            logo: data.logo,
+            sameAs: data.sameAs
         };
     }
 

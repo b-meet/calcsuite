@@ -101,6 +101,7 @@ export interface CalculatorDef {
         title: string;
         content: string;
     }[];
+    keywords?: string[];
     faqs?: { question: string; answer: string }[];
     howTo?: {
         name: string;
@@ -126,9 +127,10 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Supports decimal values",
             "Responsive for mobile & desktop"
         ],
+        keywords: ['calculator online free', 'simple calculator', 'math calculator', 'basic calculator'],
         faqs: [
             {
-                question: "Is this basic calculator free to use?",
+                question: "Is this calculator online free?",
                 answer: "Yes. This calculator is completely free and has no usage limits."
             },
             {
@@ -1165,6 +1167,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Standard Deduction support",
             "Surcharge & Cess calculation"
         ],
+        keywords: ['india tax calculator', 'income tax calculator india', 'new tax regime calculator', 'old tax regime calculator'],
         faqs: [
             {
                 question: "Is income tax zero up to ₹12 lakh?",
@@ -1236,7 +1239,8 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: Percent,
         component: IndiaGSTCalculator,
         content: IndiaGSTCalculatorContent,
-        longDescription: "Simplify your tax calculations. Whether you're a business owner billing clients or a consumer checking a price, this tool calculates Goods and Services Tax (GST) for all standard Indian tax slabs.",
+        longDescription: "Simplify your tax calculations. Whether you're a business owner billing clients or a consumer checking a price, this tool calculates Goods and Services Tax (GST) for all standard Indian tax slabs. It is the perfect online GST calculator India for quick and accurate results.",
+        keywords: ['gst calculator in india', 'online gst calculator india', 'indian gst tax calculator', 'gst tax calculator', 'india calculator'],
         features: [
             "Inclusive & Exclusive modes",
             "5%, 12%, 18%, 28% slabs",
@@ -1439,7 +1443,8 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: Home,
         component: HomeLoanEligibilityCalculator,
         content: HomeLoanEligibilityCalculatorContent,
-        longDescription: "How much home loan can you afford? Banks look at your income and existing obligations. This calculator estimates your maximum loan eligibility based on standard FOIR (Fixed Obligation to Income Ratio) norms.",
+        longDescription: "How much home loan can you afford? Banks look at your income and existing obligations. This calculator estimates your maximum home eligibility based on standard FOIR (Fixed Obligation to Income Ratio) norms.",
+        keywords: ['home eligibility calculator', 'home loan eligibility check', 'housing loan eligibility', 'india home loan calculator'],
         features: [
             "FOIR based calculation",
             "Income vs EMI analysis",
