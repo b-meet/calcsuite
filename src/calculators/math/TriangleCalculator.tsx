@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Triangle, Info, TrendingUp } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 

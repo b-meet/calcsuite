@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Copy, RefreshCw, Check, TrendingUp } from 'lucide-react';
+import { Copy, RefreshCw, Check } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 

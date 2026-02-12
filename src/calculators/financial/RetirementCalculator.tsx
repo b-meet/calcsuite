@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sunset, TrendingUp } from 'lucide-react';
+import { Sunset } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 

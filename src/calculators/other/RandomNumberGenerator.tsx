@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dices, TrendingUp } from 'lucide-react';
+import { Dices } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 

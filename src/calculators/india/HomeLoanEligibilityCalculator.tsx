@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Home, CheckCircle, PieChart, TrendingUp } from 'lucide-react';
+import { Home, PieChart, TrendingUp } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 import {

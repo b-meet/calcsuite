@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Car, TrendingUp } from 'lucide-react';
+import { Car } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
