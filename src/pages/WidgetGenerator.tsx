@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import { Helmet } from 'react-helmet-async';
@@ -6,47 +6,65 @@ import { Check, Copy, Zap, Globe, DollarSign, Layout, Info, Smartphone, Code as 
 import { cn } from '../utils/cn';
 
 function IsolatedPreview({ children, theme }: { children: React.ReactNode, theme: 'light' | 'dark' }) {
-    const [contentRef, setContentRef] = useState<HTMLIFrameElement | null>(null);
-    const mountNode = contentRef?.contentWindow?.document?.body;
+    const iframeRef = useRef<HTMLIFrameElement>(null);
+    const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
 
     useEffect(() => {
-        if (!contentRef) return;
-        const win = contentRef.contentWindow;
-        if (!win) return;
-        const doc = win.document;
-        const head = doc.head;
+        const iframe = iframeRef.current;
+        if (!iframe) return;
+
+        const setupIframe = () => {
+            const doc = iframe.contentDocument || iframe.contentWindow?.document;
+            if (!doc) return;
+
+            // Sync styles once from parent
+            const head = doc.head;
+            head.innerHTML = '';
+            document.head.querySelectorAll('style, link[rel="stylesheet"]').forEach((style) => {
+                head.appendChild(style.cloneNode(true));
+            });
+
+            // Basic iframe body styling
+            doc.body.style.margin = '0';
+            doc.body.style.backgroundColor = 'transparent';
+            doc.body.className = 'overflow-hidden';
+
+            setMountNode(doc.body);
+        };
+
+        const doc = iframe.contentDocument || iframe.contentWindow?.document;
+        if (doc?.readyState === 'complete') {
+            setupIframe();
+        } else {
+            iframe.addEventListener('load', setupIframe);
+            return () => iframe.removeEventListener('load', setupIframe);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!mountNode || !iframeRef.current) return;
+        const iframe = iframeRef.current;
+        const doc = mountNode.ownerDocument;
         const root = doc.documentElement;
 
-        // Reset and sync styles from parent
-        head.innerHTML = '';
-        document.head.querySelectorAll('style, link[rel="stylesheet"]').forEach((style) => {
-            head.appendChild(style.cloneNode(true));
-        });
-
-        // Set theme class on the iframe's html root
+        // Apply theme color
         root.classList.remove('light', 'dark');
         root.classList.add(theme);
 
-        // Styling for the iframe body
-        doc.body.style.margin = '0';
-        doc.body.style.backgroundColor = 'transparent';
-        doc.body.className = 'overflow-hidden';
-
-        // Auto-resize iframe
-        const resizeObserver = new ResizeObserver(() => {
-            if (contentRef) {
-                contentRef.style.height = `${doc.body.scrollHeight}px`;
+        // Auto-resize
+        const observer = new ResizeObserver(() => {
+            if (doc.body) {
+                iframe.style.height = `${doc.body.scrollHeight}px`;
             }
         });
-
-        resizeObserver.observe(doc.body);
-        return () => resizeObserver.disconnect();
-    }, [contentRef, theme]);
+        observer.observe(doc.body);
+        return () => observer.disconnect();
+    }, [mountNode, theme]);
 
     return (
         <iframe
+            ref={iframeRef}
             title="Preview"
-            ref={setContentRef}
             className="w-full border-0 bg-transparent transition-all duration-300"
             style={{ height: 'auto', minHeight: '300px' }}
         >
@@ -177,13 +195,13 @@ export function WidgetGenerator() {
                                     <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700" />
                                 </div>
                                 <div className="p-4 sm:p-6 md:p-8">
-                                    <React.Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400">Loading calculator...</div>}>
-                                        <div className="calcsuite-widget-preview overflow-hidden">
-                                            <IsolatedPreview theme={theme}>
+                                    <div className="calcsuite-widget-preview overflow-hidden">
+                                        <IsolatedPreview theme={theme}>
+                                            <React.Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400">Loading calculator...</div>}>
                                                 <SelectedComponent />
-                                            </IsolatedPreview>
-                                        </div>
-                                    </React.Suspense>
+                                            </React.Suspense>
+                                        </IsolatedPreview>
+                                    </div>
                                     <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
                                         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 flex items-center justify-center gap-2">
                                             ⚡ Powered by <span className="text-blue-500">CalcSuite</span>
