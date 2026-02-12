@@ -1490,14 +1490,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         }
     },
 
-];
 
-export const categories: { id: CalculatorCategory; name: string; icon: any }[] = [
-    { id: 'basic', name: 'Basic & Math', icon: Calculator },
-    { id: 'financial', name: 'Finance', icon: DollarSign },
-    { id: 'health', name: 'Health & Fitness', icon: Activity },
-    { id: 'india', name: 'India Specific', icon: Landmark },
-    { id: 'other', name: 'Other Tools', icon: MoreHorizontal },
     {
         id: 'india-gst',
         name: 'GST Calculator India (2025)',
@@ -1508,7 +1501,7 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
         content: IndiaGSTCalculatorContent,
         longDescription: "The most accurate and easy-to-use GST Calculator for Indian businesses, freelancers, and consumers. Whether you are generating an invoice or checking the MRP of a product, our tool helps you calculate Goods and Services Tax (GST) in split seconds. It supports all standard Indian GST rates: 5% (Essentials), 12% (Standard), 18% (Services/Most Goods), and 28% (Luxury). You can easily switch between 'Tax Exclusive' (Add GST to Base Price) and 'Tax Inclusive' (Remove GST from MRP) modes. Understand your IGST, CGST, and SGST bifurcations for intra-state and inter-state transactions.",
         keywords: [
-            'gst calculator india', 'online gst calculator', 'gst calculation formula', 
+            'gst calculator india', 'online gst calculator', 'gst calculation formula',
             'reverse gst calculator', 'gst exclusive calculator', 'gst inclusive calculator',
             'igst calculator', 'cgst sgst calculation', 'gst rates 2025',
             'gst calculator for services', 'gst calculator for mobile', 'gst amount finder',
@@ -1583,8 +1576,8 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
         content: IndiaEMICalculatorContent,
         longDescription: "Planning a loan? Our India EMI Calculator helps you calculate the exact Equated Monthly Installment (EMI) for Home Loans, Car Loans, Personal Loans, and Education Loans. It uses the standard Reducing Balance Method used by all major Indian banks (SBI, HDFC, ICICI, Axis, Bajaj Finserv). Get a detailed year-wise and month-wise amortization schedule to understand your principal repayment vs. interest payment journey.",
         keywords: [
-            'emi calculator india', 'home loan emi calculator', 'car loan emi calculator', 
-            'personal loan emi calculator', 'loan calculator india', 'sbi home loan emi', 
+            'emi calculator india', 'home loan emi calculator', 'car loan emi calculator',
+            'personal loan emi calculator', 'loan calculator india', 'sbi home loan emi',
             'hdfc personal loan emi', 'icici car loan emi', 'education loan emi calculator',
             'reducing balance emi calculator', 'flat rate vs reducing balance', 'loan amortization chart',
             'monthly emi check', 'loan repayment schedule', 'bajaj finserv emi calculator',
@@ -1641,9 +1634,9 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
         content: SIPCalculatorContent,
         longDescription: "Wealth creation made simple. A Systematic Investment Plan (SIP) is one of the most disciplined ways to invest in Mutual Funds. Our SIP Calculator helps you visualize the power of compounding. By investing a small fixed amount monthly, you can build a massive corpus over 10, 15, or 20 years. Perfect for planning retirement, child's education, or buying a dream home.",
         keywords: [
-            'sip calculator', 'mutual fund calculator', 'systematic investment plan', 
-            'sip return calculator', 'mutual fund returns', 'groww sip calculator', 
-            'zerodha sip calculator', 'etmoney sip calculator', 'monthly investment calculator', 
+            'sip calculator', 'mutual fund calculator', 'systematic investment plan',
+            'sip return calculator', 'mutual fund returns', 'groww sip calculator',
+            'zerodha sip calculator', 'etmoney sip calculator', 'monthly investment calculator',
             'sip growth chart', 'long term wealth creation', 'best sip plans',
             'compounding calculator india', 'sip interest rate', 'investment planner'
         ],
@@ -1694,8 +1687,8 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
         content: IndiaSalaryCalculatorContent,
         longDescription: "Confused by your offer letter? Use our CTC to In-Hand Salary Calculator to understand your real monthly take-home pay. We break down your Cost to Company (CTC) into Basic Pay, HRA, Special Allowance, PF (Provident Fund) deduction, Professional Tax (PT), and estimated TDS. Updated for the latest 2025 tax regimes.",
         keywords: [
-            'salary calculator india', 'ctc to inhand calculator', 'take home salary calculator', 
-            'salary breakdown', 'monthly salary calculator', 'pf calculator', 
+            'salary calculator india', 'ctc to inhand calculator', 'take home salary calculator',
+            'salary breakdown', 'monthly salary calculator', 'pf calculator',
             'professional tax calculator', 'salary slip generator', 'ctc calculator',
             'in hand salary from ctc', 'new tax regime salary', '7th pay commission calculator'
         ],
@@ -1729,6 +1722,7 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
                 { name: "Result", text: "See your estimated monthly bank credit instantly." }
             ]
         },
+        popular: true,
     },
     {
         id: 'india-tax',
@@ -1740,9 +1734,9 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
         content: IndiaTaxCalculatorContent,
         longDescription: "The most comprehensive Income Tax Calculator for Indian salaried and self-employed individuals. Updated with the latest Union Budget 2025 announcements. Compare your tax liability under the Old Tax Regime (with 80C, 80D deductions) vs the New Tax Regime (lower rates, fewer deductions). Find out which regime saves you more money instantly.",
         keywords: [
-            'income tax calculator', 'tax calculator india', 'old vs new tax regime', 
-            'income tax slabs 2025', 'calculate income tax', 'tax planning india', 
-            '80c 80d calculator', 'tax saving calculator', 'tds calculator', 
+            'income tax calculator', 'tax calculator india', 'old vs new tax regime',
+            'income tax slabs 2025', 'calculate income tax', 'tax planning india',
+            '80c 80d calculator', 'tax saving calculator', 'tds calculator',
             'budget 2025 tax slabs', 'zero tax salary', 'income tax return'
         ],
         features: [
@@ -1776,5 +1770,15 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
                 { name: "Save", text: "Choose the regime with lower tax outflow." }
             ]
         },
+        popular: true,
     },
+
+];
+
+export const categories: { id: CalculatorCategory; name: string; icon: any }[] = [
+    { id: 'basic', name: 'Basic & Math', icon: Calculator },
+    { id: 'financial', name: 'Finance', icon: DollarSign },
+    { id: 'health', name: 'Health & Fitness', icon: Activity },
+    { id: 'india', name: 'India Specific', icon: Landmark },
+    { id: 'other', name: 'Other Tools', icon: MoreHorizontal },
 ];
