@@ -22,8 +22,8 @@ const Contact = () => {
                                 <p className="text-slate-600 dark:text-slate-400 mb-4">
                                     For general inquiries, partnership opportunities, or support.
                                 </p>
-                                <a href="mailto:meetbhalodiya1030@gmail.com" className="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 hover:underline">
-                                    meetbhalodiya1030@gmail.com
+                                <a href="mailto:support@calcsuite.in" className="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 hover:underline">
+                                    support@calcsuite.in
                                 </a>
                             </div>
                         </div>
