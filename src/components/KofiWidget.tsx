@@ -13,15 +13,15 @@ export function KofiWidget() {
             <div
                 className={cn(
                     "group flex items-center gap-2",
-                    "h-8 sm:h-10 w-8 sm:w-10 hover:w-36 px-[6px] sm:px-3 overflow-hidden",
+                    "h-11 w-11 hover:w-36 px-[6px] overflow-hidden",
                     "bg-[#00b9fe] text-white hover:bg-[#009ee0]",
                     "rounded-full shadow-lg hover:shadow-xl",
                     "transition-all duration-500 ease-in-out transform hover:-translate-y-1",
                     "font-medium text-sm sm:text-base cursor-pointer"
                 )}
             >
-                <div className="shrink-0 w-5 h-5 flex items-center justify-center">
-                    <Coffee className="animate-pulse" />
+                <div className="shrink-0 w-8 h-8 flex items-center justify-center">
+                    <Coffee className="w-6 h-6 animate-pulse" />
                 </div>
                 <span className="whitespace-nowrap transition-all duration-500 opacity-0 group-hover:opacity-100">
                     Support me

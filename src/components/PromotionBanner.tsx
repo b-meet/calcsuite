@@ -48,7 +48,7 @@ export function PromotionBanner() {
 
                 <button
                     onClick={handleDismiss}
-                    className="p-1.5 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-all transform hover:scale-105 active:scale-95"
+                    className="p-1.5 sm:pr-auto pr-10 rounded-full hover:bg-white/10 text-slate-400 hover:text-white transition-all transform hover:scale-105 active:scale-95"
                     aria-label="Dismiss"
                 >
                     <X size={15} />
