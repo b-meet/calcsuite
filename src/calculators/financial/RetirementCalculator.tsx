@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Sunset } from 'lucide-react';
+import { Sunset, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function RetirementCalculator() {
     const [currentAge, setCurrentAge] = useState('');
@@ -9,6 +11,8 @@ export default function RetirementCalculator() {
     const [annualReturn, setAnnualReturn] = useState('7');
 
     const [result, setResult] = useState<{ total: number; interest: number } | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('retirement');
 
     const calculate = () => {
         const age = parseFloat(currentAge);
@@ -39,14 +43,28 @@ export default function RetirementCalculator() {
         const interest = total - principal;
 
         setResult({ total, interest });
+
+        addHistory(
+            { currentAge, retireAge, currentSavings, annualContribution, annualReturn },
+            `$${total.toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+            `${years} Years, $${contribution}/yr`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setCurrentAge(item.inputs.currentAge);
+        setRetireAge(item.inputs.retireAge);
+        setCurrentSavings(item.inputs.currentSavings);
+        setAnnualContribution(item.inputs.annualContribution);
+        setAnnualReturn(item.inputs.annualReturn);
     };
 
     const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-amber-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
     const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     return (
-        <div className="max-w-xl mx-auto space-y-8">
-            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+        <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-xl mx-auto bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
                 <div className="grid grid-cols-2 gap-6">
                     <div>
                         <label className={labelClass}>Current Age</label>
@@ -76,13 +94,15 @@ export default function RetirementCalculator() {
                     </div>
                 </div>
 
-                <button
-                    onClick={calculate}
-                    className="w-full py-4 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200 dark:shadow-amber-900/20 flex items-center justify-center gap-2"
-                >
-                    <Sunset size={20} />
-                    Calculate Retirement
-                </button>
+                <div className="flex justify-center pt-2">
+                    <button
+                        onClick={calculate}
+                        className="w-full py-4 bg-amber-500 text-white font-bold rounded-xl hover:bg-amber-600 transition-colors shadow-lg shadow-amber-200 dark:shadow-amber-900/20 flex items-center justify-center gap-2"
+                    >
+                        <Sunset size={20} />
+                        Calculate Retirement
+                    </button>
+                </div>
 
                 {result !== null && (
                     <div className="mt-8 space-y-4">
@@ -98,6 +118,13 @@ export default function RetirementCalculator() {
                     </div>
                 )}
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

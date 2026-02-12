@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { IndianRupee, Calendar, Percent, PieChart } from 'lucide-react';
+import { IndianRupee, Calendar, Percent, PieChart, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 import {
     Chart as ChartJS,
     ArcElement,
@@ -46,15 +48,16 @@ export default function FDCalculator() {
         breakdown: YearBreakdown[];
     } | null>(null);
 
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('fd');
+
     const calculateFD = () => {
         const P = principal;
         const r = rate / 100;
 
-        // Convert tenure to years for calculation
         const t = tenureType === 'years' ? tenure : tenure / 12;
 
         let maturity = 0;
-        let n = 1; // Compounds per year
+        let n = 1;
 
         if (compounding === 'SIMPLE') {
             const interest = P * r * t;
@@ -71,31 +74,18 @@ export default function FDCalculator() {
 
         const totalInterest = maturity - P;
 
-        // Generate Year-wise Breakdown
         const breakdown: YearBreakdown[] = [];
         let currentBalance = P;
         const totalYears = Math.ceil(t);
 
         for (let i = 1; i <= totalYears; i++) {
             let closing = 0;
+            const timeAtEnd = Math.min(i, t);
 
             if (compounding === 'SIMPLE') {
-                // For simple interest, interest is constant per year (roughly)
-                // But technically simple interest is paid out or accrued linearly.
-                // We'll just show accrued value.
-                // We'll just show accrued value.
-                // Adjust logic for partial years if needed, keeping it simple for now:
-                // Simple interest usually pays out, but for calculator we show accumulation
-                const interestForPeriod = (principal * r) * (i > t ? t % 1 : 1);
-                closing = currentBalance + interestForPeriod;
+                const interestForPeriod = (principal * r) * timeAtEnd;
+                closing = principal + interestForPeriod;
             } else {
-                // Compound logic for breakdown
-                // We calculate value at end of year i based on original principal to avoid compounding errors?
-                // Actually, for compound, it's: P * (1+r/n)^(n * time)
-
-                // Time at end of year i (capped at t)
-                const timeAtEnd = Math.min(i, t);
-
                 closing = P * Math.pow(1 + r / n, n * timeAtEnd);
             }
 
@@ -122,7 +112,22 @@ export default function FDCalculator() {
         calculateFD();
     }, [principal, rate, tenure, tenureType, compounding]);
 
+    const handleSave = () => {
+        if (!result) return;
+        addHistory(
+            { principal, rate, tenure, tenureType, compounding },
+            `₹${result.maturityAmount.toLocaleString('en-IN')}`,
+            `${tenure} ${tenureType}, ${rate}%`
+        );
+    };
 
+    const handleHistorySelect = (item: any) => {
+        setPrincipal(item.inputs.principal);
+        setRate(item.inputs.rate);
+        setTenure(item.inputs.tenure);
+        setTenureType(item.inputs.tenureType);
+        setCompounding(item.inputs.compounding);
+    };
 
     const pieData = {
         labels: ['Principal', 'Total Interest'],
@@ -137,9 +142,8 @@ export default function FDCalculator() {
     };
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Input Section */}
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
                         <h2 className="text-xl font-semibold text-slate-900 dark:text-white flex items-center gap-2">
@@ -170,7 +174,7 @@ export default function FDCalculator() {
                                         step="1000"
                                         value={principal}
                                         onChange={(e) => setPrincipal(Number(e.target.value))}
-                                        className="w-full mt-2 h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+                                        className="w-full mt-2 h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer"
                                     />
                                 </div>
                             </div>
@@ -236,46 +240,41 @@ export default function FDCalculator() {
                                     <option value="SIMPLE">Simple Interest (No Compounding)</option>
                                 </select>
                             </div>
+
+                            <div className="flex justify-center pt-2">
+                                <button
+                                    onClick={handleSave}
+                                    className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center gap-2"
+                                >
+                                    <TrendingUp size={18} />
+                                    Save to History
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Results Section */}
                 <div className="space-y-6">
-                    <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-lg">
+                    <div className="bg-slate-900 dark:bg-slate-800 text-white p-6 rounded-2xl shadow-lg">
                         <h3 className="text-lg font-medium text-slate-300 mb-6">Maturity Summary</h3>
-
                         <div className="space-y-6">
                             <div>
                                 <p className="text-slate-400 text-sm mb-1">Maturity Amount</p>
                                 <p className="text-4xl font-bold">
-                                    {new Intl.NumberFormat('en-IN', {
-                                        style: 'currency',
-                                        currency: 'INR',
-                                        maximumFractionDigits: 0
-                                    }).format(result?.maturityAmount || 0)}
+                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.maturityAmount || 0)}
                                 </p>
                             </div>
-
                             <div className="grid grid-cols-2 gap-8 pt-6 border-t border-slate-800">
                                 <div>
-                                    <p className="text-slate-400 text-sm mb-1">Total Limit Investment</p>
+                                    <p className="text-slate-400 text-sm mb-1">Principal</p>
                                     <p className="text-xl font-semibold">
-                                        {new Intl.NumberFormat('en-IN', {
-                                            style: 'currency',
-                                            currency: 'INR',
-                                            maximumFractionDigits: 0
-                                        }).format(principal)}
+                                        {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(principal)}
                                     </p>
                                 </div>
                                 <div>
                                     <p className="text-slate-400 text-sm mb-1">Total Interest</p>
                                     <p className="text-xl font-semibold text-green-400">
-                                        {new Intl.NumberFormat('en-IN', {
-                                            style: 'currency',
-                                            currency: 'INR',
-                                            maximumFractionDigits: 0
-                                        }).format(result?.totalInterest || 0)}
+                                        {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.totalInterest || 0)}
                                     </p>
                                 </div>
                             </div>
@@ -284,7 +283,7 @@ export default function FDCalculator() {
 
                     <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
                         <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                            <PieChart className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            <PieChart size={20} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Breakdown
                         </h3>
                         <div className="h-64 flex items-center justify-center">
@@ -294,38 +293,31 @@ export default function FDCalculator() {
                 </div>
             </div>
 
-            {/* Breakdown Table */}
             {result?.breakdown && result.breakdown.length > 0 && (
                 <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
                     <div className="p-6 border-b border-slate-100 dark:border-slate-800">
                         <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                            <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            <Calendar size={20} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Year-wise Breakdown
                         </h3>
                     </div>
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
-                            <thead className="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium border-b border-slate-200 dark:border-slate-700">
+                            <thead className="bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
                                 <tr>
                                     <th className="px-6 py-3">Year</th>
-                                    <th className="px-6 py-3">Opening Balance</th>
+                                    <th className="px-6 py-3">Opening</th>
                                     <th className="px-6 py-3">Interest Earned</th>
-                                    <th className="px-6 py-3">Closing Balance</th>
+                                    <th className="px-6 py-3">Closing</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                                 {result.breakdown.map((row) => (
-                                    <tr key={row.year} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300">
+                                    <tr key={row.year} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
                                         <td className="px-6 py-3 font-medium text-slate-900 dark:text-white">{row.year}</td>
-                                        <td className="px-6 py-3">
-                                            {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.openingBalance)}
-                                        </td>
-                                        <td className="px-6 py-3 text-green-600 dark:text-green-400">
-                                            +{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.interestEarned)}
-                                        </td>
-                                        <td className="px-6 py-3 font-medium">
-                                            {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.closingBalance)}
-                                        </td>
+                                        <td className="px-6 py-3">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.openingBalance)}</td>
+                                        <td className="px-6 py-3 text-green-600 dark:text-green-400">+{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.interestEarned)}</td>
+                                        <td className="px-6 py-3 font-semibold">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.closingBalance)}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -333,6 +325,13 @@ export default function FDCalculator() {
                     </div>
                 </div>
             )}
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

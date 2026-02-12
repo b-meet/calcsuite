@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { TrendingUp, Calendar, Coins } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 import {
     Chart as ChartJS,
@@ -45,6 +47,8 @@ export default function CompoundInterestCalculator() {
         breakdown: YearBreakdown[];
     } | null>(null);
 
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('compound-interest');
+
     const calculate = () => {
         const P = parseFloat(principal) || 0;
         const r_val = parseFloat(rate) || 0;
@@ -64,25 +68,6 @@ export default function CompoundInterestCalculator() {
             case 'DAILY': n = 365; break;
         }
 
-        // Simulation parameters
-        // We will simulate period by period based on the smallest unit (e.g. daily if compounding is daily, or monthly if compounding monthly)
-        // To be safe and accurate for mixed frequencies (e.g. Yearly compounding but Monthly contribution), 
-        // we can simulate daily or monthly. Monthly is usually granular enough for personal finance unless daily compounding is used.
-        // Let's use monthly simulation steps for standard, or daily if needed.
-        // Actually, easiest valid approach for mismatched frequencies:
-        // Calculate effective rate per simulation step.
-        // Let's stick to the user's logic request: "Simulation approach".
-
-        // Base Unit: Month (1/12 year). If Daily compounding, we might need finer grains. 
-        // Let's strictly follow the compounding period as the simulation step if possible?
-        // But contribution freq might differ.
-
-        // Robust Simulation: 
-        // Step size: 1 Day (approx 1/365 year) for maximum flexibility? Or just align to the GCD of frequencies?
-        // Let's use 1 Month as base step. If Daily compounding, we approximate interest within the month. 
-        // Wait, Daily compounding is r/365 per day.
-
-        // Let's iterate month by month (total months = t * 12).
         const totalMonths = Math.ceil(t * 12);
         let balance = P;
         let totalContributed = 0;
@@ -93,37 +78,16 @@ export default function CompoundInterestCalculator() {
         let yearDeposits = 0;
 
         for (let m = 1; m <= totalMonths; m++) {
-            // 1. Add Contribution?
             let contributionAdded = 0;
-            // Check Frequency
-            const isContributionMonth =
-                (contributionFreq === 'MONTHLY') ||
-                (contributionFreq === 'YEARLY' && m % 12 === 0); // End of year contribution? Or start? 
+            let shouldAdd = false;
+            if (contributionFreq === 'MONTHLY') shouldAdd = true;
+            else if (contributionFreq === 'YEARLY') {
+                if (timing === 'BEGINNING') shouldAdd = (m - 1) % 12 === 0;
+                else shouldAdd = m % 12 === 0;
+            }
 
-            // Refine logic:
-            // If Monthly: every month.
-            // If Yearly: Let's say it happens at month 1 (Beginning) or month 12 (End).
-            if (isContributionMonth && withContribution) {
-                // If Timing is Beginning, add before interest. If End, add after interest?
-                // Actually typical is: Beginning of Period vs End of Period.
-                // In a monthly loop:
-                // Beginning = Add at start of month calculation.
-                // End = Add at end of month calculation.
-
-                // Handling Yearly properly in a monthly loop:
-                // If Yearly & Beginning: m % 12 === 1 (Month 1, 13, 25...)
-                // If Yearly & End: m % 12 === 0 (Month 12, 24...)
-
-                let shouldAdd = false;
-                if (contributionFreq === 'MONTHLY') shouldAdd = true;
-                else if (contributionFreq === 'YEARLY') {
-                    if (timing === 'BEGINNING') shouldAdd = (m - 1) % 12 === 0;
-                    else shouldAdd = m % 12 === 0;
-                }
-
-                if (shouldAdd) {
-                    contributionAdded = contrib;
-                }
+            if (shouldAdd && withContribution) {
+                contributionAdded = contrib;
             }
 
             if (timing === 'BEGINNING' && contributionAdded > 0) {
@@ -132,10 +96,6 @@ export default function CompoundInterestCalculator() {
                 yearDeposits += contributionAdded;
             }
 
-            // 2. Apply Interest
-            // Rate per month depending on compounding.
-            // If compounding is >= Monthly, we can just apply (1 + r/n)^(n/12)
-            // r_effective_monthly = (1 + r/n)^(n/12) - 1
             const r_eff_monthly = Math.pow(1 + r / n, n / 12) - 1;
             const interest = balance * r_eff_monthly;
             balance += interest;
@@ -147,7 +107,6 @@ export default function CompoundInterestCalculator() {
                 yearDeposits += contributionAdded;
             }
 
-            // 3. Track Year Breakdown
             if (m % 12 === 0 || m === totalMonths) {
                 breakdown.push({
                     year: Math.ceil(m / 12),
@@ -166,17 +125,40 @@ export default function CompoundInterestCalculator() {
         const totalPrincipalAmount = P + totalContributed;
         const totalInterestEarned = finalAmount - totalPrincipalAmount;
 
-        setResult({
+        const newResult = {
             finalAmount,
             totalInterest: totalInterestEarned,
             totalPrincipal: totalPrincipalAmount,
             breakdown
-        });
+        };
+
+        setResult(newResult);
     };
 
     useEffect(() => {
         calculate();
     }, [principal, rate, tenure, tenureType, compounding, withContribution, contribution, contributionFreq, timing]);
+
+    const handleSave = () => {
+        if (!result) return;
+        addHistory(
+            { principal, rate, tenure, tenureType, compounding, withContribution, contribution, contributionFreq, timing },
+            new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result.finalAmount),
+            `${principal}, ${rate}%, ${tenure} ${tenureType}`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setPrincipal(item.inputs.principal);
+        setRate(item.inputs.rate);
+        setTenure(item.inputs.tenure);
+        setTenureType(item.inputs.tenureType);
+        setCompounding(item.inputs.compounding);
+        setWithContribution(item.inputs.withContribution);
+        setContribution(item.inputs.contribution);
+        setContributionFreq(item.inputs.contributionFreq);
+        setTiming(item.inputs.timing);
+    };
 
     const pieData = {
         labels: ['Total Principal', 'Total Interest'],
@@ -191,7 +173,7 @@ export default function CompoundInterestCalculator() {
     };
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Input Section */}
                 <div className="space-y-6">
@@ -315,6 +297,16 @@ export default function CompoundInterestCalculator() {
                                     </div>
                                 </div>
                             )}
+
+                            <div className="flex justify-center pt-2">
+                                <button
+                                    onClick={handleSave}
+                                    className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center gap-2"
+                                >
+                                    <TrendingUp size={18} />
+                                    Save to History
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -364,7 +356,7 @@ export default function CompoundInterestCalculator() {
                 <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 overflow-hidden">
                     <div className="p-6 border-b border-slate-100 dark:border-slate-800">
                         <h3 className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                            <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                            <Calendar size={20} className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                             Year-by-Year Growth
                         </h3>
                     </div>
@@ -394,6 +386,13 @@ export default function CompoundInterestCalculator() {
                     </div>
                 </div>
             )}
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

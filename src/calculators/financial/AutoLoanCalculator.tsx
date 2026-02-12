@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Car } from 'lucide-react';
+import { Car, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function AutoLoanCalculator() {
     const [price, setPrice] = useState('');
@@ -10,6 +12,8 @@ export default function AutoLoanCalculator() {
     const [tax, setTax] = useState(''); // Percentage
 
     const [result, setResult] = useState<{ monthly: number; totalLoan: number; totalInterest: number; totalCost: number } | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('auto-loan');
 
     const calculate = () => {
         const p = parseFloat(price) || 0;
@@ -38,20 +42,37 @@ export default function AutoLoanCalculator() {
             totalInterest = (monthlyPayment * t) - loanAmount;
         }
 
-        setResult({
+        const newResult = {
             monthly: monthlyPayment,
             totalLoan: loanAmount,
             totalInterest,
             totalCost: p + salesTaxAmount + totalInterest // Total cost of car including interest and tax
-        });
+        };
+
+        setResult(newResult);
+
+        addHistory(
+            { price, down, tradeIn, rate, term, tax },
+            `$${monthlyPayment.toFixed(2)}/mo`,
+            `$${p.toLocaleString()} Car, ${t}mo`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setPrice(item.inputs.price);
+        setDown(item.inputs.down);
+        setTradeIn(item.inputs.tradeIn);
+        setRate(item.inputs.rate);
+        setTerm(item.inputs.term);
+        setTax(item.inputs.tax);
     };
 
     const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
     const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     return (
-        <div className="max-w-2xl mx-auto space-y-8">
-            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+        <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-2xl mx-auto bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -100,13 +121,15 @@ export default function AutoLoanCalculator() {
                     </div>
                 </div>
 
-                <button
-                    onClick={calculate}
-                    className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center gap-2"
-                >
-                    <Car size={20} />
-                    Calculate Auto Loan
-                </button>
+                <div className="flex justify-center">
+                    <button
+                        onClick={calculate}
+                        className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center gap-2"
+                    >
+                        <Car size={20} />
+                        Calculate Auto Loan
+                    </button>
+                </div>
 
                 {result !== null && (
                     <div className="mt-8 space-y-4">
@@ -134,6 +157,13 @@ export default function AutoLoanCalculator() {
                     </div>
                 )}
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

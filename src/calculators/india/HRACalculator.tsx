@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Building2, CheckCircle, XCircle } from 'lucide-react';
+import { Building2, CheckCircle, XCircle, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 import {
     Chart as ChartJS,
     ArcElement,
@@ -7,7 +9,6 @@ import {
     Legend,
 } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
-
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -27,22 +28,13 @@ export default function HRACalculator() {
         }
     } | null>(null);
 
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('hra');
+
     const calculateHRA = () => {
-        // Inputs are annual
-
-        // Condition 1: Actual HRA Received
         const c1 = hraReceived;
-
-        // Condition 2: Rent Paid - 10% of Basic
         const c2 = Math.max(0, rentPaid - (0.10 * basicSalary));
-
-        // Condition 3: 50% of Basic (Metro) or 40% (Non-Metro)
         const c3 = (isMetro ? 0.50 : 0.40) * basicSalary;
-
-        // Exempt HRA is the Minimum of the three
         const exempt = Math.min(c1, c2, c3);
-
-        // Taxable HRA = Received - Exempt
         const taxable = Math.max(0, hraReceived - exempt);
 
         setResult({
@@ -60,6 +52,22 @@ export default function HRACalculator() {
         calculateHRA();
     }, [basicSalary, hraReceived, rentPaid, isMetro]);
 
+    const handleSave = () => {
+        if (!result) return;
+        addHistory(
+            { basicSalary, hraReceived, rentPaid, isMetro },
+            `Exempt: ₹${result.exemptHRA.toLocaleString('en-IN')}`,
+            `${isMetro ? 'Metro' : 'Non-Metro'}, Basic: ₹${(basicSalary / 100000).toFixed(1)}L`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setBasicSalary(item.inputs.basicSalary);
+        setHraReceived(item.inputs.hraReceived);
+        setRentPaid(item.inputs.rentPaid);
+        setIsMetro(item.inputs.isMetro);
+    };
+
     const pieData = {
         labels: ['Exempt HRA', 'Taxable HRA'],
         datasets: [
@@ -73,9 +81,8 @@ export default function HRACalculator() {
     };
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {/* Input Section */}
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
                         <h2 className="text-xl font-semibold text-slate-900 dark:text-white flex items-center gap-2">
@@ -163,13 +170,22 @@ export default function HRACalculator() {
                                     </button>
                                 </div>
                             </div>
+
+                            <div className="flex justify-center mt-6">
+                                <button
+                                    onClick={handleSave}
+                                    className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center gap-2"
+                                >
+                                    <TrendingUp size={18} />
+                                    Save to History
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Results Section */}
                 <div className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-2xl border border-green-100 dark:border-green-900/50">
                             <div className="flex items-center gap-2 mb-2">
                                 <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
@@ -198,7 +214,7 @@ export default function HRACalculator() {
                     </div>
 
                     <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
-                        <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider text-xs">Exemption Calculation Logic</h3>
+                        <h3 className="text-sm font-semibold text-slate-900 dark:text-white mb-4 uppercase tracking-wider text-xs">Exemption Logic</h3>
                         <div className="space-y-3">
                             <div className="flex justify-between items-center text-sm pb-2 border-b border-slate-50 dark:border-slate-800">
                                 <span className="text-slate-600 dark:text-slate-400">1. Actual HRA Received</span>
@@ -207,26 +223,28 @@ export default function HRACalculator() {
                                 </span>
                             </div>
                             <div className="flex justify-between items-center text-sm pb-2 border-b border-slate-50 dark:border-slate-800">
-                                <span className="text-slate-600 dark:text-slate-400">2. Rent Paid - 10% Basic</span>
+                                <span className="text-slate-600 dark:text-slate-400">2. Rent - 10% Basic</span>
                                 <span className="font-medium text-slate-900 dark:text-white">
                                     {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.conditions.condition2 || 0)}
                                 </span>
                             </div>
                             <div className="flex justify-between items-center text-sm pb-2 border-b border-slate-50 dark:border-slate-800">
-                                <span className="text-slate-600 dark:text-slate-400">3. {isMetro ? '50%' : '40%'} of Basic Salary</span>
+                                <span className="text-slate-600 dark:text-slate-400">3. {isMetro ? '50%' : '40%'} of Basic</span>
                                 <span className="font-medium text-slate-900 dark:text-white">
                                     {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.conditions.condition3 || 0)}
-                                </span>
-                            </div>
-                            <div className="pt-2 flex justify-end">
-                                <span className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-1 rounded">
-                                    Exempt Amount = Minimum of (1, 2, 3)
                                 </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

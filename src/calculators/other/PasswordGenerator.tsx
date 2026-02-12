@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react';
-import { Copy, RefreshCw, Check } from 'lucide-react';
+import { Copy, RefreshCw, Check, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function PasswordGenerator() {
     const [password, setPassword] = useState('');
@@ -11,6 +13,8 @@ export default function PasswordGenerator() {
         symbols: true,
     });
     const [copied, setCopied] = useState(false);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('password-generator');
 
     const generatePassword = useCallback(() => {
         const chars = {
@@ -34,12 +38,24 @@ export default function PasswordGenerator() {
         }
         setPassword(newPassword);
         setCopied(false);
-    }, [length, options]);
+
+        addHistory(
+            { length, options },
+            newPassword,
+            `Len: ${length}, ${Object.entries(options).filter(([_, v]) => v).map(([k]) => k[0].toUpperCase()).join('')}`
+        );
+    }, [length, options, addHistory]);
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(password);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setLength(item.inputs.length);
+        setOptions(item.inputs.options);
+        setPassword(item.result);
     };
 
     return (
@@ -108,6 +124,13 @@ export default function PasswordGenerator() {
                     Generate Password
                 </button>
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

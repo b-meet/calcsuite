@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { Scale } from 'lucide-react';
+import { Scale, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function IdealWeightCalculator() {
     const [gender, setGender] = useState<'male' | 'female'>('male');
     const [height, setHeight] = useState(''); // cm
     const [result, setResult] = useState<{ min: number; max: number; ideal: number } | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('ideal-weight');
 
     const calculate = () => {
         const h = parseFloat(height);
@@ -12,29 +16,22 @@ export default function IdealWeightCalculator() {
 
         // Convert height to inches for formulas
         const inches = h / 2.54;
-        const feet = Math.floor(inches / 12);
         const inchesOver5ft = inches - 60;
 
-        if (feet < 5 && inchesOver5ft < 0) {
-            // Simple fallback for very short heights (BMI based 18.5-24.9)
-            // weight = bmi * (height in m)^2
+        let idealDevine = 0;
+        if (inchesOver5ft < 0) {
             const hM = h / 100;
             const minW = 18.5 * hM * hM;
             const maxW = 24.9 * hM * hM;
-            const ideal = (minW + maxW) / 2;
-            setResult({ min: minW, max: maxW, ideal });
-            return;
-        }
-
-        // Devine Formula (1974)
-        let idealDevine = 0;
-        if (gender === 'male') {
-            idealDevine = 50.0 + (2.3 * inchesOver5ft);
+            idealDevine = (minW + maxW) / 2;
         } else {
-            idealDevine = 45.5 + (2.3 * inchesOver5ft);
+            if (gender === 'male') {
+                idealDevine = 50.0 + (2.3 * inchesOver5ft);
+            } else {
+                idealDevine = 45.5 + (2.3 * inchesOver5ft);
+            }
         }
 
-        // Healthy BMI Range (18.5 - 24.9)
         const hM = h / 100;
         const minBMI = 18.5 * hM * hM;
         const maxBMI = 24.9 * hM * hM;
@@ -44,14 +41,25 @@ export default function IdealWeightCalculator() {
             max: maxBMI,
             ideal: idealDevine
         });
+
+        addHistory(
+            { gender, height },
+            `${idealDevine.toFixed(1)} kg`,
+            `${gender === 'male' ? 'Male' : 'Female'}, ${h}cm`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setGender(item.inputs.gender);
+        setHeight(item.inputs.height);
     };
 
     const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-green-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
     const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     return (
-        <div className="max-w-xl mx-auto space-y-8">
-            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+        <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-xl mx-auto bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
 
                 {/* Gender Selection */}
                 <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
@@ -76,16 +84,18 @@ export default function IdealWeightCalculator() {
                     <input type="number" value={height} onChange={e => setHeight(e.target.value)} className={inputClass} placeholder="cm" />
                 </div>
 
-                <button
-                    onClick={calculate}
-                    className="w-full py-4 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors shadow-lg shadow-green-200 dark:shadow-green-900/20 flex items-center justify-center gap-2"
-                >
-                    <Scale size={20} />
-                    Calculate Ideal Weight
-                </button>
+                <div className="flex justify-center pt-2">
+                    <button
+                        onClick={calculate}
+                        className="w-full py-4 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition-colors shadow-lg shadow-green-200 dark:shadow-green-900/20 flex items-center justify-center gap-2"
+                    >
+                        <Scale size={20} />
+                        Calculate Ideal Weight
+                    </button>
+                </div>
 
                 {result !== null && (
-                    <div className="mt-8 space-y-4">
+                    <div className="mt-8 space-y-4 animate-in fade-in slide-in-from-top-4">
                         <div className="p-6 bg-green-50 dark:bg-green-900/20 rounded-2xl border border-green-100 dark:border-green-900/30 text-center">
                             <span className="text-sm font-medium text-green-800 dark:text-green-300 uppercase tracking-wide">Ideal Weight (Devine)</span>
                             <div className="text-4xl font-bold text-slate-900 dark:text-white mt-2">
@@ -106,6 +116,13 @@ export default function IdealWeightCalculator() {
                     </div>
                 )}
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

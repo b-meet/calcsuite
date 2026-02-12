@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fraction, format } from 'mathjs';
-import { Divide, Plus, Minus, X } from 'lucide-react';
+import { Divide, Plus, Minus, X, TrendingUp } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function FractionCalculator() {
     const [num1, setNum1] = useState('');
@@ -10,6 +12,8 @@ export default function FractionCalculator() {
     const [den2, setDen2] = useState('');
     const [operation, setOperation] = useState<'add' | 'subtract' | 'multiply' | 'divide'>('add');
     const [result, setResult] = useState<string | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('fraction');
 
     const calculate = () => {
         if (!num1 || !den1 || !num2 || !den2) return;
@@ -20,24 +24,38 @@ export default function FractionCalculator() {
             let res;
 
             switch (operation) {
-                case 'add':
-                    res = f1.add(f2);
-                    break;
-                case 'subtract':
-                    res = f1.sub(f2);
-                    break;
-                case 'multiply':
-                    res = f1.mul(f2);
-                    break;
-                case 'divide':
-                    res = f1.div(f2);
-                    break;
+                case 'add': res = f1.add(f2); break;
+                case 'subtract': res = f1.sub(f2); break;
+                case 'multiply': res = f1.mul(f2); break;
+                case 'divide': res = f1.div(f2); break;
             }
 
             setResult(format(res, { fraction: 'ratio' }));
         } catch (e) {
             setResult('Error');
         }
+    };
+
+    useEffect(() => {
+        calculate();
+    }, [num1, den1, num2, den2, operation]);
+
+    const handleSave = () => {
+        if (!result || result === 'Error') return;
+        const opSymbol = operation === 'add' ? '+' : operation === 'subtract' ? '-' : operation === 'multiply' ? '×' : '÷';
+        addHistory(
+            { num1, den1, num2, den2, operation },
+            result,
+            `${num1}/${den1} ${opSymbol} ${num2}/${den2}`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setNum1(item.inputs.num1);
+        setDen1(item.inputs.den1);
+        setNum2(item.inputs.num2);
+        setDen2(item.inputs.den2);
+        setOperation(item.inputs.operation);
     };
 
     const ops = [
@@ -48,81 +66,52 @@ export default function FractionCalculator() {
     ];
 
     return (
-        <div className="max-w-2xl mx-auto bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800">
+        <div className="max-w-2xl mx-auto bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-8">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 justify-center">
-
-                {/* Fraction 1 */}
                 <div className="flex flex-col gap-2 w-40">
-                    <input
-                        type="number"
-                        value={num1}
-                        onChange={(e) => setNum1(e.target.value)}
-                        className="w-full p-2 text-center border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white"
-                        placeholder="Num"
-                    />
+                    <input type="number" value={num1} onChange={(e) => setNum1(e.target.value)} className="w-full p-2 text-center border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white" placeholder="Num" />
                     <div className="h-0.5 w-full bg-slate-300 dark:bg-slate-600 rounded-full"></div>
-                    <input
-                        type="number"
-                        value={den1}
-                        onChange={(e) => setDen1(e.target.value)}
-                        className="w-full p-2 text-center border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white"
-                        placeholder="Den"
-                    />
+                    <input type="number" value={den1} onChange={(e) => setDen1(e.target.value)} className="w-full p-2 text-center border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white" placeholder="Den" />
                 </div>
 
-                {/* Operation */}
                 <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
                     {ops.map((op) => (
-                        <button
-                            key={op.id}
-                            onClick={() => setOperation(op.id as any)}
-                            className={cn(
-                                "p-3 rounded-lg transition-all",
-                                operation === op.id ? "bg-white dark:bg-slate-600 text-blue-600 dark:text-blue-200 shadow-sm" : "text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300"
-                            )}
-                        >
+                        <button key={op.id} onClick={() => setOperation(op.id as any)} className={cn("p-3 rounded-lg transition-all", operation === op.id ? "bg-white dark:bg-slate-600 text-blue-600 dark:text-blue-200 shadow-sm" : "text-slate-400 dark:text-slate-500 hover:text-slate-600 dark:hover:text-slate-300")}>
                             <op.icon size={20} />
                         </button>
                     ))}
                 </div>
 
-                {/* Fraction 2 */}
                 <div className="flex flex-col gap-2 w-40">
-                    <input
-                        type="number"
-                        value={num2}
-                        onChange={(e) => setNum2(e.target.value)}
-                        className="w-full p-2 text-center border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white"
-                        placeholder="Num"
-                    />
+                    <input type="number" value={num2} onChange={(e) => setNum2(e.target.value)} className="w-full p-2 text-center border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white" placeholder="Num" />
                     <div className="h-0.5 w-full bg-slate-300 dark:bg-slate-600 rounded-full"></div>
-                    <input
-                        type="number"
-                        value={den2}
-                        onChange={(e) => setDen2(e.target.value)}
-                        className="w-full p-2 text-center border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white"
-                        placeholder="Den"
-                    />
+                    <input type="number" value={den2} onChange={(e) => setDen2(e.target.value)} className="w-full p-2 text-center border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white" placeholder="Den" />
                 </div>
             </div>
 
-            <div className="mt-8 flex justify-center">
+            <div className="flex justify-center pt-2">
                 <button
-                    onClick={calculate}
-                    className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20"
+                    onClick={handleSave}
+                    className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center gap-2"
                 >
-                    Calculate
+                    <TrendingUp size={18} />
+                    Save to History
                 </button>
             </div>
 
             {result && (
-                <div className="mt-8 text-center p-6 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
+                <div className="text-center p-6 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700">
                     <span className="text-slate-500 dark:text-slate-400 text-sm font-medium uppercase tracking-wide">Result</span>
-                    <div className="text-4xl font-bold text-slate-900 dark:text-white mt-2">
-                        {result}
-                    </div>
+                    <div className="text-4xl font-bold text-slate-900 dark:text-white mt-2">{result}</div>
                 </div>
             )}
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

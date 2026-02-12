@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Dices } from 'lucide-react';
+import { Dices, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function RandomNumberGenerator() {
     const [min, setMin] = useState(1);
@@ -8,13 +10,14 @@ export default function RandomNumberGenerator() {
     const [results, setResults] = useState<number[]>([]);
     const [allowDuplicates, setAllowDuplicates] = useState(true);
 
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('random-number');
+
     const generate = () => {
         if (min >= max) {
             alert("Min must be less than Max");
             return;
         }
 
-        // Check if unique generation is possible
         if (!allowDuplicates && (max - min + 1) < count) {
             alert("Range is too small for the requested number of unique values.");
             return;
@@ -37,6 +40,18 @@ export default function RandomNumberGenerator() {
         }
 
         setResults(newResults);
+        addHistory(
+            { min, max, count, allowDuplicates },
+            newResults.join(', '),
+            `Range: ${min}-${max}, Count: ${count}`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setMin(item.inputs.min);
+        setMax(item.inputs.max);
+        setCount(item.inputs.count);
+        setAllowDuplicates(item.inputs.allowDuplicates);
     };
 
     return (
@@ -102,6 +117,13 @@ export default function RandomNumberGenerator() {
                     ))}
                 </div>
             )}
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }
