@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import { Helmet } from 'react-helmet-async';
-import { Check, Copy, Zap, Globe, DollarSign, Layout } from 'lucide-react';
+import { Check, Copy, Zap, Globe, DollarSign, Layout, Info, Smartphone, Code as CodeIcon } from 'lucide-react';
+import { cn } from '../utils/cn';
 
 export function WidgetGenerator() {
     const [selectedCalculatorId, setSelectedCalculatorId] = useState(calculatorRegistry[0].id);
@@ -11,15 +12,7 @@ export function WidgetGenerator() {
     const selectedCalculator = calculatorRegistry.find(c => c.id === selectedCalculatorId) || calculatorRegistry[0];
     const SelectedComponent = selectedCalculator.component;
 
-    const widgetCode = `<!-- CalcSuite Widget -->
-<div style="border: 1px solid #e2e8f0; border-radius: 16px; padding: 24px; max-width: 600px; margin: 0 auto; background: ${theme === 'dark' ? '#0f172a' : '#ffffff'};">
-    <div class="calcsuite-widget" data-type="${selectedCalculatorId}" data-theme="${theme}"></div>
-    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px dashed ${theme === 'dark' ? '#1e293b' : '#e2e8f0'}; text-align: right; font-family: sans-serif; font-size: 10px; color: ${theme === 'dark' ? '#475569' : '#94a3b8'}; text-transform: uppercase; letter-spacing: 0.05em;">
-        <a href="https://calcsuite.com" style="color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" target="_blank" rel="noopener">
-            ⚡ Powered by CalcSuite
-        </a>
-    </div>
-</div>
+    const widgetCode = `<div class="calcsuite-widget" data-type="${selectedCalculatorId}" data-theme="${theme}"></div>
 <script async src="https://calcsuite.com/widget.js"></script>`;
 
     const handleCopy = () => {
@@ -29,198 +22,189 @@ export function WidgetGenerator() {
     };
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-8 pb-12">
             <Helmet>
                 <title>Free Calculator Widget for Your Website | CalcSuite</title>
-                <meta name="description" content="Enhance your website with our free, embeddable calculator widgets. boost engagement and SEO with beautiful, responsive financial, health, and math calculators." />
+                <meta name="description" content="Enhance your website with our free, embeddable calculator widgets. Responsive, fast, and 100% free." />
             </Helmet>
 
-            {/* Hero Section */}
-            <section className="text-center space-y-6 py-12">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-full text-sm font-medium mb-4">
-                    <span className="relative flex h-3 w-3">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
-                    </span>
-                    Free for everyone
+            {/* Header */}
+            <header className="text-center space-y-4 py-8">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-full text-xs font-semibold uppercase tracking-wider">
+                    <Zap size={14} />
+                    Instant Integration
                 </div>
-                <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                    Add Powerful Calculators <br className="hidden md:block" />
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400">to Your Website</span>
+                <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+                    Premium Widgets <span className="text-blue-600 dark:text-blue-400">Fixed</span>
                 </h1>
-                <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                    Boost user engagement and SEO with our collection of premium, responsive calculator widgets. Copy and paste one line of code. Zero cost.
+                <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto text-sm md:text-base">
+                    Embed any of our 40+ calculators into your site with a single line of code. No account required.
                 </p>
-            </section>
+            </header>
 
-            {/* Benefits Grid */}
-            <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-4">
-                        <DollarSign size={24} />
-                    </div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">100% Free</h3>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm">No monthly fees, no credit card required. Use our widgets on as many sites as you want.</p>
-                </div>
-                <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-xl flex items-center justify-center mb-4">
-                        <Zap size={24} />
-                    </div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Boost Engagement</h3>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm">Interactive tools keep visitors on your page longer, reducing bounce rates.</p>
-                </div>
-                <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-xl flex items-center justify-center mb-4">
-                        <Globe size={24} />
-                    </div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">SEO Friendly</h3>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm">Rich content and increased dwell time signals quality to search engines.</p>
-                </div>
-                <div className="p-6 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow">
-                    <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-xl flex items-center justify-center mb-4">
-                        <Layout size={24} />
-                    </div>
-                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Fully Responsive</h3>
-                    <p className="text-slate-600 dark:text-slate-400 text-sm">Looks perfect on desktop, tablet, and mobile devices automatically.</p>
-                </div>
-            </section>
+            <div className="grid lg:grid-cols-12 gap-8 items-start">
+                {/* Configuration Sidebar */}
+                <aside className="lg:col-span-4 space-y-6">
+                    <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+                        <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                            <Layout size={20} className="text-blue-500" />
+                            Configuration
+                        </h2>
 
-            {/* Generator Section */}
-            <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl">
-                <div className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 p-6 md:p-8">
-                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Customize Your Widget</h2>
-
-                    <div className="flex flex-col md:flex-row gap-6">
-                        <div className="flex-1">
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Select Calculator</label>
-                            <select
-                                value={selectedCalculatorId}
-                                onChange={(e) => setSelectedCalculatorId(e.target.value)}
-                                className="w-full px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-                            >
-                                {calculatorRegistry.map((calc) => (
-                                    <option key={calc.id} value={calc.id}>
-                                        {calc.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <div className="w-full md:w-48">
-                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Theme</label>
-                            <div className="flex bg-slate-200 dark:bg-slate-800 p-1 rounded-xl">
-                                <button
-                                    onClick={() => setTheme('light')}
-                                    className={`flex-1 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${theme === 'light'
-                                        ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-white shadow-sm'
-                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                                        }`}
+                        <div className="space-y-6">
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Calculator</label>
+                                <select
+                                    value={selectedCalculatorId}
+                                    onChange={(e) => setSelectedCalculatorId(e.target.value)}
+                                    className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-700 focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white appearance-none cursor-pointer"
                                 >
-                                    Light
-                                </button>
-                                <button
-                                    onClick={() => setTheme('dark')}
-                                    className={`flex-1 px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${theme === 'dark'
-                                        ? 'bg-slate-800 dark:bg-slate-600 text-white shadow-sm'
-                                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-                                        }`}
-                                >
-                                    Dark
-                                </button>
+                                    {calculatorRegistry.sort((a, b) => a.name.localeCompare(b.name)).map((calc) => (
+                                        <option key={calc.id} value={calc.id}>
+                                            {calc.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">Theme</label>
+                                <div className="grid grid-cols-2 gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-2xl">
+                                    <button
+                                        onClick={() => setTheme('light')}
+                                        className={cn(
+                                            "py-2 rounded-xl text-sm font-bold transition-all",
+                                            theme === 'light' ? "bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+                                        )}
+                                    >
+                                        Light
+                                    </button>
+                                    <button
+                                        onClick={() => setTheme('dark')}
+                                        className={cn(
+                                            "py-2 rounded-xl text-sm font-bold transition-all",
+                                            theme === 'dark' ? "bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
+                                        )}
+                                    >
+                                        Dark
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div className="grid lg:grid-cols-2">
-                    {/* Preview Area */}
-                    <div className={`p-6 md:p-8 border-r border-slate-200 transition-colors duration-300 ${theme === 'dark' ? 'bg-slate-950' : 'bg-slate-50'
-                        }`}>
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className={`text-sm font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
-                                }`}>Live Preview</h3>
-                            <span className={`text-xs ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
-                                }`}>Actual size may vary on your site</span>
-                        </div>
-
-                        <div className={`rounded-2xl shadow-sm border p-4 md:p-6 overflow-hidden transition-colors duration-300 ${theme === 'dark'
-                            ? 'bg-slate-900 border-slate-800 text-white'
-                            : 'bg-white border-slate-100'
-                            }`}>
-                            <div className={theme === 'dark' ? 'dark' : ''}>
-                                <React.Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400">Loading calculator...</div>}>
-                                    <SelectedComponent />
-                                </React.Suspense>
-                            </div>
-                            <div className="mt-3 text-right">
-                                <a
-                                    href="https://calcsuite.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`text-xs font-medium hover:underline ${theme === 'dark' ? 'text-slate-600 hover:text-slate-400' : 'text-slate-400 hover:text-slate-600'}`}
-                                >
-                                    Powered by CalcSuite
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Code Area */}
-                    <div className="p-6 md:p-8 bg-slate-900 text-slate-300">
-                        <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Embed Code</h3>
+                        <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
                             <button
                                 onClick={handleCopy}
-                                className="flex items-center gap-2 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold shadow-lg shadow-blue-500/25 transition-all transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-3"
                             >
-                                <Copy size={14} />
-                                {copied ? 'Copied!' : 'Copy to Clipboard'}
+                                {copied ? <Check size={20} /> : <Copy size={20} />}
+                                {copied ? 'Snippet Copied!' : 'Get Embed Code'}
                             </button>
                         </div>
+                    </div>
 
-                        <div className="relative group">
-                            <pre className="bg-slate-950 rounded-xl p-6 overflow-x-auto text-sm font-mono leading-relaxed border border-slate-800">
-                                <code>
-                                    <span className="text-slate-500">&lt;!-- Place this where you want the widget to appear --&gt;</span>
-                                    {'\n'}
-                                    <span className="text-pink-400">&lt;div</span> <span className="text-blue-400">class</span>=<span className="text-green-400">"calcsuite-widget"</span> <span className="text-blue-400">data-type</span>=<span className="text-green-400">"{selectedCalculatorId}"</span> <span className="text-blue-400">data-theme</span>=<span className="text-green-400">"{theme}"</span><span className="text-pink-400">&gt;&lt;/div&gt;</span>
-                                    {'\n\n'}
-                                    <span className="text-slate-500">&lt;!-- Place this at the end of your body tag --&gt;</span>
-                                    {'\n'}
-                                    <span className="text-pink-400">&lt;script</span> <span className="text-blue-400">async</span> <span className="text-blue-400">src</span>=<span className="text-green-400">"https://calcsuite.com/widget.js"</span><span className="text-pink-400">&gt;&lt;/script&gt;</span>
-                                </code>
-                            </pre>
-                            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button
-                                    onClick={handleCopy}
-                                    className="p-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 transition-colors"
-                                    title="Copy code"
-                                >
-                                    {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
-                                </button>
+                    <div className="bg-blue-600 text-white p-4 sm:p-6 rounded-3xl shadow-xl shadow-blue-500/20">
+                        <h4 className="font-bold flex items-center gap-2 mb-3 text-sm sm:text-base">
+                            <Info size={18} />
+                            Pro Tip
+                        </h4>
+                        <p className="text-[13px] sm:text-sm text-blue-50 leading-relaxed">
+                            Place the `&lt;div&gt;` wherever you want the widget to appear. The script can be anywhere, but the end of the `&lt;body&gt;` is best for performance.
+                        </p>
+                    </div>
+                </aside>
+
+                {/* Main Preview Area */}
+                <main className="lg:col-span-8 space-y-6 min-w-0">
+                    <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl shadow-slate-200/50 dark:shadow-none flex flex-col h-full">
+                        {/* Live Preview Container */}
+                        <div className={cn(
+                            "flex-1 p-4 sm:p-6 md:p-12 transition-all duration-300 flex justify-center bg-slate-50/30 dark:bg-slate-950/30",
+                            theme === 'dark' ? 'dark' : ''
+                        )}>
+                            <div className="w-full transition-all duration-500 ease-in-out border border-slate-200 dark:border-slate-800 rounded-3xl bg-white dark:bg-slate-900 shadow-2xl overflow-hidden max-w-full">
+                                <div className="h-2 bg-slate-100 dark:bg-slate-800 w-full flex items-center gap-1.5 px-3">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700" />
+                                </div>
+                                <div className="p-4 sm:p-6 md:p-8">
+                                    <React.Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400">Loading calculator...</div>}>
+                                        <div className="calcsuite-widget-preview overflow-hidden">
+                                            <SelectedComponent />
+                                        </div>
+                                    </React.Suspense>
+                                    <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 flex items-center justify-center gap-2">
+                                            ⚡ Powered by <span className="text-blue-500">CalcSuite</span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="mt-8 space-y-4">
-                            <h4 className="font-semibold text-white">Integration Tips</h4>
-                            <ul className="space-y-3 text-sm">
-                                <li className="flex gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
-                                    <p>The widget is isolated in a Shadow DOM, so it won't inherit or break your site's CSS.</p>
-                                </li>
-                                <li className="flex gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
-                                    <p>You can adjust the width by placing the widget container inside a parent element with a defined width.</p>
-                                </li>
-                                <li className="flex gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 flex-shrink-0"></div>
-                                    <p>The height adjusts automatically based on the content.</p>
-                                </li>
-                            </ul>
+                        {/* Code Implementation (Nerdy Section) */}
+                        <div className="bg-slate-900 border-t border-slate-800 overflow-hidden">
+                            <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
+                                <h3 className="text-xs font-black uppercase tracking-widest text-white/40 flex items-center gap-2">
+                                    <CodeIcon size={14} />
+                                    Implementation
+                                </h3>
+                                <div className="flex gap-1">
+                                    <div className="w-2 h-2 rounded-full bg-red-500/20" />
+                                    <div className="w-2 h-2 rounded-full bg-yellow-500/20" />
+                                    <div className="w-2 h-2 rounded-full bg-green-500/20" />
+                                </div>
+                            </div>
+                            <div className="p-4 sm:p-6 overflow-hidden">
+                                <pre className="font-mono text-[12px] sm:text-[13px] leading-relaxed overflow-x-auto selection:bg-blue-500/30">
+                                    <code className="block min-w-max">
+                                        <span className="text-slate-500 opacity-50 block mb-2">// 1. The container element</span>
+                                        <div className="bg-white/5 p-3 rounded-xl mb-4 text-blue-400 whitespace-nowrap overflow-x-auto">
+                                            <span className="text-pink-400">&lt;div</span>{' '}
+                                            <span className="text-green-400">class</span>="calcsuite-widget"{' '}
+                                            <span className="text-green-400">data-type</span>="{selectedCalculatorId}"{' '}
+                                            <span className="text-green-400">data-theme</span>="{theme}"<span className="text-pink-400">&gt;&lt;/div&gt;</span>
+                                        </div>
+
+                                        <span className="text-slate-500 opacity-50 block mb-2">// 2. The core runtime library</span>
+                                        <div className="bg-white/5 p-3 rounded-xl text-blue-400 whitespace-nowrap overflow-x-auto">
+                                            <span className="text-pink-400">&lt;script</span>{' '}
+                                            <span className="text-green-400">async</span>{' '}
+                                            <span className="text-green-400">src</span>="https://calcsuite.com/widget.js"<span className="text-pink-400">&gt;&lt;/script&gt;</span>
+                                        </div>
+                                    </code>
+                                </pre>
+                            </div>
                         </div>
                     </div>
+                </main>
+            </div>
+
+            {/* Features Detail */}
+            <section className="grid sm:grid-cols-3 gap-6 pt-12">
+                <div className="text-center p-4">
+                    <div className="inline-flex p-3 rounded-2xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 mb-4">
+                        <Globe size={20} />
+                    </div>
+                    <h4 className="font-bold text-slate-900 dark:text-white mb-2 text-sm sm:text-base">Zero-Leak CSS</h4>
+                    <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Runs in Shadow DOM. Your site's styles won't break the calculator.</p>
                 </div>
-            </section >
-        </div >
+                <div className="text-center p-4">
+                    <div className="inline-flex p-3 rounded-2xl bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 mb-4">
+                        <DollarSign size={20} />
+                    </div>
+                    <h4 className="font-bold text-slate-900 dark:text-white mb-2 text-sm sm:text-base">SEO Dominance</h4>
+                    <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Interactive content improves your search rankings and dwell time.</p>
+                </div>
+                <div className="text-center p-4">
+                    <div className="inline-flex p-3 rounded-2xl bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 mb-4">
+                        <Smartphone size={20} />
+                    </div>
+                    <h4 className="font-bold text-slate-900 dark:text-white mb-2 text-sm sm:text-base">Auto-Responsive</h4>
+                    <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 leading-relaxed">Adapts to any width perfectly for a premium mobile experience.</p>
+                </div>
+            </section>
+        </div>
     );
 }
