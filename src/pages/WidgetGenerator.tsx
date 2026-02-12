@@ -1,8 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import { Helmet } from 'react-helmet-async';
 import { Check, Copy, Zap, Globe, DollarSign, Layout, Info, Smartphone, Code as CodeIcon } from 'lucide-react';
 import { cn } from '../utils/cn';
+
+function IsolatedPreview({ children, theme }: { children: React.ReactNode, theme: 'light' | 'dark' }) {
+    const [contentRef, setContentRef] = useState<HTMLIFrameElement | null>(null);
+    const mountNode = contentRef?.contentWindow?.document?.body;
+
+    useEffect(() => {
+        if (!contentRef) return;
+        const win = contentRef.contentWindow;
+        if (!win) return;
+        const doc = win.document;
+        const head = doc.head;
+        const root = doc.documentElement;
+
+        // Reset and sync styles from parent
+        head.innerHTML = '';
+        document.head.querySelectorAll('style, link[rel="stylesheet"]').forEach((style) => {
+            head.appendChild(style.cloneNode(true));
+        });
+
+        // Set theme class on the iframe's html root
+        root.classList.remove('light', 'dark');
+        root.classList.add(theme);
+
+        // Styling for the iframe body
+        doc.body.style.margin = '0';
+        doc.body.style.backgroundColor = 'transparent';
+        doc.body.className = 'overflow-hidden';
+
+        // Auto-resize iframe
+        const resizeObserver = new ResizeObserver(() => {
+            if (contentRef) {
+                contentRef.style.height = `${doc.body.scrollHeight}px`;
+            }
+        });
+
+        resizeObserver.observe(doc.body);
+        return () => resizeObserver.disconnect();
+    }, [contentRef, theme]);
+
+    return (
+        <iframe
+            title="Preview"
+            ref={setContentRef}
+            className="w-full border-0 bg-transparent transition-all duration-300"
+            style={{ height: 'auto', minHeight: '300px' }}
+        >
+            {mountNode && createPortal(children, mountNode)}
+        </iframe>
+    );
+}
 
 export function WidgetGenerator() {
     const [selectedCalculatorId, setSelectedCalculatorId] = useState(calculatorRegistry[0].id);
@@ -118,10 +169,7 @@ export function WidgetGenerator() {
                 <main className="lg:col-span-8 space-y-6 min-w-0">
                     <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-xl shadow-slate-200/50 dark:shadow-none flex flex-col h-full">
                         {/* Live Preview Container */}
-                        <div className={cn(
-                            "flex-1 p-4 sm:p-6 md:p-12 transition-all duration-300 flex justify-center bg-slate-50/30 dark:bg-slate-950/30",
-                            theme === 'dark' ? 'dark' : ''
-                        )}>
+                        <div className="flex-1 p-4 sm:p-6 md:p-12 transition-all duration-300 flex justify-center bg-slate-50/30 dark:bg-slate-950/30">
                             <div className="w-full transition-all duration-500 ease-in-out border border-slate-200 dark:border-slate-800 rounded-3xl bg-white dark:bg-slate-900 shadow-2xl overflow-hidden max-w-full">
                                 <div className="h-2 bg-slate-100 dark:bg-slate-800 w-full flex items-center gap-1.5 px-3">
                                     <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700" />
@@ -131,7 +179,9 @@ export function WidgetGenerator() {
                                 <div className="p-4 sm:p-6 md:p-8">
                                     <React.Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400">Loading calculator...</div>}>
                                         <div className="calcsuite-widget-preview overflow-hidden">
-                                            <SelectedComponent />
+                                            <IsolatedPreview theme={theme}>
+                                                <SelectedComponent />
+                                            </IsolatedPreview>
                                         </div>
                                     </React.Suspense>
                                     <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
