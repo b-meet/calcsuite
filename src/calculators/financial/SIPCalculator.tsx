@@ -3,18 +3,24 @@ import { useState } from 'react';
 import { DollarSign, TrendingUp } from 'lucide-react';
 
 export default function SIPCalculator() {
-    const [monthlyInvestment, setMonthlyInvestment] = useState(5000);
-    const [rate, setRate] = useState(12);
-    const [years, setYears] = useState(10);
+    const [monthlyInvestment, setMonthlyInvestment] = useState<number | ''>(5000);
+    const [rate, setRate] = useState<number | ''>(12);
+    const [years, setYears] = useState<number | ''>(10);
     const [result, setResult] = useState<{ invested: string; returns: string; total: string } | null>(null);
 
     const calculateSIP = () => {
-        const i = rate / 100 / 12;
-        const n = years * 12;
+        const investment = Number(monthlyInvestment);
+        const r = Number(rate);
+        const t = Number(years);
+
+        if (!investment || !r || !t) return;
+
+        const i = r / 100 / 12;
+        const n = t * 12;
 
         // SIP Formula: P * [ (1+i)^n - 1 ] * (1+i) / i
-        const futureValue = monthlyInvestment * (Math.pow(1 + i, n) - 1) * (1 + i) / i;
-        const totalInvested = monthlyInvestment * n;
+        const futureValue = investment * (Math.pow(1 + i, n) - 1) * (1 + i) / i;
+        const totalInvested = investment * n;
         const estReturns = futureValue - totalInvested;
 
         setResult({
@@ -34,7 +40,7 @@ export default function SIPCalculator() {
                         <input
                             type="number"
                             value={monthlyInvestment}
-                            onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
+                            onChange={(e) => setMonthlyInvestment(e.target.value === '' ? '' : Number(e.target.value))}
                             className="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                         />
                     </div>
@@ -46,7 +52,7 @@ export default function SIPCalculator() {
                         <input
                             type="number"
                             value={rate}
-                            onChange={(e) => setRate(Number(e.target.value))}
+                            onChange={(e) => setRate(e.target.value === '' ? '' : Number(e.target.value))}
                             className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                         />
                     </div>
@@ -55,7 +61,7 @@ export default function SIPCalculator() {
                         <input
                             type="number"
                             value={years}
-                            onChange={(e) => setYears(Number(e.target.value))}
+                            onChange={(e) => setYears(e.target.value === '' ? '' : Number(e.target.value))}
                             className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                         />
                     </div>

@@ -436,7 +436,6 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Result", text: "See your estimated monthly payment instantly." }
             ]
         },
-        popular: true,
     },
     {
         id: 'investment',
@@ -481,7 +480,6 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Projection", text: "See how your money grows over 10, 20, or 30 years." }
             ]
         },
-        popular: true,
     },
     {
         id: 'retirement',
@@ -526,7 +524,6 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Result", text: "View your projected corpus and monthly income." }
             ]
         },
-        popular: true,
     },
     {
         id: 'salary',
@@ -572,7 +569,16 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: Activity,
         component: BMICalculator,
         content: BMICalculatorContent,
-        longDescription: "BMI (Body Mass Index) is a widely used screening tool for weight categories. This calculator provides a comprehensive assessment of your body weight relative to your height, helping you understand if you fall into the underweight, healthy weight, overweight, or obese range.",
+        longDescription: "BMI (Body Mass Index) is a key health metric used by professionals worldwide. This tool calculates your BMI based on height and weight, categorizing results according to WHO standards (Underweight, Normal, Overweight, Obese). It supports both Metric (kg/cm) and Imperial (lbs/in) units for your convenience.",
+        keywords: [
+            'bmi calculator',
+            'body mass index',
+            'bmi chart',
+            'bmi for men',
+            'bmi for women',
+            'ideal weight calculator',
+            'obesity calculator'
+        ],
         features: [
             "Metric & Imperial Units",
             "Weight category screening",
@@ -581,16 +587,16 @@ export const calculatorRegistry: CalculatorDef[] = [
         ],
         faqs: [
             {
-                question: "Is BMI accurate?",
-                answer: "BMI is a reliable screening tool for most adults, but it does not measure body fat directly."
+                question: "What is a healthy BMI range?",
+                answer: "A BMI between 18.5 and 24.9 is generally considered healthy for adults."
             },
             {
-                question: "Can BMI predict health problems?",
-                answer: "BMI indicates risk levels, not specific health conditions. It should be used alongside other health indicators."
+                question: "Is BMI accurate for athletes?",
+                answer: "BMI may not be accurate for athletes or bodybuilders as it does not distinguish between muscle and fat mass."
             },
             {
                 question: "Does BMI change with age?",
-                answer: "BMI categories remain the same for adults, but body composition may change with age."
+                answer: "BMI categories remain the same for adults, but body composition often changes with age."
             },
             {
                 question: "Is this BMI calculator free?",
@@ -598,13 +604,12 @@ export const calculatorRegistry: CalculatorDef[] = [
             }
         ],
         howTo: {
-            name: "How to Use This BMI Calculator",
-            description: "Check your BMI in seconds.",
+            name: "How to Calculate Your BMI",
+            description: "Check your Body Mass Index in 3 steps.",
             steps: [
-                { name: "Choose Unit", text: "Select Metric (kg/cm) or Imperial (lbs/in)." },
-                { name: "Enter Weight", text: "Input your current weight." },
-                { name: "Enter Height", text: "Input your height accurately." },
-                { name: "View Result", text: "See your BMI value and weight category instantly." }
+                { name: "Choose Unit", text: "Select Metric (kg/cm) or Imperial (lbs/in) units." },
+                { name: "Enter Details", text: "Input your current weight and height accurately." },
+                { name: "See Result", text: "View your BMI score and corresponding weight category." }
             ]
         },
         popular: true,
@@ -652,7 +657,6 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Result", text: "See your daily calorie target instantly." }
             ]
         },
-        popular: true,
     },
     {
         id: 'body-fat',
@@ -696,7 +700,6 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Calculate", text: "See your body fat percentage instantly." }
             ]
         },
-        popular: true,
     },
     {
         id: 'bmr',
@@ -814,7 +817,8 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: Calendar,
         component: AgeCalculator,
         content: AgeCalculatorContent,
-        longDescription: "Curious about your exact age? This calculator goes beyond just years to calculate the precise number of months, days, hours, and even minutes you've been alive. It's also perfect for calculating the age difference between two people.",
+        longDescription: "Time flies! Use this Age Calculator to find out exactly how old you are in years, months, weeks, days, and even seconds. It’s perfect for tracking milestones, finding out the day of the week you were born, or calculating the precise age difference between two dates.",
+        keywords: ['age in days', 'chronological age calculator', 'date of birth calculator', 'how old am i', 'birthday calculator'],
         features: [
             "Exact age calculation",
             "Next birthday countdown",
@@ -823,16 +827,20 @@ export const calculatorRegistry: CalculatorDef[] = [
         ],
         faqs: [
             {
-                question: "Is this age calculator accurate?",
-                answer: "Yes. It accounts for leap years and exact date differences."
+                question: "How does it calculate age so precisely?",
+                answer: "It uses the exact number of days between your birth date and today, accounting for every leap year."
             },
             {
-                question: "Can I calculate age between two dates?",
-                answer: "Yes. It works for any date range."
+                question: "Can I use it to find my next birthday?",
+                answer: "Yes. It shows a countdown to your next birthday in days."
             },
             {
-                question: "Does it work for future dates?",
-                answer: "Yes. You can calculate time remaining until a future event."
+                question: "What is chronological age?",
+                answer: "Chronological age is the amount of time that has passed from your birth to the given date."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes. Completely free to use."
             }
         ],
         howTo: {
@@ -1108,211 +1116,6 @@ export const calculatorRegistry: CalculatorDef[] = [
         }
     },
     {
-        id: 'sip',
-        name: 'SIP Calculator',
-        description: 'Best SIP Calculator 2025. Estimate mutual fund returns with our Systematic Investment Plan calculator. Check monthly investment growth and maturity value.',
-        category: 'financial',
-        icon: TrendingUp,
-        component: SIPCalculator,
-        content: SIPCalculatorContent,
-        longDescription: "Achieve your financial dreams with disciplined investing. A Systematic Investment Plan (SIP) allows you to invest small amounts regularly in mutual funds. Use this calculator to visualize how small monthly contributions can grow into a significant corpus over time.",
-        features: [
-            "Monthly investment projection",
-            "Expected return estimation",
-            "Inflation-adjusted wealth creation",
-            "Visual compounding growth chart"
-        ],
-        faqs: [
-            {
-                question: "Is this SIP calculator accurate?",
-                answer: "It provides realistic estimates based on standard compounding assumptions but actual returns may vary."
-            },
-            {
-                question: "Can SIP returns change over time?",
-                answer: "Yes. Mutual fund returns fluctuate with market conditions."
-            },
-            {
-                question: "Is SIP safe?",
-                answer: "SIP is a method of investing, not an investment product. Risk depends on the mutual fund chosen."
-            },
-            {
-                question: "Is this calculator free to use?",
-                answer: "Yes. It is completely free with no limits."
-            }
-        ],
-        howTo: {
-            name: "How to Use SIP Calculator",
-            description: "Follow these simple steps to estimate your investment returns.",
-            steps: [
-                { name: "Enter Investment", text: "Input the amount you plan to invest every month." },
-                { name: "Set Returns", text: "Enter the expected annual rate of return (e.g., 12% for equity funds)." },
-                { name: "Choose Tenure", text: "Select the number of years you want to stay invested." },
-                { name: "View Corpus", text: "See your total invested amount and estimated future value instantly." }
-            ]
-        },
-        popular: true,
-    },
-    {
-        id: 'india-tax',
-        name: 'India Income Tax Calculator',
-        description: 'Calculate your Indian Income Tax for FY 2025-26. Compare New vs Old Regime tax liability instantly.',
-        category: 'india',
-        icon: DollarSign,
-        component: IndiaTaxCalculator,
-        content: IndiaTaxCalculatorContent,
-        longDescription: "Navigate the Indian Income Tax maze. Updated for FY 2025-26, this calculator compares your tax liability under the Old Regime vs. the New Regime, helping you decide which option saves you more money.",
-        features: [
-            "FY 2025-26 Tax Slabs",
-            "New vs Old Regime comparison",
-            "Standard Deduction support",
-            "Surcharge & Cess calculation"
-        ],
-        keywords: ['india tax calculator', 'income tax calculator india', 'new tax regime calculator', 'old tax regime calculator'],
-        faqs: [
-            {
-                question: "Is income tax zero up to ₹12 lakh?",
-                answer: "Yes, under the New Tax Regime due to rebate."
-            },
-            {
-                question: "Can I switch between regimes?",
-                answer: "Yes, salaried individuals can choose every year."
-            },
-            {
-                question: "Does this include cess?",
-                answer: "Yes. 4% Health & Education Cess is included."
-            }
-        ],
-        howTo: {
-            name: "How to Calculate Income Tax",
-            description: "Find your tax liability.",
-            steps: [
-                { name: "Gross Income", text: "Enter your total annual income." },
-                { name: "Deductions", text: "Enter eligible deductions (80C, 80D, etc.) for Old Regime." },
-                { name: "Compare", text: "View tax liability under both regimes side-by-side." }
-            ]
-        },
-    },
-    {
-        id: 'india-salary',
-        name: 'Salary Calculator (India)',
-        description: 'Calculate your in-hand salary from CTC. Breakdown of Basic, HRA, Special Allowance, and PF deductions.',
-        category: 'india',
-        icon: Briefcase,
-        component: IndiaSalaryCalculator,
-        content: IndiaSalaryCalculatorContent,
-        longDescription: "Understand your payslip better. Convert your Cost to Company (CTC) into monthly in-hand salary by accounting for common Indian salary components like HRA, LTA, and Professional Tax.",
-        features: [
-            "CTC to In-Hand conversion",
-            "PF & Prof. Tax calculation",
-            "Detailed salary slip view",
-            "Bonus & deductions impact"
-        ],
-        faqs: [
-            {
-                question: "Is PF deducted from CTC?",
-                answer: "Yes. Employer PF is in CTC but Employee PF is deducted from salary."
-            },
-            {
-                question: "Is bonus included in monthly pay?",
-                answer: "No. Bonuses are usually variable and paid annually."
-            },
-            {
-                question: "Is this calculator free?",
-                answer: "Yes. Completely free to use."
-            }
-        ],
-        howTo: {
-            name: "How to Calculate In-Hand Salary",
-            description: "From CTC to Take-Home.",
-            steps: [
-                { name: "Annual CTC", text: "Enter your total Cost to Company." },
-                { name: "Bonus/Variables", text: "Add any annual bonus amounts (if any)." },
-                { name: "Calculated", text: "See your estimated monthly bank credit." }
-            ]
-        },
-    },
-    {
-        id: 'india-gst',
-        name: 'GST Calculator (India)',
-        description: 'Calculate GST amounts instantly. Find GST inclusive and exclusive prices for 5%, 12%, 18%, and 28% tax slabs.',
-        category: 'india',
-        icon: Percent,
-        component: IndiaGSTCalculator,
-        content: IndiaGSTCalculatorContent,
-        longDescription: "Simplify your tax calculations. Whether you're a business owner billing clients or a consumer checking a price, this tool calculates Goods and Services Tax (GST) for all standard Indian tax slabs. It is the perfect online GST calculator India for quick and accurate results.",
-        keywords: ['gst calculator in india', 'online gst calculator india', 'indian gst tax calculator', 'gst tax calculator', 'india calculator'],
-        features: [
-            "Inclusive & Exclusive modes",
-            "5%, 12%, 18%, 28% slabs",
-            "Instant tax breakdown",
-            "Billing tool"
-        ],
-        faqs: [
-            {
-                question: "Is GST inclusive meaning?",
-                answer: "Price already includes tax."
-            },
-            {
-                question: "Is GST exclusive meaning?",
-                answer: "Tax is added on top of price."
-            },
-            {
-                question: "Current GST rates?",
-                answer: "5% (Essentials), 12%, 18% (Services), 28% (Luxury)."
-            }
-        ],
-        howTo: {
-            name: "How to Calculate GST",
-            description: "Find tax amounts in seconds.",
-            steps: [
-                { name: "Amount", text: "Enter the product price." },
-                { name: "Rate", text: "Select applicable GST slab." },
-                { name: "Type", text: "Choose Inclusive or Exclusive calculation." }
-            ]
-        },
-    },
-    {
-        id: 'india-emi',
-        name: 'EMI Calculator (India)',
-        description: 'Calculate Home Loan, Car Loan & Personal Loan EMI. Best online Equated Monthly Installment calculator with amortization schedule and interest repayment.',
-        category: 'india',
-        icon: Landmark,
-        component: IndiaEMICalculator,
-        content: IndiaEMICalculatorContent,
-        longDescription: "Planning to take a loan? Whether it's for a home, car, or personal use, knowing your EMI (Equated Monthly Installment) is crucial. This calculator gives you an instant breakdown of your monthly outflow and total interest payable.",
-        features: [
-            "Home, Car, Personal Loan",
-            "Reducing Balance Method",
-            "Amortization schedule",
-            "Total interest analysis"
-        ],
-        faqs: [
-            {
-                question: "Is this EMI calculator accurate for Indian banks?",
-                answer: "Yes. It follows standard reducing balance EMI formulas used by Indian banks and NBFCs."
-            },
-            {
-                question: "How does loan tenure affect EMI?",
-                answer: "A longer tenure reduces your monthly EMI amount but increases the total interest you pay over the life of the loan."
-            },
-            {
-                question: "Can I use it for any loan type?",
-                answer: "Yes, it works for Home Loans, Car Loans, Personal Loans, and Education Loans."
-            }
-        ],
-        howTo: {
-            name: "How to Calculate Loan EMI",
-            description: "Calculate your monthly loan repayment in 3 easy steps.",
-            steps: [
-                { name: "Loan Amount", text: "Enter the total principal amount you wish to borrow." },
-                { name: "Interest Rate", text: "Input the annual interest rate offered by your bank." },
-                { name: "Loan Tenure", text: "Select the duration of the loan in years." },
-                { name: "Analyze", text: "Check the calculated EMI and total interest breakdown below." }
-            ]
-        },
-        popular: true,
-    },
-    {
         id: 'india-fd',
         name: 'FD Calculator (India)',
         description: 'Calculate maturity amount and interest for Fixed Deposits (FD). Supports quarterly, monthly, and yearly compounding with detailed year-wise breakdown.',
@@ -1528,22 +1331,45 @@ export const calculatorRegistry: CalculatorDef[] = [
         icon: TrendingUp,
         component: CompoundInterestCalculator,
         content: CompoundInterestCalculatorContent,
-        longDescription: "See the power of compounding. Calculate how your investments grow over time with interest on interest. This tool lets you compare different compounding frequencies (daily, monthly, yearly) to see the true power of time.",
-        features: ["Frequency settings", "Additional contributions", "Growth chart"],
+        longDescription: "Compound interest is often called the '8th wonder of the world'. Unlike simple interest, where you only earn on your principal, compound interest allows you to earn interest on your interest. This snowball effect can turn small, regular investments into significant wealth over time. Our calculator helps you visualize this growth with customizable frequency settings (daily, monthly, yearly) and additional contribution options.",
+        keywords: [
+            'compound interest calculator',
+            'compound interest formula',
+            'daily compounding',
+            'investment growth calculator',
+            'interest on interest',
+            'savings projector',
+            'future value calculator'
+        ],
+        features: ["Frequency settings (Daily to Yearly)", "Monthly/Yearly Contributions", "Interactive Growth Chart", "Detailed Breakdown Table"],
         faqs: [
             {
-                question: "What is Compound Interest?",
-                answer: "Compound interest is the \"interest on interest.\" It is the result of reinvesting interest, calculating interest on both the initial principal and the accumulated interest from previous periods."
+                question: "What is the Rule of 72?",
+                answer: "The Rule of 72 is a quick way to estimate how long it takes for an investment to double. Divide 72 by your annual interest rate to get the approximate years."
             },
             {
-                question: "How does compounding frequency affect growth?",
-                answer: "The frequency of compounding (daily, monthly, quarterly, yearly) significantly impacts the final amount. More frequent compounding leads to faster growth as interest is added to the principal more often."
+                question: "What is the difference between Simple and Compound interest?",
+                answer: "Simple interest is calculated only on the principal amount. Compound interest includes the principal plus accumulated interest, leading to faster growth."
             },
             {
-                question: "What is the compound interest formula?",
-                answer: "The formula is A = P(1 + r/n)^(nt), where A is the future value, P is the principal investment, r is the annual interest rate (decimal), n is the number of times interest is compounded per year, and t is the number of years."
+                question: "How does compounding frequency affect my returns?",
+                answer: "The more frequently interest is compounded (e.g., daily vs. yearly), the more interest you earn. Daily compounding yields the highest returns."
+            },
+            {
+                question: "What is the compound interest formula used?",
+                answer: "We use the standard formula: A = P(1 + r/n)^(nt), adjusting for regular additional contributions."
             }
-        ]
+        ],
+        howTo: {
+            name: "How to Calculate Compound Interest",
+            description: "Project your investment growth in 3 easy steps.",
+            steps: [
+                { name: "Initial Investment", text: "Enter your starting principal amount." },
+                { name: "Interest Rate", text: "Input the expected annual interest rate." },
+                { name: "Time & Frequency", text: "Set the investment duration and how often interest compounds (e.g., Monthly)." },
+                { name: "Regular Contributions", text: "Optional: Add monthly or yearly deposits to accelerate growth." }
+            ]
+        }
     },
     {
         id: 'simple-interest',
@@ -1552,8 +1378,33 @@ export const calculatorRegistry: CalculatorDef[] = [
         category: 'financial',
         icon: Percent,
         component: SimpleInterestCalculator,
-        longDescription: "Back to basics. Simple interest is straightforward but essential for understanding loans and basic savings. Calculate the interest earned or paid without the effects of compounding.",
+        longDescription: "Back to basics. Simple interest is straightforward but essential for understanding loans and basic savings. Unlike compound interest, simple interest is calculated only on the initial principal amount. This tool helps you quickly determine the interest on loans or the return on non-compounding investments.",
+        keywords: ['simple interest formula', 'interest rate calculator', 'SI calculator', 'calculate interest', 'loan interest'],
         features: ["Principal, Rate, Time inputs", "Total interest output", "Comparison with compound interest"],
+        faqs: [
+            {
+                question: "What is the Simple Interest formula?",
+                answer: "The formula is SI = (P × R × T) / 100, where P is Principal, R is Rate of Interest, and T is Time period."
+            },
+            {
+                question: "How is Simple Interest different from Compound Interest?",
+                answer: "Simple interest is calculated only on the principal amount, while compound interest is calculated on the principal plus accumulated interest."
+            },
+            {
+                question: "Is this calculator free?",
+                answer: "Yes, it is completely free to use."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate Simple Interest",
+            description: "Calculate your interest in 3 steps.",
+            steps: [
+                { name: "Principal", text: "Enter the loan or investment amount." },
+                { name: "Rate", text: "Input the annual interest rate." },
+                { name: "Time", text: "Enter the time duration in years." },
+                { name: "Calculate", text: "See the total interest and final amount instantly." }
+            ]
+        },
     },
     {
         id: 'percentage-change',
@@ -1638,6 +1489,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             ]
         }
     },
+
 ];
 
 export const categories: { id: CalculatorCategory; name: string; icon: any }[] = [
@@ -1646,4 +1498,283 @@ export const categories: { id: CalculatorCategory; name: string; icon: any }[] =
     { id: 'health', name: 'Health & Fitness', icon: Activity },
     { id: 'india', name: 'India Specific', icon: Landmark },
     { id: 'other', name: 'Other Tools', icon: MoreHorizontal },
+    {
+        id: 'india-gst',
+        name: 'GST Calculator India (2025)',
+        description: 'Best Online GST Calculator for India. Calculate inclusive and exclusive GST for 5%, 12%, 18%, and 28% tax slabs instantly.',
+        category: 'india',
+        icon: Percent,
+        component: IndiaGSTCalculator,
+        content: IndiaGSTCalculatorContent,
+        longDescription: "The most accurate and easy-to-use GST Calculator for Indian businesses, freelancers, and consumers. Whether you are generating an invoice or checking the MRP of a product, our tool helps you calculate Goods and Services Tax (GST) in split seconds. It supports all standard Indian GST rates: 5% (Essentials), 12% (Standard), 18% (Services/Most Goods), and 28% (Luxury). You can easily switch between 'Tax Exclusive' (Add GST to Base Price) and 'Tax Inclusive' (Remove GST from MRP) modes. Understand your IGST, CGST, and SGST bifurcations for intra-state and inter-state transactions.",
+        keywords: [
+            'gst calculator india', 'online gst calculator', 'gst calculation formula', 
+            'reverse gst calculator', 'gst exclusive calculator', 'gst inclusive calculator',
+            'igst calculator', 'cgst sgst calculation', 'gst rates 2025',
+            'gst calculator for services', 'gst calculator for mobile', 'gst amount finder',
+            'calculate gst from total amount', 'gst tax calculator india', 'goods and services tax calculator',
+            'gst calculator monthly', 'quick gst calc', 'gst billing tool',
+            'karnataka gst', 'maharashtra gst', 'delhi gst', 'gujarat gst'
+        ],
+        features: [
+            "Reverse GST Calculation (Inclusive -> Base)",
+            "Forward GST Calculation (Base -> Inclusive)",
+            "Instant CGST / SGST / IGST Breakdown",
+            "Updated 2025 Tax Slabs (5%, 12%, 18%, 28%)",
+            "Copy Results with One Click",
+            "Mobile Responsive Design",
+            "Works Offline (PWA Ready)"
+        ],
+        educationalContent: [
+            {
+                title: "How GST is Calculated in India",
+                content: "GST is calculated as a percentage of the transaction value. The formula is: GST Amount = (Original Cost × GST Rate) / 100. For 'Inclusive' prices, the formula is: GST Amount = Total Price - (Total Price / (1 + GST Rate/100))."
+            },
+            {
+                title: "GST Tax Slabs 2025",
+                content: "0% (Exempt items like milk, bread), 5% (Essentials, spices), 12% (Processed food, phones), 18% (Most services, electronics), 28% (Luxury cars, tobacco)."
+            }
+        ],
+        faqs: [
+            {
+                question: "How do I calculate GST from total amount?",
+                answer: "Select the 'Inclusive' option in our calculator. Enter the total MRP and the tax rate. The tool will automatically reverse-calculate the base price and the tax component."
+            },
+            {
+                question: "What is the difference between CGST, SGST, and IGST?",
+                answer: "CGST (Central GST) and SGST (State GST) are levied on intra-state supplies (within the same state), split 50-50. IGST (Integrated GST) is levied on inter-state supplies (between two states) and goes to the Center."
+            },
+            {
+                question: "Is this GST calculator compatible with 2025 rates?",
+                answer: "Yes, our calculator is updated with the latest GST council tax slabs for the financial year 2025-26."
+            },
+            {
+                question: "Can I use this for billing?",
+                answer: "Absolutely. You can use the breakdown provided to draft accurate GST invoices."
+            },
+            {
+                question: "How to calculate 18% GST?",
+                answer: "Simply multiply your base amount by 0.18. For example, for ₹1000, 18% GST is ₹180. Total amount = ₹1180."
+            },
+            {
+                question: "Does it support custom rates?",
+                answer: "Currently, it supports standard slabs. For custom rates, you can pick the closest slab or use our Percentage Calculator."
+            }
+        ],
+        howTo: {
+            name: "How to Use the India GST Calculator",
+            description: "Step-by-step guide to accurate tax calculation.",
+            steps: [
+                { name: "Enter Price", text: "Input the Net Price (for Exclusive) or Total MRP (for Inclusive)." },
+                { name: "Select Tax Slab", text: "Choose the applicable GST rate (e.g., 18% for services)." },
+                { name: "Choose Mode", text: "Toggle between 'Exclusive' (Add Tax) or 'Inclusive' (Remove Tax)." },
+                { name: "View Breakdown", text: "Instantly see the Base Amount, Total Tax, and Final Invoice Value." }
+            ]
+        },
+        popular: true,
+    },
+    {
+        id: 'india-emi',
+        name: 'EMI Calculator India (Home, Car, Personal)',
+        description: 'Accurate EMI Calculator for Indian Loans. Calculate Home Loan EMI, Car Loan EMI, and Personal Loan EMI with Amortization Schedule.',
+        category: 'india',
+        icon: Landmark,
+        component: IndiaEMICalculator,
+        content: IndiaEMICalculatorContent,
+        longDescription: "Planning a loan? Our India EMI Calculator helps you calculate the exact Equated Monthly Installment (EMI) for Home Loans, Car Loans, Personal Loans, and Education Loans. It uses the standard Reducing Balance Method used by all major Indian banks (SBI, HDFC, ICICI, Axis, Bajaj Finserv). Get a detailed year-wise and month-wise amortization schedule to understand your principal repayment vs. interest payment journey.",
+        keywords: [
+            'emi calculator india', 'home loan emi calculator', 'car loan emi calculator', 
+            'personal loan emi calculator', 'loan calculator india', 'sbi home loan emi', 
+            'hdfc personal loan emi', 'icici car loan emi', 'education loan emi calculator',
+            'reducing balance emi calculator', 'flat rate vs reducing balance', 'loan amortization chart',
+            'monthly emi check', 'loan repayment schedule', 'bajaj finserv emi calculator',
+            'housing loan calculator', 'bike loan emi calculator'
+        ],
+        features: [
+            "Reducing Balance Method (Bank Standard)",
+            "Visual Amortization Chart (Principal vs Interest)",
+            "Yearly Repayment Schedule",
+            "Home, Car, Personal, Education Loan Support",
+            "Total Interest Payable Analysis"
+        ],
+        faqs: [
+            {
+                question: "How is EMI calculated in India?",
+                answer: "EMI = [P x R x (1+R)^N]/[(1+R)^N-1], where P is Principal, R is monthly interest rate, and N is tenure in months."
+            },
+            {
+                question: "Does this match bank calculations?",
+                answer: "Yes, we use the analytical formula used by all major Indian banks (SBI, HDFC, ICICI) for reducing balance loans."
+            },
+            {
+                question: "How can I reduce my EMI?",
+                answer: "You can reduce EMI by increasing the loan tenure (which increases total interest) or by making a higher down payment (reducing principal)."
+            },
+            {
+                question: "What is the difference between Flat Rate and Reducing Balance?",
+                answer: "Flat rate calculates interest on the full principal throughout the tenure. Reducing balance calculates interest only on the outstanding amount. Reducing balance is cheaper and standard for home loans."
+            },
+            {
+                question: "Does tenure affect total interest?",
+                answer: "Yes, significantly. A longer tenure lowers monthly EMI but drastically increases the total interest paid over the years."
+            }
+        ],
+        howTo: {
+            name: "How to Calculate Loan EMI",
+            description: "Estimate your monthly loan burden in seconds.",
+            steps: [
+                { name: "Loan Amount", text: "Enter the total amount you are borrowing." },
+                { name: "Interest Rate", text: "Input the annual interest rate offered by the bank." },
+                { name: "Tenure", text: "Select the repayment period in Years or Months." },
+                { name: "Analyze", text: "View your Monthly EMI and Total Interest cost instantly." }
+            ]
+        },
+        popular: true,
+    },
+    {
+        id: 'sip',
+        name: 'SIP Calculator (Systematic Investment Plan)',
+        description: 'Best SIP Calculator 2025. Estimate mutual fund returns, future value, and wealth creation via SIP investments.',
+        category: 'financial',
+        icon: TrendingUp,
+        component: SIPCalculator,
+        content: SIPCalculatorContent,
+        longDescription: "Wealth creation made simple. A Systematic Investment Plan (SIP) is one of the most disciplined ways to invest in Mutual Funds. Our SIP Calculator helps you visualize the power of compounding. By investing a small fixed amount monthly, you can build a massive corpus over 10, 15, or 20 years. Perfect for planning retirement, child's education, or buying a dream home.",
+        keywords: [
+            'sip calculator', 'mutual fund calculator', 'systematic investment plan', 
+            'sip return calculator', 'mutual fund returns', 'groww sip calculator', 
+            'zerodha sip calculator', 'etmoney sip calculator', 'monthly investment calculator', 
+            'sip growth chart', 'long term wealth creation', 'best sip plans',
+            'compounding calculator india', 'sip interest rate', 'investment planner'
+        ],
+        features: [
+            "Project Future Value of Monthly Investments",
+            "Inflation-Adjusted Returns Estimation",
+            "Visual Growth Chart (Invested vs Wealth Gained)",
+            "Compare Different Return Rates (12%, 15%, etc.)",
+            "Long-term Wealth Planning Tool"
+        ],
+        faqs: [
+            {
+                question: "What is a good SIP return rate?",
+                answer: "Equity mutual funds in India have historically delivered 12-15% annual returns over the long term (10+ years)."
+            },
+            {
+                question: "Can SIP make me a crorepati?",
+                answer: "Yes. Investing ₹15,000/month for 15 years at 15% return can create a corpus of over ₹1 Crore."
+            },
+            {
+                question: "Is SIP better than Lumpsum?",
+                answer: "SIP is better for volatile markets (Rupee Cost Averaging). Lumpsum is better when the market is at a low. SIP is generally safer for beginners."
+            },
+            {
+                question: "Can I increase my SIP amount?",
+                answer: "Yes, this is called a Step-up SIP. Increasing investment by 10% yearly can double your final corpus."
+            }
+        ],
+        howTo: {
+            name: "How to Use SIP Calculator",
+            description: "Plan your financial freedom.",
+            steps: [
+                { name: "Monthly Investment", text: "Enter the amount you can save and invest each month." },
+                { name: "Expected Return", text: "Input a conservative annual return rate (e.g., 12%)." },
+                { name: "Time Horizon", text: "Select for how many years you will continue investing." },
+                { name: "See Magic", text: "View your total corpus and the pure profit earned through compounding." }
+            ]
+        },
+        popular: true,
+    },
+    {
+        id: 'india-salary',
+        name: 'In-Hand Salary Calculator India',
+        description: 'Convert CTC to In-Hand (Take Home) Salary. Detailed breakdown of Basic, HRA, PF, Professional Tax, and Income Tax (TDS).',
+        category: 'india',
+        icon: Briefcase,
+        component: IndiaSalaryCalculator,
+        content: IndiaSalaryCalculatorContent,
+        longDescription: "Confused by your offer letter? Use our CTC to In-Hand Salary Calculator to understand your real monthly take-home pay. We break down your Cost to Company (CTC) into Basic Pay, HRA, Special Allowance, PF (Provident Fund) deduction, Professional Tax (PT), and estimated TDS. Updated for the latest 2025 tax regimes.",
+        keywords: [
+            'salary calculator india', 'ctc to inhand calculator', 'take home salary calculator', 
+            'salary breakdown', 'monthly salary calculator', 'pf calculator', 
+            'professional tax calculator', 'salary slip generator', 'ctc calculator',
+            'in hand salary from ctc', 'new tax regime salary', '7th pay commission calculator'
+        ],
+        features: [
+            "CTC to Monthly In-Hand conversion",
+            "PF (Employee & Employer) Calculation",
+            "Professional Tax (State-wise consideration)",
+            "HRA & Special Allowance Breakdown",
+            "Tax Regime Impact Analysis"
+        ],
+        faqs: [
+            {
+                question: "What is CTC?",
+                answer: "CTC (Cost to Company) is the total amount an employer spends on an employee, including direct salary, benefits, and various contributions like PF and Gratuity."
+            },
+            {
+                question: "Why is In-Hand less than CTC?",
+                answer: "CTC includes non-cash components (Gratuity, Insurance) and deductions (PF, PT, TDS) which are subtracted to get the bank credit amount."
+            },
+            {
+                question: "Is PF mandatory?",
+                answer: "Yes, for Basic Salary up to ₹15,000/month. Above that, it is optional but recommended for tax saving."
+            }
+        ],
+        howTo: {
+            name: "Check Your Take-Home Salary",
+            description: "Decode your payslip.",
+            steps: [
+                { name: "Enter CTC", text: "Input your annual Cost to Company." },
+                { name: "Variables", text: "Add any performance bonus or variable pay." },
+                { name: "Result", text: "See your estimated monthly bank credit instantly." }
+            ]
+        },
+    },
+    {
+        id: 'india-tax',
+        name: 'Income Tax Calculator India (FY 2025-26)',
+        description: 'Calculate Income Tax for FY 2025-26 (AY 2026-27). Compare Old vs New Tax Regime to find maximum tax savings.',
+        category: 'india',
+        icon: DollarSign,
+        component: IndiaTaxCalculator,
+        content: IndiaTaxCalculatorContent,
+        longDescription: "The most comprehensive Income Tax Calculator for Indian salaried and self-employed individuals. Updated with the latest Union Budget 2025 announcements. Compare your tax liability under the Old Tax Regime (with 80C, 80D deductions) vs the New Tax Regime (lower rates, fewer deductions). Find out which regime saves you more money instantly.",
+        keywords: [
+            'income tax calculator', 'tax calculator india', 'old vs new tax regime', 
+            'income tax slabs 2025', 'calculate income tax', 'tax planning india', 
+            '80c 80d calculator', 'tax saving calculator', 'tds calculator', 
+            'budget 2025 tax slabs', 'zero tax salary', 'income tax return'
+        ],
+        features: [
+            "New vs Old Regime Comparison",
+            "Standard Deduction Support",
+            "Surcharge & Health Cess Calculation",
+            "Rebate u/s 87A logic",
+            "Scenario Analysis for best savings"
+        ],
+        faqs: [
+            {
+                question: "Which tax regime is better for me?",
+                answer: "The New Regime is better for incomes up to ₹15 Lakhs if you have few deductions. The Old Regime is better if you claim HRA, 80C, 80D, and Home Loan interest."
+            },
+            {
+                question: "What is the tax-free limit?",
+                answer: "Under the New Regime, income up to ₹3 Lakhs is exempt, and rebate is available up to ₹7 Lakhs (meaning zero tax)."
+            },
+            {
+                question: "Can I switch regimes?",
+                answer: "Salaried employees can choose the regime every year when filing returns. Business owners can switch only once in a lifetime."
+            }
+        ],
+        howTo: {
+            name: "Calculate Your Income Tax",
+            description: "Plan your taxes in minutes.",
+            steps: [
+                { name: "Gross Income", text: "Enter income from Salary, Business, House Property, etc." },
+                { name: "Deductions", text: "Enter 80C, 80D, HRA amounts (for Old Regime)." },
+                { name: "Compare", text: "View tax liability side-by-side for both regimes." },
+                { name: "Save", text: "Choose the regime with lower tax outflow." }
+            ]
+        },
+    },
 ];

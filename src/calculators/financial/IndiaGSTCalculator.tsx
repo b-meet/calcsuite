@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Percent } from 'lucide-react';
 
 export default function IndiaGSTCalculator() {
-    const [amount, setAmount] = useState<number>(1000);
+    const [amount, setAmount] = useState<number | ''>(1000);
     const [gstRate, setGstRate] = useState<number>(18);
     const [type, setType] = useState<'exclusive' | 'inclusive'>('exclusive');
 
@@ -10,15 +10,16 @@ export default function IndiaGSTCalculator() {
         let gstAmount = 0;
         let totalAmount = 0;
         let originalAmount = 0;
+        const safeAmount = Number(amount);
 
         if (type === 'exclusive') {
-            gstAmount = (amount * gstRate) / 100;
-            totalAmount = amount + gstAmount;
-            originalAmount = amount;
+            gstAmount = (safeAmount * gstRate) / 100;
+            totalAmount = safeAmount + gstAmount;
+            originalAmount = safeAmount;
         } else {
-            gstAmount = amount - (amount * (100 / (100 + gstRate)));
-            totalAmount = amount;
-            originalAmount = amount - gstAmount;
+            gstAmount = safeAmount - (safeAmount * (100 / (100 + gstRate)));
+            totalAmount = safeAmount;
+            originalAmount = safeAmount - gstAmount;
         }
 
         return {
@@ -40,7 +41,7 @@ export default function IndiaGSTCalculator() {
                     <input
                         type="number"
                         value={amount}
-                        onChange={(e) => setAmount(Number(e.target.value))}
+                        onChange={(e) => setAmount(e.target.value === '' ? '' : Number(e.target.value))}
                         className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
                     />
                 </div>

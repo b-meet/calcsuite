@@ -61,8 +61,8 @@ const generateSitemap = () => {
     calculators.forEach(calc => {
         urls.push({
             loc: `${DOMAIN}/calculator/${calc.id}`,
-            priority: calc.isPopular ? 0.9 : 0.7,
-            changefreq: 'weekly'
+            priority: ['india-gst', 'india-emi', 'sip'].includes(calc.id) ? 1.0 : (calc.isPopular ? 0.9 : 0.7),
+            changefreq: ['india-gst', 'india-emi'].includes(calc.id) ? 'daily' : 'weekly'
         });
     });
 

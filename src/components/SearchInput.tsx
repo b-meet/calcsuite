@@ -29,10 +29,36 @@ export function SearchInput({ placeholder = "Search...", className, autoFocus = 
             return;
         }
 
-        const filtered = calculatorRegistry.filter(calc =>
-            calc.name.toLowerCase().includes(query.toLowerCase()) ||
-            calc.description.toLowerCase().includes(query.toLowerCase())
-        ).slice(0, 5); // Limit to 5 suggestions
+        const lowerQuery = query.toLowerCase();
+        const filtered = calculatorRegistry
+            .filter(calc =>
+                calc.name.toLowerCase().includes(lowerQuery) ||
+                calc.description.toLowerCase().includes(lowerQuery) ||
+                (calc.keywords && calc.keywords.some(k => k.toLowerCase().includes(lowerQuery)))
+            )
+            .sort((a, b) => {
+                const nameA = a.name.toLowerCase();
+                const nameB = b.name.toLowerCase();
+
+                // 1. Exact match
+                if (nameA === lowerQuery) return -1;
+                if (nameB === lowerQuery) return 1;
+
+                // 2. Starts with query
+                const aStarts = nameA.startsWith(lowerQuery);
+                const bStarts = nameB.startsWith(lowerQuery);
+                if (aStarts && !bStarts) return -1;
+                if (!aStarts && bStarts) return 1;
+
+                // 3. Name contains query
+                const aName = nameA.includes(lowerQuery);
+                const bName = nameB.includes(lowerQuery);
+                if (aName && !bName) return -1;
+                if (!aName && bName) return 1;
+
+                return 0;
+            })
+            .slice(0, 5); // Limit to 5 suggestions
 
         setResults(filtered);
         setIsOpen(true);

@@ -144,6 +144,40 @@ export function CalculatorPage() {
                             </div>
                         ))}
 
+                        {calculatorDef.howTo && (
+                            <div className="mb-12">
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{calculatorDef.howTo.name}</h3>
+                                <p className="text-slate-600 dark:text-slate-400 mb-6">{calculatorDef.howTo.description}</p>
+                                <div className="space-y-4">
+                                    {calculatorDef.howTo.steps.map((step, idx) => (
+                                        <div key={idx} className="flex items-start gap-4 p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                                            <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 font-bold rounded-full">
+                                                {idx + 1}
+                                            </div>
+                                            <div>
+                                                <h4 className="font-semibold text-slate-900 dark:text-white mb-1 m-0">{step.name}</h4>
+                                                <p className="text-slate-600 dark:text-slate-400 text-sm m-0">{step.text}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {calculatorDef.faqs && calculatorDef.faqs.length > 0 && (
+                            <div className="mb-12">
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h3>
+                                <div className="grid gap-4">
+                                    {calculatorDef.faqs.map((faq, idx) => (
+                                        <div key={idx} className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
+                                            <h4 className="font-semibold text-lg text-slate-900 dark:text-white mb-2 m-0">{faq.question}</h4>
+                                            <p className="text-slate-600 dark:text-slate-400 leading-relaxed m-0">{faq.answer}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         {/* Fallback for legacy content */}
                         {Content && <Content />}
                     </article>

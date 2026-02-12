@@ -2,14 +2,19 @@ import { useState } from 'react';
 import { Landmark } from 'lucide-react';
 
 export default function IndiaEMICalculator() {
-    const [loanAmount, setLoanAmount] = useState<number>(5000000); // 50 Lakhs default
-    const [interestRate, setInterestRate] = useState<number>(8.5);
-    const [tenure, setTenure] = useState<number>(20); // Years
+    const [loanAmount, setLoanAmount] = useState<number | ''>(5000000); // 50 Lakhs default
+    const [interestRate, setInterestRate] = useState<number | ''>(8.5);
+    const [tenure, setTenure] = useState<number | ''>(20); // Years
 
     const calculateEMI = () => {
-        const principal = loanAmount;
-        const ratePerMonth = interestRate / (12 * 100);
-        const months = tenure * 12;
+        const principal = Number(loanAmount);
+        const rate = Number(interestRate);
+        const t = Number(tenure);
+
+        if (!principal || !rate || !t) return { emi: 0, totalInterest: 0, totalPayment: 0 };
+
+        const ratePerMonth = rate / (12 * 100);
+        const months = t * 12;
 
         const emi = (principal * ratePerMonth * Math.pow(1 + ratePerMonth, months)) / (Math.pow(1 + ratePerMonth, months) - 1);
 
@@ -39,13 +44,13 @@ export default function IndiaEMICalculator() {
                     <input
                         type="number"
                         value={loanAmount}
-                        onChange={(e) => setLoanAmount(Number(e.target.value))}
+                        onChange={(e) => setLoanAmount(e.target.value === '' ? '' : Number(e.target.value))}
                         className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
                     />
                     <div className="flex gap-2 mt-2">
-                        <button onClick={() => setLoanAmount(loanAmount + 100000)} className="text-xs bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-medium transition-colors">+ 1L</button>
-                        <button onClick={() => setLoanAmount(loanAmount + 500000)} className="text-xs bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-medium transition-colors">+ 5L</button>
-                        <button onClick={() => setLoanAmount(loanAmount + 1000000)} className="text-xs bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-medium transition-colors">+ 10L</button>
+                        <button onClick={() => setLoanAmount((Number(loanAmount) || 0) + 100000)} className="text-xs bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-medium transition-colors">+ 1L</button>
+                        <button onClick={() => setLoanAmount((Number(loanAmount) || 0) + 500000)} className="text-xs bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-medium transition-colors">+ 5L</button>
+                        <button onClick={() => setLoanAmount((Number(loanAmount) || 0) + 1000000)} className="text-xs bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-medium transition-colors">+ 10L</button>
                     </div>
                 </div>
                 <div>
@@ -56,7 +61,7 @@ export default function IndiaEMICalculator() {
                         type="number"
                         step="0.1"
                         value={interestRate}
-                        onChange={(e) => setInterestRate(Number(e.target.value))}
+                        onChange={(e) => setInterestRate(e.target.value === '' ? '' : Number(e.target.value))}
                         className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
                     />
                 </div>
@@ -67,7 +72,7 @@ export default function IndiaEMICalculator() {
                     <input
                         type="number"
                         value={tenure}
-                        onChange={(e) => setTenure(Number(e.target.value))}
+                        onChange={(e) => setTenure(e.target.value === '' ? '' : Number(e.target.value))}
                         className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
                     />
                     <input

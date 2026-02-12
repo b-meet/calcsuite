@@ -21,7 +21,50 @@ export function Home() {
             return matchesCategory && matchesSearch;
         })
         .sort((a, b) => {
-            // Sort by popularity (true comes first)
+            if (!searchQuery) {
+                // Priority list
+                const priority = ['india-gst', 'india-emi', 'sip', 'bmi'];
+
+                // If both are popular
+                if (a.popular && b.popular) {
+                    const idxA = priority.indexOf(a.id);
+                    const idxB = priority.indexOf(b.id);
+
+                    // If one or both are in priority list
+                    if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+                    if (idxA !== -1) return -1;
+                    if (idxB !== -1) return 1;
+
+                    return 0; // Default order for other popular items
+                }
+
+                // Standard popular vs non-popular sort
+                const popA = a.popular ? 1 : 0;
+                const popB = b.popular ? 1 : 0;
+                return popB - popA;
+            }
+
+            const lowerQuery = searchQuery.toLowerCase();
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+
+            // 1. Exact Name match
+            if (nameA === lowerQuery) return -1;
+            if (nameB === lowerQuery) return 1;
+
+            // 2. Name Starts with
+            const aStarts = nameA.startsWith(lowerQuery);
+            const bStarts = nameB.startsWith(lowerQuery);
+            if (aStarts && !bStarts) return -1;
+            if (!aStarts && bStarts) return 1;
+
+            // 3. Name Contains
+            const aName = nameA.includes(lowerQuery);
+            const bName = nameB.includes(lowerQuery);
+            if (aName && !bName) return -1;
+            if (!aName && bName) return 1;
+
+            // 4. Fallback to popularity
             const popA = a.popular ? 1 : 0;
             const popB = b.popular ? 1 : 0;
             return popB - popA;
@@ -99,20 +142,7 @@ export function Home() {
                     </div>
                 )}
 
-                {/* Visible FAQs for Category Pages */}
-                {currentCategoryContent?.faqs && (
-                    <div className="mt-8 text-left max-w-3xl mx-auto">
-                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Frequently Asked Questions</h2>
-                        <div className="space-y-4">
-                            {currentCategoryContent.faqs.map((faq, index) => (
-                                <div key={index} className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
-                                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{faq.question}</h3>
-                                    <p className="text-slate-600 dark:text-slate-300">{faq.answer}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+
             </div>
             <section>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4 sm:gap-0">
@@ -150,6 +180,21 @@ export function Home() {
                     </div>
                 )}
             </section>
+
+            {/* Visible FAQs for Category Pages - Moved to bottom */}
+            {currentCategoryContent?.faqs && (
+                <section className="mt-16 text-left max-w-3xl mx-auto">
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Frequently Asked Questions</h2>
+                    <div className="space-y-4">
+                        {currentCategoryContent.faqs.map((faq, index) => (
+                            <div key={index} className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">{faq.question}</h3>
+                                <p className="text-slate-600 dark:text-slate-300">{faq.answer}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
         </div>
     );
 }
