@@ -115,14 +115,14 @@ export function Home() {
                 )}
             </div>
             <section>
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4 sm:gap-0">
                     <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
                         {categoryId ? 'Available Calculators' : 'All Tools'}
                         <span className="text-sm font-normal text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700">
                             {filteredCalculators.length}
                         </span>
                     </h2>
-                    <div className="relative w-full max-w-md z-10">
+                    <div className="relative w-full max-w-md z-30">
                         <SearchInput
                             placeholder="Search calculators..."
                             onSearch={(query) => setSearchParams(query ? { q: query } : {})}

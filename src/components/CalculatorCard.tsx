@@ -25,9 +25,9 @@ export function CalculatorCard({ id, name, description, icon: Icon, category, po
     return (
         <Link
             to={`/calculator/${id}`}
-            className="group relative flex flex-col p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all duration-300 overflow-hidden"
+            className="group relative flex flex-row sm:flex-col items-center sm:items-start p-4 sm:p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all duration-300 overflow-hidden"
         >
-            <div className="absolute top-4 right-4 flex items-center gap-2 z-10">
+            <div className="absolute top-1/2 -translate-y-1/2 right-4 sm:top-4 sm:translate-y-0 flex items-center gap-2 z-10">
                 <button
                     onClick={(e) => {
                         e.preventDefault();
@@ -36,7 +36,7 @@ export function CalculatorCard({ id, name, description, icon: Icon, category, po
                         toggleFavorite(id);
                     }}
                     className={cn(
-                        "p-2 rounded-full transition-colors flex items-center justify-center bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700",
+                        "p-2 rounded-full transition-colors flex items-center justify-center bg-transparent sm:bg-white/80 sm:dark:bg-slate-800/80 sm:backdrop-blur-sm sm:border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700",
                         isFav ? "text-amber-400 border-amber-200 dark:border-amber-800/30" : "text-slate-300 dark:text-slate-600",
                         (!isFav && reachedMax) && "opacity-50 cursor-not-allowed hover:bg-transparent"
                     )}
@@ -49,28 +49,30 @@ export function CalculatorCard({ id, name, description, icon: Icon, category, po
                 </button>
             </div>
 
-            <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl w-fit group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-colors duration-300">
+            <div className="mb-0 sm:mb-4 mr-4 sm:mr-0 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl w-fit group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-colors duration-300 shrink-0">
                 <Icon className="text-blue-600 dark:text-blue-400" size={24} />
             </div>
 
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-200 pr-10">
-                {name}
-            </h3>
+            <div className="flex-1 min-w-0">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors duration-200 pr-8 sm:pr-0 truncate sm:whitespace-normal">
+                    {name}
+                </h3>
 
-            <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-                {description}
-            </p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 hidden sm:block">
+                    {description}
+                </p>
 
-            <div className="mt-4 flex items-center gap-2">
-                <span className="text-xs font-semibold px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-full capitalize border border-slate-200 dark:border-slate-700">
-                    {category}
-                </span>
-                {popular && (
-                    <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-1 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 text-orange-600 dark:text-orange-400 rounded-full border border-orange-100 dark:border-orange-900/30 shadow-sm uppercase tracking-wider">
-                        <Star size={10} fill="currentColor" />
-                        Popular
+                <div className="mt-0 sm:mt-4 flex items-center gap-2">
+                    <span className="text-[10px] sm:text-xs font-semibold px-2 py-0.5 sm:py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-full capitalize border border-slate-200 dark:border-slate-700">
+                        {category}
                     </span>
-                )}
+                    {popular && (
+                        <span className="hidden sm:flex items-center gap-1 text-[10px] font-bold px-2 py-1 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 text-orange-600 dark:text-orange-400 rounded-full border border-orange-100 dark:border-orange-900/30 shadow-sm uppercase tracking-wider">
+                            <Star size={10} fill="currentColor" />
+                            Popular
+                        </span>
+                    )}
+                </div>
             </div>
         </Link>
     );
