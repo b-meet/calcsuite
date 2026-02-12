@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { Delete, Equal } from 'lucide-react';
 import { evaluate } from 'mathjs';
 import { cn } from '../../utils/cn';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function BasicCalculator() {
     const [display, setDisplay] = useState('0');
     const [equation, setEquation] = useState('');
     const [isResult, setIsResult] = useState(false);
+
+    const { history: calcHistory, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('basic');
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -61,10 +65,22 @@ export default function BasicCalculator() {
             setDisplay(String(result));
             setEquation('');
             setIsResult(true);
+
+            addHistory(
+                { equation: fullEquation },
+                String(result),
+                fullEquation
+            );
         } catch (error) {
             setDisplay('Error');
             setIsResult(true);
         }
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setDisplay(item.result);
+        setEquation(item.inputs.equation);
+        setIsResult(true);
     };
 
     const clear = () => {
@@ -141,6 +157,13 @@ export default function BasicCalculator() {
                     </button>
                 </div>
             </div>
+
+            <CalculationHistory
+                history={calcHistory}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

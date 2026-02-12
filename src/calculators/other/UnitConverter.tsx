@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { ArrowLeftRight } from 'lucide-react';
+import { ArrowLeftRight, TrendingUp } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 type UnitType = 'length' | 'weight' | 'temperature';
 
@@ -33,6 +35,8 @@ export default function UnitConverter() {
     const [fromValue, setFromValue] = useState(1);
     const [toValue, setToValue] = useState(0);
 
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('unit-converter');
+
     // Update units when type changes
     useEffect(() => {
         setFromUnit(units[type][0].value);
@@ -45,10 +49,6 @@ export default function UnitConverter() {
     }, [fromValue, fromUnit, toUnit, type]);
 
     const convert = () => {
-        // Simple conversion login (incomplete for all pairs, just basic setup)
-        // In a real app we'd use a library or a comprehenisve map.
-        // Implementing a basic one here for demonstration.
-
         let baseValue = fromValue;
 
         if (type === 'length') {
@@ -91,63 +91,97 @@ export default function UnitConverter() {
         setToValue(Number(baseValue.toFixed(4)));
     };
 
+    const handleSave = () => {
+        addHistory(
+            { type, fromUnit, toUnit, fromValue },
+            `${toValue} ${toUnit}`,
+            `${fromValue} ${fromUnit} to ${toUnit}`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setType(item.inputs.type);
+        setFromUnit(item.inputs.fromUnit);
+        setToUnit(item.inputs.toUnit);
+        setFromValue(item.inputs.fromValue);
+    };
+
     return (
-        <div className="max-w-2xl mx-auto space-y-6">
-            <div className="flex justify-center bg-white dark:bg-slate-900 p-1 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
-                {(['length', 'weight', 'temperature'] as UnitType[]).map((t) => (
-                    <button
-                        key={t}
-                        onClick={() => setType(t)}
-                        className={cn(
-                            "flex-1 py-3 rounded-xl text-sm font-medium capitalize transition-all",
-                            type === t ? "bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-400 shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
-                        )}
-                    >
-                        {t}
-                    </button>
-                ))}
-            </div>
-
-            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center gap-6">
-                <div className="flex-1 w-full space-y-2">
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-400">From</label>
-                    <input
-                        type="number"
-                        value={fromValue}
-                        onChange={(e) => setFromValue(Number(e.target.value))}
-                        className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-xl font-bold text-slate-900 dark:text-white"
-                    />
-                    <select
-                        value={fromUnit}
-                        onChange={(e) => setFromUnit(e.target.value)}
-                        className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:ring-2 focus:ring-blue-500"
-                    >
-                        {units[type].map(u => (
-                            <option key={u.value} value={u.value}>{u.label}</option>
-                        ))}
-                    </select>
+        <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-2xl mx-auto space-y-6">
+                <div className="flex justify-center bg-white dark:bg-slate-900 p-1 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                    {(['length', 'weight', 'temperature'] as UnitType[]).map((t) => (
+                        <button
+                            key={t}
+                            onClick={() => setType(t)}
+                            className={cn(
+                                "flex-1 py-3 rounded-xl text-sm font-medium capitalize transition-all",
+                                type === t ? "bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-400 shadow-sm" : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
+                            )}
+                        >
+                            {t}
+                        </button>
+                    ))}
                 </div>
 
-                <div className="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-full text-slate-400">
-                    <ArrowLeftRight size={24} />
-                </div>
-
-                <div className="flex-1 w-full space-y-2">
-                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-400">To</label>
-                    <div className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-100 dark:bg-slate-800 text-xl font-bold text-slate-700 dark:text-white break-all">
-                        {toValue}
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center gap-6">
+                    <div className="flex-1 w-full space-y-2">
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-400">From</label>
+                        <input
+                            type="number"
+                            value={fromValue}
+                            onChange={(e) => setFromValue(Number(e.target.value))}
+                            className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-xl font-bold text-slate-900 dark:text-white"
+                        />
+                        <select
+                            value={fromUnit}
+                            onChange={(e) => setFromUnit(e.target.value)}
+                            className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:ring-2 focus:ring-blue-500"
+                        >
+                            {units[type].map(u => (
+                                <option key={u.value} value={u.value}>{u.label}</option>
+                            ))}
+                        </select>
                     </div>
-                    <select
-                        value={toUnit}
-                        onChange={(e) => setToUnit(e.target.value)}
-                        className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:ring-2 focus:ring-blue-500"
+
+                    <div className="bg-slate-50 dark:bg-slate-900/50 p-3 rounded-full text-slate-400">
+                        <ArrowLeftRight size={24} />
+                    </div>
+
+                    <div className="flex-1 w-full space-y-2">
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-400">To</label>
+                        <div className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-100 dark:bg-slate-800 text-xl font-bold text-slate-700 dark:text-white break-all">
+                            {toValue}
+                        </div>
+                        <select
+                            value={toUnit}
+                            onChange={(e) => setToUnit(e.target.value)}
+                            className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:ring-2 focus:ring-blue-500"
+                        >
+                            {units[type].map(u => (
+                                <option key={u.value} value={u.value}>{u.label}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+
+                <div className="flex justify-center mt-4">
+                    <button
+                        onClick={handleSave}
+                        className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
                     >
-                        {units[type].map(u => (
-                            <option key={u.value} value={u.value}>{u.label}</option>
-                        ))}
-                    </select>
+                        <TrendingUp size={18} />
+                        Save to History
+                    </button>
                 </div>
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

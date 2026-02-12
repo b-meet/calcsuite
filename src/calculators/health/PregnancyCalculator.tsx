@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Baby, CalendarDays } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 type CalculationMethod = 'last_period' | 'due_date' | 'ultrasound' | 'conception' | 'ivf';
 
@@ -18,6 +20,8 @@ export default function PregnancyCalculator() {
     const [transferType, setTransferType] = useState<'3day' | '5day'>('5day');
 
     const [result, setResult] = useState<{ dueDate: Date; trimester: number; weeks: number; days: number } | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('pregnancy');
 
     const calculate = () => {
         if (!date) return;
@@ -89,6 +93,21 @@ export default function PregnancyCalculator() {
             weeks: currentWeeks,
             days: currentDays
         });
+
+        addHistory(
+            { method, date, cycle, weeksArgs, daysArgs, transferType },
+            `${currentWeeks}w ${currentDays}d`,
+            `Due: ${estimatedDueDate.toLocaleDateString()}`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setMethod(item.inputs.method);
+        setDate(item.inputs.date);
+        setCycle(item.inputs.cycle);
+        setWeeks(item.inputs.weeksArgs);
+        setDays(item.inputs.daysArgs);
+        setTransferType(item.inputs.transferType);
     };
 
     const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-pink-400 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
@@ -166,8 +185,8 @@ export default function PregnancyCalculator() {
     };
 
     return (
-        <div className="max-w-xl mx-auto space-y-8">
-            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+        <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-xl mx-auto bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
 
                 <div>
                     <label className={labelClass}>Calculate Based On:</label>
@@ -220,6 +239,13 @@ export default function PregnancyCalculator() {
                     </div>
                 )}
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

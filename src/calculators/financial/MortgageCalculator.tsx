@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { DollarSign, Percent, Calendar, PieChart } from 'lucide-react';
+import { DollarSign, Percent, Calendar, PieChart, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function MortgageCalculator() {
     const [loanAmount, setLoanAmount] = useState(300000);
@@ -8,6 +10,8 @@ export default function MortgageCalculator() {
     const [monthlyPayment, setMonthlyPayment] = useState(0);
     const [totalPayment, setTotalPayment] = useState(0);
     const [totalInterest, setTotalInterest] = useState(0);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('mortgage');
 
     useEffect(() => {
         calculateMortgage();
@@ -34,6 +38,22 @@ export default function MortgageCalculator() {
             setTotalPayment(0);
             setTotalInterest(0);
         }
+    };
+
+    const handleSave = () => {
+        if (monthlyPayment > 0) {
+            addHistory(
+                { loanAmount, interestRate, loanTerm },
+                `$${monthlyPayment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+                `$${loanAmount.toLocaleString()}, ${interestRate}%, ${loanTerm}y`
+            );
+        }
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setLoanAmount(item.inputs.loanAmount);
+        setInterestRate(item.inputs.interestRate);
+        setLoanTerm(item.inputs.loanTerm);
     };
 
     const InputGroup = ({ label, icon: Icon, value, onChange, type = "number", min = 0, step = 1, suffix }: any) => (
@@ -128,6 +148,25 @@ export default function MortgageCalculator() {
                         <span>Values are estimates</span>
                     </div>
                 </div>
+            </div>
+
+            <div className="md:col-span-2 flex justify-center mt-8">
+                <button
+                    onClick={handleSave}
+                    className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
+                >
+                    <TrendingUp size={18} />
+                    Save to History
+                </button>
+            </div>
+
+            <div className="md:col-span-2">
+                <CalculationHistory
+                    history={history}
+                    onSelect={handleHistorySelect}
+                    onClear={clearHistory}
+                    onRemove={removeHistoryItem}
+                />
             </div>
         </div>
     );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Tag, ShoppingBag } from 'lucide-react';
+import { Tag, ShoppingBag, TrendingUp } from 'lucide-react';
 import {
     Chart as ChartJS,
     ArcElement,
@@ -7,6 +7,8 @@ import {
     Legend,
 } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -25,6 +27,8 @@ export default function DiscountCalculator() {
         finalPayable: number;
         totalSaved: number;
     } | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('discount');
 
     const calculate = () => {
         const mrp = price * quantity;
@@ -57,6 +61,23 @@ export default function DiscountCalculator() {
         calculate();
     }, [price, discountDetails, quantity, taxRate, flatDiscount]);
 
+    const handleSave = () => {
+        if (!result) return;
+        addHistory(
+            { price, discountDetails, quantity, taxRate, flatDiscount },
+            `${result.finalPayable.toLocaleString()} Total`,
+            `${price} x ${quantity}, ${discountDetails}% Off`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setPrice(item.inputs.price);
+        setDiscountDetails(item.inputs.discountDetails);
+        setQuantity(item.inputs.quantity);
+        setTaxRate(item.inputs.taxRate);
+        setFlatDiscount(item.inputs.flatDiscount);
+    };
+
     const chartData = {
         labels: ['Net Price', 'Tax'],
         datasets: [
@@ -70,7 +91,7 @@ export default function DiscountCalculator() {
     };
 
     return (
-        <div className="space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
                     <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
@@ -141,6 +162,16 @@ export default function DiscountCalculator() {
                             </div>
                         </div>
                     </div>
+
+                    <div className="flex justify-center">
+                        <button
+                            onClick={handleSave}
+                            className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
+                        >
+                            <TrendingUp size={18} />
+                            Save to History
+                        </button>
+                    </div>
                 </div>
 
                 <div className="space-y-6">
@@ -197,6 +228,13 @@ export default function DiscountCalculator() {
                     </div>
                 </div>
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

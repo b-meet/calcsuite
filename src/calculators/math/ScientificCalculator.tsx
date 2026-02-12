@@ -2,11 +2,15 @@ import { useState, useEffect } from 'react';
 import { Delete } from 'lucide-react';
 import { evaluate, format } from 'mathjs';
 import { cn } from '../../utils/cn';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function ScientificCalculator() {
     const [display, setDisplay] = useState('0');
     const [isResult, setIsResult] = useState(false);
     const [memory] = useState(0); // Kept for future use
+
+    const { history: calcHistory, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('scientific');
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -59,10 +63,21 @@ export default function ScientificCalculator() {
             const formatted = format(result, { precision: 10 });
             setDisplay(String(formatted));
             setIsResult(true);
+
+            addHistory(
+                { expression: display },
+                String(formatted),
+                display
+            );
         } catch (error) {
             setDisplay('Error');
             setIsResult(true);
         }
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setDisplay(item.result);
+        setIsResult(true);
     };
 
     const clear = () => {
@@ -165,6 +180,13 @@ export default function ScientificCalculator() {
                     <button onClick={() => handleInput('+')} className={cn(btnClass, opBtn)}>+</button>
                 </div>
             </div>
+
+            <CalculationHistory
+                history={calcHistory}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { Flame } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function BMRCalculator() {
     const [gender, setGender] = useState<'male' | 'female'>('male');
@@ -7,6 +9,8 @@ export default function BMRCalculator() {
     const [height, setHeight] = useState(''); // cm
     const [weight, setWeight] = useState(''); // kg
     const [result, setResult] = useState<number | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('bmr');
 
     const calculate = () => {
         const w = parseFloat(weight);
@@ -25,14 +29,27 @@ export default function BMRCalculator() {
         }
 
         setResult(bmr);
+
+        addHistory(
+            { gender, age, height, weight },
+            `${Math.round(bmr)} kcal`,
+            `${weight}kg, ${height}cm, ${gender === 'male' ? 'M' : 'F'}`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setGender(item.inputs.gender);
+        setAge(item.inputs.age);
+        setHeight(item.inputs.height);
+        setWeight(item.inputs.weight);
     };
 
     const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-orange-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
     const labelClass = "block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1";
 
     return (
-        <div className="max-w-xl mx-auto space-y-8">
-            <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
+        <div className="max-w-4xl mx-auto space-y-8">
+            <div className="max-w-xl mx-auto bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
 
                 {/* Gender Selection */}
                 <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
@@ -87,6 +104,13 @@ export default function BMRCalculator() {
                     </div>
                 )}
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

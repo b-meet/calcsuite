@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { DollarSign, Percent } from 'lucide-react';
+import { DollarSign, Percent, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 import {
     Chart as ChartJS,
@@ -24,6 +26,8 @@ export default function SimpleInterestCalculator() {
         totalAmount: number;
     } | null>(null);
 
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('simple-interest');
+
     const calculate = () => {
         const P = principal;
         const R = rate / 100;
@@ -39,6 +43,23 @@ export default function SimpleInterestCalculator() {
             interest: Math.round(interest * 100) / 100,
             totalAmount: Math.round(totalAmount * 100) / 100
         });
+    };
+
+    const handleSave = () => {
+        if (result) {
+            addHistory(
+                { principal, rate, time, timeUnit },
+                new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result.totalAmount),
+                `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(principal)}, ${rate}%, ${time} ${timeUnit.toLowerCase()}`
+            );
+        }
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setPrincipal(item.inputs.principal);
+        setRate(item.inputs.rate);
+        setTime(item.inputs.time);
+        setTimeUnit(item.inputs.timeUnit);
     };
 
     useEffect(() => {
@@ -156,6 +177,23 @@ export default function SimpleInterestCalculator() {
                     </div>
                 </div>
             </div>
+
+            <div className="flex justify-center mt-4">
+                <button
+                    onClick={handleSave}
+                    className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
+                >
+                    <TrendingUp size={18} />
+                    Save to History
+                </button>
+            </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

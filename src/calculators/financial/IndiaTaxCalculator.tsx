@@ -1,8 +1,12 @@
 import { useState, useMemo } from 'react';
 import { Calculator, CheckCircle2, TrendingUp, Wallet } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function IndiaTaxCalculator() {
     const [mode, setMode] = useState<'simple' | 'advanced'>('simple');
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('india-tax');
 
     // -------------------------------------------------------------------------
     // Shared State (Inputs)
@@ -227,6 +231,51 @@ export default function IndiaTaxCalculator() {
     const betterRegime = advancedResult.old.total < advancedResult.new.total ? 'Old Regime' : 'New Regime';
     const taxSaved = Math.abs(advancedResult.old.total - advancedResult.new.total);
 
+    const handleSave = () => {
+        if (mode === 'simple') {
+            addHistory(
+                { mode, simpleIncome, simpleRegime, residentialStatus, ageGroup, incomeType },
+                `₹${Math.round(simpleResult.total).toLocaleString('en-IN')}`,
+                `Income: ₹${simpleIncome.toLocaleString()} (${simpleRegime} Regime)`
+            );
+        } else {
+            addHistory(
+                {
+                    mode, residentialStatus, ageGroup, incomeType,
+                    salaryIncome, interestIncome, otherIncome,
+                    deduction80C, deduction80D, deductionNPS, deductionNPSCorp,
+                    hraExemption, ltaExemption, homeLoanInterest
+                },
+                `₹${Math.round(Math.min(advancedResult.old.total, advancedResult.new.total)).toLocaleString('en-IN')}`,
+                `Gross: ₹${(salaryIncome + interestIncome + otherIncome).toLocaleString()} (${betterRegime})`
+            );
+        }
+    };
+
+    const handleHistorySelect = (item: any) => {
+        const { inputs } = item;
+        setMode(inputs.mode);
+        setResidentialStatus(inputs.residentialStatus);
+        setAgeGroup(inputs.ageGroup);
+        setIncomeType(inputs.incomeType);
+
+        if (inputs.mode === 'simple') {
+            setSimpleIncome(inputs.simpleIncome);
+            setSimpleRegime(inputs.simpleRegime);
+        } else {
+            setSalaryIncome(inputs.salaryIncome);
+            setInterestIncome(inputs.interestIncome);
+            setOtherIncome(inputs.otherIncome);
+            setDeduction80C(inputs.deduction80C);
+            setDeduction80D(inputs.deduction80D);
+            setDeductionNPS(inputs.deductionNPS);
+            setDeductionNPSCorp(inputs.deductionNPSCorp);
+            setHraExemption(inputs.hraExemption);
+            setLtaExemption(inputs.ltaExemption);
+            setHomeLoanInterest(inputs.homeLoanInterest);
+        }
+    };
+
     return (
         <div className="max-w-4xl mx-auto space-y-8">
             {/* --- Global Controls --- */}
@@ -355,10 +404,15 @@ export default function IndiaTaxCalculator() {
                                 <span>₹ {Math.round(simpleResult.total).toLocaleString()}</span>
                             </div>
                         </div>
-                        <div className="text-[10px] text-slate-400 leading-tight">
-                            * Calculated based on FY 2025-26 slabs. {simpleRegime === 'new' && 'New Regime provides rebate up to ₹12L.'}
-                        </div>
                     </div>
+
+                    <button
+                        onClick={handleSave}
+                        className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center gap-2"
+                    >
+                        <TrendingUp size={20} />
+                        Calculate & Save
+                    </button>
                 </div>
             ) : (
                 // --- Advanced Comparison UI ---
@@ -422,6 +476,14 @@ export default function IndiaTaxCalculator() {
                                 </div>
                             </div>
                         </section>
+
+                        <button
+                            onClick={handleSave}
+                            className="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center gap-2"
+                        >
+                            <TrendingUp size={20} />
+                            Calculate & Save to History
+                        </button>
                     </div>
 
                     <div className="lg:col-span-5 space-y-4">
@@ -479,6 +541,13 @@ export default function IndiaTaxCalculator() {
                     </div>
                 </div>
             )}
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

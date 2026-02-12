@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
 import NotFound from './NotFound';
@@ -6,12 +7,14 @@ import NotFound from './NotFound';
 import RelatedCalculators from '../components/RelatedCalculators';
 import StructuredData from '../components/StructuredData';
 import { useFavorites } from '../hooks/useFavorites';
-import { Star } from 'lucide-react';
+import { Share2, Star } from 'lucide-react';
+import { ShareModal } from '../components/ShareModal';
 import { cn } from '../utils/cn';
 
 export function CalculatorPage() {
     const { calculatorId } = useParams();
     const { isFavorite, toggleFavorite, reachedMax } = useFavorites();
+    const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
     const calculatorDef = calculatorRegistry.find(c => c.id === calculatorId);
 
@@ -88,28 +91,47 @@ export function CalculatorPage() {
                 />
             )}
 
-            <div className="mb-6 text-center relative max-w-2xl mx-auto">
-                <button
-                    onClick={() => {
-                        if (!isFav && reachedMax) return;
-                        toggleFavorite(calculatorDef.id);
-                    }}
-                    className={cn(
-                        "absolute top-0 right-0 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors",
-                        (!isFav && reachedMax) && "opacity-50 cursor-not-allowed hover:bg-transparent"
-                    )}
-                    title={getTooltip()}
-                >
-                    <Star
-                        size={24}
-                        className={isFav ? "text-amber-400 fill-amber-400" : "text-slate-300 dark:text-slate-600"}
-                    />
-                </button>
-                <div className="pt-2">
-                    <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{calculatorDef.name}</h1>
-                    <p className="text-slate-500 dark:text-slate-400">{calculatorDef.description}</p>
+            <div className="mb-6 max-w-2xl mx-auto">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                    <div className="flex-1 text-center sm:text-left">
+                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{calculatorDef.name}</h1>
+                        <p className="text-slate-500 dark:text-slate-400">{calculatorDef.description}</p>
+                    </div>
+                    <div className="flex gap-2 justify-center sm:justify-end shrink-0">
+                        <button
+                            onClick={() => setIsShareModalOpen(true)}
+                            className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400"
+                            title="Share Calculator"
+                        >
+                            <Share2 size={24} />
+                        </button>
+                        <button
+                            onClick={() => {
+                                if (!isFav && reachedMax) return;
+                                toggleFavorite(calculatorDef.id);
+                            }}
+                            className={cn(
+                                "p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors",
+                                (!isFav && reachedMax) && "opacity-50 cursor-not-allowed hover:bg-transparent"
+                            )}
+                            title={getTooltip()}
+                        >
+                            <Star
+                                size={24}
+                                className={isFav ? "text-amber-400 fill-amber-400" : "text-slate-300 dark:text-slate-600"}
+                            />
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            <ShareModal
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
+                calculatorName={calculatorDef.name}
+                calculatorId={calculatorDef.id}
+            />
+
             <Component />
 
             <RelatedCalculators

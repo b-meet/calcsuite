@@ -1,10 +1,14 @@
 import { useState } from 'react';
-import { Briefcase } from 'lucide-react';
+import { Briefcase, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function SalaryCalculator() {
     const [amount, setAmount] = useState('');
     const [period, setPeriod] = useState<'hourly' | 'weekly' | 'monthly' | 'annual'>('annual');
     const [hoursPerWeek, setHoursPerWeek] = useState('40');
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('salary');
 
     const calculate = () => {
         const val = parseFloat(amount) || 0;
@@ -37,8 +41,24 @@ export default function SalaryCalculator() {
         };
     };
 
-    const results = calculate();
     const hasInput = amount.length > 0;
+    const results = calculate();
+
+    const handleSave = () => {
+        if (hasInput) {
+            addHistory(
+                { amount, period, hoursPerWeek },
+                `$${results.annual.toLocaleString(undefined, { maximumFractionDigits: 0 })}/y`,
+                `$${amount}/${period === 'annual' ? 'y' : period === 'monthly' ? 'mo' : period === 'weekly' ? 'w' : 'hr'}`
+            );
+        }
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setAmount(item.inputs.amount);
+        setPeriod(item.inputs.period);
+        setHoursPerWeek(item.inputs.hoursPerWeek);
+    };
 
     const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-cyan-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
 
@@ -100,6 +120,23 @@ export default function SalaryCalculator() {
                     </div>
                 )}
             </div>
+
+            <div className="flex justify-center mt-4">
+                <button
+                    onClick={handleSave}
+                    className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
+                >
+                    <TrendingUp size={18} />
+                    Save to History
+                </button>
+            </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

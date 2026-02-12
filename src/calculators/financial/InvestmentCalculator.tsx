@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function InvestmentCalculator() {
     const [initial, setInitial] = useState('');
@@ -7,6 +9,8 @@ export default function InvestmentCalculator() {
     const [rate, setRate] = useState('');
     const [years, setYears] = useState('');
     const [result, setResult] = useState<{ endBalance: number; totalPrincipal: number; totalInterest: number } | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('investment');
 
     const calculate = () => {
         const p = parseFloat(initial) || 0;
@@ -35,6 +39,19 @@ export default function InvestmentCalculator() {
             totalPrincipal,
             totalInterest
         });
+
+        addHistory(
+            { initial: p, monthly: c, rate: r, years: t },
+            `$${endBalance.toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+            `$${p.toLocaleString()} + $${c}/mo, ${r}%, ${t}y`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setInitial(String(item.inputs.initial));
+        setMonthly(String(item.inputs.monthly));
+        setRate(String(item.inputs.rate));
+        setYears(String(item.inputs.years));
     };
 
     const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
@@ -98,6 +115,13 @@ export default function InvestmentCalculator() {
                     </div>
                 )}
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { DollarSign } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function LoanCalculator() {
     const [amount, setAmount] = useState('');
     const [rate, setRate] = useState('');
     const [term, setTerm] = useState(''); // in years
     const [result, setResult] = useState<{ monthly: number; totalInterest: number; totalPayment: number } | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('loan');
 
     const calculate = () => {
         const p = parseFloat(amount);
@@ -27,6 +31,18 @@ export default function LoanCalculator() {
             totalInterest,
             totalPayment
         });
+
+        addHistory(
+            { amount: p, rate: r, term: t },
+            `$${monthlyPayment.toFixed(2)}/mo`,
+            `$${p.toLocaleString()}, ${r}%, ${t}y`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setAmount(String(item.inputs.amount));
+        setRate(String(item.inputs.rate));
+        setTerm(String(item.inputs.term));
     };
 
     const inputClass = "block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-emerald-500 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white";
@@ -83,6 +99,13 @@ export default function LoanCalculator() {
                     </div>
                 )}
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

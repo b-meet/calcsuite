@@ -176,31 +176,6 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://calcsuite.in/calculator/sip</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/calculator/india-tax</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/calculator/india-salary</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/calculator/india-gst</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/calculator/india-emi</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
         <loc>https://calcsuite.in/calculator/india-fd</loc>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
@@ -242,6 +217,31 @@
     </url>
     <url>
         <loc>https://calcsuite.in/calculator/discount</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-gst</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-emi</loc>
+        <changefreq>daily</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/sip</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-salary</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-tax</loc>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>

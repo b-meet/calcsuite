@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Activity, Scale, Ruler } from 'lucide-react';
+import { Activity, Scale, Ruler, TrendingUp } from 'lucide-react';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function BMICalculator() {
     const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
@@ -7,6 +9,8 @@ export default function BMICalculator() {
     const [height, setHeight] = useState<string>('175'); // cm
     const [bmi, setBmi] = useState(0);
     const [category, setCategory] = useState('');
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('bmi');
 
     useEffect(() => {
         calculateBMI();
@@ -43,6 +47,22 @@ export default function BMICalculator() {
         else if (bmiVal < 25) setCategory('Normal weight');
         else if (bmiVal < 30) setCategory('Overweight');
         else setCategory('Obese');
+    };
+
+    const handleSave = () => {
+        if (bmi > 0) {
+            addHistory(
+                { unit, weight, height },
+                bmi.toFixed(1),
+                `${weight}${unit === 'metric' ? 'kg' : 'lb'}, ${height}${unit === 'metric' ? 'cm' : 'in'}`
+            );
+        }
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setUnit(item.inputs.unit);
+        setWeight(item.inputs.weight);
+        setHeight(item.inputs.height);
     };
 
     const getCategoryColor = () => {
@@ -121,6 +141,23 @@ export default function BMICalculator() {
                 <p className="mt-6 text-sm text-slate-400 dark:text-slate-500 max-w-xs">
                     Body Mass Index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
                 </p>
+
+                <button
+                    onClick={handleSave}
+                    className="mt-6 px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
+                >
+                    <TrendingUp size={18} />
+                    Save to History
+                </button>
+            </div>
+
+            <div className="md:col-span-2">
+                <CalculationHistory
+                    history={history}
+                    onSelect={handleHistorySelect}
+                    onClear={clearHistory}
+                    onRemove={removeHistoryItem}
+                />
             </div>
         </div>
     );

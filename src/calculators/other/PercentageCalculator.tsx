@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Percent } from 'lucide-react';
 import { cn } from '../../utils/cn';
+import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { CalculationHistory } from '../../components/CalculationHistory';
 
 type Mode = 'whatIs' | 'isWhatPercent' | 'isPercentOf';
 
@@ -9,6 +11,8 @@ export default function PercentageCalculator() {
     const [val1, setVal1] = useState('');
     const [val2, setVal2] = useState('');
     const [result, setResult] = useState<number | null>(null);
+
+    const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('percentage');
 
     const calculate = () => {
         const v1 = parseFloat(val1);
@@ -32,6 +36,17 @@ export default function PercentageCalculator() {
                 break;
         }
         setResult(res);
+        addHistory(
+            { mode, val1, val2 },
+            `${Number.isInteger(res) ? res : res.toFixed(2)}${mode === 'isWhatPercent' ? '%' : ''}`,
+            mode === 'whatIs' ? `${val1}% of ${val2}` : mode === 'isWhatPercent' ? `${val1} is what % of ${val2}` : `${val1} is ${val2}% of what?`
+        );
+    };
+
+    const handleHistorySelect = (item: any) => {
+        setMode(item.inputs.mode);
+        setVal1(item.inputs.val1);
+        setVal2(item.inputs.val2);
     };
 
     return (
@@ -110,6 +125,13 @@ export default function PercentageCalculator() {
                     </div>
                 )}
             </div>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }
