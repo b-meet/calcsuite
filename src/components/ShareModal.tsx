@@ -11,11 +11,8 @@ interface ShareModalProps {
 
 export function ShareModal({ isOpen, onClose, calculatorName, calculatorId }: ShareModalProps) {
     const [copied, setCopied] = useState(false);
-    const [shareType, setShareType] = useState<'calculator' | 'calculation'>('calculator');
 
     const baseUrl = `${window.location.origin}/calculator/${calculatorId}`;
-    const fullUrl = window.location.href;
-    const currentUrl = shareType === 'calculator' ? baseUrl : fullUrl;
 
     useEffect(() => {
         if (copied) {
@@ -28,7 +25,7 @@ export function ShareModal({ isOpen, onClose, calculatorName, calculatorId }: Sh
 
     const copyToClipboard = async () => {
         try {
-            await navigator.clipboard.writeText(currentUrl);
+            await navigator.clipboard.writeText(baseUrl);
             setCopied(true);
         } catch (err) {
             console.error('Failed to copy text: ', err);
@@ -37,10 +34,10 @@ export function ShareModal({ isOpen, onClose, calculatorName, calculatorId }: Sh
 
     const shareSocial = (platform: 'whatsapp' | 'twitter' | 'telegram') => {
         const text = `Check out this ${calculatorName} on CalcSuite!`;
-        const url = encodeURIComponent(currentUrl);
+        const url = encodeURIComponent(baseUrl);
 
         const shareUrls = {
-            whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + currentUrl)}`,
+            whatsapp: `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + baseUrl)}`,
             twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${url}`,
             telegram: `https://t.me/share/url?url=${url}&text=${encodeURIComponent(text)}`,
         };
@@ -74,32 +71,6 @@ export function ShareModal({ isOpen, onClose, calculatorName, calculatorId }: Sh
                 </div>
 
                 <div className="p-6 space-y-8">
-                    {/* Share Type Toggle */}
-                    <div className="flex p-1 bg-slate-100 dark:bg-slate-800 rounded-2xl">
-                        <button
-                            onClick={() => setShareType('calculator')}
-                            className={cn(
-                                "flex-1 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all",
-                                shareType === 'calculator'
-                                    ? "bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm"
-                                    : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-                            )}
-                        >
-                            Only Calculator
-                        </button>
-                        <button
-                            onClick={() => setShareType('calculation')}
-                            className={cn(
-                                "flex-1 px-4 py-2.5 text-sm font-semibold rounded-xl transition-all",
-                                shareType === 'calculation'
-                                    ? "bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm"
-                                    : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"
-                            )}
-                        >
-                            Current Calculation
-                        </button>
-                    </div>
-
                     {/* Link Display */}
                     <div className="space-y-3">
                         <label className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
@@ -111,7 +82,7 @@ export function ShareModal({ isOpen, onClose, calculatorName, calculatorId }: Sh
                                 <input
                                     type="text"
                                     readOnly
-                                    value={currentUrl}
+                                    value={baseUrl}
                                     className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl text-sm text-slate-600 dark:text-slate-300 focus:outline-none"
                                 />
                             </div>
@@ -173,7 +144,7 @@ export function ShareModal({ isOpen, onClose, calculatorName, calculatorId }: Sh
 
                 <div className="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 text-center">
                     <p className="text-xs text-slate-500 dark:text-slate-400">
-                        Sharing calculations helps others get to your same results instantly.
+                        Spread the word and help others calculate smarter with CalcSuite.
                     </p>
                 </div>
             </div>
