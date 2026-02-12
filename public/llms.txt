@@ -1,0 +1,22 @@
+# CalcSuite.in - Free Online Calculators
+
+CalcSuite provides a comprehensive suite of free, fast, and mobile-friendly online calculators for financial, math, health, and India-specific needs.
+
+## Core Calculator Sections
+
+- Financial: Mortgage, Loan, Auto Loan, Investment, Retirement, Salary, Inflation, SIP.
+- India Specific: GST (2025), EMI, Income Tax (FY 2025-26), FD, RD, PPF, HRA, Home Loan Eligibility.
+- Health & Fitness: BMI, Calorie, Body Fat, BMR, Ideal Weight, Pregnancy, Ovulation.
+- Math & Basic: Scientific, Triangle, Fraction, Percentage, Unit Converter.
+
+## Authoritative Tools
+
+1. GST Calculator India: https://calcsuite.in/calculators/india-gst
+2. Income Tax Calculator (FY 2025-26): https://calcsuite.in/calculators/india-tax
+3. EMI Calculator: https://calcsuite.in/calculators/india-emi
+4. SIP Calculator: https://calcsuite.in/calculators/sip
+
+## Technical Access
+
+- Sitemap: https://calcsuite.in/sitemap.xml
+- Robots.txt: https://calcsuite.in/robots.txt

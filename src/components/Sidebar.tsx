@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { Calculator, Menu, X, Code, Coffee, Star } from 'lucide-react';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '../utils/cn';
 import { categories, calculatorRegistry } from '../calculators/registry';
 import { ThemeToggle } from './ThemeToggle';
@@ -12,6 +12,18 @@ export function Sidebar() {
     const [isOpen, setIsOpen] = useState(false);
     const { favorites } = useFavorites();
 
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isOpen]);
+
     const favCalculators = favorites
         .map(id => calculatorRegistry.find(c => c.id === id))
         .filter((c): c is typeof calculatorRegistry[0] => !!c);
@@ -20,7 +32,7 @@ export function Sidebar() {
         <>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-lg shadow-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="lg:hidden fixed top-4 right-4 z-50 p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-lg shadow-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                 aria-label="Toggle Menu"
             >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -36,7 +48,7 @@ export function Sidebar() {
 
             <aside
                 className={cn(
-                    "fixed top-0 left-0 z-40 h-screen w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out lg:translate-x-0",
+                    "fixed top-0 left-0 z-40 h-screen w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out lg:translate-x-0 flex flex-col",
                     isOpen ? "translate-x-0" : "-translate-x-full"
                 )}
             >
@@ -55,7 +67,7 @@ export function Sidebar() {
                     </div>
                 </div>
 
-                <nav className="p-4 space-y-1 overflow-y-auto h-[calc(100vh-80px)] pb-20">
+                <nav className="p-4 space-y-1 overflow-y-auto flex-1">
                     <div className="mb-4">
                         <p className="px-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">
                             Menu
@@ -177,7 +189,7 @@ export function Sidebar() {
                     )}
                 </nav>
 
-                <div className="absolute bottom-0 left-0 w-full p-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
                     <div className="flex items-center justify-between">
                         <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Theme</span>
                         <ThemeToggle />
