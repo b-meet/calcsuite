@@ -578,8 +578,12 @@ export const calculatorRegistry: CalculatorDef[] = [
             'bmi for men',
             'bmi for women',
             'ideal weight calculator',
-            'obesity calculator'
+            'obesity calculator',
+            'bmi for indians',
+            'tdee calculator',
+            'bmr calculator'
         ],
+        hideDefaultSections: true,
         features: [
             "Metric & Imperial Units",
             "Weight category screening",
@@ -588,19 +592,11 @@ export const calculatorRegistry: CalculatorDef[] = [
         ],
         faqs: [
             {
-                question: "What is a healthy BMI range?",
-                answer: "A BMI between 18.5 and 24.9 is generally considered healthy for adults."
+                question: "Is BMI accurate?",
+                answer: "BMI is a reliable screening tool for most adults, but it does not measure body fat directly."
             },
             {
-                question: "Is BMI accurate for athletes?",
-                answer: "BMI may not be accurate for athletes or bodybuilders as it does not distinguish between muscle and fat mass."
-            },
-            {
-                question: "Does BMI change with age?",
-                answer: "BMI categories remain the same for adults, but body composition often changes with age."
-            },
-            {
-                question: "Is this BMI calculator free?",
+                question: "Is this calculator free?",
                 answer: "Yes. It is completely free with no limitations."
             }
         ],
