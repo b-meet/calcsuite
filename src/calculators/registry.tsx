@@ -1493,30 +1493,25 @@ export const calculatorRegistry: CalculatorDef[] = [
 
     {
         id: 'india-gst',
-        name: 'GST Calculator India (2025)',
-        description: 'Best Online GST Calculator for India. Calculate inclusive and exclusive GST for 5%, 12%, 18%, and 28% tax slabs instantly.',
+        name: 'GST Calculator India (2026)',
+        description: 'Updated for 2026 Reforms. Calculate GST for Exempt (0%), Merit (5%), Standard (18%), and Luxury (40%) goods instantly.',
         category: 'india',
         icon: Percent,
         component: IndiaGSTCalculator,
         content: IndiaGSTCalculatorContent,
-        longDescription: "The most accurate and easy-to-use GST Calculator for Indian businesses, freelancers, and consumers. Whether you are generating an invoice or checking the MRP of a product, our tool helps you calculate Goods and Services Tax (GST) in split seconds. It supports all standard Indian GST rates: 5% (Essentials), 12% (Standard), 18% (Services/Most Goods), and 28% (Luxury). You can easily switch between 'Tax Exclusive' (Add GST to Base Price) and 'Tax Inclusive' (Remove GST from MRP) modes. Understand your IGST, CGST, and SGST bifurcations for intra-state and inter-state transactions.",
+        longDescription: "The most accurate 2026-compliant GST Calculator for Indian businesses and consumers. Following the Jan 2026 reforms, this tool supports the new streamlined tax slabs: 0% (Essentials), 5% (Merit Goods), 18% (Standard Rate), and 40% (Luxury/Sin Goods). Easily switch between 'Tax Exclusive' and 'Tax Inclusive' modes to generate compliant invoices or verify bills.",
         keywords: [
-            'gst calculator india', 'online gst calculator', 'gst calculation formula',
-            'reverse gst calculator', 'gst exclusive calculator', 'gst inclusive calculator',
-            'igst calculator', 'cgst sgst calculation', 'gst rates 2025',
-            'gst calculator for services', 'gst calculator for mobile', 'gst amount finder',
-            'calculate gst from total amount', 'gst tax calculator india', 'goods and services tax calculator',
-            'gst calculator monthly', 'quick gst calc', 'gst billing tool',
-            'karnataka gst', 'maharashtra gst', 'delhi gst', 'gujarat gst'
+            'gst calculator 2026', 'india gst new rates', '0% gst list',
+            'luxury gst 40%', 'gst exemption calculator', 'gst inclusive exclusive',
+            'gst slabs 2026', 'gst billing software free'
         ],
         features: [
-            "Reverse GST Calculation (Inclusive -> Base)",
-            "Forward GST Calculation (Base -> Inclusive)",
-            "Instant CGST / SGST / IGST Breakdown",
-            "Updated 2025 Tax Slabs (5%, 12%, 18%, 28%)",
-            "Copy Results with One Click",
-            "Mobile Responsive Design",
-            "Works Offline (PWA Ready)"
+            "New 2026 Tax Slabs (0%, 5%, 18%, 40%)",
+            "Exempt Item Calculation (Zero Rated)",
+            "Luxury & Sin Goods Tax (40%)",
+            "Reverse GST Calculation",
+            "Instant Breakdown",
+            "Mobile Friendly"
         ],
         educationalContent: [
             {
@@ -1528,32 +1523,7 @@ export const calculatorRegistry: CalculatorDef[] = [
                 content: "0% (Exempt items like milk, bread), 5% (Essentials, spices), 12% (Processed food, phones), 18% (Most services, electronics), 28% (Luxury cars, tobacco)."
             }
         ],
-        faqs: [
-            {
-                question: "How do I calculate GST from total amount?",
-                answer: "Select the 'Inclusive' option in our calculator. Enter the total MRP and the tax rate. The tool will automatically reverse-calculate the base price and the tax component."
-            },
-            {
-                question: "What is the difference between CGST, SGST, and IGST?",
-                answer: "CGST (Central GST) and SGST (State GST) are levied on intra-state supplies (within the same state), split 50-50. IGST (Integrated GST) is levied on inter-state supplies (between two states) and goes to the Center."
-            },
-            {
-                question: "Is this GST calculator compatible with 2025 rates?",
-                answer: "Yes, our calculator is updated with the latest GST council tax slabs for the financial year 2025-26."
-            },
-            {
-                question: "Can I use this for billing?",
-                answer: "Absolutely. You can use the breakdown provided to draft accurate GST invoices."
-            },
-            {
-                question: "How to calculate 18% GST?",
-                answer: "Simply multiply your base amount by 0.18. For example, for ₹1000, 18% GST is ₹180. Total amount = ₹1180."
-            },
-            {
-                question: "Does it support custom rates?",
-                answer: "Currently, it supports standard slabs. For custom rates, you can pick the closest slab or use our Percentage Calculator."
-            }
-        ],
+
         howTo: {
             name: "How to Use the India GST Calculator",
             description: "Step-by-step guide to accurate tax calculation.",
