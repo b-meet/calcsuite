@@ -109,6 +109,7 @@ export interface CalculatorDef {
         steps: { name: string; text: string; image?: string; url?: string }[];
     };
     popular?: boolean;
+    hideDefaultSections?: boolean;
 }
 
 export const calculatorRegistry: CalculatorDef[] = [
@@ -1596,6 +1597,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Compare Different Return Rates (12%, 15%, etc.)",
             "Long-term Wealth Planning Tool"
         ],
+        hideDefaultSections: true,
         faqs: [
             {
                 question: "What is a good SIP return rate?",
@@ -1607,11 +1609,11 @@ export const calculatorRegistry: CalculatorDef[] = [
             },
             {
                 question: "Is SIP better than Lumpsum?",
-                answer: "SIP is better for volatile markets (Rupee Cost Averaging). Lumpsum is better when the market is at a low. SIP is generally safer for beginners."
+                answer: "SIP is better for volatile markets. Lumpsum is better when the market is low. SIP promotes discipline."
             },
             {
                 question: "Can I increase my SIP amount?",
-                answer: "Yes, this is called a Step-up SIP. Increasing investment by 10% yearly can double your final corpus."
+                answer: "Yes, this is called Step-up SIP. A 10% annual increase can double your final corpus."
             }
         ],
         howTo: {

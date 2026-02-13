@@ -20,7 +20,7 @@ export default function RelatedCalculators({ currentCalculatorId, category }: Re
     return (
         <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
             <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-6">Related Calculators</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
                 {related.map((calc) => (
                     <CalculatorCard
                         key={calc.id}
