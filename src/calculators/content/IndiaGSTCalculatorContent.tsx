@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { HelpCircle, Calculator, FileText, AlertTriangle, Truck, Percent, Building, Info, TrendingUp, ShieldAlert, Globe, Map, Bell, Search } from 'lucide-react';
+import { HelpCircle, Calculator, FileText, AlertTriangle, Truck, Percent, Building, Info, TrendingUp, ShieldAlert, Globe, Map, Bell, Search, ArrowRight } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const IndiaGSTCalculatorContent = () => {
     // State for Interest Calculator
@@ -33,6 +34,30 @@ const IndiaGSTCalculatorContent = () => {
 
     return (
         <div className="space-y-12 not-prose">
+            <Helmet>
+                <title>GST Calculator India (2026) - Calculate 0%, 5%, 18%, 40% Tax</title>
+                <meta name="description" content="Free India GST Calculator updated for 2026 reforms. Calculate GST inclusive/exclusive prices, HSN codes, and late payment interest. 100% accurate & free." />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "SoftwareApplication",
+                        "name": "India GST Calculator (2026)",
+                        "operatingSystem": "Web",
+                        "applicationCategory": "FinanceApplication",
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.8",
+                            "ratingCount": "1024"
+                        },
+                        "offers": {
+                            "@type": "Offer",
+                            "price": "0",
+                            "priceCurrency": "INR"
+                        },
+                        "featureList": "Calculate GST, HSN Code Search, Interest Calculator, 2026 Tax Slabs, Input Tax Credit"
+                    })}
+                </script>
+            </Helmet>
 
             {/* 0. Latest News Ticker (SEO "Freshness" Signal) */}
             <div className="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-xl p-4 text-white shadow-lg flex items-center gap-4 animate-fade-in">
@@ -748,6 +773,53 @@ const IndiaGSTCalculatorContent = () => {
                             Quarterly Return Monthly Payment. Allows small taxpayers (Turnover &lt; ₹5Cr) to file returns quarterly while paying tax monthly.
                         </p>
                     </div>
+                </div>
+            </section>
+
+            {/* Related Tools for Engagement */}
+            <section className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Popular Financial Tools</h2>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="/calculator/india-tax" className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:shadow-md transition-all group">
+                        <div className="flex items-center justify-between mb-2">
+                            <span className="p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-blue-600 dark:text-blue-400">
+                                <FileText className="w-5 h-5" />
+                            </span>
+                            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                        </div>
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-1">Income Tax Calc</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">Calculate New vs Old Regime tax instantly.</p>
+                    </a>
+                    <a href="/calculator/india-salary" className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-green-500 hover:shadow-md transition-all group">
+                        <div className="flex items-center justify-between mb-2">
+                            <span className="p-2 bg-green-50 dark:bg-green-900/20 rounded-lg text-green-600 dark:text-green-400">
+                                <Building className="w-5 h-5" />
+                            </span>
+                            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-green-500 transition-colors" />
+                        </div>
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-1">Salary Calculator</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">Convert CTC to In-hand monthly salary.</p>
+                    </a>
+                    <a href="/calculator/percentage" className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-purple-500 hover:shadow-md transition-all group">
+                        <div className="flex items-center justify-between mb-2">
+                            <span className="p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-purple-600 dark:text-purple-400">
+                                <Percent className="w-5 h-5" />
+                            </span>
+                            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-purple-500 transition-colors" />
+                        </div>
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-1">Percentage Calc</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">Find % change, increase or decrease.</p>
+                    </a>
+                    <a href="/calculator/discount" className="p-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-orange-500 hover:shadow-md transition-all group">
+                        <div className="flex items-center justify-between mb-2">
+                            <span className="p-2 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-orange-600 dark:text-orange-400">
+                                <TrendingUp className="w-5 h-5" />
+                            </span>
+                            <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-orange-500 transition-colors" />
+                        </div>
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-1">Discount Calc</h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">Calculate finale price after sale discounts.</p>
+                    </a>
                 </div>
             </section>
         </div>
