@@ -1560,28 +1560,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Home, Car, Personal, Education Loan Support",
             "Total Interest Payable Analysis"
         ],
-        faqs: [
-            {
-                question: "How is EMI calculated in India?",
-                answer: "EMI = [P x R x (1+R)^N]/[(1+R)^N-1], where P is Principal, R is monthly interest rate, and N is tenure in months."
-            },
-            {
-                question: "Does this match bank calculations?",
-                answer: "Yes, we use the analytical formula used by all major Indian banks (SBI, HDFC, ICICI) for reducing balance loans."
-            },
-            {
-                question: "How can I reduce my EMI?",
-                answer: "You can reduce EMI by increasing the loan tenure (which increases total interest) or by making a higher down payment (reducing principal)."
-            },
-            {
-                question: "What is the difference between Flat Rate and Reducing Balance?",
-                answer: "Flat rate calculates interest on the full principal throughout the tenure. Reducing balance calculates interest only on the outstanding amount. Reducing balance is cheaper and standard for home loans."
-            },
-            {
-                question: "Does tenure affect total interest?",
-                answer: "Yes, significantly. A longer tenure lowers monthly EMI but drastically increases the total interest paid over the years."
-            }
-        ],
+
         howTo: {
             name: "How to Calculate Loan EMI",
             description: "Estimate your monthly loan burden in seconds.",
