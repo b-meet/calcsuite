@@ -1,10 +1,11 @@
-import { Briefcase, CreditCard, HelpCircle, CheckCircle, PieChart, Coins, Building } from 'lucide-react';
+import { Briefcase, CreditCard, HelpCircle, CheckCircle, PieChart, Coins, Building, TrendingUp, Target, Shield, Umbrella, Zap, Home, Popcorn } from 'lucide-react';
 
 const IndiaSalaryCalculatorContent = () => {
     return (
         <div className="space-y-12">
+            {/* ... existing sections ... */}
 
-            {/* Intro Section */}
+            {/* Intro Grid */}
             <section className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">Salary Calculator India: CTC to In-Hand</h2>
                 <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -97,6 +98,165 @@ const IndiaSalaryCalculatorContent = () => {
                     </div>
                 </div>
             </section>
+
+            {/* 🇮🇳 2026 Salary Benchmarks */}
+            <section className="bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl p-8 border border-indigo-100 dark:border-slate-700">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1">
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <TrendingUp className="w-6 h-6 text-indigo-600" />
+                            Ideal Income for a Family of 3 (2026)
+                        </h2>
+                        <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                            Middle-class Indian families in 2026 face rising education and healthcare costs. To live a
+                            comfortable life (2BHK, school fees, annual travel, and savings), here are the benchmarks:
+                        </p>
+
+                        <div className="grid sm:grid-cols-2 gap-4">
+                            <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-1">Tier-1 Metros</h3>
+                                <p className="text-xs text-slate-500 mb-3">Mumbai, Delhi, Bangalore</p>
+                                <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">₹80k - ₹1.2L</div>
+                                <p className="text-xs text-slate-500 mt-1">Net Monthly Income</p>
+                            </div>
+                            <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                                <h3 className="font-bold text-slate-900 dark:text-white text-lg mb-1">Tier-2 Cities</h3>
+                                <p className="text-xs text-slate-500 mb-3">Pune, Jaipur, Ahmedabad</p>
+                                <div className="text-2xl font-bold text-teal-600 dark:text-teal-400">₹50k - ₹80k</div>
+                                <p className="text-xs text-slate-500 mt-1">Net Monthly Income</p>
+                            </div>
+                        </div>
+
+                        <div className="mt-6 p-4 bg-orange-100 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800 flex items-start gap-3">
+                            <Target className="w-5 h-5 text-orange-600 mt-0.5 shrink-0" />
+                            <div>
+                                <h4 className="font-bold text-orange-800 dark:text-orange-200 text-sm">The "Decent Life" Threshold</h4>
+                                <p className="text-xs text-orange-700 dark:text-orange-300 mt-1">
+                                    Annual income of <strong>₹25 Lakh (25 LPA)</strong> is a major milestone, providing roughly ₹1.5 Lakh/month in-hand. Beware of lifestyle inflation at this stage!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex-1 w-full">
+                        <h3 className="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                            <PieChart className="w-5 h-5 text-indigo-500" />
+                            The 50-30-20 Rule (Stability Framework)
+                        </h3>
+                        <div className="space-y-3">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border-l-4 border-blue-500 shadow-sm">
+                                <div className="flex justify-between items-center mb-2">
+                                    <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                        <Home className="w-4 h-4 text-blue-500" /> 50% Needs
+                                    </h4>
+                                    <span className="text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full font-medium">Non-Negotiable</span>
+                                </div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">Rent/EMI, groceries, utilities, school fees.</p>
+                            </div>
+
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border-l-4 border-purple-500 shadow-sm">
+                                <div className="flex justify-between items-center mb-2">
+                                    <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                        <Popcorn className="w-4 h-4 text-purple-500" /> 30% Wants
+                                    </h4>
+                                    <span className="text-xs bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-medium">Lifestyle</span>
+                                </div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">Dining out, OTT subscriptions, day trips, gadgets.</p>
+                            </div>
+
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border-l-4 border-green-500 shadow-sm">
+                                <div className="flex justify-between items-center mb-2">
+                                    <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                                        <TrendingUp className="w-4 h-4 text-green-500" /> 20% Future
+                                    </h4>
+                                    <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">Growth</span>
+                                </div>
+                                <p className="text-sm text-slate-600 dark:text-slate-400">SIPs, Insurance premiums, Emergency fund.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 🛡️ Stability Shield & Pro Tips */}
+            <div className="grid md:grid-cols-2 gap-8">
+                <section>
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                        <Shield className="w-5 h-5 text-indigo-500" />
+                        Why 1 Income Source isn't Enough
+                    </h2>
+                    <div className="space-y-6">
+                        <div className="flex gap-4">
+                            <div className="w-10 h-10 bg-red-50 dark:bg-slate-800 rounded-full flex items-center justify-center shrink-0">
+                                <Umbrella className="w-5 h-5 text-red-500" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-slate-900 dark:text-white text-sm">Risk Mitigation</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                                    A job loss or salary delay can trigger panic. Multiple streams act as a safety net.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="w-10 h-10 bg-indigo-50 dark:bg-slate-800 rounded-full flex items-center justify-center shrink-0">
+                                <TrendingUp className="w-5 h-5 text-indigo-500" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-slate-900 dark:text-white text-sm">Beating Inflation</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                                    Traditional savings (FDs) barely beat 6-7% inflation. You need passive wealth (Rental/Dividends) to grow real value.
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="w-10 h-10 bg-teal-50 dark:bg-slate-800 rounded-full flex items-center justify-center shrink-0">
+                                <Zap className="w-5 h-5 text-teal-500" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-slate-900 dark:text-white text-sm">Side Hustles</h3>
+                                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mt-1">
+                                    Turn skills into freelance work or digital products. It accelerates your path to financial freedom.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Pro Tips Cards */}
+                <section className="space-y-4">
+                    <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Financial Safety Nets</h2>
+
+                    <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex gap-4 items-start">
+                        <div className="text-2xl">🚨</div>
+                        <div>
+                            <h3 className="font-bold text-slate-900 dark:text-white text-sm">The "Emergency Cushion"</h3>
+                            <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                                A family of 3 should have <strong>3 to 6 months</strong> of expenses saved in a liquid fund before making luxury purchases.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex gap-4 items-start">
+                        <div className="text-2xl">☂️</div>
+                        <div>
+                            <h3 className="font-bold text-slate-900 dark:text-white text-sm">Term Insurance Backbone</h3>
+                            <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                                If you are the sole earner, a Term Plan covering <strong>10–15x annual income</strong> is a mandatory "safety rent" for your family.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 flex gap-4 items-start">
+                        <div className="text-2xl">💰</div>
+                        <div>
+                            <h3 className="font-bold text-slate-900 dark:text-white text-sm">Tax Optimization</h3>
+                            <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">
+                                Families with a home loan often save more under the <strong>Old Regime</strong>. Don't forget NPS for extra tax benefits!
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
 
             {/* FAQs */}
             <section>

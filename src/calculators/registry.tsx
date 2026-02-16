@@ -1646,6 +1646,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             "HRA & Special Allowance Breakdown",
             "Tax Regime Impact Analysis"
         ],
+        hideDefaultSections: true,
         faqs: [
             {
                 question: "What is CTC?",
