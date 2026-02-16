@@ -8,7 +8,7 @@ const IndiaSalaryCalculatorContent = () => {
             {/* Intro Grid */}
             <section className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">Salary Calculator India: CTC to In-Hand</h2>
-                <div className="flex flex-col md:flex-row gap-8 items-start">
+                <div className="flex flex-col md:flex-row gap-8 items-start mt-6">
                     <div className="flex-1 space-y-4">
                         <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                             This Salary Calculator helps you estimate your monthly in-hand salary (take-home pay) from your annual CTC (Cost to Company). It provides a detailed breakdown of salary components like Basic, HRA, Special Allowances, and deductions for PF and Professional Tax.
@@ -62,7 +62,7 @@ const IndiaSalaryCalculatorContent = () => {
             {/* Calculation Logic */}
             <section className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">How In-Hand Salary is Calculated</h2>
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8 mt-6">
                     <div>
                         <p className="text-slate-600 dark:text-slate-400 mb-4 text-sm">
                             The calculator follows a standard Indian payroll structure to estimate your pay cheque.
@@ -78,7 +78,7 @@ const IndiaSalaryCalculatorContent = () => {
                         <h3 className="font-semibold text-slate-900 dark:text-white mb-3 text-sm flex items-center gap-2 m-0">
                             <CreditCard className="w-4 h-4 text-indigo-500" /> Example: ₹12 Lakh CTC
                         </h3>
-                        <div className="space-y-2 text-xs">
+                        <div className="space-y-2 text-xs mt-6">
                             <div className="flex justify-between p-2 bg-slate-50 dark:bg-slate-900 rounded">
                                 <span>Monthly CTC</span>
                                 <span className="font-medium text-slate-900 dark:text-white">₹1,00,000</span>
@@ -143,7 +143,7 @@ const IndiaSalaryCalculatorContent = () => {
                             <PieChart className="w-5 h-5 text-indigo-500" />
                             The 50-30-20 Rule (Stability Framework)
                         </h3>
-                        <div className="space-y-3">
+                        <div className="space-y-3 mt-6">
                             <div className="bg-white dark:bg-slate-800 p-4 rounded-xl border-l-4 border-blue-500 shadow-sm">
                                 <div className="flex justify-between items-center mb-2">
                                     <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -185,7 +185,7 @@ const IndiaSalaryCalculatorContent = () => {
                         <Shield className="w-5 h-5 text-indigo-500" />
                         Why 1 Income Source isn't Enough
                     </h2>
-                    <div className="space-y-6">
+                    <div className="space-y-6 mt-6">
                         <div className="flex gap-4">
                             <div className="w-10 h-10 bg-red-50 dark:bg-slate-800 rounded-full flex items-center justify-center shrink-0">
                                 <Umbrella className="w-5 h-5 text-red-500" />
@@ -261,7 +261,7 @@ const IndiaSalaryCalculatorContent = () => {
             {/* FAQs */}
             <section>
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4 mt-6">
                     {[
                         { q: "Is PF compulsory?", a: "Yes, for Basic Salary up to ₹15,000/month. Above that, it's optional but recommended." },
                         { q: "Is bonus part of monthly salary?", a: "No. Bonuses are usually paid annually or quarterly and excluded from monthly in-hand." },
