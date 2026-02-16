@@ -130,7 +130,101 @@ const BMICalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs - Consolidated & Clean */}
+            {/* 📚 Comprehensive SEO Article */}
+            <article className="prose prose-slate dark:prose-invert max-w-none bg-white dark:bg-slate-800 p-8 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Understanding Your BMI: Beyond the Number</h2>
+                <div className="text-slate-600 dark:text-slate-300 leading-relaxed">
+                    <p>
+                        While the <strong>Body Mass Index (BMI)</strong> is a valuable initial screening tool used by healthcare professionals worldwide, it is often just the starting point of a comprehensive health assessment. Understanding what your BMI result truly means—and what it doesn't—is crucial for making informed decisions about your diet, fitness, and long-term well-being.
+                    </p>
+
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4 flex items-center gap-2">
+                        <Microscope className="w-5 h-5 text-indigo-500" />
+                        The "Skinny Fat" Phenomenon & Visceral Fat
+                    </h3>
+                    <p>
+                        One of the most critical limitations of BMI acts as a "silent risk" factor. You might have a "Normal" BMI (e.g., 22.0) but still carry a high percentage of <strong>visceral fat</strong>—the dangerous fat stored deep inside the belly, wrapping around vital organs like the liver and pancreas.
+                    </p>
+                    <p>
+                        This condition, often called being "Skinny Fat" (medically termed <em>Normal Weight Obesity</em>), carries many of the same metabolic risks as being visibly overweight, including:
+                    </p>
+                    <ul className="list-disc pl-6 space-y-2 marker:text-indigo-500">
+                        <li><strong>Insulin Resistance:</strong> A precursor to Type 2 Diabetes.</li>
+                        <li><strong>High Triglycerides:</strong> Increasing the risk of heart disease.</li>
+                        <li><strong>Chronic Inflammation:</strong> Which can weaken the immune system over time.</li>
+                    </ul>
+                    <div className="bg-indigo-50 dark:bg-indigo-900/10 p-4 rounded-lg border-l-4 border-indigo-500 mb-6">
+                        <p className="m-0 text-sm font-medium text-indigo-900 dark:text-indigo-200">
+                            <strong>Expert Tip:</strong> If your BMI is normal but your waistline is increasing (&gt;90cm for men, &gt;80cm for women), consider checking your Body Fat Percentage or consulting a doctor about metabolic health.
+                        </p>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white">How Age & Sex Influence Your Ideal BMI</h3>
+                    <p>
+                        A single number doesn't tell the whole story for everyone. Biological differences play a huge role in how we interpret BMI:
+                    </p>
+                    <div className="grid md:grid-cols-2 gap-6 my-6 not-prose">
+                        <div className="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-xl">
+                            <h4 className="font-semibold text-slate-900 dark:text-white mb-2">For Women</h4>
+                            <p className="text-sm">Women naturally carry more essential body fat than men for reproductive health. A slightly higher BMI in women doesn't always signal "excess weight" in the same way, especially if fat is stored in the hips/thighs (subcutaneous) rather than the belly.</p>
+                        </div>
+                        <div className="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-xl">
+                            <h4 className="font-semibold text-slate-900 dark:text-white mb-2">For Seniors (65+)</h4>
+                            <p className="text-sm">Research suggests a slightly higher BMI (25.0 – 27.0) can be <strong>protective</strong> in older adults, providing energy reserves against illness and reducing the risk of osteoporosis and fractures.</p>
+                        </div>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">5 Steps to Reach & Maintain a Healthy BMI</h3>
+                    <p>
+                        Moving your BMI into the "Normal" range isn't just about cutting calories—it's about changing body composition. Here is a scientifically-backed roadmap:
+                    </p>
+                    <ol className="list-decimal pl-6 space-y-4 marker:font-bold marker:text-slate-900 dark:marker:text-white">
+                        <li>
+                            <strong>Prioritize Protein Intake:</strong> Protein has a high "thermic effect" (burns more calories to digest) and preserves muscle mass during weight loss. Aim for <em>0.8g to 1.2g per kg</em> of body weight.
+                        </li>
+                        <li>
+                            <strong>Strength Training (2-3x/week):</strong> Muscle tissue burns more calories at rest than fat tissue. Building muscle boosts your <strong>Basal Metabolic Rate (BMR)</strong>, making it easier to maintain a healthy weight.
+                        </li>
+                        <li>
+                            <strong>Monitor Liquid Calories:</strong> Sugary drinks, sodas, and excessive fruit juices are often the biggest hidden contributors to a high BMI. Swapping these for water or unsweetened tea can reduce intake by hundreds of calories daily.
+                        </li>
+                        <li>
+                            <strong>Sleep for Metabolism:</strong> Lack of sleep increases the hunger hormone <em>ghrelin</em> and decreases the fullness hormone <em>leptin</em>. Aim for 7-9 hours of quality sleep to keep metabolic hormones in check.
+                        </li>
+                        <li>
+                            <strong>Manage Stress (Cortisol):</strong> Chronic stress triggers cortisol, a hormone that explicitly encourages fat storage in the abdominal area (visceral fat).
+                        </li>
+                    </ol>
+
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-8 mb-4">BMI Myths vs. Facts</h3>
+                    <div className="overflow-x-auto not-prose mt-6">
+                        <table className="w-full text-left text-sm border-collapse">
+                            <thead>
+                                <tr className="border-b border-slate-200 dark:border-slate-700">
+                                    <th className="py-3 px-4 text-red-500 font-bold bg-red-50 dark:bg-red-900/10 rounded-tl-lg">MYTH</th>
+                                    <th className="py-3 px-4 text-green-600 font-bold bg-green-50 dark:bg-green-900/10 rounded-tr-lg">FACT</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100 dark:divide-slate-700">
+                                <tr>
+                                    <td className="py-3 px-4 font-medium text-slate-700 dark:text-slate-300">"BMI measures body fat."</td>
+                                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">No. It measures <strong>excess weight</strong> relative to height. It cannot distinguish between muscle, fat, Bone density, and water weight.</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 px-4 font-medium text-slate-700 dark:text-slate-300">"You must be 18.5 - 24.9 to be healthy."</td>
+                                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">Not always. Athletes may be &gt;25 due to muscle. Seniors may be healthier at 25-27. Context matters.</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-3 px-4 font-medium text-slate-700 dark:text-slate-300">"Low BMI is always good."</td>
+                                    <td className="py-3 px-4 text-slate-600 dark:text-slate-400">False. Being underweight (BMI &lt;18.5) carries risks like lowered immunity, anemia, and osteoporosis.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </article>
+
+            {/* FAQs */}
             <section>
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
                 <div className="grid md:grid-cols-2 gap-6 mt-6">
