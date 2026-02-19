@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import { useFavorites } from '../hooks/useFavorites';
@@ -16,37 +17,79 @@ export function CalculatorCard({ id, name, description, icon: Icon, category, po
     const { isFavorite, toggleFavorite, reachedMax } = useFavorites();
     const isFav = isFavorite(id);
 
+    const [shake, setShake] = useState(false);
+    const [clickCount, setClickCount] = useState(0);
+    const [showLimitWarning, setShowLimitWarning] = useState(false);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
     const getTooltip = () => {
+        if (showLimitWarning) return "You can only add 5 favorites!";
         if (isFav) return "Remove from Favorites";
-        if (reachedMax) return "Limit reached (Max 6)";
+        if (reachedMax) return "Limit reached (Max 5)";
         return "Add to Favorites";
+    };
+
+    const handleStarClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (!isFav && reachedMax) {
+            // User is trying to add but limit reached
+            setShake(true);
+            setClickCount(prev => prev + 1);
+
+            // On 3rd click (prev was 2), show warning
+            if (clickCount >= 2) {
+                setShowLimitWarning(true);
+            }
+
+            // Reset shake after animation
+            setTimeout(() => setShake(false), 500);
+
+            // Reset warning and count after a delay
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            timeoutRef.current = setTimeout(() => {
+                setShowLimitWarning(false);
+                setClickCount(0);
+            }, 3000);
+
+            return;
+        }
+
+        // Normal toggle
+        toggleFavorite(id);
+        setClickCount(0);
+        setShowLimitWarning(false);
     };
 
     return (
         <Link
             to={`/calculator/${id}`}
-            className="group relative flex flex-row sm:flex-col items-center sm:items-start p-4 sm:p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all duration-300 overflow-hidden"
+            className="group relative flex flex-row sm:flex-col items-center sm:items-start p-4 sm:p-6 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all duration-300"
         >
             <div className="absolute top-1/2 -translate-y-1/2 right-4 sm:top-4 sm:translate-y-0 flex items-center gap-2 z-10">
-                <button
-                    onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        if (!isFav && reachedMax) return;
-                        toggleFavorite(id);
-                    }}
-                    className={cn(
-                        "p-2 rounded-full transition-colors flex items-center justify-center bg-transparent sm:bg-white/80 sm:dark:bg-slate-800/80 sm:backdrop-blur-sm sm:border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700",
-                        isFav ? "text-amber-400 border-amber-200 dark:border-amber-800/30" : "text-slate-300 dark:text-slate-600",
-                        (!isFav && reachedMax) && "opacity-50 cursor-not-allowed hover:bg-transparent"
+                <div className="relative">
+                    {showLimitWarning && (
+                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-32 bg-red-500 text-white text-[10px] font-bold py-1 px-2 rounded-lg shadow-lg text-center animate-in fade-in zoom-in-95 duration-200 z-20 pointer-events-none after:content-[''] after:absolute after:top-100% after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-red-500">
+                            Max 5 Favorites!
+                        </div>
                     )}
-                    title={getTooltip()}
-                >
-                    <Star
-                        size={16}
-                        className={isFav ? "fill-amber-400" : ""}
-                    />
-                </button>
+                    <button
+                        onClick={handleStarClick}
+                        className={cn(
+                            "p-2 rounded-full transition-colors flex items-center justify-center bg-transparent sm:bg-white/80 sm:dark:bg-slate-800/80 sm:backdrop-blur-sm sm:border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700",
+                            isFav ? "text-amber-400 border-amber-200 dark:border-amber-800/30" : "text-slate-300 dark:text-slate-600",
+                            (!isFav && reachedMax) && "opacity-50 cursor-not-allowed hover:bg-transparent",
+                            shake && "animate-shake text-red-400 border-red-200"
+                        )}
+                        title={getTooltip()}
+                    >
+                        <Star
+                            size={16}
+                            className={isFav ? "fill-amber-400" : ""}
+                        />
+                    </button>
+                </div>
             </div>
 
             <div className="mb-0 sm:mb-4 mr-4 sm:mr-0 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl w-fit group-hover:bg-blue-100 dark:group-hover:bg-blue-900/40 transition-colors duration-300 shrink-0">

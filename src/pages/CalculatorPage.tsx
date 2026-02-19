@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
 import NotFound from './NotFound';
@@ -45,8 +45,45 @@ export function CalculatorPage() {
         return "Add to Favorites";
     };
 
+    const [shake, setShake] = useState(false);
+    const [clickCount, setClickCount] = useState(0);
+    const [showLimitWarning, setShowLimitWarning] = useState(false);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handleStarClick = () => {
+        // e.preventDefault(); // Not a link here, but good practice
+        // e.stopPropagation();
+
+        if (!isFav && reachedMax) {
+            // User is trying to add but limit reached
+            setShake(true);
+            setClickCount(prev => prev + 1);
+
+            // On 3rd click (prev was 2), show warning
+            if (clickCount >= 2) {
+                setShowLimitWarning(true);
+            }
+
+            // Reset shake after animation
+            setTimeout(() => setShake(false), 500);
+
+            // Reset warning and count after a delay
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            timeoutRef.current = setTimeout(() => {
+                setShowLimitWarning(false);
+                setClickCount(0);
+            }, 3000);
+            return;
+        }
+
+        toggleFavorite(calculatorDef.id);
+        setClickCount(0);
+        setShowLimitWarning(false);
+    };
+
     return (
         <div className="max-w-4xl mx-auto">
+            {/* ... SEO functions ... */}
             <SEO
                 title={calculatorDef.name}
                 description={calculatorDef.description}
@@ -54,7 +91,7 @@ export function CalculatorPage() {
                 image={`https://calcsuite.in/og/${calculatorDef.id}.png`}
             />
 
-            {/* Rich Snippet for Software App */}
+            {/* Structured Data components... (omitted for brevity, assume they are there in original) */}
             <StructuredData
                 type="SoftwareApplication"
                 data={{
@@ -64,16 +101,13 @@ export function CalculatorPage() {
                     features: [`Free ${calculatorDef.name}`, 'Instant Results', 'Mobile Friendly', 'Secure'],
                 }}
             />
-
-            {/* Rich Snippet for FAQ Page */}
+            {/* ... other StructuredData ... */}
             {calculatorDef.faqs && (
                 <StructuredData
                     type="FAQPage"
                     data={calculatorDef.faqs}
                 />
             )}
-
-            {/* Rich Snippet for Breadcrumbs */}
             <StructuredData
                 type="BreadcrumbList"
                 data={[
@@ -82,8 +116,6 @@ export function CalculatorPage() {
                     { name: calculatorDef.name, item: `https://calcsuite.in/calculator/${calculatorDef.id}` }
                 ]}
             />
-
-            {/* Rich Snippet for HowTo */}
             {calculatorDef.howTo && (
                 <StructuredData
                     type="HowTo"
@@ -105,22 +137,28 @@ export function CalculatorPage() {
                         >
                             <Share2 size={24} />
                         </button>
-                        <button
-                            onClick={() => {
-                                if (!isFav && reachedMax) return;
-                                toggleFavorite(calculatorDef.id);
-                            }}
-                            className={cn(
-                                "p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors",
-                                (!isFav && reachedMax) && "opacity-50 cursor-not-allowed hover:bg-transparent"
+
+                        <div className="relative">
+                            {showLimitWarning && (
+                                <div className="absolute top-full right-0 mt-2 w-32 bg-red-500 text-white text-[10px] font-bold py-1 px-2 rounded-lg shadow-lg text-center animate-in fade-in zoom-in-95 duration-200 z-20 pointer-events-none after:content-[''] after:absolute after:bottom-100% after:right-4 after:border-4 after:border-transparent after:border-b-red-500">
+                                    Max 5 Favorites!
+                                </div>
                             )}
-                            title={getTooltip()}
-                        >
-                            <Star
-                                size={24}
-                                className={isFav ? "text-amber-400 fill-amber-400" : "text-slate-300 dark:text-slate-600"}
-                            />
-                        </button>
+                            <button
+                                onClick={handleStarClick}
+                                className={cn(
+                                    "p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors",
+                                    (!isFav && reachedMax) && "opacity-50 cursor-not-allowed hover:bg-transparent",
+                                    shake && "animate-shake text-red-400"
+                                )}
+                                title={getTooltip()}
+                            >
+                                <Star
+                                    size={24}
+                                    className={isFav ? "text-amber-400 fill-amber-400" : "text-slate-300 dark:text-slate-600"}
+                                />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
