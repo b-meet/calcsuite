@@ -5,6 +5,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import { KofiWidget } from '../components/KofiWidget';
 import { PromotionBanner } from '../components/PromotionBanner';
 import { HistoryPromoModal } from '../components/HistoryPromoModal';
+import { PWAPrompt } from '../components/PWAPrompt';
 
 export function MainLayout() {
     return (
@@ -20,6 +21,7 @@ export function MainLayout() {
                 </main>
                 <Footer />
             </div>
+            <PWAPrompt />
         </div>
     );
 }
