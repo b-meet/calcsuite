@@ -91,7 +91,25 @@ export default function BasicCalculator() {
 
     const backspace = () => {
         if (isResult) return;
-        if (display.length === 1) {
+
+        if (display === '0' && equation !== '') {
+            // Undo operator: 1. remove last operator 2. move last operand back to display
+            const newEquation = equation.slice(0, -1);
+            const lastOperatorIndex = Math.max(
+                newEquation.lastIndexOf('+'),
+                newEquation.lastIndexOf('-'),
+                newEquation.lastIndexOf('*'),
+                newEquation.lastIndexOf('/')
+            );
+
+            if (lastOperatorIndex === -1) {
+                setDisplay(newEquation);
+                setEquation('');
+            } else {
+                setDisplay(newEquation.slice(lastOperatorIndex + 1));
+                setEquation(newEquation.slice(0, lastOperatorIndex + 1));
+            }
+        } else if (display.length === 1) {
             setDisplay('0');
         } else {
             setDisplay(display.slice(0, -1));

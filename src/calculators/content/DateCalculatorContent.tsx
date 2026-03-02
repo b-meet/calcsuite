@@ -79,7 +79,7 @@ const DateCalculatorContent = () => {
             </section>
 
             {/* CTA */}
-            <div className="text-center space-y-4 pt-4">
+            <div className="text-center space-y-4 pt-4 border-b border-slate-100 dark:border-slate-800 pb-12">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">Fast. Free. Reliable.</h2>
                 <p className="text-slate-600 dark:text-slate-400">
                     No downloads. No ads blocking your work. Just enter your dates and get instant, precise results.
@@ -88,6 +88,52 @@ const DateCalculatorContent = () => {
                     Use the Date Calculator whenever time matters and accuracy is non-negotiable.
                 </p>
             </div>
+
+            {/* Leap Year Fun Facts */}
+            <section className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+                <div className="text-center">
+                    <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Leap Year Fun Facts 🌍</h2>
+                    <p className="text-slate-500 dark:text-slate-400">Why do we have that extra day every four years?</p>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                    {[
+                        {
+                            title: "The Solar Offset",
+                            text: "A standard year is 365 days, but Earth actually takes about 365.2422 days to orbit the Sun. Without leap years, our calendar would drift by about 24 days every century!",
+                            icon: "☀️"
+                        },
+                        {
+                            title: "Leaplings",
+                            text: "People born on February 29 are called 'Leaplings' or 'Leapers'. The odds of being born on a leap day are approximately 1 in 1,461.",
+                            icon: "👶"
+                        },
+                        {
+                            title: "The 100-Year Rule",
+                            text: "Not every 4th year is a leap year. Years divisible by 100 are NOT leap years unless they are also divisible by 400. This is why 2000 was a leap year, but 1900 was not!",
+                            icon: "🔢"
+                        }
+                    ].map((fact, i) => (
+                        <div key={i} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md transition-shadow">
+                            <div className="text-3xl mb-4">{fact.icon}</div>
+                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{fact.title}</h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">{fact.text}</p>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="bg-emerald-50 dark:bg-emerald-900/10 p-8 rounded-3xl border border-emerald-100 dark:border-emerald-900/20">
+                    <div className="flex flex-col md:flex-row gap-8 items-center">
+                        <div className="text-5xl">🐢</div>
+                        <div className="space-y-2">
+                            <h3 className="text-xl font-bold text-emerald-900 dark:text-emerald-300">Why 'Leap'?</h3>
+                            <p className="text-emerald-800 dark:text-emerald-400 text-sm leading-relaxed">
+                                Usually, your birthday moves forward by one day of the week each year. But after a leap day, it 'leaps' over a day. If your birthday was on a Monday one year and the next is a leap year, it moves to Wednesday instead of Tuesday!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         </div>
     );
