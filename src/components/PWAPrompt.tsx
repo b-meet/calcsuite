@@ -11,7 +11,23 @@ export function PWAPrompt() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        // 1. Check if already running in standalone mode (installed)
+        const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+            (window.navigator as any).standalone === true; // For iOS
+
+        if (isStandalone) {
+            localStorage.setItem('pwa-installed', 'true');
+            return;
+        }
+
+        // We removed the early return for localStorage 'pwa-installed' 
+        // to allow browser events to trigger if the user has uninstalled it.
+
         const handleBeforeInstallPrompt = (e: Event) => {
+            // If beforeinstallprompt fires, it means the app is NOT installed
+            // or is available for installation, so we should clear the flag.
+            localStorage.removeItem('pwa-installed');
+
             // Prevent the mini-infobar from appearing on mobile
             e.preventDefault();
             // Stash the event so it can be triggered later.
@@ -30,10 +46,18 @@ export function PWAPrompt() {
             setIsVisible(true);
         };
 
+        const handleAppInstalled = () => {
+            localStorage.setItem('pwa-installed', 'true');
+            setIsVisible(false);
+            setDeferredPrompt(null);
+        };
+
         window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+        window.addEventListener('appinstalled', handleAppInstalled);
 
         return () => {
             window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+            window.removeEventListener('appinstalled', handleAppInstalled);
         };
     }, []);
 
