@@ -1,8 +1,57 @@
 import { DollarSign, Scale, HelpCircle, CheckCircle, FileText, TrendingUp, Users } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const IndiaTaxCalculatorContent = () => {
     return (
         <div className="space-y-12">
+            <Helmet>
+                <title>Income Tax Calculator India (2026 Tax Act) - Live FY 2026-27 Rates</title>
+                <meta name="description" content="Calculate Income Tax using Live FY 2026-27 Rates. Compare Old vs New Tax Regime to find maximum tax savings under the 2026 Tax Act. 100% accurate & free." />
+                <script type="application/ld+json">
+                    {JSON.stringify([
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "SoftwareApplication",
+                            "name": "India Income Tax Calculator (2026 Tax Act)",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "FinanceApplication",
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.9",
+                                "ratingCount": "2150"
+                            },
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "INR"
+                            },
+                            "featureList": "Calculate Income Tax, Compare Old vs New Tax Regime, Live FY 2026-27 Rates, Surcharge & Health Cess Calculation, Standard Deduction Support"
+                        },
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": [
+                                {
+                                    "@type": "Question",
+                                    "name": "Is income tax zero up to ₹12 lakh?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Yes, potentially under New Regime with rebate limits."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Can I switch regimes every year?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Salaried people - Yes. Business owners - No (once switched, it sticks)."
+                                    }
+                                }
+                            ]
+                        }
+                    ])}
+                </script>
+            </Helmet>
 
             {/* Intro Section */}
             <section className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">

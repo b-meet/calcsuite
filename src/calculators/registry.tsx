@@ -1490,8 +1490,8 @@ export const calculatorRegistry: CalculatorDef[] = [
 
     {
         id: 'india-gst',
-        name: 'GST Calculator India (2026)',
-        description: 'Updated for 2026 Reforms. Calculate GST for Exempt (0%), Merit (5%), Standard (18%), and Luxury (40%) goods instantly.',
+        name: 'GST Calculator India (2026 Tax Act)',
+        description: 'Updated for 2026 Reforms. Calculate GST for Exempt (0%), Merit (5%), Standard (18%), and Luxury (40%) goods instantly with Live FY 2026-27 Rates.',
         category: 'india',
         icon: Percent,
         component: IndiaGSTCalculator,
@@ -1674,8 +1674,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-tax',
-        name: 'Income Tax Calculator India (FY 2025-26)',
-        description: 'Calculate Income Tax for FY 2025-26 (AY 2026-27). Compare Old vs New Tax Regime to find maximum tax savings.',
+        name: 'Income Tax Calculator India (2026 Tax Act)',
+        description: 'Calculate Income Tax using Live FY 2026-27 Rates. Compare Old vs New Tax Regime to find maximum tax savings under the 2026 Tax Act.',
         category: 'india',
         icon: DollarSign,
         component: IndiaTaxCalculator,

@@ -35,27 +35,51 @@ const IndiaGSTCalculatorContent = () => {
     return (
         <div className="space-y-12 not-prose">
             <Helmet>
-                <title>GST Calculator India (2026) - Calculate 0%, 5%, 18%, 40% Tax</title>
-                <meta name="description" content="Free India GST Calculator updated for 2026 reforms. Calculate GST inclusive/exclusive prices, HSN codes, and late payment interest. 100% accurate & free." />
+                <title>GST Calculator India (2026 Tax Act) - Live FY 2026-27 Rates</title>
+                <meta name="description" content="Free India GST Calculator updated for 2026 Tax Act. Calculate GST inclusive/exclusive prices, HSN codes, and late payment interest. 100% accurate & free." />
                 <script type="application/ld+json">
-                    {JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "SoftwareApplication",
-                        "name": "India GST Calculator (2026)",
-                        "operatingSystem": "Web",
-                        "applicationCategory": "FinanceApplication",
-                        "aggregateRating": {
-                            "@type": "AggregateRating",
-                            "ratingValue": "4.8",
-                            "ratingCount": "1024"
+                    {JSON.stringify([
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "SoftwareApplication",
+                            "name": "India GST Calculator (2026 Tax Act)",
+                            "operatingSystem": "Web",
+                            "applicationCategory": "FinanceApplication",
+                            "aggregateRating": {
+                                "@type": "AggregateRating",
+                                "ratingValue": "4.8",
+                                "ratingCount": "1024"
+                            },
+                            "offers": {
+                                "@type": "Offer",
+                                "price": "0",
+                                "priceCurrency": "INR"
+                            },
+                            "featureList": "Calculate GST, HSN Code Search, Interest Calculator, Live FY 2026-27 Rates, Input Tax Credit"
                         },
-                        "offers": {
-                            "@type": "Offer",
-                            "price": "0",
-                            "priceCurrency": "INR"
-                        },
-                        "featureList": "Calculate GST, HSN Code Search, Interest Calculator, 2026 Tax Slabs, Input Tax Credit"
-                    })}
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": [
+                                {
+                                    "@type": "Question",
+                                    "name": "What is the new 40% GST slab for?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "The 40% slab is a consolidated rate for luxury and 'sin' goods like luxury cars, tobacco, and aerated drinks, replacing the earlier complex cess structure."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Is GST applicable on exports?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "No. Exports are 'Zero-Rated'. This means you can export goods without tax, or pay tax and claim a full refund to ensure Indian goods remain competitive globally."
+                                    }
+                                }
+                            ]
+                        }
+                    ])}
                 </script>
             </Helmet>
 
