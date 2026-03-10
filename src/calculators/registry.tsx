@@ -110,6 +110,14 @@ export interface CalculatorDef {
     };
     popular?: boolean;
     hideDefaultSections?: boolean;
+    scenarios?: {
+        id: string;
+        name: string;
+        description: string;
+        keywords: string[];
+        features?: string[];
+        initialState?: any;
+    }[];
 }
 
 export const calculatorRegistry: CalculatorDef[] = [
@@ -1532,6 +1540,22 @@ export const calculatorRegistry: CalculatorDef[] = [
             ]
         },
         popular: true,
+        scenarios: [
+            {
+                id: 'hsn-mobile-phones',
+                name: "GST Rate for Mobile Phones & Accessories (2026)",
+                description: "Calculate 18% GST on smartphones and accessories. Updated with latest HSN codes and input tax credit rules for 2026.",
+                keywords: ['gst on mobile phones', 'hsn code for smartphones', 'gst rate mobile accessories 2026', 'input tax credit mobile'],
+                initialState: { taxRate: 18 }
+            },
+            {
+                id: 'luxury-cars-gst',
+                name: "GST on Luxury Cars & SUVs (2026 Tax Act)",
+                description: "Calculate the consolidated 40% GST on luxury vehicles and SUVs. Includes breakdown of base price vs luxury tax.",
+                keywords: ['gst on luxury cars', '40% gst suv', 'luxury car tax india 2026', 'car gst calculator'],
+                initialState: { taxRate: 40 }
+            }
+        ]
     },
     {
         id: 'india-emi',
@@ -1719,6 +1743,22 @@ export const calculatorRegistry: CalculatorDef[] = [
             ]
         },
         popular: true,
+        scenarios: [
+            {
+                id: '10-lakh-salary-tax',
+                name: "Income Tax on 10 Lakh Salary (FY 2025-26)",
+                description: "Detailed tax breakdown for ₹10,00,000 annual income. Compare Old vs New regime savings for 10 LPA package.",
+                keywords: ['tax on 10 lakh salary', 'income tax for 10 lpa', '10 lakh salary tax savings', 'new regime tax 10 lakh'],
+                initialState: { income: 1000000 }
+            },
+            {
+                id: '15-lakh-salary-tax',
+                name: "Income Tax on 15 Lakh Salary (2026 Tax Act)",
+                description: "Find out your take-home pay on a ₹15,00,000 CTC. Optimized for the latest rebate limits and standard deductions.",
+                keywords: ['tax on 15 lakh salary', '15 lpa tax breakdown', 'take home on 15 lakh', 'income tax 1500000'],
+                initialState: { income: 1500000 }
+            }
+        ]
     },
 
 ];

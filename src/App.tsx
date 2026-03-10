@@ -8,6 +8,8 @@ import PrivacyPolicy from './pages/legal/PrivacyPolicy';
 import About from './pages/legal/About';
 import Contact from './pages/legal/Contact';
 import { WidgetGenerator } from './pages/WidgetGenerator';
+import { Resources } from './pages/Resources';
+import { ArticleLayout } from './pages/ArticleLayout';
 import { Suspense, useEffect } from 'react';
 
 function ScrollToTop() {
@@ -29,7 +31,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="category/:categoryId" element={<Home />} />
           <Route
-            path="calculator/:calculatorId"
+            path="calculator/:calculatorId/:scenarioId?"
             element={
               <Suspense fallback={<div className="p-8 text-center">Loading...</div>}>
                 <CalculatorPage />
@@ -41,6 +43,8 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="widget-generator" element={<WidgetGenerator />} />
+          <Route path="resources" element={<Resources />} />
+          <Route path="resources/:articleId" element={<ArticleLayout />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -1,15 +1,20 @@
+import { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-    FileText, 
-    Percent, 
-    Landmark, 
-    Briefcase, 
-    TrendingUp, 
+import {
+    FileText,
+    Percent,
+    Landmark,
+    Briefcase,
+    TrendingUp,
     DollarSign,
-    Car
+    Car,
+    ChevronRight
 } from 'lucide-react';
 
 export function TopicHub() {
+    const scrollRef = useRef<HTMLDivElement>(null);
+    const [showHint, setShowHint] = useState(true);
+
     const hubLinks = [
         {
             title: "GST Calculator (2026)",
@@ -55,51 +60,79 @@ export function TopicHub() {
         }
     ];
 
+    useEffect(() => {
+        const handleScroll = () => {
+            if (scrollRef.current && scrollRef.current.scrollLeft > 20) {
+                setShowHint(false);
+            }
+        };
+        const el = scrollRef.current;
+        el?.addEventListener('scroll', handleScroll);
+        return () => el?.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <aside className="w-full xl:w-80 shrink-0 space-y-6">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                    <DollarSign className="w-5 h-5 text-green-500" />
-                    Finance Topic Hub
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">
-                    Master your finances with our updated 2026 calculators. Try them out:
-                </p>
-                
-                <div className="flex flex-col gap-3">
-                    {hubLinks.map((link, idx) => {
-                        const Icon = link.icon;
-                        return (
-                            <Link 
-                                key={idx} 
-                                to={link.path}
-                                className="group flex items-center gap-4 p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 border border-transparent hover:border-slate-200 dark:hover:border-slate-600 transition-all"
+        <div className="w-full space-y-4 mb-8 sticky top-4 z-40 group/hub">
+            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl p-3 md:p-4 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-blue-200 dark:hover:border-slate-700 ring-1 ring-black/5 dark:ring-white/5">
+                <div className="flex items-center gap-3 relative">
+                    <div className="flex items-center gap-2 shrink-0 border-r border-slate-200 dark:border-slate-800 pr-3 md:pr-4">
+                        <div className="p-1 px-1.5 md:p-1.5 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                            <DollarSign className="w-3.5 h-3.5 md:w-5 md:h-5 text-green-600 dark:text-green-400" />
+                        </div>
+                        <h3 className="text-[10px] md:text-xs font-black uppercase tracking-tighter md:tracking-tight text-slate-900 dark:text-white whitespace-nowrap">
+                            Hub
+                        </h3>
+                    </div>
+
+                    <div className="flex-1 relative overflow-hidden">
+                        <div
+                            ref={scrollRef}
+                            className="flex-1 overflow-x-auto no-scrollbar mask-right"
+                        >
+                            <div className="flex items-center gap-2 min-w-max pb-1 pr-12">
+                                {hubLinks.map((link, idx) => {
+                                    const Icon = link.icon;
+                                    return (
+                                        <Link
+                                            key={idx}
+                                            to={link.path}
+                                            className="group flex items-center gap-2 md:gap-2.5 px-3 md:px-3.5 py-1.5 md:py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700 hover:shadow-sm"
+                                        >
+                                            <div className={`w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center shrink-0 ${link.bg} ${link.color} group-hover:scale-110 transition-transform duration-300 ring-1 ring-black/5 dark:ring-white/10`}>
+                                                <Icon className="w-3.5 h-3.5 md:w-4.5 md:h-4.5" />
+                                            </div>
+                                            <span className="font-bold text-[12px] md:text-[13px] text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors whitespace-nowrap">
+                                                {link.title}
+                                            </span>
+                                        </Link>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* Visual Hint for Scroll */}
+                        {showHint && (
+                            <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-1.5 pointer-events-none text-blue-500 dark:text-blue-400 bg-gradient-to-l from-white dark:from-slate-900 via-white/80 dark:via-slate-900/80 to-transparent pl-8 pr-2 py-2">
+                                <span className="text-[10px] font-bold uppercase tracking-widest hidden sm:block">Swipe</span>
+                                <ChevronRight className="w-4 h-4" />
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="hidden lg:flex items-center gap-3 shrink-0 pl-4 border-l border-slate-200 dark:border-slate-800">
+                        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl px-4 py-2.5 flex items-center gap-3 text-white shadow-lg shadow-blue-500/20 overflow-hidden relative group/btn">
+                            <span className="text-[11px] font-black uppercase tracking-wider relative z-10">2026 Tax Rules</span>
+                            <Link
+                                to="/calculator/india-tax"
+                                className="px-3.5 py-1.5 bg-white text-blue-700 text-[10px] font-black rounded-lg transition-all relative z-10 hover:scale-105 active:scale-95 shadow-sm"
                             >
-                                <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${link.bg} ${link.color} group-hover:scale-110 transition-transform`}>
-                                    <Icon className="w-5 h-5" />
-                                </div>
-                                <span className="font-medium text-sm text-slate-700 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                                    {link.title}
-                                </span>
+                                CHECK NOW
                             </Link>
-                        );
-                    })}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            {/* Promo banner for internal link juice */}
-            <div className="bg-gradient-to-br from-indigo-600 to-blue-700 rounded-2xl p-6 shadow-md text-white">
-                <h4 className="font-bold text-lg mb-2">New 2026 Tax Rules Live!</h4>
-                <p className="text-sm text-indigo-100 mb-4">
-                    Calculate your exact savings under the new tax regime. Stay compliant and save money.
-                </p>
-                <Link 
-                    to="/calculator/india-tax" 
-                    className="inline-block px-4 py-2 bg-white text-indigo-700 text-sm font-semibold rounded-lg hover:bg-slate-100 transition-colors shadow-sm"
-                >
-                    Compare Now
-                </Link>
-            </div>
-        </aside>
+        </div>
     );
 }

@@ -167,7 +167,7 @@ export default function Footer() {
                     <div className="bg-slate-800/50 rounded-xl p-6 mb-8 text-xs text-slate-500 leading-relaxed border border-slate-700/50">
                         <p className="font-semibold text-slate-400 mb-2">Disclaimer & Usage Agreement:</p>
                         <p className="mb-2">
-                            The results provided by CalcSuite are for informational purposes only and should not be considered as professional financial, tax, or medical advice.
+                            The results and content provided by CalcSuite are for informational purposes only and should not be considered as professional financial, tax, or medical advice.
                             While we take updates seriously and strive to keep our formulas current with the latest regulations (including FY 2025-26 tax laws), there may be a lag in reflecting new changes.
                             We are not responsible for any decisions or losses incurred based on these calculations.
                         </p>

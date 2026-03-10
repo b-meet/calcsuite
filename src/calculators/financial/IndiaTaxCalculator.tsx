@@ -2,9 +2,10 @@ import { useState, useMemo } from 'react';
 import { Calculator, CheckCircle2, TrendingUp, Wallet } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
+import { NumericInput } from '../../components/NumericInput';
 
-export default function IndiaTaxCalculator() {
-    const [mode, setMode] = useState<'simple' | 'advanced'>('simple');
+export default function IndiaTaxCalculator({ scenarioData }: { scenarioData?: any }) {
+    const [mode, setMode] = useState<'simple' | 'advanced'>(scenarioData?.income ? 'simple' : 'simple');
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('india-tax');
 
@@ -16,7 +17,7 @@ export default function IndiaTaxCalculator() {
     const [incomeType, setIncomeType] = useState<'salaried' | 'business'>('salaried');
 
     // Simple Mode Inputs
-    const [simpleIncome, setSimpleIncome] = useState<number>(1200000);
+    const [simpleIncome, setSimpleIncome] = useState<number>(scenarioData?.income || 1200000);
     const [simpleRegime, setSimpleRegime] = useState<'old' | 'new'>('new');
 
     // Advanced Mode Inputs
@@ -341,10 +342,10 @@ export default function IndiaTaxCalculator() {
                             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Total Annual Income</label>
                             <div className="relative">
                                 <span className="absolute left-3 top-3.5 text-slate-500 dark:text-slate-400">₹</span>
-                                <input
-                                    type="number"
+                                <NumericInput
                                     value={simpleIncome}
-                                    onChange={(e) => setSimpleIncome(Number(e.target.value))}
+                                    onValueChange={setSimpleIncome}
+                                    placeholder="Enter annual income"
                                     className="block w-full pl-8 pr-4 py-3 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-lg font-medium text-slate-900 dark:text-white"
                                 />
                             </div>
@@ -426,15 +427,15 @@ export default function IndiaTaxCalculator() {
                             <div className="grid sm:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Gross Salary / Income</label>
-                                    <input type="number" value={salaryIncome} onChange={e => setSalaryIncome(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-blue-500" />
+                                    <NumericInput value={salaryIncome} onValueChange={setSalaryIncome} placeholder="Enter salary" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-blue-500" />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Interest Income</label>
-                                    <input type="number" value={interestIncome} onChange={e => setInterestIncome(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-blue-500" />
+                                    <NumericInput value={interestIncome} onValueChange={setInterestIncome} placeholder="Interest income" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-blue-500" />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Other Income</label>
-                                    <input type="number" value={otherIncome} onChange={e => setOtherIncome(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-blue-500" />
+                                    <NumericInput value={otherIncome} onValueChange={setOtherIncome} placeholder="Other income" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-blue-500" />
                                 </div>
                             </div>
                         </section>
@@ -447,32 +448,32 @@ export default function IndiaTaxCalculator() {
                             <div className="grid sm:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">80C (LIC/PPF/EPF)</label>
-                                    <input type="number" value={deduction80C} onChange={e => setDeduction80C(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
+                                    <NumericInput value={deduction80C} onValueChange={setDeduction80C} placeholder="80C amount" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">80D (Medical)</label>
-                                    <input type="number" value={deduction80D} onChange={e => setDeduction80D(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
+                                    <NumericInput value={deduction80D} onValueChange={setDeduction80D} placeholder="80D amount" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">80CCD(1B) (NPS Self)</label>
-                                    <input type="number" value={deductionNPS} onChange={e => setDeductionNPS(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
+                                    <NumericInput value={deductionNPS} onValueChange={setDeductionNPS} placeholder="NPS self" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">80CCD(2) (Employer NPS)</label>
-                                    <input type="number" value={deductionNPSCorp} onChange={e => setDeductionNPSCorp(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
+                                    <NumericInput value={deductionNPSCorp} onValueChange={setDeductionNPSCorp} placeholder="Employer NPS" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
                                     <p className="text-[10px] text-slate-400 mt-0.5">Allowed in New Regime too</p>
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">HRA Exemption</label>
-                                    <input type="number" value={hraExemption} onChange={e => setHraExemption(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
+                                    <NumericInput value={hraExemption} onValueChange={setHraExemption} placeholder="HRA amount" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">LTA Exemption</label>
-                                    <input type="number" value={ltaExemption} onChange={e => setLtaExemption(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
+                                    <NumericInput value={ltaExemption} onValueChange={setLtaExemption} placeholder="LTA amount" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
                                 </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">Home Loan Interest</label>
-                                    <input type="number" value={homeLoanInterest} onChange={e => setHomeLoanInterest(Number(e.target.value))} className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
+                                    <NumericInput value={homeLoanInterest} onValueChange={setHomeLoanInterest} placeholder="Loan interest" className="w-full px-3 py-2 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg outline-none focus:border-green-500" />
                                 </div>
                             </div>
                         </section>

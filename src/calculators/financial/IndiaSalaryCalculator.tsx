@@ -4,16 +4,20 @@ import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function IndiaSalaryCalculator() {
-    const [ctc, setCtc] = useState<number>(1200000); // Yearly CTC in Rupees
-    const [bonus, setBonus] = useState<number>(0);
-    const [professionalTax, setProfessionalTax] = useState<number>(200); // Monthly
+    const [ctc, setCtc] = useState<number | string>(1200000); // Yearly CTC in Rupees
+    const [bonus, setBonus] = useState<number | string>(0);
+    const [professionalTax, setProfessionalTax] = useState<number | string>(200); // Monthly
     const [viewMode, setViewMode] = useState<'monthly' | 'yearly'>('monthly');
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('india-salary');
 
     const calculateSalary = () => {
-        const monthlyCTC = ctc / 12;
-        const monthlyBonus = bonus / 12;
+        const ctcNum = Number(ctc) || 0;
+        const bonusNum = Number(bonus) || 0;
+        const ptNum = Number(professionalTax) || 0;
+
+        const monthlyCTC = ctcNum / 12;
+        const monthlyBonus = bonusNum / 12;
 
         // Basic Assumption: Basic is 50% of CTC
         const basic = monthlyCTC * 0.5;
@@ -27,7 +31,7 @@ export default function IndiaSalaryCalculator() {
         // Income Tax (Placeholder - normally complex)
         const incomeTax = 0;
 
-        const totalDeductions = pf + professionalTax + incomeTax;
+        const totalDeductions = pf + ptNum + incomeTax;
         const inHand = monthlyCTC - totalDeductions - monthlyBonus;
 
         return {
@@ -36,7 +40,7 @@ export default function IndiaSalaryCalculator() {
                 hra,
                 specialAllowance,
                 pf,
-                professionalTax,
+                professionalTax: ptNum,
                 incomeTax,
                 inHand
             },
@@ -45,7 +49,7 @@ export default function IndiaSalaryCalculator() {
                 hra: hra * 12,
                 specialAllowance: specialAllowance * 12,
                 pf: pf * 12,
-                professionalTax: professionalTax * 12,
+                professionalTax: ptNum * 12,
                 incomeTax: incomeTax * 12,
                 inHand: inHand * 12
             }
@@ -57,9 +61,9 @@ export default function IndiaSalaryCalculator() {
 
     const handleSave = () => {
         addHistory(
-            { ctc, bonus, professionalTax },
+            { ctc: Number(ctc) || 0, bonus: Number(bonus) || 0, professionalTax: Number(professionalTax) || 0 },
             `₹${Math.round(result.monthly.inHand).toLocaleString('en-IN')}/mo`,
-            `CTC: ₹${(ctc / 100000).toFixed(1)}L`
+            `CTC: ₹${((Number(ctc) || 0) / 100000).toFixed(1)}L`
         );
     };
 
@@ -67,6 +71,30 @@ export default function IndiaSalaryCalculator() {
         setCtc(item.inputs.ctc);
         setBonus(item.inputs.bonus);
         setProfessionalTax(item.inputs.professionalTax);
+    };
+
+    const handleCTCChange = (val: string) => {
+        if (val === '') {
+            setCtc('');
+        } else {
+            setCtc(Number(val));
+        }
+    };
+
+    const handleBonusChange = (val: string) => {
+        if (val === '') {
+            setBonus('');
+        } else {
+            setBonus(Number(val));
+        }
+    };
+
+    const handlePTChange = (val: string) => {
+        if (val === '') {
+            setProfessionalTax('');
+        } else {
+            setProfessionalTax(Number(val));
+        }
     };
 
     const formatCurrency = (amount: number) => {
@@ -100,8 +128,10 @@ export default function IndiaSalaryCalculator() {
                         </label>
                         <input
                             type="number"
-                            value={ctc}
-                            onChange={(e) => setCtc(Number(e.target.value))}
+                            value={ctc === 0 ? '' : ctc}
+                            onChange={(e) => handleCTCChange(e.target.value)}
+                            onFocus={(e) => e.target.value === '0' && setCtc('')}
+                            placeholder="Enter Yearly CTC"
                             className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
                         />
                     </div>
@@ -111,8 +141,10 @@ export default function IndiaSalaryCalculator() {
                         </label>
                         <input
                             type="number"
-                            value={bonus}
-                            onChange={(e) => setBonus(Number(e.target.value))}
+                            value={bonus === 0 ? '' : bonus}
+                            onChange={(e) => handleBonusChange(e.target.value)}
+                            onFocus={(e) => e.target.value === '0' && setBonus('')}
+                            placeholder="0"
                             className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
                         />
                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Deducted from monthly fixed pay calculation</p>
@@ -123,8 +155,10 @@ export default function IndiaSalaryCalculator() {
                         </label>
                         <input
                             type="number"
-                            value={professionalTax}
-                            onChange={(e) => setProfessionalTax(Number(e.target.value))}
+                            value={professionalTax === 0 ? '' : professionalTax}
+                            onChange={(e) => handlePTChange(e.target.value)}
+                            onFocus={(e) => e.target.value === '0' && setProfessionalTax('')}
+                            placeholder="200"
                             className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 text-slate-900 dark:text-white"
                         />
                     </div>

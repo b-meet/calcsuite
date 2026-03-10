@@ -3,9 +3,9 @@ import { Percent, TrendingUp, Calculator } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
-export default function IndiaGSTCalculator() {
-    const [amount, setAmount] = useState<number | ''>(1000);
-    const [gstRate, setGstRate] = useState<number>(18);
+export default function IndiaGSTCalculator({ scenarioData }: { scenarioData?: any }) {
+    const [amount, setAmount] = useState<number | ''>(scenarioData?.amount || 1000);
+    const [gstRate, setGstRate] = useState<number>(scenarioData?.taxRate || 18);
     const [type, setType] = useState<'exclusive' | 'inclusive'>('exclusive');
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('india-gst');
@@ -247,4 +247,3 @@ export default function IndiaGSTCalculator() {
         </div>
     );
 }
-

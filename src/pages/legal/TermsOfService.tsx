@@ -2,9 +2,9 @@ import { AlertTriangle, FileText } from 'lucide-react';
 
 const TermsOfService = () => {
     return (
-        <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-slate-50 py-8 px-2 sm:px-4 lg:px-8">
             <div className="max-w-4xl mx-auto bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
-                <div className="bg-slate-900 px-8 py-10 text-white">
+                <div className="bg-slate-900 px-4 sm:px-8 py-8 sm:py-10 text-white">
                     <h1 className="text-3xl font-bold mb-4 flex items-center gap-3">
                         <FileText className="w-8 h-8 text-blue-400" />
                         Terms of Service & Disclaimer
@@ -14,7 +14,7 @@ const TermsOfService = () => {
                     </p>
                 </div>
 
-                <div className="p-8 md:p-12 space-y-10 text-slate-700 leading-relaxed">
+                <div className="p-4 sm:p-8 md:p-12 space-y-10 text-slate-700 leading-relaxed">
 
                     {/* Critical Disclaimer Block */}
                     <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-xl">

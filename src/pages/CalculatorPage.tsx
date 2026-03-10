@@ -12,11 +12,18 @@ import { ShareModal } from '../components/ShareModal';
 import { cn } from '../utils/cn';
 
 export function CalculatorPage() {
-    const { calculatorId } = useParams();
+    const { calculatorId, scenarioId } = useParams();
     const { isFavorite, toggleFavorite, reachedMax } = useFavorites();
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
     const calculatorDef = calculatorRegistry.find(c => c.id === calculatorId);
+    
+    // Scenario Logic for Programmatic SEO
+    const scenario = calculatorDef?.scenarios?.find(s => s.id === scenarioId);
+    
+    const pageTitle = scenario?.name || calculatorDef?.name;
+    const pageDescription = scenario?.description || calculatorDef?.description;
+    const pageKeywords = scenario?.keywords || (calculatorDef ? [calculatorDef.category, calculatorDef.name.toLowerCase(), 'calculator', 'free online calculator'] : []);
 
 
     if (!calculatorDef) {
@@ -85,20 +92,19 @@ export function CalculatorPage() {
         <div className="max-w-4xl mx-auto">
             {/* ... SEO functions ... */}
             <SEO
-                title={calculatorDef.name}
-                description={calculatorDef.description}
-                keywords={[calculatorDef.category, calculatorDef.name.toLowerCase(), 'calculator', 'free online calculator']}
-                image={`https://calcsuite.in/og/${calculatorDef.id}.png`}
+                title={pageTitle || ""}
+                description={pageDescription || ""}
+                keywords={pageKeywords}
+                image={`https://calcsuite.in/og/${calculatorDef.id}${scenarioId ? `-${scenarioId}` : ''}.png`}
             />
 
-            {/* Structured Data components... (omitted for brevity, assume they are there in original) */}
             <StructuredData
                 type="SoftwareApplication"
                 data={{
-                    name: calculatorDef.name,
-                    description: calculatorDef.description,
+                    name: pageTitle,
+                    description: pageDescription,
                     category: getSchemaCategory(calculatorDef.category),
-                    features: [`Free ${calculatorDef.name}`, 'Instant Results', 'Mobile Friendly', 'Secure'],
+                    features: scenario?.features || [`Free ${calculatorDef.name}`, 'Instant Results', 'Mobile Friendly', 'Secure'],
                 }}
             />
             {/* ... other StructuredData ... */}
@@ -113,7 +119,8 @@ export function CalculatorPage() {
                 data={[
                     { name: 'Home', item: 'https://calcsuite.in/' },
                     { name: calculatorDef.category.charAt(0).toUpperCase() + calculatorDef.category.slice(1), item: `https://calcsuite.in/category/${calculatorDef.category}` },
-                    { name: calculatorDef.name, item: `https://calcsuite.in/calculator/${calculatorDef.id}` }
+                    { name: calculatorDef.name, item: `https://calcsuite.in/calculator/${calculatorDef.id}` },
+                    ...(scenario ? [{ name: scenario.name, item: `https://calcsuite.in/calculator/${calculatorDef.id}/${scenario.id}` }] : [])
                 ]}
             />
             {calculatorDef.howTo && (
@@ -126,8 +133,8 @@ export function CalculatorPage() {
             <div className="mb-6 max-w-2xl mx-auto">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                     <div className="flex-1 text-center sm:text-left">
-                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{calculatorDef.name}</h1>
-                        <p className="text-slate-500 dark:text-slate-400">{calculatorDef.description}</p>
+                        <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{pageTitle}</h1>
+                        <p className="text-slate-500 dark:text-slate-400">{pageDescription}</p>
                     </div>
                     <div className="flex gap-2 justify-center sm:justify-end shrink-0">
                         <button
@@ -170,7 +177,7 @@ export function CalculatorPage() {
                 calculatorId={calculatorDef.id}
             />
 
-            <Component />
+            <Component scenarioData={scenario?.initialState} />
 
             <RelatedCalculators
                 currentCalculatorId={calculatorDef.id}
