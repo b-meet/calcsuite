@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Calculator, Menu, X, Code, Coffee, Star, BookOpen } from 'lucide-react';
+import { Calculator, Menu, X, Code, Coffee, Star, BookOpen, MessageSquareHeart } from 'lucide-react';
 
 import { useState, useEffect } from 'react';
 import { cn } from '../utils/cn';
@@ -205,7 +205,16 @@ export function Sidebar() {
                     )}
                 </nav>
 
-                <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                <div className="p-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3">
+                    <a
+                        href="https://insigh.to/b/calcsuite"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="lg:hidden flex items-center gap-2.5 w-full px-3 py-2 rounded-2xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-slate-100 dark:border-slate-800 hover:border-blue-200 dark:hover:border-blue-800 transition-all"
+                    >
+                        <MessageSquareHeart size={16} className="text-blue-500" />
+                        Feedback
+                    </a>
                     <div className="flex items-center justify-between">
                         <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Theme</span>
                         <ThemeToggle />

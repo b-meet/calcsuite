@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { TopicHub } from '../components/TopicHub';
 import { KofiWidget } from '../components/KofiWidget';
+import { FeedbackButton } from '../components/FeedbackButton';
 
 import { HistoryPromoModal } from '../components/HistoryPromoModal';
 import { PWAPrompt } from '../components/PWAPrompt';
@@ -27,6 +28,7 @@ export function MainLayout() {
                 <Footer />
             </div>
             <PWAPrompt />
+            <FeedbackButton />
         </div>
     );
 }
