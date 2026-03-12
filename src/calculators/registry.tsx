@@ -1720,16 +1720,20 @@ export const calculatorRegistry: CalculatorDef[] = [
         ],
         faqs: [
             {
-                question: "Which tax regime is better for me?",
-                answer: "The New Regime is better for incomes up to ₹15 Lakhs if you have few deductions. The Old Regime is better if you claim HRA, 80C, 80D, and Home Loan interest."
+                question: "Which tax regime is better for me in 2026?",
+                answer: "The New Regime is better for incomes up to ₹12-15 Lakhs if you have few deductions. The Old Regime is better if you claim significantly high deductions like HRA, 80C, 80D, and Home Loan interest."
             },
             {
-                question: "What is the tax-free limit?",
-                answer: "Under the New Regime, income up to ₹3 Lakhs is exempt, and rebate is available up to ₹7 Lakhs (meaning zero tax)."
+                question: "Is income tax zero up to ₹12 lakh?",
+                answer: "Yes, under the New Tax Regime, if your taxable income is up to ₹12 Lakh, you pay zero tax due to the enhanced Section 87A rebate."
             },
             {
-                question: "Can I switch regimes?",
-                answer: "Salaried employees can choose the regime every year when filing returns. Business owners can switch only once in a lifetime."
+                question: "Can I switch regimes every year?",
+                answer: "Salaried employees can choose the regime every year when filing returns. However, business owners can switch only once in their lifetime."
+            },
+            {
+                question: "Does the calculation include Cess?",
+                answer: "Yes, our calculator automatically includes the 4% Health & Education Cess on top of your tax and surcharge."
             }
         ],
         howTo: {
