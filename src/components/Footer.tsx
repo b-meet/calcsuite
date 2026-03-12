@@ -178,7 +178,7 @@ export default function Footer() {
 
                     <div className="flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 gap-4">
                         <p>&copy; {currentYear} CalcSuite. All rights reserved.</p>
-                        <div className="flex gap-6">
+                        <div className="flex gap-6 lg:pr-24">
                             <Link to="/about" className="hover:text-slate-400 transition-colors">About Us</Link>
                             <Link to="/contact" className="hover:text-slate-400 transition-colors">Contact</Link>
                             <Link to="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>

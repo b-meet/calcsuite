@@ -46,6 +46,7 @@ const TermsOfService = () => {
                         <ul className="list-disc pl-5 space-y-2 text-slate-600">
                             <li><strong>Regulatory Changes:</strong> Tax rates, financial rules, and health guidelines change frequently. We take these changes seriously and work to update our tools as soon as possible, but there may be a lag between official announcements and our updates.</li>
                             <li><strong>Calculation Variance:</strong> Results may vary slightly from official government or bank calculations due to rounding differences or specific institutional formulas.</li>
+                            <li><strong>Third-Party Services:</strong> We utilize third-party analytics tools (like Google Analytics) to improve our services. By using this site, you acknowledge that certain non-personal usage data may be collected as outlined in our Privacy Policy.</li>
                         </ul>
                     </section>
 

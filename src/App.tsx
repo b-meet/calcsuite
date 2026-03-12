@@ -12,11 +12,14 @@ import { Resources } from './pages/Resources';
 import { ArticleLayout } from './pages/ArticleLayout';
 import { Suspense, useEffect } from 'react';
 
+import ReactGA from 'react-ga4';
+
 function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    ReactGA.send({ hitType: 'pageview', page: pathname });
   }, [pathname]);
 
   return null;

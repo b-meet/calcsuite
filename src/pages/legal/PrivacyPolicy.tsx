@@ -38,13 +38,18 @@ const PrivacyPolicy = () => {
                             <Eye className="w-6 h-6 text-blue-500" /> 2. Analytics & Tracking
                         </h2>
                         <p>
-                            We use anonymous analytics tracking to understand how our visitors interact with the website. This helps us identify which calculators are popular and where we need to improve the user experience.
+                            We use <strong>Google Analytics 4 (GA4)</strong> and <strong>Google Tag Manager</strong> to understand how users interact with CalcSuite. These tools collect information such as:
                         </p>
                         <ul className="list-disc pl-5 mt-4 space-y-2 text-slate-600">
-                            <li>We track page views and interactions.</li>
-                            <li>We do not link this data to your personal identity.</li>
-                            <li>We do not sell your data to third parties.</li>
+                            <li>Anonymized IP addresses and general geographic location.</li>
+                            <li>Page views, session duration, and click behavior across our calculators.</li>
+                            <li>Device type, browser information, and operating system.</li>
                         </ul>
+                        <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 mt-4 text-sm text-blue-800">
+                            <p className="m-0">
+                                This data is used solely to improve our tools and user experience. It is processed by Google and is subject to their privacy policies. You can opt out of Google Analytics tracking by using the <a href="https://chromewebstore.google.com/category/extensions" target="_blank" rel="noopener noreferrer" className="underline font-medium">Google Analytics Opt-out Browser Add-on</a>.
+                            </p>
+                        </div>
                     </section>
 
                     <section>
