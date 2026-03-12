@@ -1,4 +1,5 @@
 import { Mail, MessageSquare, ExternalLink } from 'lucide-react';
+import { EXTERNAL_LINKS } from '../../constants/links';
 
 const Contact = () => {
     return (
@@ -37,7 +38,7 @@ const Contact = () => {
                                 <p className="text-slate-600 dark:text-slate-400 mb-4">
                                     We are always looking to add new calculators. If there is a tool you need that we don't have, let us know!
                                 </p>
-                                <a href="https://x.com/MeetBhalodiya14" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg transition-colors">
+                                <a href={EXTERNAL_LINKS.TWITTER_X} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-medium border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg transition-colors">
                                     Twitter / X <ExternalLink className="w-4 h-4" />
                                 </a>
                             </div>

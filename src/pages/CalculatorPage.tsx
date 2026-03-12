@@ -107,6 +107,15 @@ export function CalculatorPage() {
                     features: scenario?.features || [`Free ${calculatorDef.name}`, 'Instant Results', 'Mobile Friendly', 'Secure'],
                 }}
             />
+
+            <StructuredData
+                type="ImageObject"
+                data={{
+                    url: `https://calcsuite.in/og/${calculatorDef.id}.png`,
+                    name: `${calculatorDef.name} Visual Interface`,
+                    description: `Interactive dashboard for the ${calculatorDef.name}.`
+                }}
+            />
             {/* ... other StructuredData ... */}
             {calculatorDef.faqs && (
                 <StructuredData

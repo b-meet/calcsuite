@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import StructuredData from '../components/StructuredData';
 import { blogPosts } from './Resources';
 import { 
     Clock, 
@@ -328,6 +329,26 @@ export function ArticleLayout() {
                 title={`${post.title} - CalcSuite Guide`}
                 description={post.excerpt}
                 keywords={[post.category, 'finance guide', 'tax 2026', 'investment strategy']}
+            />
+
+            <StructuredData 
+                type="Article"
+                data={{
+                    headline: post.title,
+                    description: post.excerpt,
+                    image: `https://calcsuite.in/blog/${post.id}.jpg`,
+                    datePublished: post.date,
+                    url: `https://calcsuite.in/resources/${post.id}`
+                }}
+            />
+
+            <StructuredData 
+                type="BreadcrumbList"
+                data={[
+                    { name: 'Home', item: 'https://calcsuite.in/' },
+                    { name: 'Resources', item: 'https://calcsuite.in/resources' },
+                    { name: post.title, item: `https://calcsuite.in/resources/${post.id}` }
+                ]}
             />
             
             <Link 

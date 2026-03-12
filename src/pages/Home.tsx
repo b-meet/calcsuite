@@ -152,7 +152,7 @@ export function Home() {
                             {filteredCalculators.length}
                         </span>
                     </h2>
-                    <div className="relative w-full max-w-md z-30">
+                    <div className="relative w-full max-w-md z-50">
                         <SearchInput
                             placeholder="Search calculators..."
                             onSearch={(query) => setSearchParams(query ? { q: query } : {})}

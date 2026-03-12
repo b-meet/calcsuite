@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
+import { EXTERNAL_LINKS } from '../constants/links';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -30,8 +31,8 @@ export default function Footer() {
                             we have the right tool for you.
                         </p>
                         <div className="mt-6">
-                            <a href="https://www.producthunt.com/products/calcsuite?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-calcsuite" target="_blank" rel="noopener noreferrer">
-                                <img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1069486&theme=light" alt="CalcSuite - Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
+                            <a href={EXTERNAL_LINKS.PRODUCT_HUNT_PAGE} target="_blank" rel="noopener noreferrer">
+                                <img src={EXTERNAL_LINKS.PRODUCT_HUNT_BADGE} alt="CalcSuite - Product Hunt" style={{ width: '250px', height: '54px' }} width="250" height="54" />
                             </a>
                         </div>
                     </div>

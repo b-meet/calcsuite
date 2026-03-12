@@ -1,4 +1,5 @@
 import { Lock, Server, Eye, Cookie } from 'lucide-react';
+import { EXTERNAL_LINKS } from '../../constants/links';
 
 const PrivacyPolicy = () => {
     return (
@@ -47,7 +48,7 @@ const PrivacyPolicy = () => {
                         </ul>
                         <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 mt-4 text-sm text-blue-800">
                             <p className="m-0">
-                                This data is used solely to improve our tools and user experience. It is processed by Google and is subject to their privacy policies. You can opt out of Google Analytics tracking by using the <a href="https://chromewebstore.google.com/category/extensions" target="_blank" rel="noopener noreferrer" className="underline font-medium">Google Analytics Opt-out Browser Add-on</a>.
+                                This data is used solely to improve our tools and user experience. It is processed by Google and is subject to their privacy policies. If available you can opt out of Google Analytics tracking by using the <a href={EXTERNAL_LINKS.GA_OPT_OUT} target="_blank" rel="noopener noreferrer" className="underline font-medium">Google Analytics Opt-out Browser Add-on</a>.
                             </p>
                         </div>
                     </section>

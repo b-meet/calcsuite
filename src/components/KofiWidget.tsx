@@ -1,10 +1,11 @@
 import { Coffee } from 'lucide-react';
 import { cn } from '../utils/cn';
+import { EXTERNAL_LINKS } from '../constants/links';
 
 export function KofiWidget() {
     return (
         <a
-            href="https://ko-fi.com/bmeet"
+            href={EXTERNAL_LINKS.KO_FI}
             target="_blank"
             rel="noopener noreferrer"
             className="fixed bottom-4 left-4 z-50 flex flex-col items-start gap-4 no-underline lg:hidden"

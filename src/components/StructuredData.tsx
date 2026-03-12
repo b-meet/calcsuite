@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
 interface StructuredDataProps {
-    type: 'SoftwareApplication' | 'FAQPage' | 'Article' | 'BreadcrumbList' | 'HowTo' | 'Organization';
+    type: 'SoftwareApplication' | 'FAQPage' | 'Article' | 'BreadcrumbList' | 'HowTo' | 'Organization' | 'ImageObject' | 'VideoObject';
     data: any;
 }
 
@@ -47,6 +47,53 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
                 name: item.name,
                 item: item.item,
             })),
+        };
+    } else if (type === 'Article') {
+        jsonLd = {
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: data.headline,
+            description: data.description,
+            image: data.image,
+            author: {
+                '@type': 'Person',
+                name: data.author || 'CalcSuite Team',
+                url: 'https://calcsuite.in'
+            },
+            publisher: {
+                '@type': 'Organization',
+                name: 'CalcSuite',
+                logo: {
+                    '@type': 'ImageObject',
+                    url: 'https://calcsuite.in/logo.png'
+                }
+            },
+            datePublished: data.datePublished,
+            dateModified: data.dateModified || data.datePublished,
+            mainEntityOfPage: {
+                '@type': 'WebPage',
+                '@id': data.url
+            }
+        };
+    } else if (type === 'ImageObject') {
+        jsonLd = {
+            '@context': 'https://schema.org',
+            '@type': 'ImageObject',
+            contentUrl: data.url,
+            description: data.description,
+            name: data.name,
+            author: 'CalcSuite'
+        };
+    } else if (type === 'VideoObject') {
+        jsonLd = {
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            name: data.name,
+            description: data.description,
+            thumbnailUrl: data.thumbnailUrl,
+            uploadDate: data.uploadDate,
+            contentUrl: data.contentUrl,
+            embedUrl: data.embedUrl
         };
     } else if (type === 'HowTo') {
         jsonLd = {

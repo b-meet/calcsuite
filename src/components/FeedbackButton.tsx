@@ -1,4 +1,5 @@
 import { MessageSquareHeart } from 'lucide-react';
+import { EXTERNAL_LINKS } from '../constants/links';
 
 /**
  * Desktop-only fixed feedback button (bottom right).
@@ -7,7 +8,7 @@ import { MessageSquareHeart } from 'lucide-react';
 export function FeedbackButton() {
     return (
         <a
-            href="https://insigh.to/b/calcsuite"
+            href={EXTERNAL_LINKS.FEEDBACK_INSIGHTO}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden lg:flex fixed bottom-4 right-4 z-40 items-center gap-2 px-3 py-1.5 rounded-xl bg-white/80 dark:bg-slate-800/80 backdrop-blur border border-slate-200 dark:border-slate-700 shadow-lg shadow-slate-200/50 dark:shadow-none text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-600 hover:shadow-xl transition-all duration-300 group ring-1 ring-black/5 dark:ring-white/5"

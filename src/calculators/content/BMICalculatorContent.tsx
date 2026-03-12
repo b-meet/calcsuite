@@ -1,4 +1,5 @@
 import { Activity, Check, AlertTriangle, HelpCircle, ShieldCheck, Microscope } from 'lucide-react';
+import { EXTERNAL_LINKS } from '../../constants/links';
 
 const BMICalculatorContent = () => {
     return (
@@ -266,7 +267,7 @@ const BMICalculatorContent = () => {
                         <p className="text-xs text-slate-400 dark:text-slate-500 mb-2">Citations & Sources</p>
                         <div className="flex gap-4 text-xs">
                             <a
-                                href="https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight"
+                                href={EXTERNAL_LINKS.WHO_OBESITY_FACTS}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:underline"
@@ -274,7 +275,7 @@ const BMICalculatorContent = () => {
                                 <Microscope className="w-3 h-3" /> WHO Overview
                             </a>
                             <a
-                                href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2800898/"
+                                href={EXTERNAL_LINKS.NCBI_BMI_STUDY}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-1 text-indigo-600 dark:text-indigo-400 hover:underline"

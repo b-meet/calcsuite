@@ -72,8 +72,8 @@ export function TopicHub() {
     }, []);
 
     return (
-        <div className="w-full space-y-4 mb-8 sticky top-4 z-40 group/hub">
-            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-2xl p-3 md:p-4 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-blue-200 dark:hover:border-slate-700 ring-1 ring-black/5 dark:ring-white/5">
+        <div className="w-full space-y-4 mb-6 md:mb-8 sticky top-2 md:top-4 z-40 group/hub">
+            <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl rounded-xl md:rounded-2xl p-2 md:p-4 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-200 dark:border-slate-800 transition-all duration-300 hover:shadow-2xl hover:border-blue-200 dark:hover:border-slate-700 ring-1 ring-black/5 dark:ring-white/5">
                 <div className="flex items-center gap-3 relative">
                     <div className="flex items-center gap-2 shrink-0 border-r border-slate-200 dark:border-slate-800 pr-3 md:pr-4">
                         <div className="p-1 px-1.5 md:p-1.5 bg-green-50 dark:bg-green-900/20 rounded-lg">
@@ -96,12 +96,12 @@ export function TopicHub() {
                                         <Link
                                             key={idx}
                                             to={link.path}
-                                            className="group flex items-center gap-2 md:gap-2.5 px-3 md:px-3.5 py-1.5 md:py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700 hover:shadow-sm"
+                                            className="group flex items-center gap-1.5 md:gap-2.5 px-2 md:px-3.5 py-1 md:py-2 rounded-lg md:rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all border border-transparent hover:border-slate-100 dark:hover:border-slate-700 hover:shadow-sm"
                                         >
-                                            <div className={`w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center shrink-0 ${link.bg} ${link.color} group-hover:scale-110 transition-transform duration-300 ring-1 ring-black/5 dark:ring-white/10`}>
-                                                <Icon className="w-3.5 h-3.5 md:w-4.5 md:h-4.5" />
+                                            <div className={`w-6 h-6 md:w-8 md:h-8 rounded-lg flex items-center justify-center shrink-0 ${link.bg} ${link.color} group-hover:scale-110 transition-transform duration-300 ring-1 ring-black/5 dark:ring-white/10`}>
+                                                <Icon className="w-3 h-3 md:w-4.5 md:h-4.5" />
                                             </div>
-                                            <span className="font-bold text-[12px] md:text-[13px] text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors whitespace-nowrap">
+                                            <span className="font-bold text-[11px] md:text-[13px] text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors whitespace-nowrap">
                                                 {link.title}
                                             </span>
                                         </Link>
