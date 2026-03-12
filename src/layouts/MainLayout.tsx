@@ -8,6 +8,7 @@ import { FeedbackButton } from '../components/FeedbackButton';
 
 import { HistoryPromoModal } from '../components/HistoryPromoModal';
 import { PWAPrompt } from '../components/PWAPrompt';
+import { PWAUpdatePrompt } from '../components/PWAUpdatePrompt';
 
 export function MainLayout() {
     const location = useLocation();
@@ -28,6 +29,7 @@ export function MainLayout() {
                 <Footer />
             </div>
             <PWAPrompt />
+            <PWAUpdatePrompt />
             <FeedbackButton />
         </div>
     );

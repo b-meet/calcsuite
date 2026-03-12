@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: 'autoUpdate',
+      registerType: 'prompt',
       includeAssets: ['favicon.png', 'robots.txt', 'sitemap.xml'],
       manifest: {
         name: 'CalcSuite - Financial & Health Tools',
