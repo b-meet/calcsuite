@@ -10,10 +10,10 @@ import Contact from './pages/legal/Contact';
 import { WidgetGenerator } from './pages/WidgetGenerator';
 import { Resources } from './pages/Resources';
 import { ArticleLayout } from './pages/ArticleLayout';
-import { ToolsPage } from './pages/ToolsPage';
 import { Suspense, useEffect } from 'react';
 
 import ReactGA from 'react-ga4';
+import { ToolsPage } from './pages/ToolsPage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();

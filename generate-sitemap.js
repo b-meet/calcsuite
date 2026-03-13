@@ -7,6 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const REGISTRY_PATH = path.resolve(__dirname, 'src/calculators/registry.tsx');
+const REFS_PATH = path.resolve(__dirname, 'src/constants/calculatorReferences.ts');
 const SITEMAP_PATH = path.resolve(__dirname, 'public/sitemap.xml');
 const DOMAIN = 'https://calcsuite.in';
 
@@ -65,6 +66,36 @@ const generateSitemap = () => {
             changefreq: ['india-gst', 'india-emi'].includes(calc.id) ? 'daily' : 'weekly'
         });
     });
+
+    // Read calculatorReferences.ts to add /tools/... SEO pages
+    let refsContent = '';
+    try {
+        refsContent = fs.readFileSync(REFS_PATH, 'utf-8');
+    } catch (e) {
+        console.error('Could not read calculatorReferences.ts:', e);
+    }
+
+    if (refsContent) {
+        // Simple parsing using regex to find structure like Category: { SLUG: "url", ... }
+        // Since it's nested, let's look for categories first
+        const categoryRegex = /([A-Z_]+):\s*{([^}]+)}/g;
+        let match;
+        while ((match = categoryRegex.exec(refsContent)) !== null) {
+            const category = match[1];
+            const itemsBlock = match[2];
+            
+            const itemRegex = /([A-Z_]+):\s*"[^"]+"/g;
+            let itemMatch;
+            while ((itemMatch = itemRegex.exec(itemsBlock)) !== null) {
+                const slug = itemMatch[1];
+                urls.push({
+                    loc: `${DOMAIN}/tools/${category.toLowerCase()}/${slug.toLowerCase()}`,
+                    priority: 0.9,
+                    changefreq: 'weekly'
+                });
+            }
+        }
+    }
 
     const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
