@@ -1,3 +1,5 @@
+import { CALCULATOR_REFERENCES } from './calculatorReferences';
+
 export const EXTERNAL_LINKS = {
     // Social & Support
     KO_FI: "https://ko-fi.com/bmeet",
@@ -15,3 +17,6 @@ export const EXTERNAL_LINKS = {
     WHO_OBESITY_FACTS: "https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight",
     NCBI_BMI_STUDY: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2800898/",
 };
+
+export { CALCULATOR_REFERENCES };
+

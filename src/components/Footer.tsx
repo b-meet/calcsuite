@@ -1,9 +1,28 @@
 import { Link } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import { EXTERNAL_LINKS } from '../constants/links';
+import { CALCULATOR_REFERENCES } from '../constants/calculatorReferences';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+
+    // Helper to get new tool route if exists
+    const getToolRoute = (calcId: string, category: string) => {
+        const catKey = category.toUpperCase();
+        const slugKey = calcId.toUpperCase().replace('INDIA-', '').replace('-', '_');
+        
+        if (CALCULATOR_REFERENCES[catKey]?.[slugKey]) {
+            return `/tools/${catKey}/${slugKey}`;
+        }
+        
+        // Check for common variations
+        const altSlugKey = calcId.toUpperCase().replace('-', '_');
+        if (CALCULATOR_REFERENCES[catKey]?.[altSlugKey]) {
+            return `/tools/${catKey}/${altSlugKey}`;
+        }
+
+        return `/calculator/${calcId}`;
+    };
 
     // Group calculators by category
     const categories = {
@@ -43,7 +62,7 @@ export default function Footer() {
                             <ul className="space-y-2 text-sm">
                                 {categories.india.map(calc => (
                                     <li key={calc.id}>
-                                        <Link to={`/calculator/${calc.id}`} className="hover:text-amber-400 text-amber-100 transition-colors">
+                                        <Link to={getToolRoute(calc.id, 'TAXATION')} className="hover:text-amber-400 text-amber-100 transition-colors">
                                             {calc.name}
                                         </Link>
                                     </li>
@@ -56,7 +75,7 @@ export default function Footer() {
                             <ul className="space-y-2 text-sm">
                                 {categories.financial.map(calc => (
                                     <li key={calc.id}>
-                                        <Link to={`/calculator/${calc.id}`} className="hover:text-blue-400 transition-colors">
+                                        <Link to={getToolRoute(calc.id, 'INVESTMENT')} className="hover:text-blue-400 transition-colors">
                                             {calc.name}
                                         </Link>
                                     </li>
@@ -69,7 +88,7 @@ export default function Footer() {
                             <ul className="space-y-2 text-sm">
                                 {categories.health.map(calc => (
                                     <li key={calc.id}>
-                                        <Link to={`/calculator/${calc.id}`} className="hover:text-blue-400 transition-colors">
+                                        <Link to={getToolRoute(calc.id, 'HEALTH')} className="hover:text-blue-400 transition-colors">
                                             {calc.name}
                                         </Link>
                                     </li>
@@ -81,23 +100,23 @@ export default function Footer() {
                             <h4 className="text-white font-semibold mb-4 text-sm uppercase tracking-wider">Math</h4>
                             <ul className="space-y-2 text-sm">
                                 <li>
-                                    <Link to="/calculator/basic-math" className="hover:text-blue-400 transition-colors">Basic Calculator</Link>
+                                    <Link to={getToolRoute('basic-math', 'MISC')} className="hover:text-blue-400 transition-colors">Basic Calculator</Link>
                                 </li>
                                 <li>
-                                    <Link to="/calculator/scientific" className="hover:text-blue-400 transition-colors">Scientific Calculator</Link>
+                                    <Link to={getToolRoute('scientific', 'MISC')} className="hover:text-blue-400 transition-colors">Scientific Calculator</Link>
                                 </li>
                                 {categories.math.map(calc => (
                                     <li key={calc.id}>
-                                        <Link to={`/calculator/${calc.id}`} className="hover:text-blue-400 transition-colors">
+                                        <Link to={getToolRoute(calc.id, 'MISC')} className="hover:text-blue-400 transition-colors">
                                             {calc.name}
                                         </Link>
                                     </li>
                                 ))}
                                 <li>
-                                    <Link to="/calculator/fraction" className="hover:text-blue-400 transition-colors">Fraction Calculator</Link>
+                                    <Link to={getToolRoute('fraction', 'MISC')} className="hover:text-blue-400 transition-colors">Fraction Calculator</Link>
                                 </li>
                                 <li>
-                                    <Link to="/calculator/percentage" className="hover:text-blue-400 transition-colors">Percentage Calculator</Link>
+                                    <Link to={getToolRoute('percentage', 'MISC')} className="hover:text-blue-400 transition-colors">Percentage Calculator</Link>
                                 </li>
                             </ul>
                         </div>
@@ -107,7 +126,7 @@ export default function Footer() {
                             <ul className="space-y-2 text-sm">
                                 {categories.other.map(calc => (
                                     <li key={calc.id}>
-                                        <Link to={`/calculator/${calc.id}`} className="hover:text-blue-400 transition-colors">
+                                        <Link to={getToolRoute(calc.id, 'MISC')} className="hover:text-blue-400 transition-colors">
                                             {calc.name}
                                         </Link>
                                     </li>

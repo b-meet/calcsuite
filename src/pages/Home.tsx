@@ -5,6 +5,7 @@ import { SearchInput } from '../components/SearchInput';
 import { categoryContent } from '../calculators/categoryContent';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
+import { ResourceLinkGrid } from '../components/ResourceLinkGrid';
 
 
 export function Home() {
@@ -195,6 +196,8 @@ export function Home() {
                     </div>
                 </section>
             )}
+
+            {!categoryId && <ResourceLinkGrid />}
         </div>
     );
 }

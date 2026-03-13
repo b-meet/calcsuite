@@ -10,6 +10,7 @@ import Contact from './pages/legal/Contact';
 import { WidgetGenerator } from './pages/WidgetGenerator';
 import { Resources } from './pages/Resources';
 import { ArticleLayout } from './pages/ArticleLayout';
+import { ToolsPage } from './pages/ToolsPage';
 import { Suspense, useEffect } from 'react';
 
 import ReactGA from 'react-ga4';
@@ -48,6 +49,14 @@ function App() {
           <Route path="widget-generator" element={<WidgetGenerator />} />
           <Route path="resources" element={<Resources />} />
           <Route path="resources/:articleId" element={<ArticleLayout />} />
+          <Route
+            path="tools/:category/:slug"
+            element={
+              <Suspense fallback={<div className="p-8 text-center">Loading...</div>}>
+                <ToolsPage />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

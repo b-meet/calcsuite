@@ -23,6 +23,7 @@ h4,
 h5,
 h6 {
   margin: 0 !important;
+  margin-bottom: 8px !important;
 }
 
 p {
@@ -70,8 +71,10 @@ p {
 
   /* Hide scrollbar for IE, Edge and Firefox */
   .no-scrollbar {
-    -ms-overflow-style: none !important; /* IE and Edge */
-    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important;
+    /* IE and Edge */
+    scrollbar-width: none !important;
+    /* Firefox */
   }
 
   .mask-right {
