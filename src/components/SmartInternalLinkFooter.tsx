@@ -30,7 +30,7 @@ export const SmartInternalLinkFooter = ({ category, currentSlug }: SmartInternal
                 {displaySlugs.map(slug => (
                     <Link
                         key={slug}
-                        to={`/tools/${catKey}/${slug}`}
+                        to={`/tools/${catKey.toLowerCase()}/${slug.toLowerCase()}`}
                         className="p-4 rounded-xl bg-gray-50 dark:bg-gray-900/50 border border-gray-100 dark:border-gray-800 hover:border-primary-500 transition-all group"
                     >
                         <span className="block text-sm font-medium text-primary-600 dark:text-primary-400 mb-1">

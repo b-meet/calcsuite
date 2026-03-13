@@ -12,13 +12,13 @@ export default function Footer() {
         const slugKey = calcId.toUpperCase().replace('INDIA-', '').replace('-', '_');
         
         if (CALCULATOR_REFERENCES[catKey]?.[slugKey]) {
-            return `/tools/${catKey}/${slugKey}`;
+            return `/tools/${catKey.toLowerCase()}/${slugKey.toLowerCase()}`;
         }
         
         // Check for common variations
         const altSlugKey = calcId.toUpperCase().replace('-', '_');
         if (CALCULATOR_REFERENCES[catKey]?.[altSlugKey]) {
-            return `/tools/${catKey}/${altSlugKey}`;
+            return `/tools/${catKey.toLowerCase()}/${altSlugKey.toLowerCase()}`;
         }
 
         return `/calculator/${calcId}`;
