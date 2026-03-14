@@ -136,6 +136,27 @@ export default function Footer() {
                     </div>
                 </div>
 
+                {/* Popular Calculators (SEO Interlinking) */}
+                <div className="border-t border-slate-800 pt-8 mt-12 mb-12">
+                    <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">Popular Calculators & Guides</h4>
+                    <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+                        <Link to="/tools/investment/sip" className="text-slate-400 hover:text-blue-400 transition-colors">SIP Calculator</Link>
+                        <Link to="/tools/investment/lumpsum" className="text-slate-400 hover:text-blue-400 transition-colors">Lumpsum Calculator</Link>
+                        <Link to="/tools/investment/mutual_fund_returns" className="text-slate-400 hover:text-blue-400 transition-colors">Mutual Fund Returns</Link>
+                        <Link to="/tools/taxation/income_tax" className="text-slate-400 hover:text-amber-400 transition-colors">Income Tax Calculator</Link>
+                        <Link to="/tools/taxation/gst" className="text-slate-400 hover:text-amber-400 transition-colors">GST Calculator</Link>
+                        <Link to="/tools/banking_loans/home_loan_emi" className="text-slate-400 hover:text-blue-400 transition-colors">Home Loan EMI</Link>
+                        <Link to="/tools/banking_loans/emi" className="text-slate-400 hover:text-blue-400 transition-colors">EMI Calculator</Link>
+                        <Link to="/tools/banking_loans/ppf" className="text-slate-400 hover:text-blue-400 transition-colors">PPF Calculator</Link>
+                        <Link to="/tools/banking_loans/fd" className="text-slate-400 hover:text-blue-400 transition-colors">FD Calculator</Link>
+                        <Link to="/tools/retirement_salary/epf" className="text-slate-400 hover:text-blue-400 transition-colors">EPF Calculator</Link>
+                        <Link to="/tools/retirement_salary/nps" className="text-slate-400 hover:text-blue-400 transition-colors">NPS Calculator</Link>
+                        <Link to="/tools/retirement_salary/salary" className="text-slate-400 hover:text-blue-400 transition-colors">Salary Calculator</Link>
+                        <Link to="/tools/misc/compound_interest" className="text-slate-400 hover:text-blue-400 transition-colors">Compound Interest</Link>
+                        <Link to="/tools/misc/inflation" className="text-slate-400 hover:text-blue-400 transition-colors">Inflation Calculator</Link>
+                    </div>
+                </div>
+
                 {/* SEO Content Section */}
                 <div className="border-t border-slate-800 pt-8 space-y-6 text-sm text-slate-500">
                     <div>

@@ -1,4 +1,5 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
+import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
 import { CALCULATOR_REFERENCES } from '../constants/calculatorReferences';
@@ -21,6 +22,31 @@ export const ToolsPage = () => {
     if (!data || !externalLink) {
         return <Navigate to="/404" replace />;
     }
+
+    const getInternalCalcRoute = (calcSlug: string) => {
+        const mapping: Record<string, string> = {
+            'SIP': 'sip',
+            'INCOME_TAX': 'india-tax',
+            'GST': 'india-gst',
+            'EMI': 'loan',
+            'HOME_LOAN_EMI': 'india-emi',
+            'CAR_LOAN_EMI': 'auto-loan',
+            'FD': 'india-fd',
+            'RD': 'india-rd',
+            'PPF': 'india-ppf',
+            'COMPOUND_INTEREST': 'compound-interest',
+            'SIMPLE_INTEREST': 'simple-interest',
+            'LUMPSUM': 'investment'
+        };
+        if (mapping[calcSlug]) return `/calculator/${mapping[calcSlug]}`;
+        
+        const match = calculatorRegistry.find(c => c.id.replace('india-', '').replace('-', '_').toUpperCase() === calcSlug);
+        if (match) return `/calculator/${match.id}`;
+        
+        return null;
+    };
+
+    const internalRoute = getInternalCalcRoute(slugKey);
 
     return (
         <div className="max-w-4xl mx-auto px-4 py-12">
@@ -46,9 +72,14 @@ export const ToolsPage = () => {
                     <h1 className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mb-4">
                         {data.title}
                     </h1>
-                    <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
+                    <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl mb-4">
                         {data.description}
                     </p>
+                    {internalRoute && (
+                        <p className="text-md text-primary-700 dark:text-primary-300 font-medium max-w-2xl bg-primary-50 dark:bg-primary-900/20 p-4 rounded-xl border border-primary-100 dark:border-primary-800">
+                            Looking for a quick calculation? Try our free <Link to={internalRoute} className="underline font-bold hover:text-primary-800 dark:hover:text-primary-200">{data.title}</Link> directly on CalcSuite.
+                        </p>
+                    )}
                 </header>
 
                 <div className="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
