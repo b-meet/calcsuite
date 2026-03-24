@@ -10,11 +10,11 @@ export default function Footer() {
     const getToolRoute = (calcId: string, category: string) => {
         const catKey = category.toUpperCase();
         const slugKey = calcId.toUpperCase().replace('INDIA-', '').replace('-', '_');
-        
+
         if (CALCULATOR_REFERENCES[catKey]?.[slugKey]) {
             return `/tools/${catKey.toLowerCase()}/${slugKey.toLowerCase()}`;
         }
-        
+
         // Check for common variations
         const altSlugKey = calcId.toUpperCase().replace('-', '_');
         if (CALCULATOR_REFERENCES[catKey]?.[altSlugKey]) {
@@ -213,7 +213,7 @@ export default function Footer() {
                             We are not responsible for any decisions or losses incurred based on these calculations.
                         </p>
                         <p className="text-slate-400">
-                            By performing any calculation on this site, you automatically agree to our <Link to="/terms" className="text-blue-400 hover:underline">Terms of Service</Link>. No further confirmation is required.
+                            By performing any calculation on this site, you automatically agree to our <Link to="/terms" className="text-blue-400 hover:underline">Terms of Service</Link> and <Link to="/privacy" className="text-blue-400 hover:underline">Privacy Policy</Link>. No further confirmation is required.
                         </p>
                     </div>
 

@@ -10,6 +10,7 @@ import { useFavorites } from '../hooks/useFavorites';
 import { Share2, Star } from 'lucide-react';
 import { ShareModal } from '../components/ShareModal';
 import { cn } from '../utils/cn';
+import { AdBanner } from '../components/AdBanner';
 
 export function CalculatorPage() {
     const { calculatorId, scenarioId } = useParams();
@@ -188,6 +189,8 @@ export function CalculatorPage() {
 
             <Component scenarioData={scenario?.initialState} />
 
+            <AdBanner />
+
             <RelatedCalculators
                 currentCalculatorId={calculatorDef.id}
                 category={calculatorDef.category}
@@ -263,6 +266,7 @@ export function CalculatorPage() {
                     </article>
                 </div>
             )}
+            <AdBanner />
         </div>
     );
 }

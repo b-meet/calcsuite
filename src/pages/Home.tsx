@@ -6,6 +6,7 @@ import { categoryContent } from '../calculators/categoryContent';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
 import { ResourceLinkGrid } from '../components/ResourceLinkGrid';
+import { AdBanner } from '../components/AdBanner';
 
 
 export function Home() {
@@ -161,6 +162,8 @@ export function Home() {
                     </div>
                 </div>
 
+                <AdBanner />
+
                 {filteredCalculators.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredCalculators.map((calc) => (
@@ -196,6 +199,8 @@ export function Home() {
                     </div>
                 </section>
             )}
+
+            <AdBanner />
 
             {!categoryId && <ResourceLinkGrid />}
         </div>

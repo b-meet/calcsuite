@@ -6,6 +6,7 @@ import { CALCULATOR_REFERENCES } from '../constants/calculatorReferences';
 import { CALCULATOR_METADATA } from '../constants/calculatorMetadata';
 import { SmartInternalLinkFooter } from '../components/SmartInternalLinkFooter';
 import { ExternalLink, ArrowLeft, Info, HelpCircle } from 'lucide-react';
+import { AdBanner } from '../components/AdBanner';
 
 export const ToolsPage = () => {
     const { category, slug } = useParams<{ category: string; slug: string }>();
@@ -125,6 +126,8 @@ export const ToolsPage = () => {
                         ))}
                     </div>
                 </div>
+
+                <AdBanner />
 
                 <SmartInternalLinkFooter category={catKey} currentSlug={slugKey} />
             </div>
