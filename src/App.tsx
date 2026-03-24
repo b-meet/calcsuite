@@ -11,6 +11,7 @@ import { WidgetGenerator } from './pages/WidgetGenerator';
 import { Resources } from './pages/Resources';
 import { ArticleLayout } from './pages/ArticleLayout';
 import { AlternativesLayout } from './pages/AlternativesLayout';
+import { Directory } from './pages/Directory';
 import { Suspense, useEffect } from 'react';
 
 import ReactGA from 'react-ga4';
@@ -50,6 +51,7 @@ function App() {
           <Route path="widget-generator" element={<WidgetGenerator />} />
           <Route path="resources" element={<Resources />} />
           <Route path="resources/:articleId" element={<ArticleLayout />} />
+          <Route path="directory" element={<Directory />} />
           <Route path="alternatives" element={<Navigate to="/resources" replace />} />
           <Route path="alternatives/:competitorId" element={<AlternativesLayout />} />
           <Route
