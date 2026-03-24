@@ -157,6 +157,23 @@ export default function Footer() {
                     </div>
                 </div>
 
+                {/* Brand Heist (Alternatives Interlinking) */}
+                <div className="border-t border-slate-800 pt-8 mt-12 mb-12">
+                    <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">Popular Alternatives</h4>
+                    <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+                        <Link to="/alternatives/calculator-net" className="text-slate-400 hover:text-blue-400 transition-colors">Calculator.net Alternative</Link>
+                        <Link to="/alternatives/calculator-1" className="text-slate-400 hover:text-blue-400 transition-colors">Calculator-1 Alternative</Link>
+                        <Link to="/alternatives/calculatorsoup" className="text-slate-400 hover:text-blue-400 transition-colors">CalculatorSoup Alternative</Link>
+                        <Link to="/alternatives/gigacalculator" className="text-slate-400 hover:text-blue-400 transition-colors">GigaCalculator Alternative</Link>
+                        <Link to="/alternatives/omni-calculator" className="text-slate-400 hover:text-purple-400 transition-colors">Omni Calculator Alternative</Link>
+                        <Link to="/alternatives/cleartax-calculators" className="text-slate-400 hover:text-amber-400 transition-colors">ClearTax Alternative</Link>
+                        <Link to="/alternatives/quicko" className="text-slate-400 hover:text-amber-400 transition-colors">Quicko Alternative</Link>
+                        <Link to="/alternatives/taxbuddy" className="text-slate-400 hover:text-amber-400 transition-colors">TaxBuddy Alternative</Link>
+                        <Link to="/alternatives/groww" className="text-slate-400 hover:text-emerald-400 transition-colors">Groww Alternative</Link>
+                        <Link to="/alternatives/paisabazaar" className="text-slate-400 hover:text-emerald-400 transition-colors">Paisabazaar Alternative</Link>
+                    </div>
+                </div>
+
                 {/* SEO Content Section */}
                 <div className="border-t border-slate-800 pt-8 space-y-6 text-sm text-slate-500">
                     <div>

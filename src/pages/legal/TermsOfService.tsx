@@ -77,6 +77,14 @@ const TermsOfService = () => {
                         </div>
                     </section>
 
+                    <section>
+                        <h2 className="text-2xl font-bold text-slate-900 mb-4">5. Third-Party References & Performance Metrics</h2>
+                        <ul className="list-disc pl-5 space-y-3 text-slate-600">
+                            <li><strong>Alternative Directories:</strong> Any references to third-party calculators, brands, or competitors (e.g., in our "Alternatives" directory) are for comparative and informational purposes only. We are not affiliated with, endorsed by, or sponsored by these third-party entities. All trademarks belong to their respective owners.</li>
+                            <li><strong>Load Time & Speed Estimates:</strong> Any claims regarding CalcSuite's load times (e.g., "&lt; 0.5s") or comparisons against competitor load times are based on simulated network environments under optimal conditions. Actual load times will vary depending on your device, internet connection, and browser state.</li>
+                        </ul>
+                    </section>
+
                     <section className="border-t border-slate-200 pt-8">
                         <p className="text-sm text-slate-500 text-center">
                             Last Updated: {new Date().toLocaleDateString()}
