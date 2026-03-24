@@ -20,7 +20,17 @@ export const blogPosts = [
         icon: FileText,
         color: "text-emerald-500",
         bg: "bg-emerald-50 dark:bg-emerald-900/20",
-        ctaText: "Check Your Tax Savings"
+        ctaText: "Check Your Tax Savings",
+        toc: [
+            { id: "regime-battle", title: "The Regime Battle: Old vs New" },
+            { id: "homeowner-trap", title: "The Homeowner's Trap" },
+            { id: "equity-harvesting", title: "Equity Tax Harvesting" },
+            { id: "section-80d", title: "Hidden Section 80D Multiplier" }
+        ],
+        faqs: [
+            { question: "Which tax regime is default in 2026?", answer: "The New Tax Regime is the default regime for financial year 2025-26." },
+            { question: "Is home loan interest deductible in the new regime?", answer: "No, Section 24(b) deductions for home loan interest are only available under the Old Tax Regime." }
+        ]
     },
     {
         id: 'gst-compliance-small-business',
@@ -32,7 +42,16 @@ export const blogPosts = [
         icon: Percent,
         color: "text-blue-500",
         bg: "bg-blue-50 dark:bg-blue-900/20",
-        ctaText: "Fix Your GST Compliance"
+        ctaText: "Fix Your GST Compliance",
+        toc: [
+            { id: "three-tier-shift", title: "The 3-Tier Shift" },
+            { id: "composition-vs-regular", title: "Composition vs. Regular Scheme" },
+            { id: "ecommerce-relaxation", title: "E-commerce Relaxation" }
+        ],
+        faqs: [
+            { question: "What are the new GST slabs in 2026?", answer: "The GST structure is moving towards a simplified 5%, 18%, and 40% structure." },
+            { question: "Can I claim ITC without GSTR-2B?", answer: "No, automated validation is mandatory. You cannot claim credit if your supplier hasn't filed GSTR-2B." }
+        ]
     },
     {
         id: 'sip-vs-lumpsum-2026-markets',
@@ -44,7 +63,16 @@ export const blogPosts = [
         icon: TrendingUp,
         color: "text-rose-500",
         bg: "bg-rose-50 dark:bg-rose-900/20",
-        ctaText: "Plan Your Wealth"
+        ctaText: "Plan Your Wealth",
+        toc: [
+            { id: "step-up-secret", title: "The Step-Up Secret" },
+            { id: "four-percent-rule", title: "The 4% Rule" },
+            { id: "lumpsum-timing", title: "Lumpsum Timing Myth" }
+        ],
+        faqs: [
+            { question: "What is a Step-Up SIP?", answer: "A Step-Up SIP involves automatically increasing your SIP amount by a fixed percentage (e.g., 10%) every year to compound wealth faster." },
+            { question: "Is 1 Crore enough to retire in India 2026?", answer: "Given 6% inflation, ₹1 Crore will lose significant purchasing power over 20 years. Your target depends on the 4% rule relative to your expenses." }
+        ]
     }
 ];
 

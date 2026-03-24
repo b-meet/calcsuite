@@ -240,14 +240,22 @@ export default function SIPCalculator() {
                             <input
                                 type="range"
                                 min="0"
-                                max="20"
+                                max="50"
                                 step="1"
                                 value={stepUp}
                                 onChange={(e) => setStepUp(Number(e.target.value))}
                                 className="flex-1 h-2 bg-green-100 dark:bg-green-900/30 rounded-lg appearance-none cursor-pointer accent-green-600"
                             />
-                            <div className="w-16 px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 text-center font-bold text-slate-900 dark:text-white text-sm">
-                                {stepUp}%
+                            <div className="relative w-24">
+                                <input
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    value={stepUp}
+                                    onChange={(e) => setStepUp(e.target.value === '' ? 0 : Number(e.target.value))}
+                                    className="w-full pl-3 pr-6 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 text-center font-bold text-slate-900 dark:text-white text-sm focus:ring-2 focus:ring-green-500 focus:outline-none"
+                                />
+                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm font-bold">%</span>
                             </div>
                         </div>
                         <p className="text-[10px] text-slate-400 mt-2">
