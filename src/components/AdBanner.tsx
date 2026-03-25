@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { SHOWCASE_FEATURES } from './HouseAdsData';
 import type { ShowcaseFeature } from './HouseAdsData';
+import { usePWAInstall } from '../hooks/usePWAInstall';
 
 declare global {
   interface Window {
@@ -43,12 +44,24 @@ export function AdBanner() {
     return () => clearTimeout(timer);
   }, []);
 
+  const { canInstall, install } = usePWAInstall();
+
   if (isBlocked && showcase) {
     const Icon = showcase.icon;
+    const isPWA = showcase.id === 'pwa' && canInstall;
+
+    const handleBannerClick = async (e: React.MouseEvent) => {
+      if (isPWA) {
+        e.preventDefault();
+        await install();
+      }
+    };
+
     return (
       <a 
         href={showcase.link}
-        className="group relative flex flex-col md:flex-row items-center justify-between w-full my-8 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1"
+        onClick={handleBannerClick}
+        className="group relative flex flex-col md:flex-row items-center justify-between w-full my-8 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 cursor-pointer"
       >
         {/* Aesthetic Background Effect */}
         <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${showcase.color} opacity-[0.03] dark:opacity-[0.07] blur-3xl -mr-20 -mt-20 group-hover:opacity-10 transition-opacity`} />
@@ -68,7 +81,10 @@ export function AdBanner() {
         </div>
 
         <div className="mt-4 md:mt-0 z-10">
-          <button className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold transition-all group-hover:gap-4 hover:opacity-90">
+          <button 
+            type="button"
+            className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold transition-all group-hover:gap-4 hover:opacity-90"
+          >
             {showcase.ctaText}
             <ArrowRight className="w-4 h-4" />
           </button>

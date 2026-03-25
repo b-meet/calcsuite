@@ -13,6 +13,7 @@ import { ArticleLayout } from './pages/ArticleLayout';
 import { AlternativesLayout } from './pages/AlternativesLayout';
 import { Directory } from './pages/Directory';
 import { Suspense, useEffect } from 'react';
+import { usePWAInstall } from './hooks/usePWAInstall';
 
 import ReactGA from 'react-ga4';
 import { ToolsPage } from './pages/ToolsPage';
@@ -29,6 +30,7 @@ function ScrollToTop() {
 }
 
 function App() {
+  usePWAInstall();
   return (
     <BrowserRouter>
       <ScrollToTop />
