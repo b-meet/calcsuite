@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { GraduationCap, Plus, Trash2, TrendingUp } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
+import { useWidget } from '../../context/WidgetContext';
 
 type Grade = 'A' | 'A-' | 'B+' | 'B' | 'B-' | 'C+' | 'C' | 'C-' | 'D+' | 'D' | 'F';
 
@@ -21,6 +22,7 @@ const gradePoints: Record<Grade, number> = {
 };
 
 export default function GPACalculator() {
+    const { isWidget } = useWidget();
     const [courses, setCourses] = useState<Course[]>([
         { id: 1, name: 'Course 1', grade: 'A', credits: '3' },
         { id: 2, name: 'Course 2', grade: 'B', credits: '3' },
@@ -105,15 +107,17 @@ export default function GPACalculator() {
                         </div>
                     </div>
 
-                    <div className="flex justify-center">
-                        <button
-                            onClick={handleSave}
-                            className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center gap-2"
-                        >
-                            <TrendingUp size={18} />
-                            Save to History
-                        </button>
-                    </div>
+                    {!isWidget && (
+                        <div className="flex justify-center">
+                            <button
+                                onClick={handleSave}
+                                className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center justify-center gap-2"
+                            >
+                                <TrendingUp size={18} />
+                                Save to History
+                            </button>
+                        </div>
+                    )}
                 </div>
 
                 <div className="md:col-span-1">

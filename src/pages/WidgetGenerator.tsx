@@ -4,6 +4,7 @@ import { calculatorRegistry } from '../calculators/registry';
 import { Helmet } from 'react-helmet-async';
 import { Check, Copy, Zap, Globe, DollarSign, Layout, Info, Smartphone, Code as CodeIcon } from 'lucide-react';
 import { cn } from '../utils/cn';
+import { WidgetProvider } from '../context/WidgetContext';
 
 function IsolatedPreview({ children, theme }: { children: React.ReactNode, theme: 'light' | 'dark' }) {
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -197,9 +198,11 @@ export function WidgetGenerator() {
                                 <div className="p-4 sm:p-6 md:p-8">
                                     <div className="calcsuite-widget-preview overflow-hidden">
                                         <IsolatedPreview theme={theme}>
-                                            <React.Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400">Loading calculator...</div>}>
-                                                <SelectedComponent />
-                                            </React.Suspense>
+                                            <WidgetProvider isWidget={true}>
+                                                <React.Suspense fallback={<div className="h-64 flex items-center justify-center text-slate-400">Loading calculator...</div>}>
+                                                    <SelectedComponent />
+                                                </React.Suspense>
+                                            </WidgetProvider>
                                         </IsolatedPreview>
                                     </div>
                                     <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 text-center">

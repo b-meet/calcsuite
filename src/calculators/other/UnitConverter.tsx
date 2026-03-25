@@ -3,6 +3,7 @@ import { ArrowLeftRight, TrendingUp } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
+import { useWidget } from '../../context/WidgetContext';
 
 type UnitType = 'length' | 'weight' | 'temperature';
 
@@ -29,6 +30,7 @@ const units = {
 };
 
 export default function UnitConverter() {
+    const { isWidget } = useWidget();
     const [type, setType] = useState<UnitType>('length');
     const [fromUnit, setFromUnit] = useState(units.length[0].value);
     const [toUnit, setToUnit] = useState(units.length[1].value);
@@ -165,15 +167,17 @@ export default function UnitConverter() {
                     </div>
                 </div>
 
-                <div className="flex justify-center mt-4">
-                    <button
-                        onClick={handleSave}
-                        className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
-                    >
-                        <TrendingUp size={18} />
-                        Save to History
-                    </button>
-                </div>
+                {!isWidget && (
+                    <div className="flex justify-center mt-4">
+                        <button
+                            onClick={handleSave}
+                            className="px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
+                        >
+                            <TrendingUp size={18} />
+                            Save to History
+                        </button>
+                    </div>
+                )}
             </div>
 
             <CalculationHistory

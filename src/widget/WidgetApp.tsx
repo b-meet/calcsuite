@@ -1,6 +1,7 @@
 
 import React from 'react';
 import BMICalculator from './calculators/BMICalculator';
+import { WidgetProvider } from '../context/WidgetContext';
 
 interface WidgetAppProps {
     calculatorType: string;
@@ -21,7 +22,9 @@ const WidgetApp: React.FC<WidgetAppProps> = ({ calculatorType, theme = 'light', 
     return (
         <div className={`calcsuite-widget-container ${theme === 'dark' ? 'dark' : ''} font-sans antialiased text-gray-900 bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden`}>
             <div className="p-4">
-                {getCalculator()}
+                <WidgetProvider isWidget={true}>
+                    {getCalculator()}
+                </WidgetProvider>
             </div>
             {showBrand && (
                 <div className="px-4 py-2 bg-gray-50 dark:bg-slate-800 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">

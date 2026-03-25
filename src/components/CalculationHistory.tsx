@@ -1,5 +1,6 @@
 import { History, Trash2, ChevronRight, Clock } from 'lucide-react';
 import type { HistoryItem } from '../hooks/useCalculatorHistory';
+import { useWidget } from '../context/WidgetContext';
 
 interface CalculationHistoryProps {
     history: HistoryItem[];
@@ -16,7 +17,8 @@ export function CalculationHistory({
     onRemove,
     title = "Recent Calculations"
 }: CalculationHistoryProps) {
-    if (history.length === 0) return null;
+    const { isWidget } = useWidget();
+    if (isWidget || history.length === 0) return null;
 
     const formatDate = (timestamp: number) => {
         return new Intl.DateTimeFormat('en-IN', {

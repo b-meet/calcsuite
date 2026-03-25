@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { DollarSign, User, TrendingUp } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
+import { useWidget } from '../../context/WidgetContext';
 
 export default function TipCalculator() {
+    const { isWidget } = useWidget();
     const [bill, setBill] = useState('');
+
     const [people, setPeople] = useState(1);
     const [mode, setMode] = useState<'amount' | 'percent'>('amount'); // Default to Amount
 
@@ -163,15 +166,17 @@ export default function TipCalculator() {
                         </div>
                     </div>
 
-                    <div className="flex justify-center pt-4">
-                        <button
-                            onClick={handleSave}
-                            className="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200 dark:shadow-indigo-900/20 flex items-center justify-center gap-2"
-                        >
-                            <TrendingUp size={18} />
-                            Save to History
-                        </button>
-                    </div>
+                    {!isWidget && (
+                        <div className="flex justify-center pt-4">
+                            <button
+                                onClick={handleSave}
+                                className="w-full py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200 dark:shadow-indigo-900/20 flex items-center justify-center gap-2"
+                            >
+                                <TrendingUp size={18} />
+                                Save to History
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
 

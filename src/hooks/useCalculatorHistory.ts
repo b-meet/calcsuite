@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useWidget } from '../context/WidgetContext';
 
 export interface HistoryItem {
     id: string;
@@ -9,7 +10,9 @@ export interface HistoryItem {
 }
 
 export function useCalculatorHistory(calculatorId: string) {
+    const { isWidget } = useWidget();
     const [history, setHistory] = useState<HistoryItem[]>([]);
+
     const storageKey = `calc_history_${calculatorId}`;
 
     useEffect(() => {
@@ -24,6 +27,7 @@ export function useCalculatorHistory(calculatorId: string) {
     }, [calculatorId]);
 
     const addHistory = (inputs: Record<string, any>, result: any, label?: string) => {
+        if (isWidget) return;
         // Prevent duplicate back-to-back entries
         if (history.length > 0) {
             const lastItem = history[0];
