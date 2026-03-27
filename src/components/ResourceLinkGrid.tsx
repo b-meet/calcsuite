@@ -22,7 +22,7 @@ export const ResourceLinkGrid = () => {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-8">
                 {Object.entries(CALCULATOR_REFERENCES).map(([category, slugs]) => {
                     const Icon = CATEGORY_ICONS[category] || BookOpen;
                     return (
