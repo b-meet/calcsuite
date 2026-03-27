@@ -26,10 +26,10 @@ export function MainLayout() {
             <KofiWidget />
             <div className={cn(
                 "min-h-screen flex flex-col transition-all duration-300 ease-in-out",
-                isCollapsed ? "lg:ml-[72px]" : "lg:ml-64"
+                isCollapsed ? "sm:ml-[72px]" : "sm:ml-64"
             )}>
 
-                <div className="flex-1 flex flex-col xl:flex-row max-w-[1600px] w-full mx-auto relative">
+                <div className="flex-1 flex flex-col lg:flex-row max-w-[1600px] w-full mx-auto relative">
                     <main className="flex-1 min-w-0 px-2 py-4 sm:px-4 lg:p-8 w-full">
                         <Breadcrumbs />
                         <div className="mt-4">
@@ -38,7 +38,7 @@ export function MainLayout() {
                     </main>
 
                     {showAds && (
-                        <div className="hidden xl:block xl:w-[360px] xl:p-8 xl:pl-0">
+                        <div className="hidden lg:block lg:w-[360px] lg:p-8 lg:pl-0">
                             <AsideAds />
                         </div>
                     )}
