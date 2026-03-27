@@ -113,3 +113,21 @@ p {
 .dark * {
   scrollbar-color: theme('colors.slate.800') transparent;
 }
+
+/* Infinite Scroll Ticker Animation */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-ticker {
+  animation: scroll-left var(--ticker-duration, 40s) linear infinite;
+}
+
+.pause-on-hover:hover .animate-ticker {
+  animation-play-state: paused;
+}
+
+.ticker-mask {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}

@@ -1,4 +1,4 @@
-import { Layout, Search, Smartphone, ShieldCheck, MessageSquareHeart, Coffee, Code, BookOpen, Mail, Zap } from 'lucide-react';
+import { Layout, Search, Smartphone, ShieldCheck, MessageSquareHeart, Coffee, Code } from 'lucide-react';
 
 export interface ShowcaseFeature {
   id: string;
@@ -81,12 +81,39 @@ export const PROMOTIONS: ShowcaseFeature[] = [
 
 export const ARTICLE_PROMOTIONS: ShowcaseFeature[] = [
   {
-    id: 'knowledge-base',
-    title: 'Master Your Finances',
-    subtitle: 'Deep dive into our comprehensive library of financial guides and step-by-step tutorials.',
-    ctaText: 'Browse Guides',
-    link: '/resources',
-    icon: BookOpen,
+    id: 'widget-pro',
+    title: 'CalcSuite for Your Website',
+    subtitle: 'Embed our lightning-fast, ad-free calculators on your own blog or business site in seconds.',
+    ctaText: 'Get Widget Code',
+    link: '/widget-generator',
+    icon: Layout,
+    color: 'from-blue-500 to-cyan-600',
+  },
+  {
+    id: 'full-directory',
+    title: 'Explore 100+ Free Tools',
+    subtitle: 'From Indian Finance to Health & Fitness, access our complete library of professional calculators.',
+    ctaText: 'View Directory',
+    link: '/directory',
+    icon: Search,
+    color: 'from-purple-600 to-indigo-700',
+  },
+  {
+    id: 'offline-pwa',
+    title: 'Access Anywhere, Offline',
+    subtitle: 'Install CalcSuite on your home screen for instant access to tools even without internet connection.',
+    ctaText: 'Install App',
+    link: '#pwa',
+    icon: Smartphone,
     color: 'from-emerald-500 to-teal-700',
+  },
+  {
+    id: 'tool-request',
+    title: 'Need a Custom Tool?',
+    subtitle: 'Missing a specific calculation for your workflow? Tell us and we might build it for you.',
+    ctaText: 'Request Tool',
+    link: '/contact',
+    icon: Code,
+    color: 'from-amber-500 to-orange-600',
   }
 ];
