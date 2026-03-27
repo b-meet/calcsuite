@@ -14,6 +14,7 @@ import {
 import { IndiaTaxSavingGuide2026 } from '../content/articles/IndiaTaxSavingGuide2026';
 import { GstComplianceSmallBusiness } from '../content/articles/GstComplianceSmallBusiness';
 import { SipVsLumpsum2026Markets } from '../content/articles/SipVsLumpsum2026Markets';
+import { ArticleAds } from '../components/ArticleAds';
 
 export function ArticleLayout() {
     const { articleId } = useParams();
@@ -161,6 +162,8 @@ export function ArticleLayout() {
                             </ul>
                         </div>
                     )}
+
+                    <ArticleAds />
                     
                     {renderArticleContent()}
                 </div>

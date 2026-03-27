@@ -162,20 +162,24 @@ export function Home() {
                     </div>
                 </div>
 
-                <AdBanner />
-
                 {filteredCalculators.length > 0 ? (
                     <div className="grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-6">
-                        {filteredCalculators.map((calc) => (
-                            <CalculatorCard
-                                key={calc.id}
-                                id={calc.id}
-                                name={calc.name}
-                                description={calc.description}
-                                icon={calc.icon}
-                                category={calc.category}
-                                popular={calc.popular}
-                            />
+                        {filteredCalculators.map((calc, index) => (
+                            <div key={calc.id} className="contents">
+                                <CalculatorCard
+                                    id={calc.id}
+                                    name={calc.name}
+                                    description={calc.description}
+                                    icon={calc.icon}
+                                    category={calc.category}
+                                    popular={calc.popular}
+                                />
+                                {(index + 1) % 12 === 0 && (
+                                    <div className="col-span-full">
+                                        <AdBanner />
+                                    </div>
+                                )}
+                            </div>
                         ))}
                     </div>
                 ) : (

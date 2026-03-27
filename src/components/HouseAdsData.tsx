@@ -1,4 +1,4 @@
-import { Layout, Search, Smartphone, ShieldCheck, MessageSquareHeart, Coffee, Code } from 'lucide-react';
+import { Layout, Search, Smartphone, ShieldCheck, MessageSquareHeart, Coffee, Code, BookOpen, Mail, Zap } from 'lucide-react';
 
 export interface ShowcaseFeature {
   id: string;
@@ -69,12 +69,24 @@ export const PROMOTIONS: ShowcaseFeature[] = [
     color: 'from-rose-600/90 to-rose-800/90',
   },
   {
-     id: 'request',
-     title: 'Custom Tool Request',
-     subtitle: 'Need a specific tool for your business or daily workflow? Let us build it.',
-     ctaText: 'Contact Us',
-     link: '/contact',
-     icon: Code,
-     color: 'from-emerald-600/90 to-teal-800/90',
+    id: 'request',
+    title: 'Custom Tool Request',
+    subtitle: 'Need a specific tool for your business or daily workflow? Let us build it.',
+    ctaText: 'Contact Us',
+    link: '/contact',
+    icon: Code,
+    color: 'from-emerald-600/90 to-teal-800/90',
+  }
+];
+
+export const ARTICLE_PROMOTIONS: ShowcaseFeature[] = [
+  {
+    id: 'knowledge-base',
+    title: 'Master Your Finances',
+    subtitle: 'Deep dive into our comprehensive library of financial guides and step-by-step tutorials.',
+    ctaText: 'Browse Guides',
+    link: '/resources',
+    icon: BookOpen,
+    color: 'from-emerald-500 to-teal-700',
   }
 ];

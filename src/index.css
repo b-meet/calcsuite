@@ -85,3 +85,31 @@ p {
     mask-image: linear-gradient(to left, black 85%, transparent 100%);
   }
 }
+
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 dark:bg-slate-800 rounded-full border-[3px] border-transparent bg-clip-padding transition-colors;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-300 dark:bg-slate-700;
+}
+
+/* Firefox Support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.slate.200') transparent;
+}
+
+.dark * {
+  scrollbar-color: theme('colors.slate.800') transparent;
+}

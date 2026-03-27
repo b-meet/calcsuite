@@ -61,7 +61,7 @@ export function AdBanner() {
       <a 
         href={showcase.link}
         onClick={handleBannerClick}
-        className="group relative flex flex-col md:flex-row items-center justify-between w-full my-8 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 cursor-pointer"
+        className="group relative flex flex-col md:flex-row items-center justify-between w-full my-8 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 max-h-[250px] transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 cursor-pointer"
       >
         {/* Aesthetic Background Effect */}
         <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${showcase.color} opacity-[0.03] dark:opacity-[0.07] blur-3xl -mr-20 -mt-20 group-hover:opacity-10 transition-opacity`} />
@@ -94,7 +94,7 @@ export function AdBanner() {
   }
 
   return (
-    <div className="flex flex-col items-center w-full my-8 overflow-hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-4 min-h-[120px] justify-center">
+    <div className="flex flex-col items-center w-full my-8 overflow-hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-4 max-h-[250px] justify-center">
       {import.meta.env.DEV && (
         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">
           Google AdSense Area
