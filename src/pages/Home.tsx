@@ -167,7 +167,7 @@ export function Home() {
                 {!searchQuery && !categoryId && (
                     <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
                         <Link 
-                            to="/brain-training/kenken"
+                            to="/brain-training"
                             className="group relative block overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl transition-all hover:shadow-blue-500/20 hover:-translate-y-1 active:translate-y-0"
                         >
                             {/* Animated Background Gradients */}

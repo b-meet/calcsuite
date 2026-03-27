@@ -19,7 +19,7 @@ import { Brain } from 'lucide-react';
 const hubLinks = [
     {
         title: "Brain Arena",
-        path: "/brain-training/kenken",
+        path: "/brain-training",
         icon: Brain,
         color: "text-blue-500",
         bg: "bg-blue-50 dark:bg-blue-900/20"
