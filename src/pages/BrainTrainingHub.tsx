@@ -126,7 +126,7 @@ export function BrainTrainingHub() {
                                 </div>
 
                                 <Link
-                                    to={`/kenken?size=${selectedSize}`}
+                                    to={`/brain-training/kenken?size=${selectedSize}`}
                                     className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl flex items-center justify-center gap-2 font-black uppercase italic text-xs tracking-widest shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-0.5 active:translate-y-0 transition-all select-none"
                                 >
                                     <Play size={16} fill="white" />

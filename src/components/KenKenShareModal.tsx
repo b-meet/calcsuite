@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { X, Share2, Download, Loader2 } from 'lucide-react';
+import confetti from 'canvas-confetti';
 import { cn } from '../utils/cn';
 
 interface ShareModalProps {
@@ -153,7 +154,7 @@ async function generateShareImage(
         // ── URL line ──
         ctx.fillStyle = 'rgba(255,255,255,0.35)';
         ctx.font = '10px system-ui, -apple-system, sans-serif';
-        ctx.fillText('calcsuite.xyz/kenken', W / 2, H - 15);
+        ctx.fillText('calcsuite.xyz/brain-training/kenken', W / 2, H - 15);
 
         // Export
         return new Promise(resolve => {
@@ -192,8 +193,37 @@ export function KenKenShareModal({ isOpen, onClose, size, elapsed, streak, date 
 
     if (!isOpen) return null;
 
-    const shareText = `🧠 I solved today's ${size}×${size} KenKen in ${elapsed}!\n🔥 Streak: ${streak} day${streak !== 1 ? 's' : ''}\n\nTrain your brain: ${window.location.origin}/kenken?size=${size}`;
-    const shareUrl = `${window.location.origin}/kenken?size=${size}`;
+    // Trigger confetti on mount
+    const triggerConfetti = () => {
+        const count = 200;
+        const defaults = {
+            origin: { y: 0.7 },
+            zIndex: 1000,
+            colors: ['#3b82f6', '#10b981', '#f59e0b', '#8b5cf6']
+        };
+
+        function fire(particleRatio: number, opts: any) {
+            confetti({
+                ...defaults,
+                ...opts,
+                particleCount: Math.floor(count * particleRatio)
+            });
+        }
+
+        fire(0.25, { spread: 26, startVelocity: 55 });
+        fire(0.2, { spread: 60 });
+        fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+        fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, scalar: 1.2 });
+        fire(0.1, { spread: 120, startVelocity: 45 });
+    };
+
+    // Use an effect to fire once when opened
+    useEffect(() => {
+        triggerConfetti();
+    }, []);
+
+    const shareText = `🧠 I solved today's ${size}×${size} KenKen in ${elapsed}!\n🔥 Streak: ${streak} day${streak !== 1 ? 's' : ''}\n\nTrain your brain: ${window.location.origin}/brain-training/kenken?size=${size}`;
+    const shareUrl = `${window.location.origin}/brain-training/kenken?size=${size}`;
 
     const getBlob = useCallback(async () => {
         setGenerating(true);
