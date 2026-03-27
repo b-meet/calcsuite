@@ -1,4 +1,4 @@
-import { Layout, Search, Smartphone, ShieldCheck, MessageSquareHeart, Coffee, Code } from 'lucide-react';
+import { Layout, Search, Smartphone, ShieldCheck, MessageSquareHeart, Coffee, Code, Brain } from 'lucide-react';
 
 export interface ShowcaseFeature {
   id: string;
@@ -46,6 +46,15 @@ export const SHOWCASE_FEATURES: ShowcaseFeature[] = [
     link: '/resources/india-tax-saving-guide-2026',
     icon: ShieldCheck,
     color: 'from-orange-500 to-amber-400',
+  },
+  {
+    id: 'brain-arena',
+    title: 'Brain Training Arena',
+    subtitle: 'Master your logic with daily 3×3, 5×5 and 8×8 puzzles. Fresh challenge every midnight.',
+    ctaText: 'Enter Arena',
+    link: '/brain-training',
+    icon: Brain,
+    color: 'from-blue-600 to-indigo-500',
   }
 ];
 
@@ -115,5 +124,14 @@ export const ARTICLE_PROMOTIONS: ShowcaseFeature[] = [
     link: '/contact',
     icon: Code,
     color: 'from-amber-500 to-orange-600',
+  },
+  {
+    id: 'brain-training-pro',
+    title: 'Daily Logic Challenge',
+    subtitle: 'Keep your mind sharp with our high-intensity brain training puzzles. New levels daily.',
+    ctaText: 'Start Training',
+    link: '/brain-training',
+    icon: Brain,
+    color: 'from-blue-700 to-indigo-800',
   }
 ];

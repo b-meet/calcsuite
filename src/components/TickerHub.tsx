@@ -14,7 +14,16 @@ import {
     Sunset
 } from 'lucide-react';
 
+import { Brain } from 'lucide-react';
+
 const hubLinks = [
+    {
+        title: "Brain Arena",
+        path: "/brain-training",
+        icon: Brain,
+        color: "text-blue-500",
+        bg: "bg-blue-50 dark:bg-blue-900/20"
+    },
     {
         title: "BMI Calculator",
         path: "/calculator/bmi",

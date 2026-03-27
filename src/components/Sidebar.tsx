@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Calculator, Menu, X, Code, Coffee, Star, BookOpen, MessageSquareHeart, ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { Calculator, Menu, X, Code, Coffee, Star, BookOpen, MessageSquareHeart, ChevronLeft, ChevronRight, Search, Brain } from 'lucide-react';
 
 import { useState, useEffect } from 'react';
 import { cn } from '../utils/cn';
@@ -153,12 +153,31 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                                     )
                                 }
                             >
+                                <Code size={20} className="shrink-0" />
+                                {!effectiveCollapsed && <span className="truncate">Widget Generator</span>}
+                            </NavLink>
+                        </Tooltip>
+                        
+                        <Tooltip content="Resources & Guides" position="right" enabled={effectiveCollapsed}>
+                            <NavLink
+                                to="/resources"
+                                onClick={() => setIsOpen(false)}
+                                className={({ isActive }) =>
+                                    cn(
+                                        "flex items-center rounded-xl text-sm font-medium transition-all duration-200 group mt-1 relative",
+                                        effectiveCollapsed ? "justify-center w-12 h-12 mx-auto" : "gap-3 px-3 py-2.5",
+                                        isActive
+                                            ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 shadow-sm"
+                                            : "text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
+                                    )
+                                }
+                            >
                                 {({ isActive }) => (
                                     <>
-                                        <Code size={20} className="shrink-0" />
+                                        <BookOpen size={20} className="shrink-0" />
                                         {!effectiveCollapsed && (
                                             <>
-                                                <span className="truncate">Widget Generator</span>
+                                                <span className="truncate">Resources & Guides</span>
                                                 <span className={cn(
                                                     "ml-auto px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm shrink-0",
                                                     isActive
@@ -170,20 +189,20 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                                             </>
                                         )}
                                         {effectiveCollapsed && (
-                                            <div className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full border-2 border-white dark:border-slate-900 animate-pulse" />
+                                            <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-blue-500 rounded-full border-2 border-white dark:border-slate-900 animate-pulse shadow-sm" />
                                         )}
                                     </>
                                 )}
                             </NavLink>
                         </Tooltip>
-                        
-                        <Tooltip content="Resources & Guides" position="right" enabled={effectiveCollapsed}>
+
+                        <Tooltip content="Brain Training Arena" position="right" enabled={effectiveCollapsed}>
                             <NavLink
-                                to="/resources"
+                                to="/brain-training"
                                 onClick={() => setIsOpen(false)}
                                 className={({ isActive }) =>
                                     cn(
-                                        "flex items-center rounded-xl text-sm font-medium transition-all duration-200 group mt-1",
+                                        "flex items-center rounded-xl text-sm font-medium transition-all duration-200 group mt-1 relative",
                                         effectiveCollapsed ? "justify-center w-12 h-12 mx-auto" : "gap-3 px-3 py-2.5",
                                         isActive
                                             ? "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 shadow-sm"
@@ -191,8 +210,27 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                                     )
                                 }
                             >
-                                <BookOpen size={20} className="shrink-0" />
-                                {!effectiveCollapsed && <span className="truncate">Resources & Guides</span>}
+                                {({ isActive }) => (
+                                    <>
+                                        <Brain size={20} className="shrink-0 text-blue-500" />
+                                        {!effectiveCollapsed && (
+                                            <>
+                                                <span className="truncate">Brain Training</span>
+                                                <span className={cn(
+                                                    "ml-auto px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm shrink-0",
+                                                    isActive
+                                                        ? "bg-white text-blue-600"
+                                                        : "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300"
+                                                )}>
+                                                    NEW
+                                                </span>
+                                            </>
+                                        )}
+                                        {effectiveCollapsed && (
+                                            <div className="absolute top-2 right-2 w-2.5 h-2.5 bg-blue-500 rounded-full border-2 border-white dark:border-slate-900 animate-pulse shadow-sm" />
+                                        )}
+                                    </>
+                                )}
                             </NavLink>
                         </Tooltip>
 

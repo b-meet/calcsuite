@@ -12,6 +12,8 @@ import { Resources } from './pages/Resources';
 import { ArticleLayout } from './pages/ArticleLayout';
 import { AlternativesLayout } from './pages/AlternativesLayout';
 import { Directory } from './pages/Directory';
+import { KenKen } from './pages/KenKen';
+import { BrainTrainingHub } from './pages/BrainTrainingHub';
 import { Suspense, useEffect } from 'react';
 import { usePWAInstall } from './hooks/usePWAInstall';
 
@@ -54,6 +56,8 @@ function App() {
           <Route path="resources" element={<Resources />} />
           <Route path="resources/:articleId" element={<ArticleLayout />} />
           <Route path="directory" element={<Directory />} />
+          <Route path="kenken" element={<KenKen />} />
+          <Route path="brain-training" element={<BrainTrainingHub />} />
           <Route path="alternatives" element={<Navigate to="/resources" replace />} />
           <Route path="alternatives/:competitorId" element={<AlternativesLayout />} />
           <Route

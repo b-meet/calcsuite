@@ -16,8 +16,8 @@ export function MainLayout() {
     const location = useLocation();
     const [isCollapsed, setIsCollapsed] = useState(true);
 
-    const excludedPaths = ['/terms', '/privacy', '/about', '/contact'];
-    const showAds = !excludedPaths.includes(location.pathname);
+    const excludedPaths = ['/terms', '/privacy', '/about', '/contact', '/kenken', '/brain-training'];
+    const showAds = !excludedPaths.some(path => location.pathname.startsWith(path));
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300">
