@@ -116,7 +116,7 @@ export function TickerHub() {
 
     return (
         <div className="w-full bg-white dark:bg-slate-950 md:bg-white/50 md:dark:bg-slate-900/50 md:backdrop-blur-md border-b border-slate-200 dark:border-slate-800 h-10 overflow-hidden relative md:ticker-mask pause-on-hover">
-            <div className="absolute inset-y-0 left-0 w-max flex items-center animate-ticker will-change-transform" style={{ '--ticker-duration': '40s' } as React.CSSProperties}>
+            <div className="absolute inset-y-0 left-0 w-max flex items-center animate-ticker will-change-transform" style={{ '--ticker-duration': '32s' } as React.CSSProperties}>
                 {items.map((link, idx) => {
                     const Icon = link.icon;
                     return (
