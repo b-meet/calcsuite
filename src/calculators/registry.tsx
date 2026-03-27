@@ -72,7 +72,7 @@ const IndiaSalaryCalculator = lazy(() => import('./financial/IndiaSalaryCalculat
 const IndiaGSTCalculator = lazy(() => import('./financial/IndiaGSTCalculator'));
 const IndiaEMICalculator = lazy(() => import('./financial/IndiaEMICalculator'));
 
-export type CalculatorCategory = 'basic' | 'financial' | 'health' | 'other' | 'india';
+export type CalculatorCategory = 'math' | 'financial' | 'health' | 'other' | 'india';
 
 const FDCalculator = lazy(() => import('./india/FDCalculator'));
 const RDCalculator = lazy(() => import('./india/RDCalculator'));
@@ -125,7 +125,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'basic-math',
         name: 'Basic Calculator',
         description: 'Free online basic calculator for everyday math. extensive arithmetic tool for addition, subtraction, multiplication, and division.',
-        category: 'basic',
+        category: 'math',
         icon: Calculator,
         component: BasicCalculator,
         content: BasicCalculatorContent,
@@ -169,7 +169,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'scientific',
         name: 'Scientific Calculator',
         description: 'Advanced free scientific calculator online. Handle trigonometry (sin, cos, tan), logarithms, exponents, and complex math problems for students and professionals.',
-        category: 'basic',
+        category: 'math',
         icon: Calculator,
         component: ScientificCalculator,
         content: ScientificCalculatorContent,
@@ -213,7 +213,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'triangle',
         name: 'Triangle Calculator',
         description: 'Comprehensive triangle calculator. Instantly solve for area, perimeter, angles, and sides of right, isosceles, and equilateral triangles.',
-        category: 'basic',
+        category: 'math',
         icon: Triangle,
         component: TriangleCalculator,
         longDescription: "Geometry made simple. Whether you're a student solving for x or a contractor measuring a roof pitch, the Triangle Calculator instantly computes missing side lengths, angles, area, and perimeter using the Law of Sines, Law of Cosines, and Pythagorean theorem.",
@@ -234,7 +234,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'fraction',
         name: 'Fraction Calculator',
         description: 'Easy-to-use fraction calculator. Add, subtract, multiply, and divide fractions and mixed numbers. Get instant results.',
-        category: 'basic',
+        category: 'math',
         icon: Divide,
         component: FractionCalculator,
         content: FractionCalculatorContent,
@@ -278,7 +278,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'percentage',
         name: 'Percentage Calculator',
         description: 'Free percentage calculator tool. Quickly calculate percentage changes, percent of numbers, and discounts.',
-        category: 'basic',
+        category: 'math',
         icon: Percent,
         component: PercentageCalculator,
         content: PercentageContent,
@@ -1084,7 +1084,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'tip',
         name: 'Tip Calculator',
         description: 'Easy tip and split bill calculator. Calculate the precise tip amount and total cost per person.',
-        category: 'basic',
+        category: 'math',
         icon: DollarSign,
         component: TipCalculator,
         content: TipCalculatorContent,
@@ -1415,7 +1415,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'percentage-change',
         name: 'Percentage Change Calculator',
         description: 'Calculate percentage increase or decrease between two values. Determine growth or decline and see the difference instantly.',
-        category: 'basic',
+        category: 'math',
         icon: TrendingUp,
         component: PercentageIncreaseCalculator,
         content: PercentageChangeContent,
@@ -1454,7 +1454,7 @@ export const calculatorRegistry: CalculatorDef[] = [
         id: 'discount',
         name: 'Discount Calculator',
         description: 'Calculate final price after discount and tax. Perfect for shopping sales, double discounts, and finding out exactly how much you save.',
-        category: 'basic',
+        category: 'math',
         icon: Percent,
         component: DiscountCalculator,
         content: DiscountCalculatorContent,
@@ -1768,7 +1768,7 @@ export const calculatorRegistry: CalculatorDef[] = [
 ];
 
 export const categories: { id: CalculatorCategory; name: string; icon: any }[] = [
-    { id: 'basic', name: 'Basic & Math', icon: Calculator },
+    { id: 'math', name: 'Mathematics', icon: Calculator },
     { id: 'financial', name: 'Finance', icon: DollarSign },
     { id: 'health', name: 'Health & Fitness', icon: Activity },
     { id: 'india', name: 'India Specific', icon: Landmark },

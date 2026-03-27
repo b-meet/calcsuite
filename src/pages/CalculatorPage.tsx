@@ -40,7 +40,6 @@ export function CalculatorPage() {
             case 'financial': return 'FinanceApplication';
             case 'health': return 'HealthApplication';
             case 'math': return 'EducationalApplication';
-            case 'basic': return 'UtilityApplication';
             case 'india': return 'FinanceApplication';
             default: return 'UtilityApplication';
         }

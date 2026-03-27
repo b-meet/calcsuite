@@ -10,7 +10,7 @@ export default function BasicCalculator() {
     const [equation, setEquation] = useState('');
     const [isResult, setIsResult] = useState(false);
 
-    const { history: calcHistory, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('basic');
+    const { history: calcHistory, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('math');
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
