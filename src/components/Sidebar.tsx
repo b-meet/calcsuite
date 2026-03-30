@@ -196,7 +196,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                             </NavLink>
                         </Tooltip>
 
-                        <Tooltip content="Brain Training Arena" position="right" enabled={effectiveCollapsed}>
+                        <Tooltip content="Brain Arena - Daily Logic Games" position="right" enabled={effectiveCollapsed}>
                             <NavLink
                                 to="/brain-training"
                                 onClick={() => setIsOpen(false)}
@@ -215,14 +215,14 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                                         <Brain size={20} className="shrink-0 text-blue-500" />
                                         {!effectiveCollapsed && (
                                             <>
-                                                <span className="truncate">Brain Training</span>
+                                                <span className="truncate">Brain Arena</span>
                                                 <span className={cn(
                                                     "ml-auto px-2 py-0.5 text-[10px] font-bold rounded-full shadow-sm shrink-0",
                                                     isActive
-                                                        ? "bg-white text-blue-600"
-                                                        : "bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300"
+                                                        ? "bg-white text-blue-600 shadow-sm"
+                                                        : "bg-blue-600 text-white animate-pulse shadow-blue-500/50"
                                                 )}>
-                                                    NEW
+                                                    DAILY
                                                 </span>
                                             </>
                                         )}

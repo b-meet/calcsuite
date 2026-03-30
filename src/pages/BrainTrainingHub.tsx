@@ -12,8 +12,8 @@ export function BrainTrainingHub() {
     return (
         <div className="min-h-screen bg-[#020617] text-slate-200 py-8 px-4 sm:px-8">
             <SEO
-                title="Brain Training Arena - Competitive Logic Games"
-                description="Enter the CalcSuite Brain Training Arena. Solve daily puzzles, improve your mental calculation speed, and compete in logic challenges."
+                title="Brain Arena - Compete with Your Mind"
+                description="Enter the CalcSuite Brain Arena. Solve daily logic puzzles, improve your mental calculation speed, and master high-intensity challenges."
             />
 
             <div className="max-w-5xl mx-auto space-y-12">

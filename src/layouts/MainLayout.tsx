@@ -7,6 +7,7 @@ import { KofiWidget } from '../components/KofiWidget';
 import { FeedbackButton } from '../components/FeedbackButton';
 import { AsideAds } from '../components/AsideAds';
 
+import { ArenaHook } from '../components/ArenaHook';
 import { PWAPrompt } from '../components/PWAPrompt';
 import { PWAUpdatePrompt } from '../components/PWAUpdatePrompt';
 import { useState } from 'react';
@@ -33,6 +34,7 @@ export function MainLayout() {
                     <main className="flex-1 min-w-0 px-2 py-4 sm:px-4 lg:p-8 w-full">
                         <Breadcrumbs />
                         <div className="mt-4">
+                            <ArenaHook />
                             <Outlet />
                         </div>
                     </main>

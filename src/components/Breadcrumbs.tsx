@@ -29,7 +29,7 @@ export default function Breadcrumbs({ items, className }: { items?: { label: str
             breadcrumbItems = visiblePathnames.map((value) => {
                 const to = '/' + pathnames.slice(0, pathnames.indexOf(value) + 1).join('/');
                 let displayName = value.charAt(0).toUpperCase() + value.slice(1);
-                if (value === 'brain-training') displayName = 'Brain Training';
+                if (value === 'brain-training') displayName = 'Brain Arena';
                 if (value === 'kenken') displayName = 'KenKen';
 
                 const category = categories.find(c => c.id === value);

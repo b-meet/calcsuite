@@ -322,8 +322,8 @@ export function KenKen() {
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950/50 py-6 px-4">
             <SEO
-                title={`Daily ${size}×${size} KenKen Puzzle - Train Your Brain`}
-                description={`Solve our daily ${size}×${size} KenKen puzzle. Fresh puzzle every day at midnight IST.`}
+                title={`Daily ${size}×${size} KenKen - Brain Arena Challenge`}
+                description={`Solve today's ${size}×${size} KenKen puzzle in the Brain Arena. New logic challenges every day at midnight IST.`}
             />
 
             <div className="max-w-2xl mx-auto space-y-5">
@@ -338,7 +338,7 @@ export function KenKen() {
                                 <Brain className="text-blue-500" size={22} />
                                 KenKen of the Day
                             </h1>
-                            <p className="text-[11px] text-slate-500 font-medium">Daily Brain Training • {size}×{size} Grid</p>
+                            <p className="text-[11px] text-slate-500 font-medium italic uppercase tracking-wider">Brain Arena • {size}×{size} Grid</p>
                         </div>
                     </div>
 
@@ -442,7 +442,7 @@ export function KenKen() {
                             <div className="flex flex-col sm:flex-row gap-2.5 w-full max-w-sm mb-5">
                                 <Link
                                     to="/brain-training"
-                                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg shadow-blue-500/20 transition-all active:scale-95 text-sm"
+                                    className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg shadow-blue-500/20 transition-all active:scale-95 text-sm uppercase italic tracking-widest"
                                 >
                                     <ArrowLeft size={16} />
                                     Back to Arena

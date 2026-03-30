@@ -49,7 +49,7 @@ export const SHOWCASE_FEATURES: ShowcaseFeature[] = [
   },
   {
     id: 'brain-arena',
-    title: 'Brain Training Arena',
+    title: 'Brain Arena',
     subtitle: 'Master your logic with daily 3×3, 5×5 and 8×8 puzzles. Fresh challenge every midnight.',
     ctaText: 'Enter Arena',
     link: '/brain-training',
@@ -128,8 +128,8 @@ export const ARTICLE_PROMOTIONS: ShowcaseFeature[] = [
   {
     id: 'brain-training-pro',
     title: 'Daily Logic Challenge',
-    subtitle: 'Keep your mind sharp with our high-intensity brain training puzzles. New levels daily.',
-    ctaText: 'Start Training',
+    subtitle: 'Keep your mind sharp with our high-intensity Brain Arena puzzles. New levels daily.',
+    ctaText: 'Enter Arena',
     link: '/brain-training',
     icon: Brain,
     color: 'from-blue-700 to-indigo-800',
