@@ -1,4 +1,4 @@
-import { Calculator, HelpCircle, CheckCircle, UserCheck } from 'lucide-react';
+import { Calculator, CheckCircle, UserCheck } from 'lucide-react';
 
 const HomeLoanEligibilityCalculatorContent = () => {
     return (

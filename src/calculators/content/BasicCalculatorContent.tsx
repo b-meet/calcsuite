@@ -1,4 +1,4 @@
-import { Plus, Minus, X, Divide, Check, Monitor, Smartphone, Briefcase, ShoppingCart, HelpCircle } from 'lucide-react';
+import { Plus, Minus, X, Divide, Check, Monitor, Smartphone, Briefcase, ShoppingCart } from 'lucide-react';
 
 const BasicCalculatorContent = () => {
     return (

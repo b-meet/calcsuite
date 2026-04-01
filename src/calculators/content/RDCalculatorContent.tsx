@@ -1,4 +1,4 @@
-import { HelpCircle, CheckCircle, PiggyBank, RefreshCw } from 'lucide-react';
+import { CheckCircle, PiggyBank, RefreshCw } from 'lucide-react';
 
 const RDCalculatorContent = () => {
     return (

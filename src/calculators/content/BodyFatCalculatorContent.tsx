@@ -1,4 +1,4 @@
-import { Ruler, Activity, Scale, Target, HelpCircle, CheckCircle, Info, Heart } from 'lucide-react';
+import { Ruler, Activity, Scale, Target, CheckCircle, Info, Heart } from 'lucide-react';
 
 const BodyFatCalculatorContent = () => {
     return (

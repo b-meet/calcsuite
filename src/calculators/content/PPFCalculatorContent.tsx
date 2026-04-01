@@ -1,4 +1,4 @@
-import { Landmark, ShieldCheck, HelpCircle, CheckCircle, TrendingUp, Lock } from 'lucide-react';
+import { Landmark, ShieldCheck, CheckCircle, TrendingUp, Lock } from 'lucide-react';
 
 const PPFCalculatorContent = () => {
     return (

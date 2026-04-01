@@ -1,4 +1,4 @@
-import { TrendingUp, PieChart, Target, AlertTriangle, HelpCircle, CheckCircle } from 'lucide-react';
+import { TrendingUp, PieChart, Target, AlertTriangle, CheckCircle } from 'lucide-react';
 
 const CompoundInterestCalculatorContent = () => {
     return (

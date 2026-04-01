@@ -1,4 +1,4 @@
-import { Share2, BookOpen, Briefcase, TrendingUp, FlaskConical, Monitor, Smartphone, Check, Zap, HelpCircle } from 'lucide-react';
+import { Share2, BookOpen, Briefcase, TrendingUp, FlaskConical, Monitor, Smartphone, Check, Zap } from 'lucide-react';
 
 const ScientificCalculatorContent = () => {
     return (

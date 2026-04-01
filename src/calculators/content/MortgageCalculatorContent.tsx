@@ -1,4 +1,4 @@
-import { Home, Percent, DollarSign, TrendingUp, AlertTriangle, HelpCircle, CheckCircle } from 'lucide-react';
+import { Home, Percent, DollarSign, TrendingUp, AlertTriangle, CheckCircle } from 'lucide-react';
 
 const MortgageCalculatorContent = () => {
     return (

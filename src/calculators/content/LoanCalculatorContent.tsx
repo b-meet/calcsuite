@@ -1,4 +1,4 @@
-import { DollarSign, Clock, PieChart, Briefcase, GraduationCap, AlertTriangle, HelpCircle, CheckCircle, TrendingDown } from 'lucide-react';
+import { DollarSign, Clock, PieChart, Briefcase, GraduationCap, AlertTriangle, CheckCircle, TrendingDown } from 'lucide-react';
 
 const LoanCalculatorContent = () => {
     return (

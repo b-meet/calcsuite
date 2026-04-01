@@ -1,4 +1,4 @@
-import { Scale, Activity, Info, HelpCircle, CheckCircle, Heart, Ruler } from 'lucide-react';
+import { Scale, Activity, Info, CheckCircle, Heart, Ruler } from 'lucide-react';
 
 const IdealWeightCalculatorContent = () => {
     return (

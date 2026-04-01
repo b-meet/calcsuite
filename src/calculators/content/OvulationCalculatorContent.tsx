@@ -1,4 +1,4 @@
-import { Heart, Search, Clock, Info, HelpCircle, CheckCircle } from 'lucide-react';
+import { Heart, Search, Clock, Info, CheckCircle } from 'lucide-react';
 
 const OvulationCalculatorContent = () => {
     return (

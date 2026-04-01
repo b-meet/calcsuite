@@ -1,4 +1,4 @@
-import { Landmark, TrendingUp, AlertTriangle, HelpCircle, CheckCircle, Percent, Clock } from 'lucide-react';
+import { Landmark, TrendingUp, AlertTriangle, CheckCircle, Percent, Clock } from 'lucide-react';
 
 const FDCalculatorContent = () => {
     return (

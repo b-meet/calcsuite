@@ -1,4 +1,4 @@
-import { TrendingUp, ArrowUpRight, ArrowDownRight, Minus, HelpCircle, BarChart3, PieChart } from 'lucide-react';
+import { TrendingUp, ArrowUpRight, ArrowDownRight, Minus, BarChart3, PieChart } from 'lucide-react';
 
 const PercentageChangeContent = () => {
     return (

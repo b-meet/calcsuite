@@ -1,4 +1,4 @@
-import { Check, PieChart, ChefHat, Hammer, Briefcase, HelpCircle } from 'lucide-react';
+import { Check, PieChart, ChefHat, Hammer, Briefcase } from 'lucide-react';
 
 const FractionCalculatorContent = () => {
     return (

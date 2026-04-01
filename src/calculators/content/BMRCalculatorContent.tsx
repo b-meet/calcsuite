@@ -1,4 +1,4 @@
-import { Flame, Activity, Scale, Target, HelpCircle, CheckCircle, Info, Battery } from 'lucide-react';
+import { Flame, Activity, Scale, Target, CheckCircle, Info, Battery } from 'lucide-react';
 
 const BMRCalculatorContent = () => {
     return (

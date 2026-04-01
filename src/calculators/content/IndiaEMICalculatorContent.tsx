@@ -1,4 +1,4 @@
-import { Landmark, Car, Briefcase, GraduationCap, TrendingDown, HelpCircle, Calculator, Info, AlertTriangle, ArrowRight, CheckCircle, XCircle, Home, MapPin } from 'lucide-react';
+import { Landmark, Car, Briefcase, GraduationCap, TrendingDown, Calculator, Info, AlertTriangle, ArrowRight, CheckCircle, XCircle, Home, MapPin } from 'lucide-react';
 
 const IndiaEMICalculatorContent = () => {
     return (

@@ -1,4 +1,4 @@
-import { BookOpen, TrendingUp, CheckCircle, HelpCircle, Award, Target } from 'lucide-react';
+import { BookOpen, TrendingUp, CheckCircle, Award, Target } from 'lucide-react';
 
 const GPACalculatorContent = () => {
     return (

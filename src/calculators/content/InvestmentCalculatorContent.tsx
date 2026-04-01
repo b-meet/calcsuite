@@ -1,4 +1,4 @@
-import { TrendingUp, Clock, Target, AlertTriangle, HelpCircle, CheckCircle } from 'lucide-react';
+import { TrendingUp, Clock, Target, AlertTriangle, CheckCircle } from 'lucide-react';
 
 const InvestmentCalculatorContent = () => {
     return (

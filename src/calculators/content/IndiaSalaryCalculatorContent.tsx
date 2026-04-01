@@ -1,4 +1,4 @@
-import { Briefcase, CreditCard, HelpCircle, CheckCircle, PieChart, Coins, Building, TrendingUp, Target, Shield, Umbrella, Zap, Home, Popcorn } from 'lucide-react';
+import { Briefcase, CreditCard, CheckCircle, PieChart, Coins, Building, TrendingUp, Target, Shield, Umbrella, Zap, Home, Popcorn } from 'lucide-react';
 
 const IndiaSalaryCalculatorContent = () => {
     return (

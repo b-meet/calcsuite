@@ -1,4 +1,4 @@
-import { Activity, Check, AlertTriangle, HelpCircle, ShieldCheck, Microscope } from 'lucide-react';
+import { Activity, Check, AlertTriangle, ShieldCheck, Microscope } from 'lucide-react';
 import { EXTERNAL_LINKS } from '../../constants/links';
 
 const BMICalculatorContent = () => {

@@ -1,4 +1,4 @@
-import { Check, ShieldCheck, Zap, HelpCircle, MousePointer2 } from 'lucide-react';
+import { Check, ShieldCheck, Zap, MousePointer2 } from 'lucide-react';
 
 const PercentageContent = () => {
     return (
