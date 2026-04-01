@@ -69,26 +69,6 @@ const PercentageChangeContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    {[
-                        { q: "Can it calculate percentage decrease?", a: "Yes. The calculator detects both increase and decrease automatically." },
-                        { q: "Does it support decimals?", a: "Yes. Decimal values are supported for accurate results." },
-                        { q: "Is it free to use?", a: "Yes. This calculator is completely free." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 mb-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
         </div>
     );
 };

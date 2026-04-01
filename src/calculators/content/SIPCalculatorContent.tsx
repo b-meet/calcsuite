@@ -398,28 +398,6 @@ const SIPCalculatorContent = () => {
                 </div>
             </section>
 
-
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="space-y-6 m-6">
-                    {[
-                        { q: "Is this SIP calculator accurate?", a: "It provides realistic estimates based on standard compounding assumptions but actual returns may vary." },
-                        { q: "Can SIP returns change over time?", a: "Yes. Mutual fund returns fluctuate with market conditions." },
-                        { q: "Is SIP safe?", a: "SIP is a method of investing, not an investment product. Risk depends on the mutual fund chosen." },
-                        { q: "Is this calculator free to use?", a: "Yes. It is completely free with no limits." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* footer section */}
             <section className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-8 text-white text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">SIP and Long-Term Financial Discipline</h2>

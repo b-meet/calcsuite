@@ -120,27 +120,6 @@ const InvestmentCalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "Are investment returns guaranteed?", a: "No. Investment returns are market-linked and can vary over time." },
-                        { q: "Is this calculator accurate?", a: "It provides reliable estimates based on standard compound growth models." },
-                        { q: "Can I use this for retirement planning?", a: "Yes. It is well-suited for long-term financial planning." },
-                        { q: "Is this tool free?", a: "Yes. It is completely free with no usage limits." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Footer */}
             <section className="bg-indigo-600 dark:bg-indigo-900 rounded-3xl p-8 text-white text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Built for Smart, Long-Term Financial Thinking</h2>

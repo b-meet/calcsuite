@@ -91,27 +91,6 @@ const RDCalculatorContent = () => {
                     </div>
                 </div>
             </section>
-
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "Can I miss an RD installment?", a: "Banks may charge a penalty for missed payments." },
-                        { q: "Is RD interest taxable?", a: "Yes. TDS is applicable just like Fixed Deposits." },
-                        { q: "Can I change the monthly amount?", a: "No. The installment amount is fixed for the tenure." },
-                        { q: "Minimum tenure for RD?", a: "Usually 6 months is the minimum period." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
         </div>
     );
 };

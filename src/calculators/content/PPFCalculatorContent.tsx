@@ -79,27 +79,6 @@ const PPFCalculatorContent = () => {
                     </div>
                 </div>
             </section>
-
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "Can I withdraw before 15 years?", a: "Partial withdrawals are allowed from the 7th financial year onwards." },
-                        { q: "Can NRIs invest in PPF?", a: "NRIs cannot open new accounts but can continue existing ones." },
-                        { q: "Is investment tax-free?", a: "Yes, up to ₹1.5 Lakh under Section 80C." },
-                        { q: "What if I miss a year's deposit?", a: "Account becomes inactive. A penalty of ₹50/year + ₹500 min deposit is needed to revive it." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
         </div>
     );
 };

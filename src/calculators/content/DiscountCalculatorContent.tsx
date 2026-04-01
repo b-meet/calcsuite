@@ -164,27 +164,6 @@ const DiscountCalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    {[
-                        { q: "Can this calculator handle multiple items?", a: "Yes. Quantity input allows accurate total price calculation." },
-                        { q: "Does it support tax and VAT?", a: "Yes. Optional tax fields help calculate realistic final bills." },
-                        { q: "Can I apply a flat discount along with a percentage discount?", a: "Yes. Both can be combined in the same calculation." },
-                        { q: "Is this calculator free to use?", a: "Yes. There are no limits or restrictions." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 mb-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Why Accurate Matters */}
             <section className="bg-indigo-600 dark:bg-indigo-900 rounded-3xl p-8 text-white text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Why Accurate Discount Calculation Matters</h2>

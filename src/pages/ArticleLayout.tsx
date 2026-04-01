@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
-import { blogPosts } from './Resources';
+import { blogPosts } from '../constants/blogPosts';
 import { 
     Clock, 
     Calendar, 

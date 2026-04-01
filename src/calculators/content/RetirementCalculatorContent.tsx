@@ -118,27 +118,6 @@ const RetirementCalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="space-y-4">
-                    {[
-                        { q: "Is this retirement calculator accurate?", a: "It provides estimates based on standard growth assumptions. Actual outcomes depend on savings behavior and market performance." },
-                        { q: "Does this replace financial advice?", a: "No. It is a planning and awareness tool, not personalized financial advice." },
-                        { q: "Can I adjust assumptions later?", a: "Yes. You can experiment with different inputs to explore scenarios." },
-                        { q: "Is this calculator free?", a: "Yes. It is completely free with no limitations." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Footer */}
             <section className="bg-gradient-to-br from-green-600 to-green-800 rounded-3xl p-8 text-white text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Retirement and Peace of Mind</h2>

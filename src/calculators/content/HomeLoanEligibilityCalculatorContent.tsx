@@ -68,27 +68,6 @@ const HomeLoanEligibilityCalculatorContent = () => {
                     </div>
                 </div>
             </section>
-
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "Does CIBIL score affect eligibility?", a: "Yes. 750+ score gets better rates and higher approval chances." },
-                        { q: "Do banks fund 100% of property cost?", a: "No. Usually 75-90%. The rest is your down payment." },
-                        { q: "Can I include bonus in income?", a: "Some banks consider variable pay, others only look at fixed salary." },
-                        { q: "Is this calculator accurate?", a: "It provides a close estimate. Final sanction depends on bank policy." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
         </div>
     );
 };

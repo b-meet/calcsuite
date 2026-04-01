@@ -114,27 +114,6 @@ const PregnancyCalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "Is the due date exact?", a: "No. Most births occur within 2 weeks of the date." },
-                        { q: "Can my due date change?", a: "Yes. Doctors may update it based on ultrasound." },
-                        { q: "Is this calculator free?", a: "Yes. Completely free to use." },
-                        { q: "Does this replace a doctor?", a: "No. Always consult a professional." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm test m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Footer */}
             <section className="bg-pink-700 rounded-3xl p-8 text-white text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Supporting You Through Every Step</h2>

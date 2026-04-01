@@ -181,27 +181,6 @@ const BasicCalculatorContent = () => {
                 </p>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    {[
-                        { q: "Is this basic calculator free to use?", a: "Yes. This calculator is completely free and has no usage limits." },
-                        { q: "Does it support decimal numbers?", a: "Yes. You can perform calculations with decimal values accurately." },
-                        { q: "Can I use it on my phone?", a: "Yes. The calculator is fully responsive and works smoothly on mobile devices." },
-                        { q: "Is any data stored?", a: "No. All calculations happen instantly in your browser and are not saved." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 mb-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Why CalcSuite */}
             <section className="bg-slate-900 dark:bg-slate-950 text-white p-8 rounded-2xl text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Why CalcSuite Is Built for Everyday Calculations</h2>

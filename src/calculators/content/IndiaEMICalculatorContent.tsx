@@ -335,27 +335,6 @@ const IndiaEMICalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">Frequently Asked Questions</h2>
-                <div className="space-y-6 mt-6">
-                    {[
-                        { q: "Is this EMI calculator accurate for Indian banks?", a: "Yes. It follows standard reducing balance EMI formulas used by Indian banks and NBFCs." },
-                        { q: "Can I use it for home and car loans?", a: "Yes. It supports all common loan types in India including Home, Car, Personal, and Education loans." },
-                        { q: "Does it consider GST or processing fees?", a: "No. It calculates EMI based on loan amount and interest. Additional charges should be considered separately." },
-                        { q: "Is this calculator free?", a: "Yes. It is completely free with no limits." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 mb-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Tags */}
             <section className="flex flex-wrap gap-2 pt-6 border-t border-slate-200 dark:border-slate-800">
                 {[

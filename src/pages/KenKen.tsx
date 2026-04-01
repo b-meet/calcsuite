@@ -8,10 +8,9 @@ import SEO from '../components/SEO';
 import { KenKenHelp } from '../components/KenKenHelp';
 import { KenKenShareModal } from '../components/KenKenShareModal';
 
+import { getEffectiveStreak, updateStreakAndGetNew, getTodayIST } from '../utils/streak';
+
 // ─── Helpers ──────────────────────────────────────────────────────────
-function getTodayIST(): string {
-    return new Date().toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata' });
-}
 
 function getTodayISTFormatted(): string {
     return new Date().toLocaleDateString('en-GB', {
@@ -197,24 +196,7 @@ export function KenKen() {
 
     // ── Streak ───────────────────────────────────────────────────────
     const updateStreak = () => {
-        const today = getTodayIST();
-        const lastDate = localStorage.getItem('kenken-last-solve');
-        const currentStreak = parseInt(localStorage.getItem('kenken-streak') || '0');
-
-        if (lastDate === today) return currentStreak || 1;
-
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayStr = yesterday.toLocaleDateString('en-GB', { timeZone: 'Asia/Kolkata' });
-
-        let newStreak = 1;
-        if (lastDate === yesterdayStr) {
-            newStreak = currentStreak + 1;
-        }
-
-        localStorage.setItem('kenken-streak', newStreak.toString());
-        localStorage.setItem('kenken-last-solve', today);
-        return newStreak;
+        return updateStreakAndGetNew();
     };
 
     // ── Win check ────────────────────────────────────────────────────
@@ -273,7 +255,7 @@ export function KenKen() {
     );
 
     // ── Input ────────────────────────────────────────────────────────
-    const handleInput = (num: number | null) => {
+    const handleInput = useCallback((num: number | null) => {
         if (!selected || isSolved) return;
 
         if (!hasStarted) {
@@ -286,7 +268,7 @@ export function KenKen() {
         newGrid[selected.r][selected.c] = num;
         setGrid(newGrid);
         checkWin(newGrid);
-    };
+    }, [selected, isSolved, hasStarted, grid, checkWin]);
 
     // ── Keyboard ─────────────────────────────────────────────────────
     useEffect(() => {
@@ -316,7 +298,7 @@ export function KenKen() {
         return `${mins}:${secs.toString().padStart(2, '0')}`;
     };
 
-    const currentStreak = parseInt(localStorage.getItem('kenken-streak') || '0') || 1;
+    const currentStreak = getEffectiveStreak();
 
     // ── Render ───────────────────────────────────────────────────────
     return (

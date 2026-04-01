@@ -225,31 +225,6 @@ const BMICalculatorContent = () => {
                 </div>
             </article>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-6 mt-6">
-                    <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                        <h3 className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white mb-3 m-0">
-                            <HelpCircle className="w-5 h-5 text-indigo-500" />
-                            Is BMI accurate for everyone?
-                        </h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed m-0">
-                            BMI is a screening tool, not a diagnosis. It may NOT be accurate for athletes (due to muscle mass), pregnant women, and the elderly.
-                        </p>
-                    </div>
-                    <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                        <h3 className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white mb-3 m-0">
-                            <HelpCircle className="w-5 h-5 text-indigo-500" />
-                            Is this calculator free?
-                        </h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed m-0">
-                            Yes, this tool is 100% free and can be used unlimited times for checking BMI for men, women, and seniors.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
             {/* Trust Signals & Citations */}
             <section className="border-t border-slate-200 dark:border-slate-700 pt-8 mt-12">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">

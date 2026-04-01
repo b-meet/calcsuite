@@ -127,28 +127,6 @@ const LoanCalculatorContent = () => {
                 </div>
             </section>
 
-
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    {[
-                        { q: "Is this loan calculator accurate?", a: "It uses standard loan formulas and provides reliable estimates. Actual lender terms may vary." },
-                        { q: "Can I use it for different loan types?", a: "Yes. It works for most fixed-rate loans with regular payments including personal, student, and business loans." },
-                        { q: "Does it include fees or taxes?", a: "No. It calculates payments based on loan amount, interest, and term only." },
-                        { q: "Is this calculator free?", a: "Yes. It is completely free with no usage limits." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 mb-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Footer */}
             <section className="bg-slate-900 rounded-3xl p-8 text-white text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Built for Clear and Confident Borrowing Decisions</h2>

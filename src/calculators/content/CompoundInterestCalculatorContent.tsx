@@ -127,27 +127,6 @@ const CompoundInterestCalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "Is compound interest guaranteed?", a: "No. It depends on consistent returns, which are not guaranteed." },
-                        { q: "Can I change inputs to compare?", a: "Yes. Adjusting inputs helps explore different possibilities." },
-                        { q: "Does this include taxes or fees?", a: "No. It shows gross growth before taxes or fees." },
-                        { q: "Is this calculator free?", a: "Yes. It is completely free to use." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Footer */}
             <section className="bg-emerald-700 rounded-3xl p-8 text-white text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Built for Clarity, Not Complexity</h2>

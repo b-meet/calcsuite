@@ -199,27 +199,6 @@ const ScientificCalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    {[
-                        { q: "Does this calculator support trigonometric functions?", a: "Yes. It supports sin, cos, tan, and inverse trigonometric operations." },
-                        { q: "Can I calculate logarithms and powers?", a: "Yes. Both logarithmic and exponential calculations are supported." },
-                        { q: "Is this calculator suitable for students?", a: "Yes. It is designed to be intuitive while supporting advanced mathematical needs." },
-                        { q: "Does it work on mobile devices?", a: "Yes. The calculator layout adapts smoothly to mobile and tablet screens." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 mb-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Branding - No CTA as requested */}
             <section className="border-t border-slate-200 dark:border-slate-800 pt-8 text-center">
                 <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2 m-0">Built for Accuracy, Designed for Focus</h2>

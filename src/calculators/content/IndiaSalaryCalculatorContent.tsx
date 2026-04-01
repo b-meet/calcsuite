@@ -257,27 +257,6 @@ const IndiaSalaryCalculatorContent = () => {
                     </div>
                 </section>
             </div>
-
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4 mt-6">
-                    {[
-                        { q: "Is PF compulsory?", a: "Yes, for Basic Salary up to ₹15,000/month. Above that, it's optional but recommended." },
-                        { q: "Is bonus part of monthly salary?", a: "No. Bonuses are usually paid annually or quarterly and excluded from monthly in-hand." },
-                        { q: "Why is In-Hand less than CTC?", a: "CTC includes non-cash benefits and long-term savings (PF/Gratuity)." },
-                        { q: "Is Professional Tax same everywhere?", a: "No. It varies by state (e.g., ₹200 in Maharashtra/Karnataka, ₹0 in Delhi)." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
         </div>
     );
 };

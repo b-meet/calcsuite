@@ -169,27 +169,6 @@ const PercentageContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Frequently Asked Questions</h2>
-                <div className="space-y-6">
-                    {[
-                        { q: "What is the easiest way to calculate percentages?", a: "Using an online percentage calculator is the fastest and most reliable method." },
-                        { q: "Can this calculator handle decimals?", a: "Yes. You can enter decimal percentages and decimal values." },
-                        { q: "Is this calculator free to use?", a: "Yes. It is completely free with no usage limits." },
-                        { q: "Does this calculator work on mobile?", a: "Yes. It is fully responsive and works on all devices." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 m-0">
-                                <HelpCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-8 mb-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Why CalcSuite */}
             <section className="bg-slate-900 dark:bg-slate-950 text-white p-8 rounded-2xl text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Why Choose CalcSuite for Online Calculations?</h2>

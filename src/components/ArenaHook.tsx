@@ -1,5 +1,6 @@
 import { Trophy, ArrowRight, Zap } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { getEffectiveStreak } from '../utils/streak';
 
 export function ArenaHook() {
   const location = useLocation();
@@ -44,7 +45,7 @@ export function ArenaHook() {
         <div className="flex items-center gap-3 relative z-10 w-full sm:w-auto justify-end">
           <div className="hidden md:flex flex-col items-end mr-2">
             <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Current Streak</span>
-            <span className="text-sm font-black text-slate-700 dark:text-slate-200 italic">{localStorage.getItem('kenken-streak') || 0} Days</span>
+            <span className="text-sm font-black text-slate-700 dark:text-slate-200 italic">{getEffectiveStreak()} Days</span>
           </div>
 
           <div className="flex items-center gap-2 bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 py-2.5 px-5 rounded-2xl text-xs font-black uppercase italic tracking-widest border border-blue-100 dark:border-blue-800 shadow-sm group-hover/hook:bg-blue-600 group-hover/hook:text-white group-hover/hook:border-blue-600 transition-all transform group-hover/hook:translate-x-1">

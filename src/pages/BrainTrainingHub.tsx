@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '../utils/cn';
 import SEO from '../components/SEO';
 import { KenKenHelp } from '../components/KenKenHelp';
+import { getEffectiveStreak } from '../utils/streak';
 
 export function BrainTrainingHub() {
     const [selectedSize, setSelectedSize] = useState(5);
@@ -48,7 +49,7 @@ export function BrainTrainingHub() {
                             </div>
                             <div className="flex items-baseline gap-1">
                                 <span className="text-4xl font-black text-white italic tracking-tighter">
-                                    {localStorage.getItem('kenken-streak') || 0}
+                                    {getEffectiveStreak()}
                                 </span>
                                 <span className="text-xs font-bold text-blue-400 uppercase">Days</span>
                             </div>

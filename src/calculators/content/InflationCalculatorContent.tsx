@@ -121,27 +121,6 @@ const InflationCalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "Is the inflation rate fixed?", a: "No. Inflation varies year to year. This calculator uses an average rate for estimation." },
-                        { q: "Are the results guaranteed?", a: "No. Results are estimates based on assumptions, not predictions." },
-                        { q: "Is inflation always bad?", a: "Moderate inflation is normal. The risk lies in not planning for it." },
-                        { q: "Is this calculator free?", a: "Yes. It is completely free with no limits." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
             {/* Footer */}
             <section className="bg-slate-900 rounded-3xl p-8 text-white text-center">
                 <h2 className="text-2xl font-bold mb-4 m-0">Built to Make the Future Understandable</h2>

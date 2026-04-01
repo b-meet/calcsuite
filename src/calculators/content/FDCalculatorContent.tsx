@@ -117,28 +117,6 @@ const FDCalculatorContent = () => {
                     </div>
                 </div>
             </section>
-
-
-            {/* FAQs */}
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "Is FD interest taxable?", a: "Yes. It is added to your income and taxed as per your slab." },
-                        { q: "Can I withdraw FD before maturity?", a: "Yes, but banks typically charge a penalty (0.5% - 1%) and reduce interest." },
-                        { q: "Are FDs safe?", a: "Extremely safe. Up to ₹5 Lakhs is insured by DICGC per bank." },
-                        { q: "Do senior citizens get extra interest?", a: "Yes. Usually 0.50% higher than standard rates." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
         </div>
     );
 };

@@ -19,13 +19,17 @@ export function CalculatorPage() {
 
     const calculatorDef = calculatorRegistry.find(c => c.id === calculatorId);
     
+    const [shake, setShake] = useState(false);
+    const [clickCount, setClickCount] = useState(0);
+    const [showLimitWarning, setShowLimitWarning] = useState(false);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
     // Scenario Logic for Programmatic SEO
     const scenario = calculatorDef?.scenarios?.find(s => s.id === scenarioId);
     
     const pageTitle = scenario?.name || calculatorDef?.name;
     const pageDescription = scenario?.description || calculatorDef?.description;
     const pageKeywords = scenario?.keywords || (calculatorDef ? [calculatorDef.category, calculatorDef.name.toLowerCase(), 'calculator', 'free online calculator'] : []);
-
 
     if (!calculatorDef) {
         return <NotFound />;
@@ -51,11 +55,6 @@ export function CalculatorPage() {
         if (reachedMax) return "Limit reached (Maximum 6)";
         return "Add to Favorites";
     };
-
-    const [shake, setShake] = useState(false);
-    const [clickCount, setClickCount] = useState(0);
-    const [showLimitWarning, setShowLimitWarning] = useState(false);
-    const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const handleStarClick = () => {
         // e.preventDefault(); // Not a link here, but good practice
