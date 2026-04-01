@@ -1,6 +1,5 @@
 import { Trophy, ArrowRight, Zap } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
-import { cn } from '../utils/cn';
 
 export function ArenaHook() {
   const location = useLocation();
@@ -24,7 +23,7 @@ export function ArenaHook() {
           <div className="shrink-0 w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-lg group-hover/hook:scale-110 group-hover/hook:rotate-3 transition-transform duration-500">
             <Trophy size={24} className="stroke-[2.5]" />
           </div>
-          
+
           <div className="flex flex-col">
             <div className="flex items-center gap-2 mb-0.5">
               <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest italic">Daily Challenge</span>
@@ -47,7 +46,7 @@ export function ArenaHook() {
             <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Current Streak</span>
             <span className="text-sm font-black text-slate-700 dark:text-slate-200 italic">{localStorage.getItem('kenken-streak') || 0} Days</span>
           </div>
-          
+
           <div className="flex items-center gap-2 bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 py-2.5 px-5 rounded-2xl text-xs font-black uppercase italic tracking-widest border border-blue-100 dark:border-blue-800 shadow-sm group-hover/hook:bg-blue-600 group-hover/hook:text-white group-hover/hook:border-blue-600 transition-all transform group-hover/hook:translate-x-1">
             Enter Arena
             <ArrowRight size={16} className="transition-transform group-hover/hook:translate-x-1" />
