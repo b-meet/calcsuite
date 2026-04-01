@@ -123,8 +123,8 @@ export interface CalculatorDef {
 export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'basic-math',
-        name: 'Basic Calculator',
-        description: 'Free online basic calculator for everyday math. extensive arithmetic tool for addition, subtraction, multiplication, and division.',
+        name: 'Basic Calculator Online - Clean & Private',
+        description: 'Instantly calculate basic math with our clean, interface. Fast, secure, and 100% private — no data leaves your browser.',
         category: 'math',
         icon: Calculator,
         component: BasicCalculator,
@@ -167,8 +167,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'scientific',
-        name: 'Scientific Calculator',
-        description: 'Advanced free scientific calculator online. Handle trigonometry (sin, cos, tan), logarithms, exponents, and complex math problems for students and professionals.',
+        name: 'Scientific Calculator Online - Pro Math (Private & Secure)',
+        description: 'Accurately solve trigonometry, logs, and advanced math. Clean & Private — perfect for students and professionals.',
         category: 'math',
         icon: Calculator,
         component: ScientificCalculator,
@@ -211,8 +211,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'triangle',
-        name: 'Triangle Calculator',
-        description: 'Comprehensive triangle calculator. Instantly solve for area, perimeter, angles, and sides of right, isosceles, and equilateral triangles.',
+        name: 'Triangle Calculator - Solve Area & Sides (100% Private)',
+        description: 'Instantly calculate area, perimeter, and sides for all triangle types. Fast, accurate, and for every user.',
         category: 'math',
         icon: Triangle,
         component: TriangleCalculator,
@@ -228,12 +228,27 @@ export const calculatorRegistry: CalculatorDef[] = [
                 title: "The Pythagorean Theorem",
                 content: "For any right-angled triangle, the square of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the other two sides: a² + b² = c²."
             }
-        ]
+        ],
+        faqs: [
+            {
+                question: "How do I use this calculator effectively?",
+                answer: "Simply enter your values into the designated input fields. The calculator will automatically process the data and display your accurate results instantly."
+            },
+            {
+                question: "Is my data secure while using this tool?",
+                answer: "Yes, all computations are performed strictly locally within your browser. No personal data is stored or transmitted to external servers."
+            },
+            {
+                question: "Can I use this calculator on mobile devices?",
+                answer: "Absolutely. This tool is fully responsive and optimized to provide a seamless experience across all desktop, tablet, and mobile browsers."
+            }
+        ],
+
     },
     {
         id: 'fraction',
-        name: 'Fraction Calculator',
-        description: 'Easy-to-use fraction calculator. Add, subtract, multiply, and divide fractions and mixed numbers. Get instant results.',
+        name: 'Fraction Calculator Online - Fast, & Private',
+        description: 'Simplify and solve fractions and mixed numbers instantly. Clean, distraction-free interface with no data storage.',
         category: 'math',
         icon: Divide,
         component: FractionCalculator,
@@ -276,13 +291,14 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'percentage',
-        name: 'Percentage Calculator',
-        description: 'Free percentage calculator tool. Quickly calculate percentage changes, percent of numbers, and discounts.',
+        name: 'Percentage Calculator Online - 1-Click Results (Clean)',
+        description: 'Instantly calculate percentage changes and discounts. Fast, private, and 100% online tool for everyday math.',
         category: 'math',
         icon: Percent,
         component: PercentageCalculator,
         content: PercentageContent,
         popular: true,
+        formula: "P = \\frac{V_1}{V_2} \\times 100",
         longDescription: "Percentages are a fundamental part of everyday math. From shopping discounts and tax calculations to exam results and financial analysis, percentages help compare values quickly and clearly. This free Percentage Calculator allows you to solve common percentage problems instantly without manual calculations.",
         features: [
             "Solve 'What is X% of Y?' instantly",
@@ -300,9 +316,14 @@ export const calculatorRegistry: CalculatorDef[] = [
                 answer: "Yes. You can enter decimal percentages and decimal values."
             },
             {
+                question: "How do you calculate percentage of a number manually?",
+                answer: "Divide the part by the whole to get a decimal, then multiply by 100. For example, 50 out of 200 is (50 / 200) * 100 = 25%."
+            },
+            {
                 question: "Is this calculator free to use?",
                 answer: "Yes. It is completely free with no usage limits."
             },
+
             {
                 question: "Does this calculator work on mobile?",
                 answer: "Yes. It is fully responsive and works on all devices."
@@ -320,8 +341,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'mortgage',
-        name: 'Mortgage Calculator',
-        description: 'Estimate your monthly mortgage payments accurately. Calculate principal, interest, taxes, and insurance (PITI) with our free US mortgage calculator tool.',
+        name: 'Mortgage Calculator (US) - 100% Private (No Sign-up)',
+        description: 'Accurately estimate monthly payments, including PITI. 100% private — your financial data never leaves your device.',
         category: 'financial',
         icon: DollarSign,
         component: MortgageCalculator,
@@ -365,8 +386,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'loan',
-        name: 'Loan Calculator',
-        description: 'Calculate monthly loan payments and total interest costs. Perfect for personal loans, student loans, and business loans. Plan your debt repayment strategy.',
+        name: 'Loan Calculator Online - Plan Repayment (Private & Secure)',
+        description: 'Instantly calculate monthly payments and interest costs. 100% secure and private with no annoying ads or trackers.',
         category: 'financial',
         icon: DollarSign,
         component: LoanCalculator,
@@ -408,8 +429,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'auto-loan',
-        name: 'Auto Loan Calculator',
-        description: 'Estimate your monthly car payments. Account for trade-in value, down payment, sales tax, and interest rates.',
+        name: 'Auto Loan Calculator - Estimate Car Payments (100% Private)',
+        description: 'Accurately calculate car payments with trade-ins and tax. Private, secure, and experience for buyers.',
         category: 'financial',
         icon: Car,
         component: AutoLoanCalculator,
@@ -448,8 +469,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'investment',
-        name: 'Investment Calculator',
-        description: 'Visualize your wealth growth. Calculate compound interest and return on investment (ROI) over time.',
+        name: 'Investment Calculator - Visualize Wealth (Private & Secure)',
+        description: 'Project wealth growth with compound interest. 100% private — your financial plans are secure and clean.',
         category: 'financial',
         icon: TrendingUp,
         component: InvestmentCalculator,
@@ -492,8 +513,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'retirement',
-        name: 'Retirement Calculator',
-        description: 'Plan for a secure future. Estimate exactly how much you need to save for retirement based on your goals.',
+        name: 'Retirement Calculator - Secure Future Planning (100% Private)',
+        description: 'Accurately estimate savings goals for a secure future. Private and — no personal financial data stored.',
         category: 'financial',
         icon: Sunset,
         component: RetirementCalculator,
@@ -536,8 +557,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'salary',
-        name: 'Salary Calculator',
-        description: 'Convert your salary instantly. Switch between hourly, daily, weekly, bi-weekly, monthly, and annual income rates.',
+        name: 'Salary Calculator - Convert Income Instantly (Clean)',
+        description: 'Instantly convert salary across all timeframes. Fast, accurate, and 100% private with a clean interface.',
         category: 'financial',
         icon: Briefcase,
         component: SalaryCalculator,
@@ -549,10 +570,19 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Simple interface",
             "Gross income planning"
         ],
+        formula: "\\text{Annual Salary} = \\text{Hourly Rate} \\times \\text{Hours per week} \\times 52",
         faqs: [
             {
                 question: "Does this include taxes?",
                 answer: "No. This calculator shows gross income only."
+            },
+            {
+                question: "How do I calculate annual salary from an hourly wage?",
+                answer: "Multiply your hourly wage by the number of hours you work per week, then multiply that result by 52 (the number of weeks in a year)."
+            },
+            {
+                question: "What is a bi-weekly pay cycle?",
+                answer: "Bi-weekly pay means receiving a paycheck every two weeks, resulting in exactly 26 paychecks per year."
             },
             {
                 question: "Is this calculator free?",
@@ -572,8 +602,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'bmi',
-        name: 'BMI Calculator',
-        description: 'Calculate your Body Mass Index (BMI). Accurate BMI Calculator for men, women, and kids with weight categories.',
+        name: 'BMI Calculator Online - Private & WHO Standard (No Ads)',
+        description: 'Accurately calculate your Body Mass Index (BMI) using WHO standards. 100% private and health tool.',
         category: 'health',
         icon: Activity,
         component: BMICalculator,
@@ -598,10 +628,19 @@ export const calculatorRegistry: CalculatorDef[] = [
             "WHO standard classifications",
             "Instant health insight"
         ],
+        formula: "\\text{BMI} = \\frac{\\text{Weight in kg}}{(\\text{Height in meters})^2}",
         faqs: [
             {
-                question: "Is BMI accurate?",
-                answer: "BMI is a reliable screening tool for most adults, but it does not measure body fat directly."
+                question: "Is BMI accurate for everyone?",
+                answer: "BMI is a reliable mass screening tool for most adults, but it does not account for muscle mass, meaning athletes might score as 'overweight' despite having low body fat."
+            },
+            {
+                question: "What is a healthy BMI range?",
+                answer: "According to the World Health Organization (WHO), a strictly normal BMI range lies between 18.5 and 24.9."
+            },
+            {
+                question: "How do I calculate BMI manually?",
+                answer: "Square your height in meters. Then divide your total weight in kilograms by that squared number."
             },
             {
                 question: "Is this calculator free?",
@@ -621,8 +660,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'calorie',
-        name: 'Calorie Calculator',
-        description: 'Find your daily calorie needs. Calculate TDEE and calories required to lose weight, maintain weight, or gain muscle.',
+        name: 'Calorie Calculator - Fast, Private & TDEE Accurate',
+        description: 'Find your daily calorie needs for weight goals. Fast, accurate, and 100% private — no data tracking.',
         category: 'health',
         icon: Flame,
         component: CalorieCalculator,
@@ -665,8 +704,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'body-fat',
-        name: 'Body Fat Calculator',
-        description: 'Estimate your body fat percentage without calipers. Use our US Navy method calculator to track your fitness progress.',
+        name: 'Body Fat Calculator - Private Navy Method (No Ads)',
+        description: 'Estimate body fat percentage accurately. Privacy-first design — your health metrics stay strictly on your device.',
         category: 'health',
         icon: Ruler,
         component: BodyFatCalculator,
@@ -708,8 +747,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'bmr',
-        name: 'BMR Calculator',
-        description: 'Calculate your Basal Metabolic Rate (BMR). Discover how many calories your body burns at rest to optimize your diet.',
+        name: 'BMR Calculator - Private Metabolic Rate (Clean)',
+        description: 'Find your Basal Metabolic Rate (BMR) instantly. 100% private, clean, and optimized for your fitness journey.',
         category: 'health',
         icon: Flame,
         component: BMRCalculator,
@@ -726,12 +765,27 @@ export const calculatorRegistry: CalculatorDef[] = [
                 title: "BMR vs. RMR",
                 content: "BMR (Basal Metabolic Rate) and RMR (Resting Metabolic Rate) are often used interchangeably, but BMR is measured under stricter conditions. For most casual users, the difference is negligible."
             }
-        ]
+        ],
+        faqs: [
+            {
+                question: "How do I use this calculator effectively?",
+                answer: "Simply enter your values into the designated input fields. The calculator will automatically process the data and display your accurate results instantly."
+            },
+            {
+                question: "Is my data secure while using this tool?",
+                answer: "Yes, all computations are performed strictly locally within your browser. No personal data is stored or transmitted to external servers."
+            },
+            {
+                question: "Can I use this calculator on mobile devices?",
+                answer: "Absolutely. This tool is fully responsive and optimized to provide a seamless experience across all desktop, tablet, and mobile browsers."
+            }
+        ],
+
     },
     {
         id: 'ideal-weight',
-        name: 'Ideal Weight Calculator',
-        description: 'What is your ideal weight? Find the healthy weight range for your height, gender, and frame size.',
+        name: 'Ideal Weight Calculator - Private Medical Range (No Ads)',
+        description: 'Find your healthy weight range using medical formulas. 100% Private and Ad-free experience for every user.',
         category: 'health',
         icon: Scale,
         component: IdealWeightCalculator,
@@ -773,8 +827,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'pregnancy',
-        name: 'Pregnancy Calculator',
-        description: 'Calculate your Estimated Due Date (EDD). Enter your last period date to track your pregnancy trimesters.',
+        name: 'Pregnancy Calculator - Private Due Date & Trimester Tracker',
+        description: 'Instantly calculate your estimated due date. Privacy-first design — your personal timeline stays secure.',
         category: 'health',
         icon: Baby,
         component: PregnancyCalculator,
@@ -816,8 +870,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'age',
-        name: 'Age Calculator',
-        description: 'Calculate your exact age in years, months, and days. Best online Age Calculator to find days between dates.',
+        name: 'Age Calculator Online - Fast & Private (1-Click Results)',
+        description: 'Calculate your exact age and next birthday instantly. 100% Ad-free and Private online tool for everyone.',
         category: 'other',
         icon: Calendar,
         component: AgeCalculator,
@@ -860,8 +914,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'gpa',
-        name: 'GPA Calculator',
-        description: 'Calculate your college or high school GPA. Input your grades and credit hours.',
+        name: 'GPA Calculator Online - Secure & Private Scoring (No Ads)',
+        description: 'Calculate semester and cumulative GPA accurately. Fast, clean, and private — your grades are secure.',
         category: 'other',
         icon: GraduationCap,
         component: GPACalculator,
@@ -899,8 +953,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'password',
-        name: 'Password Generator',
-        description: 'Create strong, secure passwords instantly. Generate random, uncrackable passwords with custom length and symbols.',
+        name: 'Password Generator - 100% Private & Locally Secure',
+        description: 'Generate strong, random passwords instantly. 100% secure as all generation happens locally in your browser.',
         category: 'other',
         icon: Lock,
         component: PasswordGenerator,
@@ -917,12 +971,27 @@ export const calculatorRegistry: CalculatorDef[] = [
                 title: "What makes a strong password?",
                 content: "Entropy. A high-entropy password is random and long. Adding just a few more characters exponentially increases the time it takes for a computer to crack it."
             }
-        ]
+        ],
+        faqs: [
+            {
+                question: "How do I use this calculator effectively?",
+                answer: "Simply enter your values into the designated input fields. The calculator will automatically process the data and display your accurate results instantly."
+            },
+            {
+                question: "Is my data secure while using this tool?",
+                answer: "Yes, all computations are performed strictly locally within your browser. No personal data is stored or transmitted to external servers."
+            },
+            {
+                question: "Can I use this calculator on mobile devices?",
+                answer: "Absolutely. This tool is fully responsive and optimized to provide a seamless experience across all desktop, tablet, and mobile browsers."
+            }
+        ],
+
     },
     {
         id: 'converter',
-        name: 'Unit Converter',
-        description: 'Universal unit converter. Quickly convert length, weight, temperature, and volume measurements.',
+        name: 'Unit Converter Online - Fast, & Universal',
+        description: 'Instantly convert between Metric and Imperial units. Fast, private, and 100% with zero distractions.',
         category: 'other',
         icon: ArrowLeftRight,
         component: UnitConverter,
@@ -956,8 +1025,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'random',
-        name: 'Random Number Generator',
-        description: 'Free random number generator (RNG). Generate truly random integers within your specified range.',
+        name: 'Random Number Generator - 100% Private & Unbiased',
+        description: 'Generate truly random integers instantly for games and lotteries. Fast, biased-free, and completely clean.',
         category: 'other',
         icon: Dices,
         component: RandomNumberGenerator,
@@ -991,19 +1060,34 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'ovulation',
-        name: 'Ovulation Calculator',
-        description: 'Track your fertility cycle. Estimate your most fertile days and ovulation date.',
+        name: 'Ovulation Calculator - Private Fertility Tracking',
+        description: 'Estimate your most fertile days and ovulation window. 100% Private — your fertility data is never shared.',
         category: 'health',
         icon: Heart,
         content: OvulationCalculatorContent,
         component: OvulationCalculator,
         longDescription: "Planning specifically for pregnancy? This calculator estimates your ovulation window based on your last period date, helping you identify your most fertile days.",
-        features: ["Fertility window", "Ovulation date", "Next period estimate"]
+        features: ["Fertility window", "Ovulation date", "Next period estimate"],
+        faqs: [
+            {
+                question: "How do I use this calculator effectively?",
+                answer: "Simply enter your values into the designated input fields. The calculator will automatically process the data and display your accurate results instantly."
+            },
+            {
+                question: "Is my data secure while using this tool?",
+                answer: "Yes, all computations are performed strictly locally within your browser. No personal data is stored or transmitted to external servers."
+            },
+            {
+                question: "Can I use this calculator on mobile devices?",
+                answer: "Absolutely. This tool is fully responsive and optimized to provide a seamless experience across all desktop, tablet, and mobile browsers."
+            }
+        ],
+
     },
     {
         id: 'date-diff',
-        name: 'Date Calculator',
-        description: 'Calculate the duration between two dates. Find out exactly how many days, weeks, months, and years are between events.',
+        name: 'Date Calculator - Fast & Private duration tool',
+        description: 'Instantly calculate the exact time between two dates. Fast, private, and 100% experience.',
         category: 'other',
         icon: Calendar,
         component: DateCalculator,
@@ -1037,8 +1121,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'inflation',
-        name: 'Inflation Calculator',
-        description: 'Calculate future value and purchasing power. Estimate how much money you will need in the future.',
+        name: 'Inflation Calculator - Visualize Purchasing Power (Private & Secure)',
+        description: 'Estimate how inflation impacts your money. 100% private and — your financial planning is secure.',
         category: 'financial',
         icon: TrendingUp,
         component: InflationCalculator,
@@ -1082,8 +1166,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'tip',
-        name: 'Tip Calculator',
-        description: 'Easy tip and split bill calculator. Calculate the precise tip amount and total cost per person.',
+        name: 'Tip Calculator - Split Bills Fast (Private & Secure)',
+        description: 'Instantly calculate tips and split bills fairly. Fast, accurate, and 100% with zero sign-up required.',
         category: 'math',
         icon: DollarSign,
         component: TipCalculator,
@@ -1122,8 +1206,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-fd',
-        name: 'FD Calculator (India)',
-        description: 'Calculate maturity amount and interest for Fixed Deposits (FD). Supports quarterly, monthly, and yearly compounding with detailed year-wise breakdown.',
+        name: 'FD Calculator India (2026) - Clean, Private & Accurate',
+        description: 'Instantly calculate maturity for Fixed Deposits (FD). Secure, clean, and updated for FY 2026-27 rules.',
         category: 'india',
         icon: Landmark,
         component: FDCalculator,
@@ -1166,8 +1250,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-rd',
-        name: 'RD Calculator (India)',
-        description: 'Plan your Recurring Deposits (RD) accurately. Calculate maturity value for monthly savings with compounding logic suitable for Indian banks.',
+        name: 'RD Calculator India (2026) - Plan Savings (No Ads)',
+        description: 'Calculate RD maturity with quarterly compounding. Fast, private, and updated for latest 2026 banking norms.',
         category: 'india',
         icon: TrendingUp,
         component: RDCalculator,
@@ -1206,8 +1290,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-ppf',
-        name: 'PPF Calculator',
-        description: 'Public Provident Fund calculator. Estimate returns for 15-year tax-saving PPF investments with exempt-exempt-exempt (EEE) benefits.',
+        name: 'PPF Calculator India (2026) - Secure Tax-Free Wealth',
+        description: 'Plan 15-year PPF returns with the latest tax benefits. 100% private and wealth planning tool.',
         category: 'india',
         icon: Briefcase,
         component: PPFCalculator,
@@ -1245,8 +1329,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-home-loan-eligibility',
-        name: 'Home Loan Eligibility',
-        description: 'Check how much Home Loan you can get. Estimates maximum eligible loan amount based on your income, existing EMIs, and FOIR norms.',
+        name: 'Home Loan Eligibility India (2026) - Private Limit Check',
+        description: 'Check your maximum home loan eligibility instantly. 100% private — your income details stay on your device.',
         category: 'india',
         icon: Home,
         component: HomeLoanEligibilityCalculator,
@@ -1286,8 +1370,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-hra',
-        name: 'HRA Calculator',
-        description: 'Calculate House Rent Allowance (HRA) exemption. Determine taxable and exempt HRA based on salary, rent paid, and metro city rules.',
+        name: 'HRA Calculator India (2026) - Secure Tax Exemption Tool',
+        description: 'Calculate HRA tax exemption accurately for FY 2026-27. Fast, private, and 100% for all users.',
         category: 'india',
         icon: DollarSign,
         component: HRACalculator,
@@ -1330,8 +1414,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'compound-interest',
-        name: 'Compound Interest Calculator',
-        description: 'See the power of compounding. Calculate how your investments grow over time with interest on interest.',
+        name: 'Compound Interest Calculator - Private Wealth Visualizer',
+        description: 'Visualize compounding power for any investment. 100% private and tool for long-term growth.',
         category: 'financial',
         icon: TrendingUp,
         component: CompoundInterestCalculator,
@@ -1378,8 +1462,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'simple-interest',
-        name: 'Simple Interest Calculator',
-        description: 'Calculate simple interest on loans or savings. Easy and quick interest calculation using the principal, rate, and time formula.',
+        name: 'Simple Interest Calculator - Fast, & Private',
+        description: 'Calculate simple interest instantly using standard formulas. Fast, accurate, and 100% for all users.',
         category: 'financial',
         icon: Percent,
         component: SimpleInterestCalculator,
@@ -1413,8 +1497,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'percentage-change',
-        name: 'Percentage Change Calculator',
-        description: 'Calculate percentage increase or decrease between two values. Determine growth or decline and see the difference instantly.',
+        name: 'Percentage Change Calculator - Fast Growth Tracking',
+        description: 'Determine percentage increase or decrease instantly. Fast, private, and 100% online tool.',
         category: 'math',
         icon: TrendingUp,
         component: PercentageIncreaseCalculator,
@@ -1452,8 +1536,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'discount',
-        name: 'Discount Calculator',
-        description: 'Calculate final price after discount and tax. Perfect for shopping sales, double discounts, and finding out exactly how much you save.',
+        name: 'Discount Calculator - Secure Shopping Savings (No Ads)',
+        description: 'Calculate final price after discounts and taxes. Fast, private, and 100% with no sign-ups.',
         category: 'math',
         icon: Percent,
         component: DiscountCalculator,
@@ -1498,8 +1582,8 @@ export const calculatorRegistry: CalculatorDef[] = [
 
     {
         id: 'india-gst',
-        name: 'GST Calculator India (2026 Tax Act)',
-        description: 'Updated for 2026 Reforms. Calculate GST for Exempt (0%), Merit (5%), Standard (18%), and Luxury (40%) goods instantly with Live FY 2026-27 Rates.',
+        name: 'GST Calculator India (2026) - Clean, Private & New Rates',
+        description: 'Instantly calculate GST for FY 2026-27 reforms. 100% private, clean, and updated for new 2026 tax slabs.',
         category: 'india',
         icon: Percent,
         component: IndiaGSTCalculator,
@@ -1517,6 +1601,21 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Reverse GST Calculation",
             "Instant Breakdown",
             "Mobile Friendly"
+        ],
+        formula: "\\text{GST Amount} = \\text{Original Cost} \\times \\left(\\frac{\\text{GST Rate}}{100}\\right)",
+        faqs: [
+            {
+                question: "Is GST calculated on the total amount?",
+                answer: "Yes, GST is generally calculated as a strict strict percentage over the final base transaction amount before discounts, depending on if your pricing is exclusive or inclusive."
+            },
+            {
+                question: "How do I calculate GST manually?",
+                answer: "Multiply the base price of your product by the GST rate (e.g., 18%), and then divide by 100 to find the precise tax amount."
+            },
+            {
+                question: "What is the new 2026 luxury tax slab?",
+                answer: "As per the 2026 reforms, luxury and sin goods such as large cars and tobacco strictly attract a heavy 40% overarching GST."
+            }
         ],
         educationalContent: [
             {
@@ -1559,8 +1658,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-emi',
-        name: 'EMI Calculator India (Home, Car, Personal)',
-        description: 'Accurate EMI Calculator for Indian Loans. Calculate Home Loan EMI, Car Loan EMI, and Personal Loan EMI with Amortization Schedule.',
+        name: 'EMI Calculator India (2026) - Private Loan Tool',
+        description: 'Calculate EMIs for all loan types with a full schedule. 100% private and for accurate planning.',
         category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
@@ -1581,6 +1680,21 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Home, Car, Personal, Education Loan Support",
             "Total Interest Payable Analysis"
         ],
+        formula: "E = P \\times r \\times \\frac{(1 + r)^n}{(1 + r)^n - 1}",
+        faqs: [
+            {
+                question: "How is an EMI calculated manually?",
+                answer: "Using the formula E = P × r × (1 + r)^n / ((1 + r)^n - 1), where P is the principal, r is the monthly rate of interest, and n is the tenure in months."
+            },
+            {
+                question: "Do Indian banks use flat rate or reducing balance?",
+                answer: "Major Indian banks like SBI and HDFC use the reducing balance method, where your interest payment reduces every month as principal shrinks."
+            },
+            {
+                question: "Does paying an extra EMI reduce my loan tenure?",
+                answer: "Yes, prepaying even one extra EMI per year heavily targets the principal, drastically reducing both the tenure and the total interest burden over time."
+            }
+        ],
 
         howTo: {
             name: "How to Calculate Loan EMI",
@@ -1596,8 +1710,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'sip',
-        name: 'SIP Calculator (Systematic Investment Plan)',
-        description: 'Best SIP Calculator 2025. Estimate mutual fund returns, future value, and wealth creation via SIP investments.',
+        name: 'SIP Calculator India (2026) - Private Wealth Planner',
+        description: 'Estimate mutual fund returns via SIP. 100% private and — your investment goals stay secure.',
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
@@ -1650,8 +1764,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-salary',
-        name: 'In-Hand Salary Calculator India',
-        description: 'Convert CTC to In-Hand (Take Home) Salary. Detailed breakdown of Basic, HRA, PF, Professional Tax, and Income Tax (TDS).',
+        name: 'In-Hand Salary Calculator India (2026) - & Private',
+        description: 'Convert CTC to in-hand monthly salary for FY 2026-27. Detailed, private, and 100% breakdown.',
         category: 'india',
         icon: Briefcase,
         component: IndiaSalaryCalculator,
@@ -1698,8 +1812,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-tax',
-        name: 'Income Tax Calculator India (2026 Tax Act)',
-        description: 'Calculate Income Tax using Live FY 2026-27 Rates. Compare Old vs New Tax Regime to find maximum tax savings under the 2026 Tax Act.',
+        name: 'Income Tax Calculator India (2026) - Private & Secure Tool',
+        description: 'Compare tax regimes and calculate liability under the 2026 Tax Act. 100% private and secure for all users.',
         category: 'india',
         icon: DollarSign,
         component: IndiaTaxCalculator,
@@ -1769,7 +1883,7 @@ export const calculatorRegistry: CalculatorDef[] = [
 
 export const categories: { id: CalculatorCategory; name: string; icon: any }[] = [
     { id: 'math', name: 'Mathematics', icon: Calculator },
-    { id: 'financial', name: 'Finance', icon: DollarSign },
+    { id: 'financial', name: 'Finance & Investment', icon: DollarSign },
     { id: 'health', name: 'Health & Fitness', icon: Activity },
     { id: 'india', name: 'India Specific', icon: Landmark },
     { id: 'other', name: 'Other Tools', icon: MoreHorizontal },

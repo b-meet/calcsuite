@@ -11,6 +11,7 @@ import { Share2, Star } from 'lucide-react';
 import { ShareModal } from '../components/ShareModal';
 import { cn } from '../utils/cn';
 import { AdBanner } from '../components/AdBanner';
+import { ToolContext } from '../components/ToolContext';
 
 export function CalculatorPage() {
     const { calculatorId, scenarioId } = useParams();
@@ -116,12 +117,6 @@ export function CalculatorPage() {
                 }}
             />
             {/* ... other StructuredData ... */}
-            {calculatorDef.faqs && (
-                <StructuredData
-                    type="FAQPage"
-                    data={calculatorDef.faqs}
-                />
-            )}
             <StructuredData
                 type="BreadcrumbList"
                 data={[
@@ -199,30 +194,6 @@ export function CalculatorPage() {
                     <article className="prose prose-slate dark:prose-invert max-w-none">
                         {!calculatorDef.hideDefaultSections && (
                             <>
-                                {calculatorDef.longDescription && (
-                                    <div className="mb-8">
-                                        <p className="lead">{calculatorDef.longDescription}</p>
-                                    </div>
-                                )}
-
-                                {calculatorDef.features && (
-                                    <div className="mb-8">
-                                        <h3>Key Features</h3>
-                                        <ul>
-                                            {calculatorDef.features.map((feature, idx) => (
-                                                <li key={idx}>{feature}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {calculatorDef.educationalContent && calculatorDef.educationalContent.map((item, idx) => (
-                                    <div key={idx} className="mb-8">
-                                        <h3>{item.title}</h3>
-                                        <p>{item.content}</p>
-                                    </div>
-                                ))}
-
                                 {calculatorDef.howTo && (
                                     <div className="mb-12">
                                         <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">{calculatorDef.howTo.name}</h3>
@@ -243,19 +214,7 @@ export function CalculatorPage() {
                                     </div>
                                 )}
 
-                                {calculatorDef.faqs && calculatorDef.faqs.length > 0 && (
-                                    <div className="mb-12">
-                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h3>
-                                        <div className="grid gap-4">
-                                            {calculatorDef.faqs.map((faq, idx) => (
-                                                <div key={idx} className="bg-white dark:bg-slate-800 rounded-xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow">
-                                                    <h4 className="font-semibold text-lg text-slate-900 dark:text-white mb-2 m-0">{faq.question}</h4>
-                                                    <p className="text-slate-600 dark:text-slate-400 leading-relaxed m-0">{faq.answer}</p>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+                                <ToolContext calculatorDef={calculatorDef} />
                             </>
                         )}
 
