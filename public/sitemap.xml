@@ -336,6 +336,66 @@
         <priority>0.9</priority>
     </url>
     <url>
+        <loc>https://calcsuite.in/calculator/india-salary/3-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/salary/3-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-salary/6-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/salary/6-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-salary/9-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/salary/9-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-salary/12-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/salary/12-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-salary/15-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/salary/15-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-salary/18-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/salary/18-lpa-in-hand</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.95</priority>
+    </url>
+    <url>
         <loc>https://calcsuite.in/calculator/india-tax/10-lakh-salary-tax</loc>
         <changefreq>weekly</changefreq>
         <priority>0.75</priority>

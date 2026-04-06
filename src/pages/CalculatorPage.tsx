@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
@@ -14,11 +14,14 @@ import { AdBanner } from '../components/AdBanner';
 import { ToolContext } from '../components/ToolContext';
 
 export function CalculatorPage() {
+    const location = useLocation();
     const { calculatorId, scenarioId } = useParams();
     const { isFavorite, toggleFavorite, reachedMax } = useFavorites();
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
-    const calculatorDef = calculatorRegistry.find(c => c.id === calculatorId);
+    const isSalaryLanding = location.pathname.startsWith('/salary/');
+    const effectiveCalculatorId = calculatorId || (isSalaryLanding ? 'india-salary' : undefined);
+    const calculatorDef = calculatorRegistry.find(c => c.id === effectiveCalculatorId);
     
     const [shake, setShake] = useState(false);
     const [clickCount, setClickCount] = useState(0);
@@ -44,6 +47,14 @@ export function CalculatorPage() {
     if (!calculatorDef) {
         return <NotFound />;
     }
+    if (isSalaryLanding && scenarioId && !scenario) {
+        return <NotFound />;
+    }
+
+    const calculatorCanonicalPath = `/calculator/${calculatorDef.id}`;
+    const scenarioCanonicalPath = scenario
+        ? (isSalaryLanding ? `/salary/${scenario.id}` : `${calculatorCanonicalPath}/${scenario.id}`)
+        : undefined;
 
     const Component = calculatorDef.component;
     const Content = calculatorDef.content;
@@ -131,8 +142,8 @@ export function CalculatorPage() {
                 data={[
                     { name: 'Home', item: 'https://calcsuite.in/' },
                     { name: calculatorDef.category.charAt(0).toUpperCase() + calculatorDef.category.slice(1), item: `https://calcsuite.in/category/${calculatorDef.category}` },
-                    { name: calculatorDef.name, item: `https://calcsuite.in/calculator/${calculatorDef.id}` },
-                    ...(scenario ? [{ name: scenario.name, item: `https://calcsuite.in/calculator/${calculatorDef.id}/${scenario.id}` }] : [])
+                    { name: calculatorDef.name, item: `https://calcsuite.in${calculatorCanonicalPath}` },
+                    ...(scenario && scenarioCanonicalPath ? [{ name: scenario.name, item: `https://calcsuite.in${scenarioCanonicalPath}` }] : [])
                 ]}
             />
             {calculatorDef.howTo && (
@@ -189,7 +200,10 @@ export function CalculatorPage() {
                 calculatorId={calculatorDef.id}
             />
 
-            <Component scenarioData={scenario?.initialState} />
+            <Component
+                key={`${calculatorDef.id}-${scenario?.id || 'default'}`}
+                scenarioData={scenario?.initialState}
+            />
 
             <AdBanner />
 

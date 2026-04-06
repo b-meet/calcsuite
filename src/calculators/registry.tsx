@@ -1849,6 +1849,50 @@ export const calculatorRegistry: CalculatorDef[] = [
             ]
         },
         popular: true,
+        scenarios: [
+            {
+                id: '3-lpa-in-hand',
+                name: '3 LPA In-Hand Salary in India (2026)',
+                description: 'Estimate monthly in-hand salary for a 3 LPA CTC package in India with PF and professional tax breakdown.',
+                keywords: ['3 lpa in hand', '3 lpa in hand salary per month', '3 lakh package in hand salary', 'ctc 3 lakh in hand'],
+                initialState: { ctc: 300000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '6-lpa-in-hand',
+                name: '6 LPA In-Hand Salary in India (2026)',
+                description: 'Calculate monthly take-home salary for a 6 LPA package in India with PF and PT deductions.',
+                keywords: ['6 lpa in hand', '6 lakh salary in hand', '6 lac in hand salary', 'ctc 6 lakh in hand per month'],
+                initialState: { ctc: 600000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '9-lpa-in-hand',
+                name: '9 LPA In-Hand Salary in India (2026)',
+                description: 'Check estimated in-hand monthly salary for 9 LPA CTC in India with a detailed salary split.',
+                keywords: ['9 lpa in hand', '9 lakh in hand salary', '9 lac salary in hand', 'ctc 9 lakh in hand'],
+                initialState: { ctc: 900000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '12-lpa-in-hand',
+                name: '12 LPA In-Hand Salary in India (2026)',
+                description: 'Find monthly in-hand salary for a 12 LPA CTC package in India including PF and professional tax.',
+                keywords: ['12 lpa in hand', '12 lakh in hand salary', '12 lac in hand salary', '12 lacs in hand salary', 'ctc 12 lakh in hand'],
+                initialState: { ctc: 1200000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '15-lpa-in-hand',
+                name: '15 LPA In-Hand Salary in India (2026)',
+                description: 'Estimate your monthly take-home pay on 15 LPA CTC in India with component-wise breakdown.',
+                keywords: ['15 lpa in hand', '15 lakh in hand salary', '15 lac salary in hand', '15 lacs in hand', 'ctc 15 lakh in hand'],
+                initialState: { ctc: 1500000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '18-lpa-in-hand',
+                name: '18 LPA In-Hand Salary in India (2026)',
+                description: 'Calculate in-hand salary per month for an 18 LPA package in India with payroll deductions.',
+                keywords: ['18 lpa in hand', '18 lakh in hand salary', '18 lac in hand salary', 'ctc 18 lakh in hand'],
+                initialState: { ctc: 1800000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            }
+        ]
     },
     {
         id: 'india-tax',

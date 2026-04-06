@@ -98,6 +98,13 @@ const generateSitemap = () => {
                 priority: calcId === 'india-gst' ? 0.9 : 0.75,
                 changefreq: 'weekly'
             });
+            if (calcId === 'india-salary') {
+                urls.push({
+                    loc: `${DOMAIN}/salary/${scenarioId}`,
+                    priority: 0.95,
+                    changefreq: 'weekly'
+                });
+            }
         });
         console.log(`Parsed ${calcIds.size} calculators.`);
     } catch (e) {

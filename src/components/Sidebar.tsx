@@ -79,7 +79,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                 </button>
 
                 <div className={cn(
-                    "flex flex-col border-b border-slate-100 dark:border-slate-800 transition-all duration-300 overflow-x-hidden",
+                    "relative z-20 flex flex-col border-b border-slate-100 dark:border-slate-800 transition-all duration-300 overflow-visible",
                     effectiveCollapsed ? "p-4 items-center gap-4" : "p-6 gap-4"
                 )}>
                     <NavLink to="/" className="flex items-center gap-3 overflow-hidden group">
@@ -91,7 +91,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                         )}
                     </NavLink>
                     
-                    <div className={cn("relative z-10 transition-all duration-300 w-full", effectiveCollapsed ? "h-0 opacity-0 overflow-hidden" : "h-auto opacity-100")}>
+                    <div className={cn("relative z-30 transition-all duration-300 w-full", effectiveCollapsed ? "h-0 opacity-0 overflow-hidden" : "h-auto opacity-100")}>
                         <SearchInput
                             placeholder="Search tools..."
                             onSelect={() => setIsOpen(false)}
@@ -111,7 +111,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                 </div>
 
                 <nav className={cn(
-                    "overflow-y-auto overflow-x-hidden flex-1 transition-all duration-300 scroll-smooth",
+                    "relative z-0 overflow-y-auto overflow-x-hidden flex-1 transition-all duration-300 scroll-smooth",
                     effectiveCollapsed ? "p-2 space-y-2" : "p-4 space-y-1"
                 )}>
                     <div className="mb-4">

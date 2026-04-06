@@ -181,7 +181,7 @@ export function SearchInput({ placeholder = "Search...", className, autoFocus = 
 
             {/* Autocomplete Dropdown */}
             {isOpen && results.length > 0 && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden z-[100] animate-in fade-in zoom-in-95 duration-100">
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden z-[200] animate-in fade-in zoom-in-95 duration-100">
 
                     {isShowingRecent && (
                         <div className="bg-slate-50 dark:bg-slate-800/80 px-4 py-2 text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider flex items-center justify-between backdrop-blur-sm sticky top-0 z-10">

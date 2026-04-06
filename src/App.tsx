@@ -48,6 +48,14 @@ function App() {
               </Suspense>
             }
           />
+          <Route
+            path="salary/:scenarioId"
+            element={
+              <Suspense fallback={<div className="p-8 text-center">Loading...</div>}>
+                <CalculatorPage />
+              </Suspense>
+            }
+          />
           <Route path="terms" element={<TermsOfService />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="about" element={<About />} />

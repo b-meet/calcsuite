@@ -19,7 +19,19 @@ const calculators = [
 ];
 
 const categories = ['financial', 'health', 'math', 'other', 'basic', 'india'];
-const staticPages = ['about', 'contact', 'terms', 'privacy', 'widget-generator'];
+const staticPages = [
+  'about',
+  'contact',
+  'terms',
+  'privacy',
+  'widget-generator',
+  'salary/3-lpa-in-hand',
+  'salary/6-lpa-in-hand',
+  'salary/9-lpa-in-hand',
+  'salary/12-lpa-in-hand',
+  'salary/15-lpa-in-hand',
+  'salary/18-lpa-in-hand'
+];
 
 const baseUrl = 'https://calcsuite.in';
 const today = new Date().toISOString().split('T')[0];

@@ -1,13 +1,26 @@
 import { useState } from 'react';
 import { Briefcase, TrendingUp, Info } from 'lucide-react';
-import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { useCalculatorHistory, type HistoryItem } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
-export default function IndiaSalaryCalculator() {
-    const [ctc, setCtc] = useState<number | string>(1200000); // Yearly CTC in Rupees
-    const [bonus, setBonus] = useState<number | string>(0);
-    const [professionalTax, setProfessionalTax] = useState<number | string>(200); // Monthly
-    const [viewMode, setViewMode] = useState<'monthly' | 'yearly'>('monthly');
+interface SalaryScenarioData {
+    ctc?: number;
+    bonus?: number;
+    professionalTax?: number;
+    viewMode?: 'monthly' | 'yearly';
+}
+
+interface SalaryHistoryInputs {
+    ctc: number;
+    bonus: number;
+    professionalTax: number;
+}
+
+export default function IndiaSalaryCalculator({ scenarioData }: { scenarioData?: SalaryScenarioData }) {
+    const [ctc, setCtc] = useState<number | string>(scenarioData?.ctc ?? 1200000); // Yearly CTC in Rupees
+    const [bonus, setBonus] = useState<number | string>(scenarioData?.bonus ?? 0);
+    const [professionalTax, setProfessionalTax] = useState<number | string>(scenarioData?.professionalTax ?? 200); // Monthly
+    const [viewMode, setViewMode] = useState<'monthly' | 'yearly'>(scenarioData?.viewMode ?? 'monthly');
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('india-salary');
 
@@ -67,10 +80,11 @@ export default function IndiaSalaryCalculator() {
         );
     };
 
-    const handleHistorySelect = (item: any) => {
-        setCtc(item.inputs.ctc);
-        setBonus(item.inputs.bonus);
-        setProfessionalTax(item.inputs.professionalTax);
+    const handleHistorySelect = (item: HistoryItem) => {
+        const inputs = item.inputs as SalaryHistoryInputs;
+        setCtc(inputs.ctc);
+        setBonus(inputs.bonus);
+        setProfessionalTax(inputs.professionalTax);
     };
 
     const handleCTCChange = (val: string) => {
