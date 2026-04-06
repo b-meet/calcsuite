@@ -55,17 +55,33 @@ const generateSitemap = () => {
         const registryContent = fs.readFileSync(REGISTRY_PATH, 'utf-8');
         const lines = registryContent.split('\n');
         const calcIds = new Set();
+        const scenarioRoutes = [];
+        let currentCalcId = '';
+        let inScenarios = false;
         
         lines.forEach(line => {
             if (line.startsWith("        id: '")) {
                 const parts = line.split("id: '");
                 if (parts.length > 1) {
                     const id = parts[1].split("'")[0];
+                    currentCalcId = id;
                     if (id && !categories.includes(id) && id !== 'basic-math' && !['initialState', 'scenarios', 'component', 'content'].includes(id)) {
                         calcIds.add(id);
                     }
                     if (id === 'basic-math') calcIds.add(id);
                 }
+            }
+
+            if (line.startsWith('        scenarios: [')) {
+                inScenarios = true;
+            } else if (inScenarios && line.startsWith("                id: '") && currentCalcId) {
+                const parts = line.split("id: '");
+                if (parts.length > 1) {
+                    const scenarioId = parts[1].split("'")[0];
+                    scenarioRoutes.push({ calcId: currentCalcId, scenarioId });
+                }
+            } else if (inScenarios && line.startsWith('        ]')) {
+                inScenarios = false;
             }
         });
 
@@ -73,6 +89,13 @@ const generateSitemap = () => {
             urls.push({
                 loc: `${DOMAIN}/calculator/${calcId}`,
                 priority: ['india-gst', 'india-emi', 'sip', 'india-tax'].includes(calcId) ? 1.0 : 0.7,
+                changefreq: 'weekly'
+            });
+        });
+        scenarioRoutes.forEach(({ calcId, scenarioId }) => {
+            urls.push({
+                loc: `${DOMAIN}/calculator/${calcId}/${scenarioId}`,
+                priority: calcId === 'india-gst' ? 0.9 : 0.75,
                 changefreq: 'weekly'
             });
         });

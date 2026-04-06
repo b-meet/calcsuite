@@ -14,7 +14,8 @@ const calculators = [
   'age', 'gpa', 'password', 'converter', 'random',
   'ovulation', 'date-diff', 'inflation', 'tip', 'sip',
   'india-tax', 'india-salary', 'india-gst', 'india-emi', 'india-fd', 'india-rd', 'india-ppf', 'india-home-loan-eligibility', 'india-hra',
-  'compound-interest', 'simple-interest', 'percentage-change', 'discount'
+  'compound-interest', 'simple-interest', 'percentage-change', 'discount',
+  'india-gst/hsn-mobile-phones', 'india-gst/luxury-cars-gst', 'india-gst/service-tax-india'
 ];
 
 const categories = ['financial', 'health', 'math', 'other', 'basic', 'india'];

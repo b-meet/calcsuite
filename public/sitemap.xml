@@ -321,6 +321,31 @@
         <priority>1</priority>
     </url>
     <url>
+        <loc>https://calcsuite.in/calculator/india-gst/hsn-mobile-phones</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-gst/luxury-cars-gst</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-gst/service-tax-india</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-tax/10-lakh-salary-tax</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/india-tax/15-lakh-salary-tax</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
         <loc>https://calcsuite.in/tools/investment/sip</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
@@ -553,31 +578,6 @@
     <url>
         <loc>https://calcsuite.in/tools/misc/present_value</loc>
         <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/resources/india-tax-saving-guide-2026</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/resources/gst-compliance-small-business</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/resources/sip-vs-lumpsum-2026-markets</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/brain-training</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/brain-training/kenken</loc>
-        <changefreq>daily</changefreq>
         <priority>0.8</priority>
     </url>
 </urlset>

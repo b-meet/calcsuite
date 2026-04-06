@@ -30,7 +30,16 @@ export function CalculatorPage() {
     
     const pageTitle = scenario?.name || calculatorDef?.name;
     const pageDescription = scenario?.description || calculatorDef?.description;
-    const pageKeywords = scenario?.keywords || (calculatorDef ? [calculatorDef.category, calculatorDef.name.toLowerCase(), 'calculator', 'free online calculator'] : []);
+    const pageKeywords = calculatorDef
+        ? Array.from(new Set([
+            calculatorDef.category,
+            calculatorDef.name.toLowerCase(),
+            'calculator',
+            'free online calculator',
+            ...(calculatorDef.keywords || []),
+            ...(scenario?.keywords || []),
+        ]))
+        : [];
 
     if (!calculatorDef) {
         return <NotFound />;

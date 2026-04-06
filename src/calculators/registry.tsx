@@ -914,18 +914,26 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'gpa',
-        name: 'GPA Calculator Online - Secure & Private Scoring (No Ads)',
-        description: 'Calculate semester and cumulative GPA accurately. Fast, clean, and private — your grades are secure.',
+        name: 'GPA Calculator India - SGPA & CGPA Calculator Online',
+        description: 'Calculate GPA, SGPA, and CGPA online with a mobile-friendly weighted grade calculator for Indian students and credit-based semesters.',
         category: 'other',
         icon: GraduationCap,
         component: GPACalculator,
         content: GPACalculatorContent,
-        longDescription: "Track your academic success with precision. This GPA Calculator helps high school and college students calculate their semester and cumulative GPA, supporting weighted credits and various grading scales.",
+        longDescription: "This GPA Calculator India helps students calculate semester GPA, SGPA, and cumulative CGPA using course credits and grade points. It is built for quick mobile use when you want to check semester performance, scholarship targets, or cumulative results without opening a spreadsheet.",
         features: [
-            "Semester & Cumulative GPA",
-            "Weighted course support",
-            "4.0 Scale & Custom Scales",
-            " Scholarship eligibility check"
+            "Semester GPA / SGPA calculation",
+            "Cumulative GPA / CGPA planning",
+            "4.0 and 10-point scale support",
+            "Mobile-friendly course entry"
+        ],
+        keywords: [
+            'gpa calculator india',
+            'sgpa calculator',
+            'cgpa calculator',
+            'semester gpa calculator',
+            'college gpa calculator india',
+            'credit based gpa calculator'
         ],
         faqs: [
             {
@@ -933,20 +941,25 @@ export const calculatorRegistry: CalculatorDef[] = [
                 answer: "Yes. It uses standard GPA calculation methods used by most institutions."
             },
             {
-                question: "Can I calculate cumulative GPA?",
-                answer: "Yes. Add all courses and credits to see your overall GPA."
+                question: "Can I calculate SGPA or CGPA with this tool?",
+                answer: "Yes. Enter one semester to estimate SGPA, or add all completed courses and credits to estimate cumulative GPA or CGPA."
             },
             {
                 question: "How do credits affect GPA?",
                 answer: "Higher credit courses weigh more than lower credit ones."
+            },
+            {
+                question: "Does every Indian university use the same GPA conversion?",
+                answer: "No. Some colleges use a 10-point scale, others use a 4-point scale, and percentage-to-GPA conversion rules can vary by university."
             }
         ],
         howTo: {
             name: "Calculate Your GPA",
-            description: "Measure your performance.",
+            description: "Measure semester GPA, SGPA, or cumulative CGPA quickly.",
             steps: [
                 { name: "Add Courses", text: "Enter course names and credits." },
-                { name: "Enter Grades", text: "Select grade achieved (A, B, C...)." },
+                { name: "Choose Scale", text: "Switch between 4.0 letter grades and 10-point grade points if needed." },
+                { name: "Enter Grades", text: "Select the grade or grade point for each subject." },
                 { name: "Result", text: "See your calculated GPA instantly." }
             ]
         },
@@ -1166,18 +1179,26 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'tip',
-        name: 'Tip Calculator - Split Bills Fast (Private & Secure)',
-        description: 'Instantly calculate tips and split bills fairly. Fast, accurate, and 100% with zero sign-up required.',
+        name: 'Tip Calculator India - Split Bills & Tipping Guide',
+        description: 'Calculate tip in INR or other currencies, split restaurant bills, and check common tipping percentages in India for cafes, delivery, and dining.',
         category: 'math',
         icon: DollarSign,
         component: TipCalculator,
         content: TipCalculatorContent,
-        longDescription: "This Tip Calculator helps you calculate the correct tip amount and split the total bill evenly between people. Whether dining out, ordering delivery, or paying for services, this tool gives instant and accurate results without guesswork.",
+        longDescription: "This Tip Calculator India helps you calculate gratuity, compare common tip percentages, and split the total bill evenly between people. It is useful for restaurant dining, cafes, food delivery, salon visits, hotel staff tipping, and any situation where you want a quick rupee estimate without mental math.",
         features: [
             "Split bills evenly",
+            "INR-friendly tip calculations",
             "Fixed or % tip options",
-            "Instant total per person",
-            "Fair & fast calculations"
+            "Instant total per person"
+        ],
+        keywords: [
+            'tip calculator india',
+            'bill split calculator india',
+            'restaurant tip calculator',
+            'tipping percentage india',
+            'how much tip in india',
+            'split bill calculator'
         ],
         faqs: [
             {
@@ -1189,8 +1210,12 @@ export const calculatorRegistry: CalculatorDef[] = [
                 answer: "Yes. You can choose either method based on preference."
             },
             {
-                question: "Is this calculator free?",
-                answer: "Yes. It is completely free with no limits."
+                question: "What is a common tip percentage in India?",
+                answer: "Many diners leave around 5% to 10% for good service, but tipping is voluntary and many bills already include a service charge."
+            },
+            {
+                question: "Is service charge the same as a tip?",
+                answer: "No. A service charge is a separate line item on the bill, while a tip is a voluntary amount you choose to leave."
             }
         ],
         howTo: {
@@ -1583,38 +1608,45 @@ export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'india-gst',
         name: 'GST Calculator India (2026) - Clean, Private & New Rates',
-        description: 'Instantly calculate GST for FY 2026-27 reforms. 100% private, clean, and updated for new 2026 tax slabs.',
+        description: 'Instantly calculate GST for goods and services in India, compare inclusive vs exclusive tax, and understand how GST replaced service tax on older invoices.',
         category: 'india',
         icon: Percent,
         component: IndiaGSTCalculator,
         content: IndiaGSTCalculatorContent,
-        longDescription: "The most accurate 2026-compliant GST Calculator for Indian businesses and consumers. Following the Jan 2026 reforms, this tool supports the new streamlined tax slabs: 0% (Essentials), 5% (Merit Goods), 18% (Standard Rate), and 40% (Luxury/Sin Goods). Easily switch between 'Tax Exclusive' and 'Tax Inclusive' modes to generate compliant invoices or verify bills.",
+        longDescription: "Use this India GST Calculator to add or remove GST from invoices, verify tax on services, and understand legacy service tax math for pre-GST bills. If you are searching for a service tax calculator, this page also explains how service tax was subsumed into GST from 1 July 2017 and how the last broad 15% service tax formula worked on older invoices.",
         keywords: [
             'gst calculator 2026', 'india gst new rates', '0% gst list',
             'luxury gst 40%', 'gst exemption calculator', 'gst inclusive exclusive',
-            'gst slabs 2026', 'gst billing software free'
+            'gst slabs 2026', 'gst billing software free',
+            'service tax calculator india', 'old service tax calculator',
+            'service tax to gst', 'service tax before gst', 'service tax 15 percent calculator'
         ],
         features: [
             "New 2026 Tax Slabs (0%, 5%, 18%, 40%)",
             "Exempt Item Calculation (Zero Rated)",
             "Luxury & Sin Goods Tax (40%)",
             "Reverse GST Calculation",
+            "Legacy Service Tax reference",
             "Instant Breakdown",
             "Mobile Friendly"
         ],
         formula: "\\text{GST Amount} = \\text{Original Cost} \\times \\left(\\frac{\\text{GST Rate}}{100}\\right)",
         faqs: [
             {
-                question: "Is GST calculated on the total amount?",
-                answer: "Yes, GST is generally calculated as a strict strict percentage over the final base transaction amount before discounts, depending on if your pricing is exclusive or inclusive."
+                question: "Is service tax still applicable in India?",
+                answer: "No. Service tax was subsumed into GST from 1 July 2017, so current service invoices are generally taxed under GST instead of the old service tax rules."
             },
             {
                 question: "How do I calculate GST manually?",
-                answer: "Multiply the base price of your product by the GST rate (e.g., 18%), and then divide by 100 to find the precise tax amount."
+                answer: "Multiply the base price of your product by the GST rate (for example 18%), and then divide by 100 to find the tax amount."
             },
             {
-                question: "What is the new 2026 luxury tax slab?",
-                answer: "As per the 2026 reforms, luxury and sin goods such as large cars and tobacco strictly attract a heavy 40% overarching GST."
+                question: "How do I calculate old service tax on a pre-GST invoice?",
+                answer: "For older invoices issued before 1 July 2017, the broad final service tax rate was 15%, so tax was typically calculated as Taxable Value × 15%."
+            },
+            {
+                question: "What rate applies to most services under GST?",
+                answer: "Many standard taxable services are commonly calculated at 18% GST, while the exact rate still depends on the underlying service classification."
             }
         ],
         educationalContent: [
@@ -1653,6 +1685,14 @@ export const calculatorRegistry: CalculatorDef[] = [
                 description: "Calculate the consolidated 40% GST on luxury vehicles and SUVs. Includes breakdown of base price vs luxury tax.",
                 keywords: ['gst on luxury cars', '40% gst suv', 'luxury car tax india 2026', 'car gst calculator'],
                 initialState: { taxRate: 40 }
+            },
+            {
+                id: 'service-tax-india',
+                name: "Service Tax Calculator India (Legacy Pre-GST)",
+                description: "Use this legacy service tax calculator for pre-GST invoices and learn how service tax was replaced by GST in India from 1 July 2017.",
+                keywords: ['service tax calculator india', 'service tax 15 percent calculator', 'old service tax calculator', 'service tax before gst', 'pre gst invoice calculator'],
+                features: ['Legacy 15% service tax math', 'Pre-GST invoice examples', 'Service tax history in India', 'GST replacement explainer'],
+                initialState: { taxRate: 15, amount: 10000, rateLabel: 'Legacy', rateDescription: 'Service Tax' }
             }
         ]
     },

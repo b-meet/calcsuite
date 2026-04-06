@@ -35,8 +35,6 @@ const IndiaGSTCalculatorContent = () => {
     return (
         <div className="space-y-12 not-prose">
             <Helmet>
-                <title>GST Calculator India (2026 Tax Act) - Live FY 2026-27 Rates</title>
-                <meta name="description" content="Free India GST Calculator updated for 2026 Tax Act. Calculate GST inclusive/exclusive prices, HSN codes, and late payment interest. 100% accurate & free." />
                 <script type="application/ld+json">
                     {JSON.stringify([
                         {
@@ -75,6 +73,22 @@ const IndiaGSTCalculatorContent = () => {
                                     "acceptedAnswer": {
                                         "@type": "Answer",
                                         "text": "No. Exports are 'Zero-Rated'. This means you can export goods without tax, or pay tax and claim a full refund to ensure Indian goods remain competitive globally."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Is service tax still applicable in India?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "No. Service tax was subsumed into GST from 1 July 2017, so current service invoices are generally taxed under GST."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "How do I calculate old service tax on a pre-GST invoice?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "For older invoices issued before 1 July 2017, the broad final service tax rate was 15%, so tax was commonly calculated as Taxable Value multiplied by 15%."
                                     }
                                 }
                             ]
@@ -163,6 +177,60 @@ const IndiaGSTCalculatorContent = () => {
                     <p>
                         The new structure minimizes classification disputes (e.g., is a "kitkat" a chocolate or a biscuit?) by broadening the 18% standard slab and clearly demarcating luxury goods at 40%. For the common man, the expansion of the "Nil Rated" (0%) category for essentials ensures that inflation remains in check.
                     </p>
+                </div>
+            </section>
+
+            <section className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
+                <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8">
+                    <div className="space-y-5">
+                        <div>
+                            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 m-0">Service Tax Calculator India: What to Use Now</h2>
+                            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                                If you searched for a <strong>service tax calculator India</strong>, the key point is that <strong>service tax no longer applies to current invoices</strong>. It was subsumed into GST on <strong>1 July 2017</strong>. For present-day service bills, you usually calculate GST instead. For <strong>older pre-GST invoices</strong>, the broad final service tax rate in the last phase before GST was <strong>15%</strong>, so this page can still act as a legacy service tax calculator.
+                            </p>
+                        </div>
+
+                        <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-700">
+                            <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3 m-0">Legacy Service Tax Formula</h3>
+                            <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                                <code className="block text-indigo-600 dark:text-indigo-400 font-mono">Service Tax = Taxable Value × 15%</code>
+                                <code className="block text-slate-900 dark:text-white font-mono">Invoice Total = Taxable Value + Service Tax</code>
+                                <p className="m-0">
+                                    Example: on a pre-GST invoice of ₹10,000, service tax at 15% would be ₹1,500 and the total invoice amount would be ₹11,500.
+                                </p>
+                            </div>
+                        </div>
+
+                        <p className="text-sm text-slate-500 dark:text-slate-400 m-0">
+                            Need the exact legacy landing page? Open the <a href="/calculator/india-gst/service-tax-india" className="font-semibold text-blue-600 dark:text-blue-400 hover:underline">service tax calculator view</a> for pre-GST examples and keyword-targeted metadata.
+                        </p>
+                    </div>
+
+                    <div className="bg-blue-50 dark:bg-blue-900/10 rounded-2xl p-6 border border-blue-100 dark:border-blue-900/30">
+                        <h3 className="text-lg font-semibold text-blue-900 dark:text-blue-200 mb-4 m-0">History of Service Tax in India</h3>
+                        <div className="space-y-4 text-sm text-blue-900/90 dark:text-blue-200/90">
+                            <div>
+                                <strong className="block">1994</strong>
+                                <span>Service tax was introduced under the Finance Act, 1994 and initially applied to a small set of taxable services.</span>
+                            </div>
+                            <div>
+                                <strong className="block">2000s</strong>
+                                <span>The service tax net widened gradually as more services were added and indirect tax compliance moved online.</span>
+                            </div>
+                            <div>
+                                <strong className="block">2012</strong>
+                                <span>India moved to the negative-list model, where most services were taxable unless specifically exempt.</span>
+                            </div>
+                            <div>
+                                <strong className="block">2016 to June 2017</strong>
+                                <span>The effective broad rate reached 15% after cesses, which is why many legacy service tax calculations still use 15%.</span>
+                            </div>
+                            <div>
+                                <strong className="block">1 July 2017</strong>
+                                <span>GST launched nationwide and subsumed service tax into the broader GST framework for services.</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -310,7 +378,7 @@ const IndiaGSTCalculatorContent = () => {
 
             {/* Section 2c: GST vs Old Regime Comparison */}
             <section className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">GST vs. Old Tax Regime (VAT/Excise)</h2>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">GST vs. Old Tax Regime (VAT, Excise, Service Tax)</h2>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
                         <thead>
@@ -335,6 +403,11 @@ const IndiaGSTCalculatorContent = () => {
                                 <td className="p-4 font-medium text-slate-900 dark:text-white">Compliance</td>
                                 <td className="p-4 text-slate-600 dark:text-slate-400">Complex (VAT, Excise, Service Tax filings).</td>
                                 <td className="p-4 text-slate-600 dark:text-slate-400">Unified (GSTR-1, GSTR-3B) online filing.</td>
+                            </tr>
+                            <tr>
+                                <td className="p-4 font-medium text-slate-900 dark:text-white">Tax on Services</td>
+                                <td className="p-4 text-slate-600 dark:text-slate-400">Service Tax applied separately under the Finance Act, 1994.</td>
+                                <td className="p-4 text-slate-600 dark:text-slate-400">Most services now fall under GST, commonly at the standard service rate.</td>
                             </tr>
                             <tr>
                                 <td className="p-4 font-medium text-slate-900 dark:text-white">Checkposts</td>
@@ -611,6 +684,8 @@ const IndiaGSTCalculatorContent = () => {
                     {[
                         { q: "What is the new 40% GST slab for?", a: "The 40% slab is a consolidated rate for luxury and 'sin' goods like luxury cars, tobacco, and aerated drinks, replacing the earlier complex cess structure." },
                         { q: "Is GST applicable on exports?", a: "No. Exports are 'Zero-Rated'. This means you can export goods without tax, or pay tax and claim a full refund to ensure Indian goods remain competitive globally." },
+                        { q: "Is service tax still applicable in India?", a: "No. Service tax was subsumed into GST from 1 July 2017, so current service invoices are generally taxed under GST instead of the old service tax law." },
+                        { q: "How do I calculate old service tax on a pre-GST invoice?", a: "For legacy invoices raised before 1 July 2017, the broad final service tax rate was 15%, so tax was commonly calculated as Taxable Value multiplied by 15%." },
                         { q: "Can I edit an invoice after filing GSTR-1?", a: "No, you cannot edit a filed return. However, you can issue a credit/debit note or amend the details in next month's return." },
                         { q: "What is Reverse Charge (RCM)?", a: "Usually, the supplier pays GST. In RCM, the receiver pays GST. It applies to purchases from unregistered dealers or specific services like legal fees (Advocates) and GTA." },
                         { q: "How long should I keep GST records?", a: "You must maintain accounts and records for at least 72 months (6 years) from the due date of furnishing the annual return for the year." },

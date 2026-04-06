@@ -1,12 +1,46 @@
 import { useState, useMemo } from 'react';
 import { Percent, TrendingUp, Calculator } from 'lucide-react';
-import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { useCalculatorHistory, type HistoryItem } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
-export default function IndiaGSTCalculator({ scenarioData }: { scenarioData?: any }) {
+const defaultRateOptions = [
+    { value: 0, label: 'Exempt', desc: 'Essentials' },
+    { value: 5, label: 'Merit', desc: 'Daily Needs' },
+    { value: 18, label: 'Standard', desc: 'Services' },
+    { value: 40, label: 'Luxury', desc: 'Sin Goods' }
+];
+
+interface GSTScenarioData {
+    amount?: number;
+    taxRate?: number;
+    type?: 'exclusive' | 'inclusive';
+    rateLabel?: string;
+    rateDescription?: string;
+}
+
+interface GSTHistoryItem {
+    inputs: {
+        amount: number | '';
+        gstRate: number;
+        type: 'exclusive' | 'inclusive';
+    };
+}
+
+export default function IndiaGSTCalculator({ scenarioData }: { scenarioData?: GSTScenarioData }) {
     const [amount, setAmount] = useState<number | ''>(scenarioData?.amount || 1000);
     const [gstRate, setGstRate] = useState<number>(scenarioData?.taxRate || 18);
-    const [type, setType] = useState<'exclusive' | 'inclusive'>('exclusive');
+    const [type, setType] = useState<'exclusive' | 'inclusive'>(scenarioData?.type || 'exclusive');
+
+    const rateOptions = defaultRateOptions.some((option) => option.value === gstRate)
+        ? defaultRateOptions
+        : [
+            ...defaultRateOptions,
+            {
+                value: gstRate,
+                label: scenarioData?.rateLabel || 'Custom',
+                desc: scenarioData?.rateDescription || 'Scenario'
+            }
+        ];
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('india-gst');
 
@@ -50,10 +84,11 @@ export default function IndiaGSTCalculator({ scenarioData }: { scenarioData?: an
         );
     };
 
-    const handleHistorySelect = (item: any) => {
-        setAmount(item.inputs.amount);
-        setGstRate(item.inputs.gstRate);
-        setType(item.inputs.type);
+    const handleHistorySelect = (item: HistoryItem) => {
+        const inputs = item.inputs as GSTHistoryItem['inputs'];
+        setAmount(inputs.amount);
+        setGstRate(inputs.gstRate);
+        setType(inputs.type);
     };
 
     return (
@@ -76,12 +111,7 @@ export default function IndiaGSTCalculator({ scenarioData }: { scenarioData?: an
                             GST Rate (%)
                         </label>
                         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                            {[
-                                { value: 0, label: 'Exempt', desc: 'Essentials', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-                                { value: 5, label: 'Merit', desc: 'Daily Needs', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-                                { value: 18, label: 'Standard', desc: 'Services', color: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
-                                { value: 40, label: 'Luxury', desc: 'Sin Goods', color: 'bg-rose-50 text-rose-700 border-rose-200' }
-                            ].map((rateOption) => (
+                            {rateOptions.map((rateOption) => (
                                 <button
                                     key={rateOption.value}
                                     onClick={() => setGstRate(rateOption.value)}
