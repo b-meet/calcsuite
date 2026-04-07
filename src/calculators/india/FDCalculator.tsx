@@ -261,20 +261,20 @@ export default function FDCalculator() {
                             <div>
                                 <p className="text-slate-400 text-sm mb-1">Maturity Amount</p>
                                 <p className="text-4xl font-bold">
-                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.maturityAmount || 0)}
+                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.maturityAmount || 0)}
                                 </p>
                             </div>
                             <div className="grid grid-cols-2 gap-8 pt-6 border-t border-slate-800">
                                 <div>
                                     <p className="text-slate-400 text-sm mb-1">Principal</p>
                                     <p className="text-xl font-semibold">
-                                        {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(principal)}
+                                        {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(principal)}
                                     </p>
                                 </div>
                                 <div>
                                     <p className="text-slate-400 text-sm mb-1">Total Interest</p>
                                     <p className="text-xl font-semibold text-green-400">
-                                        {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.totalInterest || 0)}
+                                        {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.totalInterest || 0)}
                                     </p>
                                 </div>
                             </div>
@@ -315,9 +315,9 @@ export default function FDCalculator() {
                                 {result.breakdown.map((row) => (
                                     <tr key={row.year} className="hover:bg-slate-50 dark:hover:bg-slate-800/50">
                                         <td className="px-6 py-3 font-medium text-slate-900 dark:text-white">{row.year}</td>
-                                        <td className="px-6 py-3">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.openingBalance)}</td>
-                                        <td className="px-6 py-3 text-green-600 dark:text-green-400">+{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.interestEarned)}</td>
-                                        <td className="px-6 py-3 font-semibold">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(row.closingBalance)}</td>
+                                        <td className="px-6 py-3">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(row.openingBalance)}</td>
+                                        <td className="px-6 py-3 text-green-600 dark:text-green-400">+{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(row.interestEarned)}</td>
+                                        <td className="px-6 py-3 font-semibold">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(row.closingBalance)}</td>
                                     </tr>
                                 ))}
                             </tbody>

@@ -151,10 +151,10 @@ export default function RDCalculator() {
                     <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-lg">
                         <h3 className="text-lg font-medium text-slate-300 mb-6">Maturity Summary</h3>
                         <div className="space-y-6">
-                            <div><p className="text-slate-400 text-sm mb-1">Maturity Amount</p><p className="text-4xl font-bold">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.maturityAmount || 0)}</p></div>
+                            <div><p className="text-slate-400 text-sm mb-1">Maturity Amount</p><p className="text-4xl font-bold">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.maturityAmount || 0)}</p></div>
                             <div className="grid grid-cols-2 gap-8 pt-6 border-t border-slate-800">
-                                <div><p className="text-slate-400 text-sm mb-1">Invested</p><p className="text-xl font-semibold">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.totalInvested || 0)}</p></div>
-                                <div><p className="text-slate-400 text-sm mb-1">Interest</p><p className="text-xl font-semibold text-green-400">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.totalInterest || 0)}</p></div>
+                                <div><p className="text-slate-400 text-sm mb-1">Invested</p><p className="text-xl font-semibold">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.totalInvested || 0)}</p></div>
+                                <div><p className="text-slate-400 text-sm mb-1">Interest</p><p className="text-xl font-semibold text-green-400">{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.totalInterest || 0)}</p></div>
                             </div>
                         </div>
                     </div>

@@ -8,8 +8,12 @@ const __dirname = path.dirname(__filename);
 const REGISTRY_PATH = path.resolve(__dirname, 'src/calculators/registry.tsx');
 const REFS_PATH = path.resolve(__dirname, 'src/constants/calculatorReferences.ts');
 const RESOURCES_PATH = path.resolve(__dirname, 'src/pages/Resources.tsx');
-const SITEMAP_PATH = path.resolve(__dirname, 'public/sitemap.xml');
-const URLS_TXT_PATH = path.resolve(__dirname, 'public/urls.txt');
+const PUBLIC_SITEMAP_PATH = path.resolve(__dirname, 'public/sitemap.xml');
+const PUBLIC_URLS_TXT_PATH = path.resolve(__dirname, 'public/urls.txt');
+const PUBLIC_ROBOTS_PATH = path.resolve(__dirname, 'public/robots.txt');
+const DIST_SITEMAP_PATH = path.resolve(__dirname, 'dist/sitemap.xml');
+const DIST_URLS_TXT_PATH = path.resolve(__dirname, 'dist/urls.txt');
+const DIST_ROBOTS_PATH = path.resolve(__dirname, 'dist/robots.txt');
 const DOMAIN = 'https://calcsuite.in';
 
 const generateSitemap = () => {
@@ -93,18 +97,20 @@ const generateSitemap = () => {
             });
         });
         scenarioRoutes.forEach(({ calcId, scenarioId }) => {
-            urls.push({
-                loc: `${DOMAIN}/calculator/${calcId}/${scenarioId}`,
-                priority: calcId === 'india-gst' ? 0.9 : 0.75,
-                changefreq: 'weekly'
-            });
             if (calcId === 'india-salary') {
                 urls.push({
                     loc: `${DOMAIN}/salary/${scenarioId}`,
                     priority: 0.95,
                     changefreq: 'weekly'
                 });
+                return;
             }
+
+            urls.push({
+                loc: `${DOMAIN}/calculator/${calcId}/${scenarioId}`,
+                priority: calcId === 'india-gst' ? 0.9 : 0.75,
+                changefreq: 'weekly'
+            });
         });
         console.log(`Parsed ${calcIds.size} calculators.`);
     } catch (e) {
@@ -171,14 +177,25 @@ ${urls.map(url => `    <url>
     </url>`).join('\n')}
 </urlset>`;
 
-    fs.writeFileSync(SITEMAP_PATH, sitemapContent);
-    console.log(`✅ XML Sitemap generated at ${SITEMAP_PATH} with ${urls.length} URLs`);
+    fs.writeFileSync(PUBLIC_SITEMAP_PATH, sitemapContent);
+    console.log(`✅ XML Sitemap generated at ${PUBLIC_SITEMAP_PATH} with ${urls.length} URLs`);
 
     // --- WRITE URLS.TXT ---
     // A clean line-by-line dump of just the raw URLs
     const txtContent = urls.map(u => u.loc).join('\n');
-    fs.writeFileSync(URLS_TXT_PATH, txtContent);
-    console.log(`✅ ${URLS_TXT_PATH} generated with ${urls.length} URLs`);
+    fs.writeFileSync(PUBLIC_URLS_TXT_PATH, txtContent);
+    console.log(`✅ ${PUBLIC_URLS_TXT_PATH} generated with ${urls.length} URLs`);
+
+    const robotsContent = `User-agent: *\nAllow: /\nSitemap: ${DOMAIN}/sitemap.xml\n`;
+    fs.writeFileSync(PUBLIC_ROBOTS_PATH, robotsContent);
+    console.log(`✅ ${PUBLIC_ROBOTS_PATH} generated`);
+
+    if (fs.existsSync(path.resolve(__dirname, 'dist'))) {
+        fs.writeFileSync(DIST_SITEMAP_PATH, sitemapContent);
+        fs.writeFileSync(DIST_URLS_TXT_PATH, txtContent);
+        fs.writeFileSync(DIST_ROBOTS_PATH, robotsContent);
+        console.log('✅ dist sitemap/urls/robots synced');
+    }
 };
 
 generateSitemap();

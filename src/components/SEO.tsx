@@ -1,63 +1,73 @@
 import { Helmet } from 'react-helmet-async';
-import { useLocation } from 'react-router-dom';
+
+const SITE_NAME = 'CalcSuite';
+const SITE_URL = 'https://calcsuite.in';
+const DEFAULT_OG_IMAGE = `${SITE_URL}/pwa-512x512.png`;
+
+type JsonLd = Record<string, unknown>;
+
+interface BreadcrumbItem {
+    name: string;
+    path: string;
+}
 
 interface SEOProps {
     title: string;
     description: string;
-    keywords?: string[];
-    type?: string;
-    image?: string;
+    canonicalPath: string;
+    jsonLd?: JsonLd | JsonLd[];
 }
 
-export default function SEO({ title, description, keywords, type = 'website', image }: SEOProps) {
-    const location = useLocation();
-    const canonicalUrl = `https://calcsuite.in${location.pathname}`; // Replace with actual domain
-    const siteName = 'CalcSuite';
+export function toAbsoluteUrl(path: string) {
+    if (path.startsWith('http://') || path.startsWith('https://')) {
+        return path;
+    }
 
-    const defaultKeywords = ['calculator', 'online calculator', 'free calculator', 'math', 'finance', 'health'];
-    const allKeywords = keywords ? [...defaultKeywords, ...keywords] : defaultKeywords;
+    const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+    return `${SITE_URL}${normalizedPath}`;
+}
 
-    const jsonLd = {
+export function buildBreadcrumbJsonLd(items: BreadcrumbItem[]): JsonLd {
+    return {
         '@context': 'https://schema.org',
-        '@type': 'WebApplication',
-        name: title,
-        description: description,
-        url: canonicalUrl,
-        applicationCategory: 'UtilityApplication',
-        operatingSystem: 'Any',
-        offers: {
-            '@type': 'Offer',
-            price: '0',
-            priceCurrency: 'USD'
-        }
+        '@type': 'BreadcrumbList',
+        itemListElement: items.map((item, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: item.name,
+            item: toAbsoluteUrl(item.path),
+        })),
     };
+}
+
+export default function SEO({ title, description, canonicalPath, jsonLd }: SEOProps) {
+    const canonicalUrl = toAbsoluteUrl(canonicalPath);
+    const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+    const jsonLdEntries = (Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []).filter(Boolean);
 
     return (
-        <Helmet>
-            {/* Standard Metadata */}
-            <title>{`${title} | ${siteName}`}</title>
+        <Helmet defer={false}>
+            <title>{fullTitle}</title>
             <meta name="description" content={description} />
-            <meta name="keywords" content={allKeywords.join(', ')} />
             <link rel="canonical" href={canonicalUrl} />
 
-            {/* Open Graph / Facebook */}
-            <meta property="og:type" content={type} />
+            <meta property="og:type" content="website" />
             <meta property="og:url" content={canonicalUrl} />
-            <meta property="og:title" content={title} />
+            <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description} />
-            <meta property="og:site_name" content={siteName} />
-            {image && <meta property="og:image" content={image} />}
+            <meta property="og:site_name" content={SITE_NAME} />
+            <meta property="og:image" content={DEFAULT_OG_IMAGE} />
 
-            {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:title" content={title} />
+            <meta name="twitter:title" content={fullTitle} />
             <meta name="twitter:description" content={description} />
-            {image && <meta name="twitter:image" content={image} />}
+            <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
 
-            {/* Structured Data */}
-            <script type="application/ld+json">
-                {JSON.stringify(jsonLd)}
-            </script>
+            {jsonLdEntries.map((schema, index) => (
+                <script key={index} type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
+            ))}
         </Helmet>
     );
 }

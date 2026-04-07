@@ -306,6 +306,7 @@ export function KenKen() {
             <SEO
                 title={`Daily ${size}×${size} KenKen - Brain Arena Challenge`}
                 description={`Solve today's ${size}×${size} KenKen puzzle in the Brain Arena. New logic challenges every day at midnight IST.`}
+                canonicalPath="/brain-training/kenken"
             />
 
             <div className="max-w-2xl mx-auto space-y-5">

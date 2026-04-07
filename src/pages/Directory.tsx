@@ -26,6 +26,7 @@ export function Directory() {
             <SEO
                 title="Master Tool Directory & Sitemap"
                 description="The complete index of every calculator, tax tool, health tracker, and competitor alternative available on CalcSuite."
+                canonicalPath="/directory"
             />
 
             <div className="max-w-6xl mx-auto space-y-16">

@@ -172,13 +172,13 @@ export default function HomeLoanEligibilityCalculator() {
                             <div>
                                 <p className="text-slate-400 text-sm mb-1">Eligible Loan Amount</p>
                                 <p className="text-4xl font-bold text-green-400">
-                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.eligibleLoanAmount || 0)}
+                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.eligibleLoanAmount || 0)}
                                 </p>
                             </div>
                             <div className="pt-6 border-t border-slate-800">
                                 <p className="text-slate-400 text-sm mb-2">Max EMI Capacity</p>
                                 <p className="text-2xl font-semibold">
-                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.maxAffordableEMI || 0)}/mo
+                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.maxAffordableEMI || 0)}/mo
                                 </p>
                             </div>
                         </div>

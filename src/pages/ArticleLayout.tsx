@@ -73,7 +73,7 @@ export function ArticleLayout() {
             <SEO 
                 title={`${post.title} - CalcSuite Guide`}
                 description={post.excerpt}
-                keywords={[post.category, 'finance guide', 'tax 2026', 'investment strategy']}
+                canonicalPath={`/resources/${post.id}`}
             />
 
             <StructuredData 

@@ -13,7 +13,7 @@ export function Resources() {
             <SEO 
                 title="Resources & Finance Guides - CalcSuite"
                 description="Expert guides on tax planning, GST compliance, and investment strategies. Stay updated with the 2026 Tax Act and maximize your savings."
-                keywords={['tax guides', 'gst checklist', 'investment resources', 'finance blog', 'tax planning 2026']}
+                canonicalPath="/resources"
             />
 
             <div className="text-center max-w-3xl mx-auto space-y-4">

@@ -192,7 +192,7 @@ export default function HRACalculator() {
                                 <p className="text-sm font-medium text-green-800 dark:text-green-200">Exempt HRA</p>
                             </div>
                             <p className="text-2xl font-bold text-green-700 dark:text-green-300">
-                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.exemptHRA || 0)}
+                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.exemptHRA || 0)}
                             </p>
                         </div>
                         <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-2xl border border-red-100 dark:border-red-900/50">
@@ -201,7 +201,7 @@ export default function HRACalculator() {
                                 <p className="text-sm font-medium text-red-800 dark:text-red-200">Taxable HRA</p>
                             </div>
                             <p className="text-2xl font-bold text-red-700 dark:text-red-300">
-                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.taxableHRA || 0)}
+                                {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.taxableHRA || 0)}
                             </p>
                         </div>
                     </div>
@@ -219,19 +219,19 @@ export default function HRACalculator() {
                             <div className="flex justify-between items-center text-sm pb-2 border-b border-slate-50 dark:border-slate-800">
                                 <span className="text-slate-600 dark:text-slate-400">1. Actual HRA Received</span>
                                 <span className="font-medium text-slate-900 dark:text-white">
-                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.conditions.condition1 || 0)}
+                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.conditions.condition1 || 0)}
                                 </span>
                             </div>
                             <div className="flex justify-between items-center text-sm pb-2 border-b border-slate-50 dark:border-slate-800">
                                 <span className="text-slate-600 dark:text-slate-400">2. Rent - 10% Basic</span>
                                 <span className="font-medium text-slate-900 dark:text-white">
-                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.conditions.condition2 || 0)}
+                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.conditions.condition2 || 0)}
                                 </span>
                             </div>
                             <div className="flex justify-between items-center text-sm pb-2 border-b border-slate-50 dark:border-slate-800">
                                 <span className="text-slate-600 dark:text-slate-400">3. {isMetro ? '50%' : '40%'} of Basic</span>
                                 <span className="font-medium text-slate-900 dark:text-white">
-                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(result?.conditions.condition3 || 0)}
+                                    {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(result?.conditions.condition3 || 0)}
                                 </span>
                             </div>
                         </div>

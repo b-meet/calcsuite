@@ -15,6 +15,7 @@ export function BrainTrainingHub() {
             <SEO
                 title="Brain Arena - Compete with Your Mind"
                 description="Enter the CalcSuite Brain Arena. Solve daily logic puzzles, improve your mental calculation speed, and master high-intensity challenges."
+                canonicalPath="/brain-training"
             />
 
             <div className="max-w-5xl mx-auto space-y-12">

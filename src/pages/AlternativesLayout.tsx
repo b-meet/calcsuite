@@ -1,7 +1,6 @@
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { alternativesData } from '../content/alternatives/data';
 import SEO from '../components/SEO';
-import { Helmet } from 'react-helmet-async';
 import { CheckCircle2, XCircle, ArrowRight, Zap, Smartphone, ShieldCheck, WifiOff, FileText, UserX } from 'lucide-react';
 
 export function AlternativesLayout() {
@@ -38,14 +37,11 @@ export function AlternativesLayout() {
 
     return (
         <div className="bg-slate-50 dark:bg-slate-900 min-h-screen py-12 md:py-20">
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify(reviewSchema)}
-                </script>
-            </Helmet>
             <SEO 
                 title={competitor.metaTitle.replace(' | CalcSuite', '')} // SEO component attaches suffix
-                description={competitor.metaDescription} 
+                description={competitor.metaDescription}
+                canonicalPath={`/alternatives/${competitor.id}`}
+                jsonLd={reviewSchema}
             />
 
             <div className="max-w-4xl mx-auto px-4 md:px-6">

@@ -54,6 +54,7 @@ export const ToolsPage = () => {
             <SEO 
                 title={data.title} 
                 description={data.description} 
+                canonicalPath={`/tools/${category}/${slug}`}
             />
             <StructuredData 
                 type="FAQPage" 

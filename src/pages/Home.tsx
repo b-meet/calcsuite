@@ -89,7 +89,7 @@ export function Home() {
             <SEO
                 title={pageTitle}
                 description={pageDescription}
-                keywords={['calculator', categoryId || 'all', 'online tools', 'free online calculator', 'india calculator', 'calculator online free']}
+                canonicalPath={categoryId ? `/category/${categoryId}` : '/'}
             />
             {/* Organization Schema for Home Page */}
             {!categoryId && (

@@ -1,11 +1,10 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
-import SEO from '../components/SEO';
+import SEO, { buildBreadcrumbJsonLd, toAbsoluteUrl } from '../components/SEO';
 import NotFound from './NotFound';
 
 import RelatedCalculators from '../components/RelatedCalculators';
-import StructuredData from '../components/StructuredData';
 import { useFavorites } from '../hooks/useFavorites';
 import { Share2, Star } from 'lucide-react';
 import { ShareModal } from '../components/ShareModal';
@@ -28,33 +27,25 @@ export function CalculatorPage() {
     const [showLimitWarning, setShowLimitWarning] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-    // Scenario Logic for Programmatic SEO
     const scenario = calculatorDef?.scenarios?.find(s => s.id === scenarioId);
-    
-    const pageTitle = scenario?.name || calculatorDef?.name;
-    const pageDescription = scenario?.description || calculatorDef?.description;
-    const pageKeywords = calculatorDef
-        ? Array.from(new Set([
-            calculatorDef.category,
-            calculatorDef.name.toLowerCase(),
-            'calculator',
-            'free online calculator',
-            ...(calculatorDef.keywords || []),
-            ...(scenario?.keywords || []),
-        ]))
-        : [];
 
     if (!calculatorDef) {
         return <NotFound />;
     }
-    if (isSalaryLanding && scenarioId && !scenario) {
+    if (scenarioId && !scenario) {
         return <NotFound />;
     }
 
+    if (calculatorDef.id === 'india-salary' && scenario && location.pathname.startsWith('/calculator/india-salary/')) {
+        return <Navigate to={`/salary/${scenario.id}${location.search}${location.hash}`} replace />;
+    }
+
+    const pageTitle = scenario?.name || calculatorDef.name;
+    const pageDescription = scenario?.description || calculatorDef.description;
     const calculatorCanonicalPath = `/calculator/${calculatorDef.id}`;
-    const scenarioCanonicalPath = scenario
-        ? (isSalaryLanding ? `/salary/${scenario.id}` : `${calculatorCanonicalPath}/${scenario.id}`)
-        : undefined;
+    const canonicalPath = scenario
+        ? (calculatorDef.id === 'india-salary' ? `/salary/${scenario.id}` : `${calculatorCanonicalPath}/${scenario.id}`)
+        : calculatorCanonicalPath;
 
     const Component = calculatorDef.component;
     const Content = calculatorDef.content;
@@ -71,6 +62,51 @@ export function CalculatorPage() {
     };
 
     const isFav = isFavorite(calculatorDef.id);
+    const hasScenarios = Boolean(calculatorDef.scenarios && calculatorDef.scenarios.length > 0);
+    const scenarioRoutes = calculatorDef.scenarios?.map((item) => ({
+        ...item,
+        path: calculatorDef.id === 'india-salary'
+            ? `/salary/${item.id}`
+            : `${calculatorCanonicalPath}/${item.id}`
+    })) || [];
+
+    const softwareApplicationJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: pageTitle,
+        description: pageDescription,
+        url: toAbsoluteUrl(canonicalPath),
+        applicationCategory: getSchemaCategory(calculatorDef.category),
+        operatingSystem: 'Any',
+        offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'USD',
+        },
+        featureList: scenario?.features || calculatorDef.features || [`Free ${calculatorDef.name}`, 'Instant Results', 'Mobile Friendly', 'Secure'],
+    };
+
+    const breadcrumbJsonLd = buildBreadcrumbJsonLd([
+        { name: 'Home', path: '/' },
+        { name: calculatorDef.category.charAt(0).toUpperCase() + calculatorDef.category.slice(1), path: `/category/${calculatorDef.category}` },
+        { name: calculatorDef.name, path: calculatorCanonicalPath },
+        ...(scenario ? [{ name: scenario.name, path: canonicalPath }] : []),
+    ]);
+
+    const howToJsonLd = calculatorDef.howTo
+        ? {
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: calculatorDef.howTo.name,
+            description: calculatorDef.howTo.description,
+            step: calculatorDef.howTo.steps.map((step) => ({
+                '@type': 'HowToStep',
+                name: step.name,
+                text: step.text,
+            })),
+        }
+        : undefined;
+
     const getTooltip = () => {
         if (isFav) return "Remove from Favorites";
         if (reachedMax) return "Limit reached (Maximum 6)";
@@ -110,48 +146,12 @@ export function CalculatorPage() {
 
     return (
         <div className="max-w-4xl mx-auto">
-            {/* ... SEO functions ... */}
             <SEO
-                title={pageTitle || ""}
-                description={pageDescription || ""}
-                keywords={pageKeywords}
-                image={`https://calcsuite.in/og/${calculatorDef.id}${scenarioId ? `-${scenarioId}` : ''}.png`}
+                title={pageTitle}
+                description={pageDescription}
+                canonicalPath={canonicalPath}
+                jsonLd={[softwareApplicationJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : [])]}
             />
-
-            <StructuredData
-                type="SoftwareApplication"
-                data={{
-                    name: pageTitle,
-                    description: pageDescription,
-                    category: getSchemaCategory(calculatorDef.category),
-                    features: scenario?.features || [`Free ${calculatorDef.name}`, 'Instant Results', 'Mobile Friendly', 'Secure'],
-                }}
-            />
-
-            <StructuredData
-                type="ImageObject"
-                data={{
-                    url: `https://calcsuite.in/og/${calculatorDef.id}.png`,
-                    name: `${calculatorDef.name} Visual Interface`,
-                    description: `Interactive dashboard for the ${calculatorDef.name}.`
-                }}
-            />
-            {/* ... other StructuredData ... */}
-            <StructuredData
-                type="BreadcrumbList"
-                data={[
-                    { name: 'Home', item: 'https://calcsuite.in/' },
-                    { name: calculatorDef.category.charAt(0).toUpperCase() + calculatorDef.category.slice(1), item: `https://calcsuite.in/category/${calculatorDef.category}` },
-                    { name: calculatorDef.name, item: `https://calcsuite.in${calculatorCanonicalPath}` },
-                    ...(scenario && scenarioCanonicalPath ? [{ name: scenario.name, item: `https://calcsuite.in${scenarioCanonicalPath}` }] : [])
-                ]}
-            />
-            {calculatorDef.howTo && (
-                <StructuredData
-                    type="HowTo"
-                    data={calculatorDef.howTo}
-                />
-            )}
 
             <div className="mb-6 max-w-2xl mx-auto">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
@@ -192,6 +192,30 @@ export function CalculatorPage() {
                     </div>
                 </div>
             </div>
+
+            {hasScenarios && (
+                <section className="mb-8 max-w-2xl mx-auto">
+                    <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-300 mb-3">
+                        Scenario Pages
+                    </h2>
+                    <div className="flex flex-wrap gap-2">
+                        {scenarioRoutes.map((item) => (
+                            <Link
+                                key={item.id}
+                                to={item.path}
+                                className={cn(
+                                    "inline-flex rounded-full px-3 py-1 text-sm border transition-colors",
+                                    item.id === scenario?.id
+                                        ? "bg-blue-600 text-white border-blue-600"
+                                        : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+                                )}
+                            >
+                                {item.name}
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+            )}
 
             <ShareModal
                 isOpen={isShareModalOpen}
