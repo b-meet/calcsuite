@@ -306,6 +306,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             "No formulas required",
             "100% Free & Secure"
         ],
+        hideDefaultSections: true,
         faqs: [
             {
                 question: "What is the easiest way to calculate percentages?",
@@ -1535,6 +1536,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Supports decimal values",
             "Instant growth tracking"
         ],
+        hideDefaultSections: true,
         faqs: [
             {
                 question: "Can it calculate percentage decrease?",

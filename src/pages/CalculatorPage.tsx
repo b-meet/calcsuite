@@ -266,7 +266,7 @@ export function CalculatorPage() {
                         )}
 
                         {/* Fallback for legacy content */}
-                        {Content && <Content />}
+                        {Content && <Content calculatorDef={calculatorDef} />}
                     </article>
                 </div>
             )}

@@ -1,183 +1,178 @@
-import { Check, ShieldCheck, Zap, MousePointer2 } from 'lucide-react';
+import { Check, MousePointer2, ShieldCheck, Zap, Percent, ArrowRightLeft } from 'lucide-react';
+import type { CalculatorDef } from '../registry';
+import { FaqAccordion } from '../../components/FaqAccordion';
 
-const PercentageContent = () => {
+interface PercentageContentProps {
+    calculatorDef?: CalculatorDef;
+}
+
+const relatedCalculators = [
+    { href: '/calculator/percentage-change', label: 'Percentage Change Calculator' },
+    { href: '/calculator/discount', label: 'Discount Calculator' },
+    { href: '/calculator/tip', label: 'Tip Calculator' },
+    { href: '/calculator/india-gst', label: 'GST Calculator' },
+];
+
+export default function PercentageContent({ calculatorDef }: PercentageContentProps) {
+    const faqs = calculatorDef?.faqs ?? [];
+
     return (
         <div className="space-y-12">
-
-            {/* What is a Percentage */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">What Is a Percentage?</h2>
-                <p className="text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
-                    A percentage represents a number as a fraction of 100. The word percentage comes from the Latin phrase <em>per centum</em>, meaning "by the hundred".
+            <section className="space-y-4">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">What is a percentage?</h2>
+                <p className="text-lg leading-8 text-slate-600 dark:text-slate-400">
+                    A percentage is a way to describe a number as parts per hundred. It makes comparisons faster and
+                    gives a clear view of discounts, growth, proportions, and share of a total.
                 </p>
-                <ul className="space-y-2 text-slate-600 dark:text-slate-400 ml-4 list-disc">
-                    <li><strong>25%</strong> means 25 out of 100</li>
-                    <li><strong>50%</strong> means half of a whole</li>
-                    <li><strong>100%</strong> means the entire amount</li>
-                </ul>
-                <p className="text-slate-600 dark:text-slate-400 mt-4 leading-relaxed">
-                    Percentages make it easier to compare values across different scales and situations.
-                </p>
-            </section>
-
-            {/* How to Use */}
-            <section className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">How to Use This Percentage Calculator</h2>
-                <div className="space-y-6">
-                    <p className="text-slate-600 dark:text-slate-400">This calculator helps you answer one of the most common percentage questions: <strong>What is X% of Y?</strong></p>
-                    <div className="grid md:grid-cols-3 gap-6">
-                        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
-                            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center font-bold mb-3">1</div>
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Enter Percentage</h3>
-                            <p className="text-sm text-slate-500 dark:text-slate-400">Type the percentage value you want to calculate.</p>
-                        </div>
-                        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
-                            <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center font-bold mb-3">2</div>
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Enter Total</h3>
-                            <p className="text-sm text-slate-500 dark:text-slate-400">Input the total number (the base value).</p>
-                        </div>
-                        <div className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700">
-                            <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center font-bold mb-3">3</div>
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Calculate</h3>
-                            <p className="text-sm text-slate-500 dark:text-slate-400">Click the button to get the result instantly.</p>
-                        </div>
+                <div className="grid gap-4 sm:grid-cols-3">
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                        <Percent className="mb-3 h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">25%</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">Means 25 out of 100.</p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                        <ArrowRightLeft className="mb-3 h-5 w-5 text-blue-600 dark:text-blue-400" />
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">50%</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">Means half of the whole.</p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                        <Check className="mb-3 h-5 w-5 text-green-600 dark:text-green-400" />
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">100%</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">Means the entire amount.</p>
                     </div>
                 </div>
             </section>
 
-            {/* Formula Section */}
-            <section className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">Percentage Formula Explained</h2>
-                <div className="grid md:grid-cols-2 gap-8 items-center">
-                    <div>
-                        <p className="text-slate-600 dark:text-slate-400 mb-4">
-                            The basic formula used in this calculator is:
+            <section className="rounded-3xl border border-slate-100 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900 sm:p-8">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">How to use this calculator</h2>
+                <div className="mt-6 grid gap-6 md:grid-cols-3">
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-800">
+                        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-600 dark:bg-blue-900/40 dark:text-blue-300">
+                            1
+                        </div>
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">Choose a mode</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                            Pick the question you want to answer: part of a whole, percent of a number, or reverse calculation.
                         </p>
-                        <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-xl border border-blue-100 dark:border-blue-900/50 text-center mb-6">
-                            <p className="text-xl font-mono text-blue-700 dark:text-blue-300">
-                                Percentage Value = (X ÷ 100) × Y
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-800">
+                        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-blue-100 font-bold text-blue-600 dark:bg-blue-900/40 dark:text-blue-300">
+                            2
+                        </div>
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">Enter the values</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                            Type the percentage and base value, or load one of the example inputs.
+                        </p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-700 dark:bg-slate-800">
+                        <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-100 font-bold text-green-600 dark:bg-green-900/40 dark:text-green-300">
+                            3
+                        </div>
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">Copy or save the result</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                            The calculator shows the output instantly and can copy the inputs plus result in one click.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="rounded-3xl border border-blue-100 bg-white p-6 shadow-sm dark:border-blue-900/40 dark:bg-slate-900 sm:p-8">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">Formula and worked example</h2>
+                <div className="mt-6 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+                    <div>
+                        <p className="mb-4 text-slate-600 dark:text-slate-400">
+                            The standard formula is simple: multiply the percentage by the value, then divide by 100.
+                        </p>
+                        <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6 text-center dark:border-blue-900/50 dark:bg-blue-900/20">
+                            <p className="m-0 font-mono text-lg text-blue-800 dark:text-blue-300">
+                                Percentage Value = (X / 100) × Y
                             </p>
                         </div>
-                        <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-                            <li><strong className="text-slate-900 dark:text-white">X</strong> is the percentage</li>
-                            <li><strong className="text-slate-900 dark:text-white">Y</strong> is the total value</li>
-                        </ul>
                     </div>
-                    <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl">
-                        <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Example Calculation</h3>
-                        <p className="text-slate-600 dark:text-slate-400 mb-2">What is <strong>20%</strong> of <strong>500</strong>?</p>
-                        <p className="font-mono text-slate-500 dark:text-slate-500">(20 ÷ 100) × 500 = 100</p>
-                        <p className="mt-4 font-medium text-green-600 dark:text-green-400">So, 20% of 500 is 100.</p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Real Life Examples */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8 m-0">Real-Life Percentage Examples</h2>
-                <div className="grid sm:grid-cols-2 gap-6">
-                    <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
-                        <h3 className="font-bold text-slate-900 dark:text-white mb-2 m-0">Shopping Discounts</h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm">
-                            If a product costs ₹1,000 and is on a 15% discount, you save ₹150.
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-slate-700 dark:bg-slate-800">
+                        <h3 className="mb-3 text-base font-semibold text-slate-900 dark:text-white">Example</h3>
+                        <p className="mb-2 text-sm text-slate-600 dark:text-slate-400">
+                            What is <strong className="text-slate-900 dark:text-white">20%</strong> of <strong className="text-slate-900 dark:text-white">500</strong>?
                         </p>
-                    </div>
-                    <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
-                        <h3 className="font-bold text-slate-900 dark:text-white mb-2 m-0">Exam Scores</h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm">
-                            If you score 72 out of 90, your percentage score is 80%.
-                        </p>
-                    </div>
-                    <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
-                        <h3 className="font-bold text-slate-900 dark:text-white mb-2 m-0">Business & Finance</h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm">
-                            Companies use percentages to calculate profit margins, growth rates, and tax amounts.
-                        </p>
-                    </div>
-                    <div className="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
-                        <h3 className="font-bold text-slate-900 dark:text-white mb-2 m-0">Health & Fitness</h3>
-                        <p className="text-slate-600 dark:text-slate-400 text-sm">
-                            Body fat percentage, calorie intake ratios, and daily nutrition targets.
+                        <p className="m-0 font-mono text-sm text-slate-500 dark:text-slate-400">
+                            (20 / 100) × 500 = 100
                         </p>
                     </div>
                 </div>
             </section>
 
-            {/* Why Use Online */}
-            <section className="bg-blue-600 dark:bg-blue-700 rounded-3xl p-8 sm:p-12 text-white overflow-hidden relative">
-                <div className="relative z-10">
-                    <h2 className="text-2xl font-bold m-0 mb-6">Why Use an Online Percentage Calculator?</h2>
-                    <div className="grid sm:grid-cols-2 gap-6">
-                        <ul className="space-y-4">
-                            <li className="flex items-center gap-3">
-                                <Check className="w-5 h-5 text-blue-200" />
-                                <span>Avoid calculation errors</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <Check className="w-5 h-5 text-blue-200" />
-                                <span>Save time</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <Check className="w-5 h-5 text-blue-200" />
-                                <span>Get instant, accurate results</span>
-                            </li>
-                        </ul>
-                        <ul className="space-y-4">
-                            <li className="flex items-center gap-3">
-                                <MousePointer2 className="w-5 h-5 text-blue-200" />
-                                <span>Works on mobile, tablet, or desktop</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <ShieldCheck className="w-5 h-5 text-blue-200" />
-                                <span>No login required</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <Zap className="w-5 h-5 text-blue-200" />
-                                <span>Completely free to use</span>
-                            </li>
-                        </ul>
+            <section className="space-y-4">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">Where percentages are useful</h2>
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">Shopping</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">Calculate discounts and final prices quickly.</p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">School & exams</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">Convert marks into percentages and compare scores.</p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">Finance</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">Work out tax, interest, margins, and growth rates.</p>
+                    </div>
+                    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-700 dark:bg-slate-900">
+                        <h3 className="mb-2 text-base font-semibold text-slate-900 dark:text-white">Health</h3>
+                        <p className="m-0 text-sm leading-6 text-slate-600 dark:text-slate-400">Track ratios used in body composition and nutrition.</p>
                     </div>
                 </div>
             </section>
 
-            {/* Common Mistakes */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">Common Percentage Mistakes to Avoid</h2>
-                <div className="bg-orange-50 dark:bg-orange-900/20 border-l-4 border-orange-500 p-6 rounded-r-xl">
-                    <ul className="space-y-3 text-slate-700 dark:text-slate-300">
-                        <li>• Forgetting to divide by 100 (e.g. using 20 instead of 0.20)</li>
-                        <li>• Mixing up percentage increase and decrease formulas</li>
-                        <li>• Applying the percentage to the wrong base value</li>
-                    </ul>
-                </div>
-            </section>
-
-            {/* Who Can Use */}
-            <section>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">Who Can Use This Tool?</h2>
-                <div className="space-y-4">
-                    <div className="flex flex-wrap gap-3">
-                        {["Students & Teachers", "Business Owners", "Accountants", "Shoppers", "Investors"].map((tag, idx) => (
-                            <span key={idx} className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4 py-2 rounded-full text-sm font-medium">
-                                {tag}
-                            </span>
-                        ))}
+            <section className="rounded-3xl border border-slate-100 bg-slate-50 p-6 dark:border-slate-800 dark:bg-slate-900 sm:p-8">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">Why use an online percentage calculator?</h2>
+                <div className="mt-6 grid gap-4 md:grid-cols-2">
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <Check className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                            <span>Avoid manual calculation mistakes.</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <ShieldCheck className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                            <span>No sign-in or data upload required.</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <MousePointer2 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                            <span>Works well on mobile, tablet, and desktop.</span>
+                        </div>
                     </div>
-                    <p className="text-slate-600 dark:text-slate-400">
-                        Whether you are solving homework problems or calculating savings, this calculator is designed for simplicity and accuracy.
-                    </p>
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <Zap className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                            <span>Get results instantly.</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <Check className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                            <span>Use the example buttons to learn the formula faster.</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
+                            <ShieldCheck className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                            <span>Outputs stay readable and easy to copy.</span>
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            {/* Why CalcSuite */}
-            <section className="bg-slate-900 dark:bg-slate-950 text-white p-8 rounded-2xl text-center">
-                <h2 className="text-2xl font-bold mb-4 m-0">Why Choose CalcSuite for Online Calculations?</h2>
-                <p className="text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                    CalcSuite is built to be fast, accurate, and easy to use. Every calculator is designed with clarity and real-world use cases in mind. Instead of jumping between multiple websites, CalcSuite brings all essential calculators into one reliable platform.
-                </p>
+            <section className="space-y-4">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">Related calculators</h2>
+                <div className="flex flex-wrap gap-3">
+                    {relatedCalculators.map((item) => (
+                        <a
+                            key={item.href}
+                            href={item.href}
+                            className="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:text-blue-400"
+                        >
+                            {item.label}
+                        </a>
+                    ))}
+                </div>
             </section>
+
+            <FaqAccordion items={faqs} />
         </div>
     );
-};
-
-export default PercentageContent;
+}

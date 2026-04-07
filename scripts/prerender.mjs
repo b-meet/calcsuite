@@ -7,9 +7,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const urlsPath = path.resolve(__dirname, '../public/urls.txt');
 const chromePath = process.env.CHROME_BIN || '/usr/bin/google-chrome';
+const prerenderMarker = path.resolve(__dirname, '../dist/200.html');
 
 if (!fs.existsSync(urlsPath)) {
   throw new Error(`Missing ${urlsPath}. Run generate-sitemap first.`);
+}
+
+if (fs.existsSync(prerenderMarker)) {
+  fs.unlinkSync(prerenderMarker);
 }
 
 const lines = fs
