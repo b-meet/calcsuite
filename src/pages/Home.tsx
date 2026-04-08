@@ -9,12 +9,18 @@ import { ResourceLinkGrid } from '../components/ResourceLinkGrid';
 import { AdBanner } from '../components/AdBanner';
 import { Brain, Sparkles, ArrowRight, Trophy } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import NotFound from './NotFound';
 
 
 export function Home() {
     const { categoryId } = useParams();
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery = searchParams.get('q') || '';
+    const validCategories = new Set<string>(calculatorRegistry.map((calculator) => calculator.category));
+
+    if (categoryId && !validCategories.has(categoryId)) {
+        return <NotFound />;
+    }
 
 
     const filteredCalculators = calculatorRegistry
@@ -93,15 +99,25 @@ export function Home() {
             />
             {/* Organization Schema for Home Page */}
             {!categoryId && (
-                <StructuredData
-                    type="Organization"
-                    data={{
-                        name: "CalcSuite",
-                        url: "https://calcsuite.in",
-                        logo: "https://calcsuite.in/logo.png",
-                        sameAs: []
-                    }}
-                />
+                <>
+                    <StructuredData
+                        type="Organization"
+                        data={{
+                            name: "CalcSuite",
+                            url: "https://calcsuite.in",
+                            logo: "https://calcsuite.in/logo.png",
+                            sameAs: []
+                        }}
+                    />
+                    <StructuredData
+                        type="WebSite"
+                        data={{
+                            name: "CalcSuite",
+                            url: "https://calcsuite.in",
+                            target: "https://calcsuite.in/?q={search_term_string}"
+                        }}
+                    />
+                </>
             )}
 
             {/* Breadcrumb Schema for Category Pages */}

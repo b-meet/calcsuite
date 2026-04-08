@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 
 interface StructuredDataProps {
-    type: 'SoftwareApplication' | 'WebApplication' | 'FAQPage' | 'Article' | 'BreadcrumbList' | 'HowTo' | 'Organization' | 'ImageObject' | 'VideoObject';
+    type: 'SoftwareApplication' | 'WebApplication' | 'FAQPage' | 'Article' | 'BreadcrumbList' | 'HowTo' | 'Organization' | 'ImageObject' | 'VideoObject' | 'WebSite';
     data: any;
 }
 
@@ -117,6 +117,18 @@ export default function StructuredData({ type, data }: StructuredDataProps) {
             url: data.url,
             logo: data.logo,
             sameAs: data.sameAs
+        };
+    } else if (type === 'WebSite') {
+        jsonLd = {
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: data.name,
+            url: data.url,
+            potentialAction: {
+                '@type': 'SearchAction',
+                target: data.target,
+                'query-input': 'required name=search_term_string'
+            }
         };
     }
 

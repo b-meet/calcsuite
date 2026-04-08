@@ -1,14 +1,15 @@
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { alternativesData } from '../content/alternatives/data';
 import SEO from '../components/SEO';
 import { CheckCircle2, XCircle, ArrowRight, Zap, Smartphone, ShieldCheck, WifiOff, FileText, UserX } from 'lucide-react';
+import NotFound from './NotFound';
 
 export function AlternativesLayout() {
     const { competitorId } = useParams<{ competitorId: string }>();
     const competitor = competitorId ? alternativesData[competitorId] : null;
 
     if (!competitor) {
-        return <Navigate to="/resources" replace />;
+        return <NotFound />;
     }
 
     const reviewSchema = {

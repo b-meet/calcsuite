@@ -16,6 +16,7 @@ interface SEOProps {
     description: string;
     canonicalPath: string;
     jsonLd?: JsonLd | JsonLd[];
+    noindex?: boolean;
 }
 
 export function toAbsoluteUrl(path: string) {
@@ -40,7 +41,7 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbItem[]): JsonLd {
     };
 }
 
-export default function SEO({ title, description, canonicalPath, jsonLd }: SEOProps) {
+export default function SEO({ title, description, canonicalPath, jsonLd, noindex = false }: SEOProps) {
     const canonicalUrl = toAbsoluteUrl(canonicalPath);
     const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
     const jsonLdEntries = (Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []).filter(Boolean);
@@ -50,6 +51,7 @@ export default function SEO({ title, description, canonicalPath, jsonLd }: SEOPr
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
             <link rel="canonical" href={canonicalUrl} />
+            {noindex && <meta name="robots" content="noindex,follow" />}
 
             <meta property="og:type" content="website" />
             <meta property="og:url" content={canonicalUrl} />

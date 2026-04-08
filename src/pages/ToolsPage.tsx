@@ -1,4 +1,4 @@
-import { useParams, Navigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
@@ -7,11 +7,12 @@ import { CALCULATOR_METADATA } from '../constants/calculatorMetadata';
 import { SmartInternalLinkFooter } from '../components/SmartInternalLinkFooter';
 import { ExternalLink, ArrowLeft, Info, HelpCircle } from 'lucide-react';
 import { AdBanner } from '../components/AdBanner';
+import NotFound from './NotFound';
 
 export const ToolsPage = () => {
     const { category, slug } = useParams<{ category: string; slug: string }>();
 
-    if (!category || !slug) return <Navigate to="/404" replace />;
+    if (!category || !slug) return <NotFound />;
 
     // Normalize keys to match objects (e.g., 'investment' -> 'INVESTMENT', 'sip' -> 'SIP')
     const catKey = category.toUpperCase();
@@ -21,7 +22,7 @@ export const ToolsPage = () => {
     const externalLink = CALCULATOR_REFERENCES[catKey]?.[slugKey];
 
     if (!data || !externalLink) {
-        return <Navigate to="/404" replace />;
+        return <NotFound />;
     }
 
     const getInternalCalcRoute = (calcSlug: string) => {

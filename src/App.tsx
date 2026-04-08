@@ -60,6 +60,7 @@ function App() {
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="404" element={<NotFound />} />
           <Route path="widget-generator" element={<WidgetGenerator />} />
           <Route path="resources" element={<Resources />} />
           <Route path="resources/:articleId" element={<ArticleLayout />} />

@@ -15,6 +15,7 @@ import { IndiaTaxSavingGuide2026 } from '../content/articles/IndiaTaxSavingGuide
 import { GstComplianceSmallBusiness } from '../content/articles/GstComplianceSmallBusiness';
 import { SipVsLumpsum2026Markets } from '../content/articles/SipVsLumpsum2026Markets';
 import { ArticleAds } from '../components/ArticleAds';
+import NotFound from './NotFound';
 
 export function ArticleLayout() {
     const { articleId } = useParams();
@@ -44,14 +45,7 @@ export function ArticleLayout() {
     };
 
     if (!post) {
-        return (
-            <div className="text-center py-20">
-                <h2 className="text-2xl font-bold mb-4">Article Not Found</h2>
-                <Link to="/resources" className="text-blue-600 flex items-center justify-center gap-2">
-                    <ArrowLeft className="w-4 h-4" /> Back to Resources
-                </Link>
-            </div>
-        );
+        return <NotFound />;
     }
 
     // Dynamic Article Content based on ID

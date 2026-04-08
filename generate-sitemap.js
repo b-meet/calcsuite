@@ -7,195 +7,278 @@ const __dirname = path.dirname(__filename);
 
 const REGISTRY_PATH = path.resolve(__dirname, 'src/calculators/registry.tsx');
 const REFS_PATH = path.resolve(__dirname, 'src/constants/calculatorReferences.ts');
-const RESOURCES_PATH = path.resolve(__dirname, 'src/pages/Resources.tsx');
+const BLOG_POSTS_PATH = path.resolve(__dirname, 'src/constants/blogPosts.ts');
+const ALTERNATIVES_PATH = path.resolve(__dirname, 'src/content/alternatives/data.tsx');
+
 const PUBLIC_SITEMAP_PATH = path.resolve(__dirname, 'public/sitemap.xml');
 const PUBLIC_URLS_TXT_PATH = path.resolve(__dirname, 'public/urls.txt');
 const PUBLIC_ROBOTS_PATH = path.resolve(__dirname, 'public/robots.txt');
+const PUBLIC_REDIRECTS_PATH = path.resolve(__dirname, 'public/_redirects');
+
 const DIST_SITEMAP_PATH = path.resolve(__dirname, 'dist/sitemap.xml');
 const DIST_URLS_TXT_PATH = path.resolve(__dirname, 'dist/urls.txt');
 const DIST_ROBOTS_PATH = path.resolve(__dirname, 'dist/robots.txt');
+const DIST_REDIRECTS_PATH = path.resolve(__dirname, 'dist/_redirects');
+
 const DOMAIN = 'https://calcsuite.in';
+const LASTMOD = new Date().toISOString().slice(0, 10);
 
-const generateSitemap = () => {
-    console.log('Starting Sitemap and URLs generator...');
-    
-    // 1. Static Core Pages
-    const urls = [
-        { loc: DOMAIN + '/', priority: 1.0, changefreq: 'daily' },
-        { loc: `${DOMAIN}/terms`, priority: 0.3, changefreq: 'monthly' },
-        { loc: `${DOMAIN}/privacy`, priority: 0.3, changefreq: 'monthly' },
-        { loc: `${DOMAIN}/about`, priority: 0.5, changefreq: 'monthly' },
-        { loc: `${DOMAIN}/contact`, priority: 0.5, changefreq: 'monthly' },
-        { loc: `${DOMAIN}/widget-generator`, priority: 0.6, changefreq: 'monthly' },
-        { loc: `${DOMAIN}/directory`, priority: 0.9, changefreq: 'weekly' },
-        { loc: `${DOMAIN}/resources`, priority: 0.9, changefreq: 'weekly' },
-    ];
+const STATIC_ROUTES = [
+    { path: '/', priority: 1.0, changefreq: 'daily' },
+    { path: '/terms', priority: 0.3, changefreq: 'monthly' },
+    { path: '/privacy', priority: 0.3, changefreq: 'monthly' },
+    { path: '/about', priority: 0.5, changefreq: 'monthly' },
+    { path: '/contact', priority: 0.5, changefreq: 'monthly' },
+    { path: '/widget-generator', priority: 0.6, changefreq: 'monthly' },
+    { path: '/directory', priority: 0.9, changefreq: 'weekly' },
+    { path: '/resources', priority: 0.9, changefreq: 'weekly' },
+    { path: '/brain-training', priority: 0.7, changefreq: 'weekly' },
+    { path: '/brain-training/kenken', priority: 0.7, changefreq: 'weekly' },
+];
 
-    // 2. Category Pages
-    const categories = ['health', 'financial', 'math', 'basic', 'other', 'india'];
-    categories.forEach(category => {
-        urls.push({
-            loc: `${DOMAIN}/category/${category}`,
-            priority: 0.8,
-            changefreq: 'weekly'
-        });
+function readFile(filePath) {
+    return fs.readFileSync(filePath, 'utf8');
+}
+
+function normalizePath(routePath) {
+    if (!routePath || routePath === '/') {
+        return '/';
+    }
+
+    const withLeadingSlash = routePath.startsWith('/') ? routePath : `/${routePath}`;
+    return withLeadingSlash.replace(/\/+$/, '');
+}
+
+function toAbsoluteUrl(routePath) {
+    return `${DOMAIN}${normalizePath(routePath)}`;
+}
+
+function addUrl(routeMap, { path: routePath, priority, changefreq }) {
+    const normalizedPath = normalizePath(routePath);
+
+    if (routeMap.has(normalizedPath)) {
+        return;
+    }
+
+    routeMap.set(normalizedPath, {
+        path: normalizedPath,
+        loc: toAbsoluteUrl(normalizedPath),
+        priority: priority.toFixed(1),
+        changefreq,
+        lastmod: LASTMOD,
     });
+}
 
-    // 3. Brand Heist / Alternatives
-    const alternatives = [
-        'calculator-net', 'cleartax-calculators', 'groww', 'omni-calculator', 
-        'calculator-1', 'calculatorsoup', 'gigacalculator', 'quicko', 'taxbuddy', 'paisabazaar'
-    ];
-    alternatives.forEach(alt => {
-        urls.push({
-            loc: `${DOMAIN}/alternatives/${alt}`,
+function extractRegistryData() {
+    const content = readFile(REGISTRY_PATH);
+    const lines = content.split(/\r?\n/);
+    const categories = new Set();
+    const calculatorIds = new Set();
+    const scenarioRoutes = [];
+    let currentCalculatorId = null;
+    let inScenarios = false;
+
+    for (const rawLine of lines) {
+        const line = rawLine.trim();
+        const categoryMatch = line.match(/^category:\s*'([^']+)'/);
+        if (categoryMatch) {
+            categories.add(categoryMatch[1]);
+        }
+
+        if (line.startsWith('scenarios: [')) {
+            inScenarios = true;
+            continue;
+        }
+
+        if (inScenarios && (line === '],' || line === ']')) {
+            inScenarios = false;
+            continue;
+        }
+
+        const idMatch = line.match(/^id:\s*'([^']+)'/);
+        if (!idMatch) {
+            continue;
+        }
+
+        if (inScenarios && currentCalculatorId) {
+            scenarioRoutes.push({ calcId: currentCalculatorId, scenarioId: idMatch[1] });
+            continue;
+        }
+
+        currentCalculatorId = idMatch[1];
+        calculatorIds.add(currentCalculatorId);
+    }
+
+    return {
+        categories: Array.from(categories),
+        calculatorIds: Array.from(calculatorIds),
+        scenarioRoutes,
+    };
+}
+
+function extractToolRoutes() {
+    const content = readFile(REFS_PATH);
+    const lines = content.split(/\r?\n/);
+    const toolRoutes = [];
+    let currentCategory = null;
+
+    for (const rawLine of lines) {
+        const line = rawLine.trim();
+        const categoryMatch = line.match(/^([A-Z_]+):\s*\{$/);
+        if (categoryMatch) {
+            currentCategory = categoryMatch[1].toLowerCase();
+            continue;
+        }
+
+        if (currentCategory && (line === '},' || line === '}')) {
+            currentCategory = null;
+            continue;
+        }
+
+        if (!currentCategory) {
+            continue;
+        }
+
+        const toolMatch = line.match(/^([A-Z_]+):\s*"https?:\/\//);
+        if (toolMatch) {
+            toolRoutes.push(`/tools/${currentCategory}/${toolMatch[1].toLowerCase()}`);
+        }
+    }
+
+    return toolRoutes;
+}
+
+function extractIds(filePath) {
+    const content = readFile(filePath);
+    const matches = content.matchAll(/^\s*id:\s*'([^']+)'/gm);
+    return Array.from(new Set(Array.from(matches, (match) => match[1])));
+}
+
+function buildSitemapXml(urls) {
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
+        .map(
+            (url) => `    <url>\n        <loc>${url.loc}</loc>\n        <lastmod>${url.lastmod}</lastmod>\n        <changefreq>${url.changefreq}</changefreq>\n        <priority>${url.priority}</priority>\n    </url>`
+        )
+        .join('\n')}\n</urlset>\n`;
+}
+
+function buildRedirects(paths) {
+    const routeRules = [...paths]
+        .filter((routePath) => routePath !== '/')
+        .sort((a, b) => b.length - a.length || a.localeCompare(b))
+        .flatMap((routePath) => {
+            const target = `${routePath}/index.html`.replace(/\/+/g, '/');
+            return [`${routePath} ${target} 200`, `${routePath}/ ${target} 200`];
+        });
+
+    return [
+        '/calculator/india-salary/:scenario /salary/:scenario 301',
+        '/alternatives /resources 301',
+        '/alternatives/ /resources 301',
+        ...routeRules,
+        '/404 /404.html 404',
+        '/404/ /404.html 404',
+        '/* /404.html 404',
+        '',
+    ].join('\n');
+}
+
+function writeFileSync(targetPath, content) {
+    fs.mkdirSync(path.dirname(targetPath), { recursive: true });
+    fs.writeFileSync(targetPath, content);
+}
+
+function syncToDistIfPresent(targetPath, content) {
+    const distDir = path.resolve(__dirname, 'dist');
+    if (!fs.existsSync(distDir)) {
+        return;
+    }
+
+    writeFileSync(targetPath, content);
+}
+
+function generateSitemap() {
+    console.log('Starting sitemap and route manifest generation...');
+
+    const routeMap = new Map();
+    for (const route of STATIC_ROUTES) {
+        addUrl(routeMap, route);
+    }
+
+    const { categories, calculatorIds, scenarioRoutes } = extractRegistryData();
+    for (const category of categories) {
+        addUrl(routeMap, {
+            path: `/category/${category}`,
             priority: 0.8,
-            changefreq: 'monthly'
+            changefreq: 'weekly',
         });
-    });
-
-    // 4. Calculators (from registry.tsx)
-    try {
-        const registryContent = fs.readFileSync(REGISTRY_PATH, 'utf-8');
-        const lines = registryContent.split('\n');
-        const calcIds = new Set();
-        const scenarioRoutes = [];
-        let currentCalcId = '';
-        let inScenarios = false;
-        
-        lines.forEach(line => {
-            if (line.startsWith("        id: '")) {
-                const parts = line.split("id: '");
-                if (parts.length > 1) {
-                    const id = parts[1].split("'")[0];
-                    currentCalcId = id;
-                    if (id && !categories.includes(id) && id !== 'basic-math' && !['initialState', 'scenarios', 'component', 'content'].includes(id)) {
-                        calcIds.add(id);
-                    }
-                    if (id === 'basic-math') calcIds.add(id);
-                }
-            }
-
-            if (line.startsWith('        scenarios: [')) {
-                inScenarios = true;
-            } else if (inScenarios && line.startsWith("                id: '") && currentCalcId) {
-                const parts = line.split("id: '");
-                if (parts.length > 1) {
-                    const scenarioId = parts[1].split("'")[0];
-                    scenarioRoutes.push({ calcId: currentCalcId, scenarioId });
-                }
-            } else if (inScenarios && line.startsWith('        ]')) {
-                inScenarios = false;
-            }
-        });
-
-        Array.from(calcIds).forEach(calcId => {
-            urls.push({
-                loc: `${DOMAIN}/calculator/${calcId}`,
-                priority: ['india-gst', 'india-emi', 'sip', 'india-tax'].includes(calcId) ? 1.0 : 0.7,
-                changefreq: 'weekly'
-            });
-        });
-        scenarioRoutes.forEach(({ calcId, scenarioId }) => {
-            if (calcId === 'india-salary') {
-                urls.push({
-                    loc: `${DOMAIN}/salary/${scenarioId}`,
-                    priority: 0.95,
-                    changefreq: 'weekly'
-                });
-                return;
-            }
-
-            urls.push({
-                loc: `${DOMAIN}/calculator/${calcId}/${scenarioId}`,
-                priority: calcId === 'india-gst' ? 0.9 : 0.75,
-                changefreq: 'weekly'
-            });
-        });
-        console.log(`Parsed ${calcIds.size} calculators.`);
-    } catch (e) {
-        console.error('Could not parse calculators:', e.message);
     }
 
-    // 5. SEO Hubs (from calculatorReferences.ts)
-    try {
-        const refsContent = fs.readFileSync(REFS_PATH, 'utf-8');
-        const lines = refsContent.split('\n');
-        let currentCat = '';
-        
-        lines.forEach(line => {
-            if (line.includes(':{') || line.includes(': {')) {
-                const parts = line.split(':');
-                currentCat = parts[0].trim().toLowerCase();
-            } else if (currentCat && line.includes(': "') && line.includes('http')) {
-                const slugPart = line.trim().split(':')[0];
-                const slug = slugPart.trim().toLowerCase();
-                if (slug && !slug.includes('{') && !slug.includes('}')) {
-                    urls.push({
-                        loc: `${DOMAIN}/tools/${currentCat}/${slug}`,
-                        priority: 0.8,
-                        changefreq: 'weekly'
-                    });
-                }
-            }
+    for (const calculatorId of calculatorIds) {
+        addUrl(routeMap, {
+            path: `/calculator/${calculatorId}`,
+            priority: ['india-gst', 'india-emi', 'sip', 'india-tax'].includes(calculatorId) ? 1.0 : 0.7,
+            changefreq: 'weekly',
         });
-        console.log(`Parsed SEO Hub tools.`);
-    } catch (e) {
-        console.error('Could not parse references:', e.message);
     }
 
-    // 6. Resources / Guides (from Resources.tsx)
-    try {
-        const resContent = fs.readFileSync(RESOURCES_PATH, 'utf-8');
-        const lines = resContent.split('\n');
-        
-        lines.forEach(line => {
-            if (line.includes("id: '")) {
-                const parts = line.split("id: '");
-                if (parts.length > 1) {
-                    const id = parts[1].split("'")[0];
-                    urls.push({
-                        loc: `${DOMAIN}/resources/${id}`,
-                        priority: 0.9,
-                        changefreq: 'monthly'
-                    });
-                }
-            }
+    for (const { calcId, scenarioId } of scenarioRoutes) {
+        const scenarioPath = calcId === 'india-salary'
+            ? `/salary/${scenarioId}`
+            : `/calculator/${calcId}/${scenarioId}`;
+
+        addUrl(routeMap, {
+            path: scenarioPath,
+            priority: calcId === 'india-salary' ? 0.95 : 0.75,
+            changefreq: 'weekly',
         });
-        console.log(`Parsed Resource guides.`);
-    } catch (e) {
-        console.error('Could not parse resources:', e.message);
     }
 
-    // --- WRITE SITEMAP.XML ---
-    const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(url => `    <url>
-        <loc>${url.loc}</loc>
-        <changefreq>${url.changefreq}</changefreq>
-        <priority>${url.priority}</priority>
-    </url>`).join('\n')}
-</urlset>`;
+    for (const toolRoute of extractToolRoutes()) {
+        addUrl(routeMap, {
+            path: toolRoute,
+            priority: 0.8,
+            changefreq: 'weekly',
+        });
+    }
 
-    fs.writeFileSync(PUBLIC_SITEMAP_PATH, sitemapContent);
-    console.log(`✅ XML Sitemap generated at ${PUBLIC_SITEMAP_PATH} with ${urls.length} URLs`);
+    for (const resourceId of extractIds(BLOG_POSTS_PATH)) {
+        addUrl(routeMap, {
+            path: `/resources/${resourceId}`,
+            priority: 0.9,
+            changefreq: 'monthly',
+        });
+    }
 
-    // --- WRITE URLS.TXT ---
-    // A clean line-by-line dump of just the raw URLs
-    const txtContent = urls.map(u => u.loc).join('\n');
-    fs.writeFileSync(PUBLIC_URLS_TXT_PATH, txtContent);
-    console.log(`✅ ${PUBLIC_URLS_TXT_PATH} generated with ${urls.length} URLs`);
+    for (const alternativeId of extractIds(ALTERNATIVES_PATH)) {
+        addUrl(routeMap, {
+            path: `/alternatives/${alternativeId}`,
+            priority: 0.8,
+            changefreq: 'monthly',
+        });
+    }
 
+    const urls = Array.from(routeMap.values()).sort((a, b) => a.path.localeCompare(b.path));
+    const routePaths = urls.map((url) => url.path);
+
+    const sitemapContent = buildSitemapXml(urls);
+    const urlsContent = `${urls.map((url) => url.loc).join('\n')}\n`;
     const robotsContent = `User-agent: *\nAllow: /\nSitemap: ${DOMAIN}/sitemap.xml\n`;
-    fs.writeFileSync(PUBLIC_ROBOTS_PATH, robotsContent);
-    console.log(`✅ ${PUBLIC_ROBOTS_PATH} generated`);
+    const redirectsContent = buildRedirects(routePaths);
 
-    if (fs.existsSync(path.resolve(__dirname, 'dist'))) {
-        fs.writeFileSync(DIST_SITEMAP_PATH, sitemapContent);
-        fs.writeFileSync(DIST_URLS_TXT_PATH, txtContent);
-        fs.writeFileSync(DIST_ROBOTS_PATH, robotsContent);
-        console.log('✅ dist sitemap/urls/robots synced');
-    }
-};
+    writeFileSync(PUBLIC_SITEMAP_PATH, sitemapContent);
+    writeFileSync(PUBLIC_URLS_TXT_PATH, urlsContent);
+    writeFileSync(PUBLIC_ROBOTS_PATH, robotsContent);
+    writeFileSync(PUBLIC_REDIRECTS_PATH, redirectsContent);
+
+    syncToDistIfPresent(DIST_SITEMAP_PATH, sitemapContent);
+    syncToDistIfPresent(DIST_URLS_TXT_PATH, urlsContent);
+    syncToDistIfPresent(DIST_ROBOTS_PATH, robotsContent);
+    syncToDistIfPresent(DIST_REDIRECTS_PATH, redirectsContent);
+
+    console.log(`Generated ${urls.length} indexable routes.`);
+    console.log(`Sitemap: ${PUBLIC_SITEMAP_PATH}`);
+    console.log(`Redirects: ${PUBLIC_REDIRECTS_PATH}`);
+}
 
 generateSitemap();
