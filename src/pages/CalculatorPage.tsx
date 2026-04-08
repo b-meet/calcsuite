@@ -1,5 +1,5 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { lazy, Suspense, useRef, useState } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO, { buildBreadcrumbJsonLd, toAbsoluteUrl } from '../components/SEO';
 import NotFound from './NotFound';
@@ -7,10 +7,13 @@ import NotFound from './NotFound';
 import RelatedCalculators from '../components/RelatedCalculators';
 import { useFavorites } from '../hooks/useFavorites';
 import { Share2, Star } from 'lucide-react';
-import { ShareModal } from '../components/ShareModal';
 import { cn } from '../utils/cn';
 import { AdBanner } from '../components/AdBanner';
 import { ToolContext } from '../components/ToolContext';
+
+const ShareModal = lazy(() =>
+    import('../components/ShareModal').then((module) => ({ default: module.ShareModal }))
+);
 
 export function CalculatorPage() {
     const location = useLocation();
@@ -70,9 +73,9 @@ export function CalculatorPage() {
             : `${calculatorCanonicalPath}/${item.id}`
     })) || [];
 
-    const softwareApplicationJsonLd = {
+    const webApplicationJsonLd = {
         '@context': 'https://schema.org',
-        '@type': 'SoftwareApplication',
+        '@type': 'WebApplication',
         name: pageTitle,
         description: pageDescription,
         url: toAbsoluteUrl(canonicalPath),
@@ -150,7 +153,7 @@ export function CalculatorPage() {
                 title={pageTitle}
                 description={pageDescription}
                 canonicalPath={canonicalPath}
-                jsonLd={[softwareApplicationJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : [])]}
+                jsonLd={[webApplicationJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : [])]}
             />
 
             <div className="mb-6 max-w-2xl mx-auto">
@@ -217,12 +220,16 @@ export function CalculatorPage() {
                 </section>
             )}
 
-            <ShareModal
-                isOpen={isShareModalOpen}
-                onClose={() => setIsShareModalOpen(false)}
-                calculatorName={calculatorDef.name}
-                calculatorId={calculatorDef.id}
-            />
+            {isShareModalOpen && (
+                <Suspense fallback={null}>
+                    <ShareModal
+                        isOpen={isShareModalOpen}
+                        onClose={() => setIsShareModalOpen(false)}
+                        calculatorName={calculatorDef.name}
+                        calculatorId={calculatorDef.id}
+                    />
+                </Suspense>
+            )}
 
             <Component
                 key={`${calculatorDef.id}-${scenario?.id || 'default'}`}

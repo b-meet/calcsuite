@@ -1,17 +1,17 @@
 import { Helmet } from 'react-helmet-async';
 
 interface StructuredDataProps {
-    type: 'SoftwareApplication' | 'FAQPage' | 'Article' | 'BreadcrumbList' | 'HowTo' | 'Organization' | 'ImageObject' | 'VideoObject';
+    type: 'SoftwareApplication' | 'WebApplication' | 'FAQPage' | 'Article' | 'BreadcrumbList' | 'HowTo' | 'Organization' | 'ImageObject' | 'VideoObject';
     data: any;
 }
 
 export default function StructuredData({ type, data }: StructuredDataProps) {
     let jsonLd = {};
 
-    if (type === 'SoftwareApplication') {
+    if (type === 'SoftwareApplication' || type === 'WebApplication') {
         jsonLd = {
             '@context': 'https://schema.org',
-            '@type': 'SoftwareApplication',
+            '@type': type,
             name: data.name,
             description: data.description,
             applicationCategory: data.category, // e.g., 'FinanceApplication', 'HealthApplication'

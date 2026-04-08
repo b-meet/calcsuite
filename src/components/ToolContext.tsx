@@ -1,8 +1,8 @@
-
-import { BlockMath } from 'react-katex';
-import 'katex/dist/katex.min.css';
+import { lazy, Suspense } from 'react';
 import StructuredData from './StructuredData';
 import type { CalculatorDef } from '../calculators/registry';
+
+const FormulaBlock = lazy(() => import('./FormulaBlock'));
 
 interface ToolContextProps {
     calculatorDef: CalculatorDef;
@@ -35,7 +35,15 @@ export function ToolContext({ calculatorDef }: ToolContextProps) {
                 <section>
                     <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">The Formula</h2>
                     <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 md:p-8 border border-slate-200 dark:border-slate-700 shadow-sm overflow-x-auto text-center text-slate-800 dark:text-slate-200">
-                        <BlockMath math={formula} />
+                        <Suspense
+                            fallback={
+                                <code className="text-sm break-words whitespace-pre-wrap">
+                                    {formula}
+                                </code>
+                            }
+                        >
+                            <FormulaBlock formula={formula} />
+                        </Suspense>
                     </div>
                 </section>
             )}
