@@ -246,27 +246,12 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://calcsuite.in/calculator/basic</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/calculator/financial</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
         <loc>https://calcsuite.in/calculator/health</loc>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://calcsuite.in/calculator/india</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://calcsuite.in/calculator/other</loc>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
