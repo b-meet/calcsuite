@@ -1,5 +1,6 @@
 import { Activity, Check, AlertTriangle, ShieldCheck, Microscope } from 'lucide-react';
 import { EXTERNAL_LINKS } from '../../constants/links';
+import { healthBoilerplateNoSnippetProps } from '../../constants/searchSnippet';
 
 const BMICalculatorContent = () => {
     return (
@@ -94,7 +95,7 @@ const BMICalculatorContent = () => {
                                     <span><strong>Abdominal Obesity:</strong> Higher fat accumulation around the waist leads to higher metabolic risks like Diabetes Type 2.</span>
                                 </li>
                             </ul>
-                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-orange-100 dark:border-slate-700 mt-2">
+                            <div className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-orange-100 dark:border-slate-700 mt-2" {...healthBoilerplateNoSnippetProps}>
                                 <p className="text-xs text-slate-500 dark:text-slate-500 italic m-0">
                                     Source: Consensus Statement for Asian Indians, Association of Physicians of India.
                                 </p>
@@ -226,7 +227,7 @@ const BMICalculatorContent = () => {
             </article>
 
             {/* Trust Signals & Citations */}
-            <section className="border-t border-slate-200 dark:border-slate-700 pt-8 mt-12">
+            <section className="border-t border-slate-200 dark:border-slate-700 pt-8 mt-12" {...healthBoilerplateNoSnippetProps}>
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-blue-50 dark:bg-slate-800 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400">

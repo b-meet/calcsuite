@@ -627,7 +627,7 @@ export const calculatorRegistry: CalculatorDef[] = [
             "Metric & Imperial Units",
             "Weight category screening",
             "WHO standard classifications",
-            "Instant health insight"
+            "Healthy weight range output"
         ],
         formula: "\\text{BMI} = \\frac{\\text{Weight in kg}}{(\\text{Height in meters})^2}",
         faqs: [
@@ -755,18 +755,29 @@ export const calculatorRegistry: CalculatorDef[] = [
         component: BMRCalculator,
         longDescription: "Your Basal Metabolic Rate (BMR) is the number of calories your body needs to accomplish its most basic (basal) life-sustaining functions like breathing, circulation, and cell production. Knowing this number is the first step in creating a weight loss or muscle gain plan.",
         features: [
-            "Uses Mifflin-St Jeor Equation (most accurate)",
-            "Supports Harris-Benedict Equation",
-            "Basis for diet planning",
-            "Activity factor integration"
+            "Metric and imperial support",
+            "Uses Mifflin-St Jeor Equation",
+            "Maintenance calorie estimate",
+            "Accessible results tables"
         ],
         content: BMRCalculatorContent,
+        formula: "\\text{BMR}_{male} = 10w + 6.25h - 5a + 5\\\\ \\text{BMR}_{female} = 10w + 6.25h - 5a - 161",
         educationalContent: [
             {
                 title: "BMR vs. RMR",
                 content: "BMR (Basal Metabolic Rate) and RMR (Resting Metabolic Rate) are often used interchangeably, but BMR is measured under stricter conditions. For most casual users, the difference is negligible."
             }
         ],
+        howTo: {
+            name: "How to Calculate BMR",
+            description: "Estimate resting calorie needs in 4 steps.",
+            steps: [
+                { name: "Choose Unit System", text: "Switch between metric or imperial inputs." },
+                { name: "Enter Body Data", text: "Provide sex, age, height, and weight." },
+                { name: "Select Activity", text: "Choose the activity multiplier that best matches your week." },
+                { name: "Review Results", text: "See your BMR and maintenance calories instantly." }
+            ]
+        },
         faqs: [
             {
                 question: "How do I use this calculator effectively?",

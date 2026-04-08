@@ -1,276 +1,413 @@
-import { useState, useEffect } from 'react';
+import { type ComponentType, useMemo, useState } from 'react';
 import { Activity, Scale, Ruler, TrendingUp } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
+import { healthBoilerplateNoSnippetProps } from '../../constants/searchSnippet';
+import {
+    BMI_CATEGORIES,
+    calculateBmi,
+    calculateHealthyWeightRange,
+    feetInchesToCentimeters,
+    getBmiCategory,
+    kilogramsToPounds,
+    poundsToKilograms,
+    type UnitSystem,
+} from '../../utils/healthMetrics';
+
+interface InputFieldProps {
+    label: string;
+    icon: ComponentType<{ className?: string }>;
+    value: string;
+    onChange: (value: string) => void;
+    placeholder: string;
+    suffix?: string;
+    error?: string;
+    className?: string;
+}
+
+function getInputClass(hasError: boolean) {
+    return `block w-full rounded-2xl border bg-slate-50 py-3 pl-10 pr-12 text-slate-900 transition-all hover:bg-white focus:ring-2 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 ${hasError
+        ? 'border-red-300 focus:border-red-500 focus:ring-red-200 dark:border-red-500/70 dark:focus:ring-red-500/20'
+        : 'border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 dark:border-slate-700'}`;
+}
+
+function InputField({
+    label,
+    icon: Icon,
+    value,
+    onChange,
+    placeholder,
+    suffix,
+    error,
+    className,
+}: InputFieldProps) {
+    return (
+        <div className={className}>
+            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">{label}</label>
+            <div className="relative">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                    <Icon className="h-4 w-4 text-slate-400 dark:text-slate-500" />
+                </div>
+                <input
+                    type="number"
+                    min="0"
+                    inputMode="decimal"
+                    value={value}
+                    onChange={(event) => onChange(event.target.value)}
+                    placeholder={placeholder}
+                    className={getInputClass(Boolean(error))}
+                />
+                {suffix && (
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-sm text-slate-500 dark:text-slate-400">
+                        {suffix}
+                    </div>
+                )}
+            </div>
+            {error && <p className="mt-2 text-sm text-red-600 dark:text-red-400">{error}</p>}
+        </div>
+    );
+}
+
+function UnitToggle({ unit, onChange }: { unit: UnitSystem; onChange: (unit: UnitSystem) => void }) {
+    return (
+        <div className="inline-flex rounded-2xl bg-slate-100 p-1 dark:bg-slate-800">
+            <button
+                type="button"
+                onClick={() => onChange('metric')}
+                className={`rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${unit === 'metric'
+                    ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white'
+                    : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'}`}
+            >
+                Metric
+            </button>
+            <button
+                type="button"
+                onClick={() => onChange('imperial')}
+                className={`rounded-xl px-4 py-2 text-sm font-semibold transition-colors ${unit === 'imperial'
+                    ? 'bg-white text-slate-900 shadow-sm dark:bg-slate-700 dark:text-white'
+                    : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'}`}
+            >
+                Imperial
+            </button>
+        </div>
+    );
+}
 
 export default function BMICalculator() {
-    const [unit, setUnit] = useState<'metric' | 'imperial'>('metric');
-    const [weight, setWeight] = useState<string>('70'); // kg
-    const [height, setHeight] = useState<string>('175'); // cm
-    const [bmi, setBmi] = useState(0);
-    const [category, setCategory] = useState('');
-    const [age, setAge] = useState<string>('30');
-    const [gender, setGender] = useState<'male' | 'female'>('male');
-    const [activity, setActivity] = useState<number>(1.2);
-    const [bmr, setBmr] = useState(0);
-    const [tdee, setTdee] = useState(0);
+    const [unit, setUnit] = useState<UnitSystem>('metric');
+    const [metricWeight, setMetricWeight] = useState('70');
+    const [metricHeight, setMetricHeight] = useState('175');
+    const [imperialWeight, setImperialWeight] = useState('154');
+    const [feet, setFeet] = useState('5');
+    const [inches, setInches] = useState('9');
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('bmi');
 
-    useEffect(() => {
-        calculateBMI();
-    }, [weight, height, unit, age, gender, activity]);
+    const validation = useMemo(() => {
+        const errors: Record<string, string> = {};
 
-    const calculateBMI = () => {
-        const w = parseFloat(weight);
-        const h = parseFloat(height);
-
-        if (!w || !h || w <= 0 || h <= 0) {
-            setBmi(0);
-            setCategory('');
-            setBmr(0);
-            setTdee(0);
-            return;
-        }
-
-        let calculatedBmi = 0;
         if (unit === 'metric') {
-            const heightInMeters = h / 100;
-            calculatedBmi = w / (heightInMeters * heightInMeters);
-        } else {
-            calculatedBmi = (w / (h * h)) * 703;
+            const weightKg = Number(metricWeight);
+            const heightCm = Number(metricHeight);
+
+            if (!metricWeight.trim()) {
+                errors.metricWeight = 'Enter weight in kilograms.';
+            } else if (!Number.isFinite(weightKg) || weightKg <= 0) {
+                errors.metricWeight = 'Weight must be greater than 0.';
+            }
+
+            if (!metricHeight.trim()) {
+                errors.metricHeight = 'Enter height in centimeters.';
+            } else if (!Number.isFinite(heightCm) || heightCm <= 0) {
+                errors.metricHeight = 'Height must be greater than 0.';
+            }
+
+            return {
+                errors,
+                values: Object.keys(errors).length === 0 ? { weightKg, heightCm } : null,
+            };
         }
 
-        setBmi(calculatedBmi);
-        determineCategory(calculatedBmi);
+        const weightLbs = Number(imperialWeight);
+        const heightFeet = Number(feet);
+        const heightInches = Number(inches || '0');
 
-        // BMR Calculation (Mifflin-St Jeor)
-        let weightKg = w;
-        let heightCm = h;
-
-        if (unit === 'imperial') {
-            weightKg = w * 0.453592;
-            heightCm = h * 2.54;
+        if (!imperialWeight.trim()) {
+            errors.imperialWeight = 'Enter weight in pounds.';
+        } else if (!Number.isFinite(weightLbs) || weightLbs <= 0) {
+            errors.imperialWeight = 'Weight must be greater than 0.';
         }
 
-        const a = parseFloat(age) || 30; // Default to 30 if invalid
-
-        let calculatedBmr = (10 * weightKg) + (6.25 * heightCm) - (5 * a) + 5;
-        if (gender === 'female') {
-            calculatedBmr = (10 * weightKg) + (6.25 * heightCm) - (5 * a) - 161;
+        if (!feet.trim()) {
+            errors.feet = 'Enter feet.';
+        } else if (!Number.isFinite(heightFeet) || heightFeet < 0) {
+            errors.feet = 'Feet cannot be negative.';
         }
 
-        setBmr(Math.round(calculatedBmr));
-        setTdee(Math.round(calculatedBmr * activity));
-    };
-
-    const determineCategory = (bmiVal: number) => {
-        if (bmiVal === 0) {
-            setCategory('');
-            return;
+        if (!Number.isFinite(heightInches) || heightInches < 0) {
+            errors.inches = 'Inches cannot be negative.';
+        } else if (heightInches >= 12) {
+            errors.inches = 'Use inches from 0 to 11.9.';
         }
-        if (bmiVal < 18.5) setCategory('Underweight');
-        else if (bmiVal < 25) setCategory('Normal weight');
-        else if (bmiVal < 30) setCategory('Overweight');
-        else setCategory('Obese');
-    };
+
+        const heightCm = feetInchesToCentimeters(heightFeet || 0, heightInches || 0);
+        if (Object.keys(errors).length === 0 && heightCm <= 0) {
+            errors.feet = 'Enter a valid height.';
+        }
+
+        return {
+            errors,
+            values: Object.keys(errors).length === 0
+                ? {
+                    weightKg: poundsToKilograms(weightLbs),
+                    heightCm,
+                }
+                : null,
+        };
+    }, [feet, imperialWeight, inches, metricHeight, metricWeight, unit]);
+
+    const result = useMemo(() => {
+        if (!validation.values) {
+            return null;
+        }
+
+        const bmi = calculateBmi(validation.values.weightKg, validation.values.heightCm);
+        if (bmi === null) {
+            return null;
+        }
+
+        const category = getBmiCategory(bmi);
+        const healthyRange = calculateHealthyWeightRange(validation.values.heightCm);
+
+        return {
+            bmi,
+            category,
+            healthyRange,
+            weightKg: validation.values.weightKg,
+            heightCm: validation.values.heightCm,
+        };
+    }, [validation.values]);
 
     const handleSave = () => {
-        if (bmi > 0) {
-            addHistory(
-                { unit, weight, height },
-                bmi.toFixed(1),
-                `${weight}${unit === 'metric' ? 'kg' : 'lb'}, ${height}${unit === 'metric' ? 'cm' : 'in'}`
-            );
+        if (!result || !result.category) {
+            return;
         }
+
+        addHistory(
+            {
+                unit,
+                metricWeight,
+                metricHeight,
+                imperialWeight,
+                feet,
+                inches,
+            },
+            `${result.bmi.toFixed(1)} BMI`,
+            `${result.category.label} at ${result.bmi.toFixed(1)}`
+        );
     };
 
     const handleHistorySelect = (item: any) => {
         setUnit(item.inputs.unit);
-        setWeight(item.inputs.weight);
-        setHeight(item.inputs.height);
+        setMetricWeight(item.inputs.metricWeight);
+        setMetricHeight(item.inputs.metricHeight);
+        setImperialWeight(item.inputs.imperialWeight);
+        setFeet(item.inputs.feet);
+        setInches(item.inputs.inches);
     };
 
-    const getCategoryColor = () => {
-        if (category === 'Normal weight') return 'text-green-600';
-        if (category === 'Overweight') return 'text-yellow-600';
-        if (category === 'Obese') return 'text-red-600';
-        return 'text-blue-600';
-    };
+    const healthyWeightLabel = result
+        ? unit === 'metric'
+            ? `${result.healthyRange.minKg.toFixed(1)} to ${result.healthyRange.maxKg.toFixed(1)} kg`
+            : `${result.healthyRange.minLbs.toFixed(1)} to ${result.healthyRange.maxLbs.toFixed(1)} lb`
+        : 'Enter valid height and weight to see your healthy range.';
+
+    const inputSummary = result
+        ? unit === 'metric'
+            ? `${metricWeight} kg and ${metricHeight} cm`
+            : `${imperialWeight} lb and ${feet} ft ${inches || '0'} in`
+        : 'Not available';
 
     return (
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 space-y-6">
-                <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit mb-6">
-                    <button
-                        onClick={() => setUnit('metric')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${unit === 'metric' ? 'bg-white dark:bg-slate-700 shadow text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
-                    >
-                        Metric (kg/cm)
-                    </button>
-                    <button
-                        onClick={() => setUnit('imperial')}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${unit === 'imperial' ? 'bg-white dark:bg-slate-700 shadow text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'}`}
-                    >
-                        Imperial (lb/in)
-                    </button>
-                </div>
-
-                <div className="space-y-4">
-                    <div className="space-y-2">
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Weight ({unit === 'metric' ? 'kg' : 'lbs'})</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Scale className="h-4 w-4 text-slate-400 dark:text-slate-500" />
-                            </div>
-                            <input
-                                type="number"
-                                value={weight}
-                                onChange={(e) => setWeight(e.target.value)}
-                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="space-y-2">
-                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Height ({unit === 'metric' ? 'cm' : 'in'})</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Ruler className="h-4 w-4 text-slate-400 dark:text-slate-500" />
-                            </div>
-                            <input
-                                type="number"
-                                value={height}
-                                onChange={(e) => setHeight(e.target.value)}
-                                className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center text-center">
-                <div className="mb-4">
-                    <div className={`p-4 rounded-full ${category === 'Normal weight' ? 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400' : 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'} transition-colors duration-500`}>
-                        <Activity size={32} />
-                    </div>
-                </div>
-
-                <h3 className="text-lg font-medium text-slate-500 dark:text-slate-400 mb-1">Your BMI</h3>
-                <div className="text-5xl font-bold text-slate-900 dark:text-white mb-2">
-                    {bmi.toFixed(1)}
-                </div>
-                <div className={`text-xl font-semibold ${getCategoryColor()} transition-colors`}>
-                    {category}
-                </div>
-
-                <p className="mt-6 text-sm text-slate-400 dark:text-slate-500 max-w-xs">
-                    Body Mass Index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
-                </p>
-
-                <button
-                    onClick={handleSave}
-                    className="mt-6 px-8 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 dark:shadow-blue-900/20 flex items-center gap-2"
-                >
-                    <TrendingUp size={18} />
-                    Save to History
-                </button>
-            </div>
-
-            <div className="md:col-span-2">
-                <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-slate-800 dark:to-slate-900 border border-indigo-100 dark:border-slate-700 rounded-3xl p-8 mt-8">
-                    <div className="flex items-center gap-3 mb-6">
-                        <div className="p-3 bg-indigo-500 text-white rounded-xl shadow-lg shadow-indigo-200 dark:shadow-none">
-                            <TrendingUp size={24} />
-                        </div>
+        <div className="mx-auto max-w-5xl space-y-8">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem]">
+                <section className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                    <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                         <div>
-                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Next Steps: Your Daily Calorie Needs</h3>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm">Based on Mifflin-St Jeor Equation</p>
+                            <h2 className="m-0 text-xl font-bold text-slate-900 dark:text-white">BMI Inputs</h2>
+                            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Switch between metric and imperial measurements without leaving the page.</p>
                         </div>
+                        <UnitToggle unit={unit} onChange={setUnit} />
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {/* Inputs */}
-                        <div className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Age</label>
-                                <input
-                                    type="number"
-                                    value={age}
-                                    onChange={(e) => setAge(e.target.value)}
-                                    className="w-full p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500"
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Gender</label>
-                                <div className="flex gap-2 bg-white dark:bg-slate-800 p-1 rounded-xl border border-slate-200 dark:border-slate-700">
-                                    <button
-                                        onClick={() => setGender('male')}
-                                        className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${gender === 'male' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300' : 'text-slate-500 hover:text-indigo-600'}`}
-                                    >
-                                        Male
-                                    </button>
-                                    <button
-                                        onClick={() => setGender('female')}
-                                        className={`flex-1 py-2 rounded-lg text-sm font-medium transition-colors ${gender === 'female' ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300' : 'text-slate-500 hover:text-indigo-600'}`}
-                                    >
-                                        Female
-                                    </button>
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Activity Level</label>
-                                <select
-                                    value={activity}
-                                    onChange={(e) => setActivity(Number(e.target.value))}
-                                    className="w-full p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 text-slate-700 dark:text-slate-300"
-                                >
-                                    <option value={1.2}>Sedentary (Little/no exercise)</option>
-                                    <option value={1.375}>Lightly Active (1-3 days/week)</option>
-                                    <option value={1.55}>Moderately Active (3-5 days/week)</option>
-                                    <option value={1.725}>Very Active (6-7 days/week)</option>
-                                    <option value={1.9}>Super Active (Physical job)</option>
-                                </select>
+                    {unit === 'metric' ? (
+                        <div className="grid gap-5 sm:grid-cols-2">
+                            <InputField
+                                label="Weight"
+                                icon={Scale}
+                                value={metricWeight}
+                                onChange={setMetricWeight}
+                                placeholder="70"
+                                suffix="kg"
+                                error={validation.errors.metricWeight}
+                            />
+                            <InputField
+                                label="Height"
+                                icon={Ruler}
+                                value={metricHeight}
+                                onChange={setMetricHeight}
+                                placeholder="175"
+                                suffix="cm"
+                                error={validation.errors.metricHeight}
+                            />
+                        </div>
+                    ) : (
+                        <div className="grid gap-5 sm:grid-cols-3">
+                            <InputField
+                                className="sm:col-span-3"
+                                label="Weight"
+                                icon={Scale}
+                                value={imperialWeight}
+                                onChange={setImperialWeight}
+                                placeholder="154"
+                                suffix="lb"
+                                error={validation.errors.imperialWeight}
+                            />
+                            <InputField
+                                label="Height"
+                                icon={Ruler}
+                                value={feet}
+                                onChange={setFeet}
+                                placeholder="5"
+                                suffix="ft"
+                                error={validation.errors.feet}
+                            />
+                            <InputField
+                                label="Inches"
+                                icon={Ruler}
+                                value={inches}
+                                onChange={setInches}
+                                placeholder="9"
+                                suffix="in"
+                                error={validation.errors.inches}
+                            />
+                            <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4 text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-400">
+                                Enter feet and inches separately for a cleaner imperial height input on mobile.
                             </div>
                         </div>
+                    )}
+                </section>
 
-                        {/* Results */}
-                        <div className="md:col-span-2 grid sm:grid-cols-2 gap-4">
-                            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                                <p className="text-slate-500 dark:text-slate-400 text-sm font-medium mb-1">BMR (Basal Metabolic Rate)</p>
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-3xl font-bold text-slate-900 dark:text-white">{bmr.toLocaleString()}</span>
-                                    <span className="text-sm text-slate-500">kcal/day</span>
-                                </div>
-                                <p className="text-xs text-slate-400 mt-2">Calories burned at complete rest.</p>
-                            </div>
-                            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl border-l-4 border-indigo-500 shadow-sm relative overflow-hidden">
-                                <div className="absolute top-0 right-0 p-4 opacity-5">
-                                    <Activity size={48} />
-                                </div>
-                                <p className="text-indigo-600 dark:text-indigo-400 text-sm font-bold mb-1 uppercase tracking-wider">TDEE (Maintenance)</p>
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-3xl font-bold text-indigo-700 dark:text-white">{tdee.toLocaleString()}</span>
-                                    <span className="text-sm text-indigo-600 dark:text-indigo-300">kcal/day</span>
-                                </div>
-                                <p className="text-xs text-indigo-600/80 dark:text-indigo-300/60 mt-2">Calories needed to maintain current weight.</p>
-                            </div>
-                            <div className="sm:col-span-2 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl text-center text-sm text-slate-600 dark:text-slate-400">
-                                💡 To lose weight, aim for <strong>{(tdee - 500).toLocaleString()} kcal/day</strong> (0.5kg/week loss).
-                            </div>
-                        </div>
+                <aside aria-live="polite" className="rounded-3xl border border-slate-100 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                    <div className="mb-4 inline-flex rounded-2xl bg-blue-50 p-4 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
+                        <Activity size={28} />
+                    </div>
+                    <p className="mb-1 text-sm font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">BMI Result</p>
+                    <div className="text-5xl font-bold text-slate-900 dark:text-white">
+                        {result ? result.bmi.toFixed(1) : '--'}
+                    </div>
+                    <p className={`mt-2 text-lg font-semibold ${result?.category?.accent ?? 'text-slate-500 dark:text-slate-400'}`}>
+                        {result?.category?.label ?? 'Waiting for valid inputs'}
+                    </p>
+                    <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
+                        Healthy weight range: <span className="font-semibold text-slate-900 dark:text-white">{healthyWeightLabel}</span>
+                    </p>
+                    <p className="mt-4 rounded-2xl bg-slate-50 p-4 text-sm text-slate-600 dark:bg-slate-800 dark:text-slate-400" {...healthBoilerplateNoSnippetProps}>
+                        BMI is a screening tool for adults. It does not directly measure body fat or replace clinical assessment.
+                    </p>
+                    <button
+                        type="button"
+                        onClick={handleSave}
+                        disabled={!result}
+                        className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-5 py-3 font-bold text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                        <TrendingUp size={18} />
+                        Save to History
+                    </button>
+                </aside>
+            </div>
+
+            <section className="grid gap-8 lg:grid-cols-2">
+                <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                    <div className="border-b border-slate-100 px-6 py-5 dark:border-slate-800">
+                        <h3 className="m-0 text-xl font-bold text-slate-900 dark:text-white">BMI Categories</h3>
+                        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Standard adult BMI categories used in the calculator.</p>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full text-sm">
+                            <caption className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-400">BMI category thresholds and descriptions.</caption>
+                            <thead className="bg-slate-50 dark:bg-slate-800/70">
+                                <tr>
+                                    <th scope="col" className="px-6 py-3 text-left font-semibold text-slate-700 dark:text-slate-200">Category</th>
+                                    <th scope="col" className="px-6 py-3 text-left font-semibold text-slate-700 dark:text-slate-200">Range</th>
+                                    <th scope="col" className="px-6 py-3 text-left font-semibold text-slate-700 dark:text-slate-200">Meaning</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                                {BMI_CATEGORIES.map((item) => (
+                                    <tr key={item.label}>
+                                        <th scope="row" className={`px-6 py-4 text-left font-semibold ${item.accent}`}>{item.label}</th>
+                                        <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
+                                            {item.max === null ? `${item.min.toFixed(1)} and above` : `${item.min.toFixed(1)} to ${(item.max - 0.1).toFixed(1)}`}
+                                        </td>
+                                        <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{item.description}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
 
-            <div className="md:col-span-2">
-                <CalculationHistory
-                    history={history}
-                    onSelect={handleHistorySelect}
-                    onClear={clearHistory}
-                    onRemove={removeHistoryItem}
-                />
-            </div>
+                <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                    <div className="border-b border-slate-100 px-6 py-5 dark:border-slate-800">
+                        <h3 className="m-0 text-xl font-bold text-slate-900 dark:text-white">Calculation Summary</h3>
+                        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Accessible summary of the measurements and outputs shown above.</p>
+                    </div>
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full text-sm">
+                            <caption className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-400">BMI input values, healthy weight range, and category.</caption>
+                            <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                                <tr>
+                                    <th scope="row" className="w-48 px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-200">Unit system</th>
+                                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{unit === 'metric' ? 'Metric (kg, cm)' : 'Imperial (lb, ft, in)'}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-200">Measurements</th>
+                                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{inputSummary}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-200">BMI</th>
+                                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{result ? result.bmi.toFixed(1) : 'Waiting for valid inputs'}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-200">Category</th>
+                                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{result?.category?.label ?? 'Waiting for valid inputs'}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-200">Healthy weight range</th>
+                                    <td className="px-6 py-4 text-slate-600 dark:text-slate-300">{healthyWeightLabel}</td>
+                                </tr>
+                                {result && (
+                                    <tr>
+                                        <th scope="row" className="px-6 py-4 text-left font-semibold text-slate-700 dark:text-slate-200">Metric reference</th>
+                                        <td className="px-6 py-4 text-slate-600 dark:text-slate-300">
+                                            {result.weightKg.toFixed(1)} kg at {result.heightCm.toFixed(1)} cm
+                                            {unit === 'imperial' && ` (${kilogramsToPounds(result.weightKg).toFixed(1)} lb)`}
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <CalculationHistory
+                history={history}
+                onSelect={handleHistorySelect}
+                onClear={clearHistory}
+                onRemove={removeHistoryItem}
+            />
         </div>
     );
 }

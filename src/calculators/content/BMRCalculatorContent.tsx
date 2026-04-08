@@ -1,4 +1,5 @@
 import { Flame, Activity, Scale, Target, CheckCircle, Info, Battery } from 'lucide-react';
+import { healthBoilerplateNoSnippetProps } from '../../constants/searchSnippet';
 
 const BMRCalculatorContent = () => {
     return (
@@ -124,7 +125,7 @@ const BMRCalculatorContent = () => {
             </section>
 
             {/* Footer */}
-            <section className="bg-slate-900 rounded-3xl p-8 text-white text-center">
+            <section className="bg-slate-900 rounded-3xl p-8 text-white text-center" {...healthBoilerplateNoSnippetProps}>
                 <h2 className="text-2xl font-bold mb-4 m-0">Built for Simplicity and Accuracy</h2>
                 <p className="text-slate-300 max-w-2xl mx-auto mb-6">
                     CalcSuite’s BMR Calculator is designed to explain metabolic basics clearly and responsibly. It helps users understand how their bodies work without overwhelming them with complexity.
