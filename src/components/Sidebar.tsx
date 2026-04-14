@@ -48,7 +48,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
         <>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="sm:hidden fixed top-4 right-4 z-[60] p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-lg shadow-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                className="sm:hidden fixed top-4 right-4 z-[110] p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-lg shadow-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
                 aria-label="Toggle Menu"
             >
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -57,14 +57,14 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
             {/* Overlay */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-[55] sm:hidden"
+                    className="fixed inset-0 bg-black/50 z-[100] sm:hidden"
                     onClick={() => setIsOpen(false)}
                 />
             )}
 
             <aside
                 className={cn(
-                    "fixed top-0 left-0 z-[55] h-screen bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out sm:translate-x-0 flex flex-col",
+                    "fixed top-0 left-0 z-[100] h-screen bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transition-all duration-300 ease-in-out sm:translate-x-0 flex flex-col",
                     isOpen ? "translate-x-0" : "-translate-x-full",
                     "w-64", // Standard drawer width for mobile
                     effectiveCollapsed ? "sm:w-[72px]" : "sm:w-64"
@@ -73,7 +73,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                 {/* Desktop Toggle Button */}
                 <button
                     onClick={onToggle}
-                    className="hidden sm:flex absolute -right-3 top-20 z-[60] w-6 h-6 items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full shadow-md text-slate-500 hover:text-blue-600 transition-all scale-100 hover:scale-110 active:scale-95"
+                    className="hidden sm:flex absolute -right-3 top-20 z-[110] w-6 h-6 items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full shadow-md text-slate-500 hover:text-blue-600 transition-all scale-100 hover:scale-110 active:scale-95"
                 >
                     {effectiveCollapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
                 </button>

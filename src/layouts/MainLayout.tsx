@@ -23,12 +23,12 @@ export function MainLayout() {
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300">
             <Sidebar isCollapsed={isCollapsed} onToggle={() => setIsCollapsed(!isCollapsed)} />
-            <TickerHub />
             <KofiWidget />
             <div className={cn(
                 "min-h-screen flex flex-col transition-all duration-300 ease-in-out",
                 isCollapsed ? "sm:ml-[72px]" : "sm:ml-64"
             )}>
+                <TickerHub />
 
                 <div className="flex-1 flex flex-col lg:flex-row max-w-[1600px] w-full mx-auto relative">
                     <main className="flex-1 min-w-0 px-2 py-4 sm:px-4 lg:p-8 w-full">

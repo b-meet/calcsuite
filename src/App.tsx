@@ -31,11 +31,24 @@ function ScrollToTop() {
   return null;
 }
 
+function TrailingSlashRedirect() {
+  const location = useLocation();
+  const { pathname, search, hash } = location;
+
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    const cleanPath = pathname.slice(0, -1);
+    return <Navigate to={`${cleanPath}${search}${hash}`} replace />;
+  }
+
+  return null;
+}
+
 function App() {
   usePWAInstall();
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <TrailingSlashRedirect />
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />

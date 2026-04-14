@@ -24,7 +24,18 @@ export function toAbsoluteUrl(path: string) {
         return path;
     }
 
-    const normalizedPath = path.startsWith('/') ? path : `/${path}`;
+    // Strip query params and hashes for canonical URLs
+    let cleanPath = path.split(/[?#]/)[0];
+    
+    // Remove trailing slashes (except for just "/")
+    if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+        cleanPath = cleanPath.slice(0, -1);
+    }
+    
+    // Lowercase for consistency
+    cleanPath = cleanPath.toLowerCase();
+
+    const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
     return `${SITE_URL}${normalizedPath}`;
 }
 
