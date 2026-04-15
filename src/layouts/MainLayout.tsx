@@ -10,12 +10,19 @@ import { AsideAds } from '../components/AsideAds';
 import { ArenaHook } from '../components/ArenaHook';
 import { PWAPrompt } from '../components/PWAPrompt';
 import { PWAUpdatePrompt } from '../components/PWAUpdatePrompt';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { cn } from '../utils/cn';
 
 export function MainLayout() {
     const location = useLocation();
-    const [isCollapsed, setIsCollapsed] = useState(true);
+    const [isCollapsed, setIsCollapsed] = useState(() => {
+        const saved = localStorage.getItem('sidebar-collapsed');
+        return saved !== null ? JSON.parse(saved) : true;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('sidebar-collapsed', JSON.stringify(isCollapsed));
+    }, [isCollapsed]);
 
     const excludedPaths = ['/terms', '/privacy', '/about', '/contact', '/kenken', '/brain-training'];
     const showAds = !excludedPaths.some(path => location.pathname.startsWith(path));

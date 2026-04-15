@@ -288,8 +288,8 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                     </div>
 
                     {favCalculators.length > 0 && (
-                        <div className="mb-6 transition-all duration-300">
-                            <div className="my-4 border-t border-slate-100 dark:border-slate-800 mx-2" />
+                        <div className="mb-4 transition-all duration-300">
+                            <div className="my-3 border-t border-slate-100 dark:border-slate-800 mx-2" />
                             {!effectiveCollapsed && (
                                 <p className="px-3 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
                                     <Star size={12} className="text-amber-400 fill-amber-400" />
@@ -323,8 +323,8 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                 </nav>
 
                 <div className={cn(
-                    "border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-4 transition-all duration-300",
-                    effectiveCollapsed ? "p-3 items-center" : "p-4"
+                    "border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 space-y-3 transition-all duration-300",
+                    effectiveCollapsed ? "p-3 items-center" : "py-3 px-4"
                 )}>
                     <Tooltip content="Feedback" position="right" enabled={effectiveCollapsed}>
                         <a

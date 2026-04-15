@@ -7,8 +7,6 @@ import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
 import { ResourceLinkGrid } from '../components/ResourceLinkGrid';
 import { AdBanner } from '../components/AdBanner';
-import { Brain, Sparkles, ArrowRight, Trophy } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import NotFound from './NotFound';
 
 
@@ -179,62 +177,6 @@ export function Home() {
                         />
                     </div>
                 </div>
-
-                {!searchQuery && !categoryId && (
-                    <div className="mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                        <Link 
-                            to="/brain-training"
-                            className="group relative block overflow-hidden rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl transition-all hover:shadow-blue-500/20 hover:-translate-y-1 active:translate-y-0"
-                        >
-                            {/* Animated Background Gradients */}
-                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 blur-[100px] -mr-48 -mt-48 animate-pulse" />
-                            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-indigo-600/10 blur-[80px] -ml-24 -mb-24" />
-                            
-                            <div className="relative p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-8 z-10">
-                                <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-                                    <div className="relative shrink-0">
-                                        <div className="absolute inset-0 bg-blue-500 blur-2xl opacity-40 animate-pulse" />
-                                        <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 group-hover:rotate-6 transition-transform">
-                                            <Brain className="text-white w-10 h-10 sm:w-12 sm:h-12" />
-                                        </div>
-                                        <div className="absolute -top-2 -right-2 bg-amber-400 text-amber-950 text-[10px] font-black px-2 py-1 rounded-lg shadow-sm transform -rotate-12 border-2 border-slate-900">
-                                            LIVE
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 mb-2">
-                                            <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full text-[10px] font-black text-blue-400 uppercase tracking-widest italic">
-                                                Season 1 • Arena
-                                            </span>
-                                            <div className="flex items-center gap-1.5 text-amber-500">
-                                                <Trophy size={14} />
-                                                <span className="text-xs font-bold uppercase tracking-tighter italic">Daily Challenge</span>
-                                            </div>
-                                        </div>
-                                        <h2 className="text-2xl sm:text-4xl font-black text-white italic tracking-tight mb-2 uppercase group-hover:text-blue-400 transition-colors">
-                                            Daily Brain Arena
-                                        </h2>
-                                        <p className="text-slate-400 text-sm sm:text-base max-w-xl font-medium">
-                                            Sharpen your logic with daily 3×3, 5×5 and 8×8 challenges. Fresh puzzles every <span className="text-white">12:00 AM IST</span>.
-                                        </p>
-                                    </div>
-                                </div>
-                                
-                                <div className="shrink-0 w-full md:w-auto">
-                                    <div className="bg-blue-600 group-hover:bg-blue-500 text-white px-8 py-4 rounded-2xl flex items-center justify-center gap-3 font-black uppercase italic text-sm tracking-widest shadow-xl shadow-blue-600/20 transition-all group-hover:gap-5 group-active:scale-95">
-                                        Start Training
-                                        <ArrowRight size={18} />
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            {/* Decorative Sparkles */}
-                            <Sparkles className="absolute top-4 right-8 text-blue-500/30 w-8 h-8 animate-bounce delay-700" />
-                            <Sparkles className="absolute bottom-4 left-1/2 text-indigo-500/20 w-6 h-6 animate-pulse" />
-                        </Link>
-                    </div>
-                )}
 
                 {filteredCalculators.length > 0 ? (
                     <div className="grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-6">
