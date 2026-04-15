@@ -82,7 +82,7 @@ const DateCalculatorContent = () => {
             <div className="text-center space-y-4 pt-4 border-b border-slate-100 dark:border-slate-800 pb-12">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">Fast. Free. Reliable.</h2>
                 <p className="text-slate-600 dark:text-slate-400">
-                    No downloads. No ads blocking your work. Just enter your dates and get instant, precise results.
+                    No downloads. Just enter your dates and get instant, precise results.
                 </p>
                 <p className="font-medium text-indigo-600 dark:text-indigo-400">
                     Use the Date Calculator whenever time matters and accuracy is non-negotiable.

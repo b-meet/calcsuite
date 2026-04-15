@@ -603,7 +603,7 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'bmi',
-        name: 'BMI Calculator Online - Private & WHO Standard (No Ads)',
+        name: 'BMI Calculator Online - Private & WHO Standard',
         description: 'Accurately calculate your Body Mass Index (BMI) using WHO standards. 100% private and health tool.',
         category: 'health',
         icon: Activity,
@@ -705,7 +705,7 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'body-fat',
-        name: 'Body Fat Calculator - Private Navy Method (No Ads)',
+        name: 'Body Fat Calculator - Private Navy Method',
         description: 'Estimate body fat percentage accurately. Privacy-first design — your health metrics stay strictly on your device.',
         category: 'health',
         icon: Ruler,
@@ -796,7 +796,7 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'ideal-weight',
-        name: 'Ideal Weight Calculator - Private Medical Range (No Ads)',
+        name: 'Ideal Weight Calculator - Private Medical Range',
         description: 'Find your healthy weight range using medical formulas. 100% Private and Ad-free experience for every user.',
         category: 'health',
         icon: Scale,
@@ -1287,7 +1287,7 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-rd',
-        name: 'RD Calculator India (2026) - Plan Savings (No Ads)',
+        name: 'RD Calculator India (2026) - Plan Savings',
         description: 'Calculate RD maturity with quarterly compounding. Fast, private, and updated for latest 2026 banking norms.',
         category: 'india',
         icon: TrendingUp,
@@ -1574,7 +1574,7 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'discount',
-        name: 'Discount Calculator - Secure Shopping Savings (No Ads)',
+        name: 'Discount Calculator - Secure Shopping Savings',
         description: 'Calculate final price after discounts and taxes. Fast, private, and 100% with no sign-ups.',
         category: 'math',
         icon: Percent,

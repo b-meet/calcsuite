@@ -111,7 +111,7 @@ export const alternativesData: Record<string, CompetitorData> = {
             </>
         ),
         comparison: {
-            calcSuite: { speed: 'Blazing Fast', ads: 'No Brokerage Ads', mobile: 'Flawless', offline: 'Yes', slabs: 'Advanced Features (Step-Up)' },
+            calcSuite: { speed: 'Blazing Fast', ads: 'Clean and minimal', mobile: 'Flawless', offline: 'Yes', slabs: 'Advanced Features (Step-Up)' },
             competitor: { speed: 'Fast', ads: 'Promotes Own Funds', mobile: 'Good', offline: 'No', slabs: 'Basic Metrics' }
         },
         cta: { text: 'Open the Advanced SIP Calculator', link: '/calculator/sip' }
@@ -135,7 +135,7 @@ export const alternativesData: Record<string, CompetitorData> = {
                     Omni Calculator pages are extremely heavy. They are loaded with dense scripts, elaborate custom graphics, and, heavily, video and display advertisements. For a user on an older mobile device or a spotty 4G connection, waiting for an Omni page to fully render can be frustrating. The UI, while unique, can sometimes feel overwhelming when all you need is a straightforward financial or mathematical answer.
                 </p>
                 <p>
-                    <strong>The CalcSuite Solution:</strong> If you value speed and minimalism, CalcSuite is your optimal alternative. We focus exclusively on the highest-impact financial, health, and mathematical calculators. By keeping our scope tight, we engineered an app that loads in a fraction of a second. We utilize a sleek, unified, and highly accessible UI (with a beautiful dark mode). For users who want a single-purpose, blazing-fast tool without the noise, CalcSuite delivers. 
+                    <strong>The CalcSuite Solution:</strong> If you value speed and minimalism, CalcSuite is your optimal alternative. We focus exclusively on the highest-impact financial, health, and mathematical calculators. By keeping our scope tight, we engineered an app that loads in a fraction of a second. We utilize a sleek, unified, and highly accessible UI (with a beautiful dark mode). For users who want a single-purpose, blazing-fast tool without the noise, CalcSuite delivers.
                 </p>
             </>
         ),
@@ -192,8 +192,8 @@ export const alternativesData: Record<string, CompetitorData> = {
             </>
         ),
         comparison: {
-            calcSuite: { speed: '0.4s (Instant)', ads: '100% Ad-Free Core', mobile: 'Native-App Feel', offline: 'Yes (PWA)', slabs: 'Modern Math Engines' },
-            competitor: { speed: 'Average', ads: 'Standard Display Ads', mobile: 'Desktop-First', offline: 'No', slabs: 'Reliable but old UI' }
+            calcSuite: { speed: '0.4s (Instant)', ads: 'Clean and minimal', mobile: 'Native-App Feel', offline: 'Yes (PWA)', slabs: 'Modern Math Engines' },
+            competitor: { speed: 'Average', ads: 'Crowded with Ads', mobile: 'Desktop-First', offline: 'No', slabs: 'Reliable but old UI' }
         },
         cta: { text: 'Experience the Modern App', link: '/' }
     },
@@ -236,7 +236,7 @@ export const alternativesData: Record<string, CompetitorData> = {
                     <strong>But sometimes, you just want to calculate without creating an account.</strong>
                 </p>
                 <p>
-                    Quicko\'s calculators are essentially entry points into their tax filing ecosystem. While their UI is great, the user is constantly nudged to log in, save their profile, or start filing. 
+                    Quicko\'s calculators are essentially entry points into their tax filing ecosystem. While their UI is great, the user is constantly nudged to log in, save their profile, or start filing.
                 </p>
                 <p>
                     <strong>The CalcSuite Solution:</strong> We provide that same high-quality UI, but with absolute anonymity. We don\'t do tax filing, so we don\'t need your email or phone number. Our 2026 Income Tax calculator gives you instant, comprehensive breakdowns without a single signup prompt.
@@ -285,7 +285,7 @@ export const alternativesData: Record<string, CompetitorData> = {
         reviewBody: (
             <>
                 <p>
-                    Paisabazaar is an aggregator giant. If you use their EMI or Loan calculators, you are immediately entering a marketplace designed to sell you credit cards, personal loans, and insurance. 
+                    Paisabazaar is an aggregator giant. If you use their EMI or Loan calculators, you are immediately entering a marketplace designed to sell you credit cards, personal loans, and insurance.
                 </p>
                 <p>
                     <strong>Their calculators are bait for aggressive cross-selling.</strong> You are often forced to enter your phone number to see full results, leading to endless promotional SMS messages.

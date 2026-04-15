@@ -101,7 +101,7 @@ const UnitConverterContent = () => {
                         <CheckCircle className="w-4 h-4" /> Clean interface with zero distractions
                     </li>
                     <li className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300 text-sm">
-                        <CheckCircle className="w-4 h-4" /> No sign-up, no ads interruption
+                        <CheckCircle className="w-4 h-4" /> No sign-up
                     </li>
                     <li className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300 text-sm">
                         <CheckCircle className="w-4 h-4" /> Works perfectly on mobile and desktop
