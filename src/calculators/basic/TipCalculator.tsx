@@ -10,7 +10,7 @@ interface TipHistoryItem {
     inputs: {
         bill: string;
         currency?: CurrencyCode;
-        people: number;
+        people: string | number;
         mode: 'amount' | 'percent';
         tipPercent: number;
         tipFixedAmount: string;
@@ -36,7 +36,7 @@ export default function TipCalculator() {
     const { isWidget } = useWidget();
     const [bill, setBill] = useState('');
     const [currency, setCurrency] = useState<CurrencyCode>('INR');
-    const [people, setPeople] = useState(1);
+    const [people, setPeople] = useState('1');
     const [mode, setMode] = useState<'amount' | 'percent'>('amount');
     const [tipPercent, setTipPercent] = useState(10);
     const [tipFixedAmount, setTipFixedAmount] = useState('');
@@ -45,6 +45,7 @@ export default function TipCalculator() {
 
     const billNum = Number(bill) || 0;
     const fixedNum = Number(tipFixedAmount) || 0;
+    const peopleNum = Number(people) || 0;
     const currencyDetails = currencyConfig[currency];
 
     let finalTipAmount = 0;
@@ -54,11 +55,11 @@ export default function TipCalculator() {
     if (mode === 'amount') {
         finalTipAmount = fixedNum;
         finalTotal = billNum + finalTipAmount;
-        finalPerPerson = people > 0 ? finalTotal / people : 0;
+        finalPerPerson = peopleNum > 0 ? finalTotal / peopleNum : 0;
     } else {
         finalTipAmount = billNum * (tipPercent / 100);
         finalTotal = billNum + finalTipAmount;
-        finalPerPerson = people > 0 ? finalTotal / people : 0;
+        finalPerPerson = peopleNum > 0 ? finalTotal / peopleNum : 0;
     }
 
     const handleSave = () => {
@@ -73,7 +74,7 @@ export default function TipCalculator() {
         const inputs = item.inputs as TipHistoryItem['inputs'];
         setBill(inputs.bill);
         setCurrency(inputs.currency || 'INR');
-        setPeople(inputs.people);
+        setPeople(String(inputs.people));
         setMode(inputs.mode);
         setTipPercent(inputs.tipPercent);
         setTipFixedAmount(inputs.tipFixedAmount);
@@ -197,8 +198,9 @@ export default function TipCalculator() {
                                 type="number"
                                 min="1"
                                 value={people}
-                                onChange={(e) => setPeople(Math.max(1, Number(e.target.value)))}
+                                onChange={(e) => setPeople(e.target.value)}
                                 className="w-full pl-10 pr-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                                placeholder="1"
                             />
                         </div>
                     </div>

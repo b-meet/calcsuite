@@ -60,6 +60,8 @@ export function AdBanner() {
     return (
       <a 
         href={showcase.link}
+        target="_blank"
+        rel="noopener noreferrer"
         onClick={handleBannerClick}
         className="group relative flex flex-col md:flex-row items-center justify-between w-full my-8 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 max-h-[250px] transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 cursor-pointer"
       >
