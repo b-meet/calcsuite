@@ -179,7 +179,7 @@ export function Home() {
                 </div>
 
                 {filteredCalculators.length > 0 ? (
-                    <div className="grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-6">
+                    <div className="grid grid-cols-[repeat(auto-fill,minmax(325px,1fr))] gap-4">
                         {filteredCalculators.map((calc, index) => (
                             <div key={calc.id} className="contents">
                                 <CalculatorCard
