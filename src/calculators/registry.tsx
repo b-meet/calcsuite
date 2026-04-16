@@ -1191,53 +1191,65 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'tip',
-        name: 'Tip Calculator India - Split Bills & Tipping Guide',
-        description: 'Calculate tip in INR or other currencies, split restaurant bills, and check common tipping percentages in India for cafes, delivery, and dining.',
+        name: 'Tip Calculator - Online Bill Split & Global Gratuity Guide',
+        description: 'Instantly calculate tips, split restaurant bills fairly, and explore global tipping etiquette. Advanced options for rounding, tax-deduction, and dynamic tip tables.',
         category: 'math',
         icon: DollarSign,
         component: TipCalculator,
         content: TipCalculatorContent,
-        longDescription: "This Tip Calculator India helps you calculate gratuity, compare common tip percentages, and split the total bill evenly between people. It is useful for restaurant dining, cafes, food delivery, salon visits, hotel staff tipping, and any situation where you want a quick rupee estimate without mental math.",
+        longDescription: "Master the art of tipping with our premium gratuity tool. Whether you're dining in New York, London, or Mumbai, this calculator helps you handle complex bill splits, pre-tax tipping logic, and various rounding preferences. It also includes an up-to-date global guide on tipping customs to help you travel with confidence.",
         features: [
-            "Split bills evenly",
-            "INR-friendly tip calculations",
-            "Fixed or % tip options",
-            "Instant total per person"
+            "Global tipping etiquette guide",
+            "Advanced pre-tax tipping logic",
+            "Multiple rounding options (None, Tip, Total)",
+            "Dynamic 10-25% comparison table",
+            "Fair bill splitting for any group size"
         ],
         keywords: [
-            'tip calculator india',
-            'bill split calculator india',
-            'restaurant tip calculator',
-            'tipping percentage india',
-            'how much tip in india',
-            'split bill calculator'
+            'tip calculator',
+            'gratuity calculator',
+            'bill split calculator',
+            'restaurant tip guide',
+            'tip before tax calculator',
+            'tipping percentage 2026',
+            'how much to tip US UK Canada',
+            'split bill evenly',
+            'waiter tip calculator'
         ],
         faqs: [
             {
-                question: "Can I split the bill between multiple people?",
-                answer: "Yes. Enter the number of people and the calculator divides the total fairly."
+                question: "Should I tip on the pre-tax or post-tax amount?",
+                answer: "Industry standard in most countries like the US is to tip based on the pre-tax subtotal. Our calculator includes a specialized toggle for this."
             },
             {
-                question: "Does it support percentage and fixed tips?",
-                answer: "Yes. You can choose either method based on preference."
+                question: "Can I round my bill to the nearest whole number?",
+                answer: "Yes. You can use the 'Round Up Total' option in the advanced settings to ensure your final payment is a whole number."
             },
             {
-                question: "What is a common tip percentage in India?",
-                answer: "Many diners leave around 5% to 10% for good service, but tipping is voluntary and many bills already include a service charge."
+                question: "What is a standard tip in the United States?",
+                answer: "In the US, 15% to 20% is considered standard for sit-down service, while 10% is common for casual or buffet dining."
             },
             {
                 question: "Is service charge the same as a tip?",
-                answer: "No. A service charge is a separate line item on the bill, while a tip is a voluntary amount you choose to leave."
+                answer: "No. A service charge is a required fee added by the restaurant, whereas a tip is a voluntary gratuity. If a service charge is included, an extra tip is usually not required."
+            },
+            {
+                question: "What should I tip for Uber and Lyft?",
+                answer: "A 10-15% tip is standard for rideshare drivers. 100% of the tip goes directly to the driver, making it a vital part of their income."
+            },
+            {
+                question: "How much should I tip at a Buffet?",
+                answer: "A 10% tip is standard at buffets, primarily for the staff who clear your plates and refill drinks."
             }
         ],
         howTo: {
-            name: "How This Tip Calculator Works",
-            description: "Calculate accurate tips in seconds.",
+            name: "How to Use This Advanced Tip Calculator",
+            description: "Calculate accurate tips and splits in seconds.",
             steps: [
-                { name: "Enter Bill", text: "Input the total bill amount." },
-                { name: "Choose Tip", text: "Select a fixed amount or percentage." },
-                { name: "Split", text: "Enter number of people sharing the bill." },
-                { name: "View Result", text: "See the tip and total per person instantly." }
+                { name: "Enter Subtotal", text: "Input your bill amount before tax." },
+                { name: "Select Tip", text: "Choose a percentage or enter a custom amount." },
+                { name: "Advanced Options", text: "Add tax or toggle pre-tax tipping if needed." },
+                { name: "Split & Save", text: "Enter group size and save results for later." }
             ]
         }
     },
