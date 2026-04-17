@@ -36,6 +36,33 @@ export function CalculatorPage() {
 
     const scenario = calculatorDef?.scenarios?.find(s => s.id === scenarioId);
 
+    useEffect(() => {
+        if (!calculatorDef || (scenarioId && !scenario)) {
+            return;
+        }
+
+        if (calculatorDef.id === 'india-salary' && scenario && location.pathname.startsWith('/calculator/india-salary/')) {
+            return;
+        }
+
+        let frameOne = 0;
+        let frameTwo = 0;
+
+        frameOne = window.requestAnimationFrame(() => {
+            frameTwo = window.requestAnimationFrame(() => {
+                calculatorViewportRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                });
+            });
+        });
+
+        return () => {
+            window.cancelAnimationFrame(frameOne);
+            window.cancelAnimationFrame(frameTwo);
+        };
+    }, [calculatorDef, location.pathname, scenario, scenarioId]);
+
     if (!calculatorDef) {
         return <NotFound />;
     }
@@ -167,25 +194,6 @@ export function CalculatorPage() {
         setClickCount(0);
         setShowLimitWarning(false);
     };
-
-    useEffect(() => {
-        let frameOne = 0;
-        let frameTwo = 0;
-
-        frameOne = window.requestAnimationFrame(() => {
-            frameTwo = window.requestAnimationFrame(() => {
-                calculatorViewportRef.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                });
-            });
-        });
-
-        return () => {
-            window.cancelAnimationFrame(frameOne);
-            window.cancelAnimationFrame(frameTwo);
-        };
-    }, [calculatorDef.id, scenario?.id]);
 
     return (
         <div className="max-w-4xl mx-auto">
