@@ -5,28 +5,8 @@ const IndiaTaxCalculatorContent = () => {
     return (
         <div className="space-y-12">
             <Helmet>
-                <title>Income Tax Calculator India (2026 Tax Act) - Live FY 2026-27 Rates</title>
-                <meta name="description" content="Calculate Income Tax using Live FY 2026-27 Rates. Compare Old vs New Tax Regime to find maximum tax savings under the 2026 Tax Act. 100% accurate & free." />
                 <script type="application/ld+json">
                     {JSON.stringify([
-                        {
-                            "@context": "https://schema.org",
-                            "@type": "SoftwareApplication",
-                            "name": "India Income Tax Calculator (2026 Tax Act)",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "FinanceApplication",
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.9",
-                                "ratingCount": "2150"
-                            },
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "INR"
-                            },
-                            "featureList": "Calculate Income Tax, Compare Old vs New Tax Regime, Live FY 2026-27 Rates, Surcharge & Health Cess Calculation, Standard Deduction Support"
-                        },
                         {
                             "@context": "https://schema.org",
                             "@type": "FAQPage",

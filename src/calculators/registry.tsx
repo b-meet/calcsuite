@@ -123,8 +123,8 @@ export interface CalculatorDef {
 export const calculatorRegistry: CalculatorDef[] = [
     {
         id: 'basic-math',
-        name: 'Basic Calculator Online - Clean & Private',
-        description: 'Instantly calculate basic math with our clean, interface. Fast, secure, and 100% private — no data leaves your browser.',
+        name: 'Basic Calculator - Free Online Calculator for Everyday Math',
+        description: 'Use a simple online calculator for quick addition, subtraction, multiplication, and division with instant results on any device.',
         category: 'math',
         icon: Calculator,
         component: BasicCalculator,
@@ -167,8 +167,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'scientific',
-        name: 'Scientific Calculator Online - Pro Math (Private & Secure)',
-        description: 'Accurately solve trigonometry, logs, and advanced math. Clean & Private — perfect for students and professionals.',
+        name: 'Scientific Calculator - Free Online Calculator for Math and Trig',
+        description: 'Solve trigonometry, logarithms, exponents, and advanced equations with a scientific calculator built for fast, accurate results.',
         category: 'math',
         icon: Calculator,
         component: ScientificCalculator,
@@ -211,8 +211,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'triangle',
-        name: 'Triangle Calculator - Solve Area & Sides (100% Private)',
-        description: 'Instantly calculate area, perimeter, and sides for all triangle types. Fast, accurate, and for every user.',
+        name: 'Triangle Calculator - Find Sides, Angles, Area and Perimeter',
+        description: 'Calculate triangle sides, angles, area, and perimeter for right, isosceles, equilateral, and scalene triangles in one place.',
         category: 'math',
         icon: Triangle,
         component: TriangleCalculator,
@@ -247,8 +247,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'fraction',
-        name: 'Fraction Calculator Online - Fast, & Private',
-        description: 'Simplify and solve fractions and mixed numbers instantly. Clean, distraction-free interface with no data storage.',
+        name: 'Fraction Calculator - Add, Subtract, Multiply and Divide Fractions',
+        description: 'Work out fraction problems online, simplify answers, and calculate mixed numbers quickly with step-friendly fraction tools.',
         category: 'math',
         icon: Divide,
         component: FractionCalculator,
@@ -291,8 +291,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'percentage',
-        name: 'Percentage Calculator Online - 1-Click Results (Clean)',
-        description: 'Instantly calculate percentage changes and discounts. Fast, private, and 100% online tool for everyday math.',
+        name: 'Percentage Calculator - Find Percentages, Increases and Decreases',
+        description: 'Calculate percentages, percentage change, and percentage difference fast for marks, discounts, tips, finance, and everyday math.',
         category: 'math',
         icon: Percent,
         component: PercentageCalculator,
@@ -342,8 +342,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'mortgage',
-        name: 'Mortgage Calculator (US) - 100% Private (No Sign-up)',
-        description: 'Accurately estimate monthly payments, including PITI. 100% private — your financial data never leaves your device.',
+        name: 'Mortgage Calculator - Estimate Monthly Home Loan Payments',
+        description: 'Estimate mortgage payments, interest, taxes, insurance, and amortization to compare home loan costs before you buy.',
         category: 'financial',
         icon: DollarSign,
         component: MortgageCalculator,
@@ -387,8 +387,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'loan',
-        name: 'Loan Calculator Online - Plan Repayment (Private & Secure)',
-        description: 'Instantly calculate monthly payments and interest costs. 100% secure and private with no annoying ads or trackers.',
+        name: 'Loan Calculator - Calculate Monthly Payment, Interest and Total Cost',
+        description: 'See monthly loan payments, total interest, and total repayment for personal, student, or other loans with a quick online calculator.',
         category: 'financial',
         icon: DollarSign,
         component: LoanCalculator,
@@ -430,8 +430,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'auto-loan',
-        name: 'Auto Loan Calculator - Estimate Car Payments (100% Private)',
-        description: 'Accurately calculate car payments with trade-ins and tax. Private, secure, and experience for buyers.',
+        name: 'Auto Loan Calculator - Estimate Car Payment, Interest and Taxes',
+        description: 'Calculate your monthly car payment, total interest, sales tax, and trade-in impact before financing a new or used vehicle.',
         category: 'financial',
         icon: Car,
         component: AutoLoanCalculator,
@@ -470,8 +470,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'investment',
-        name: 'Investment Calculator - Visualize Wealth (Private & Secure)',
-        description: 'Project wealth growth with compound interest. 100% private — your financial plans are secure and clean.',
+        name: 'Investment Calculator - Estimate Future Value and Investment Growth',
+        description: 'Project investment growth with contributions, return rate, and compounding to see future value and long-term wealth potential.',
         category: 'financial',
         icon: TrendingUp,
         component: InvestmentCalculator,
@@ -514,8 +514,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'retirement',
-        name: 'Retirement Calculator - Secure Future Planning (100% Private)',
-        description: 'Accurately estimate savings goals for a secure future. Private and — no personal financial data stored.',
+        name: 'Retirement Calculator - Estimate How Much You Need to Retire',
+        description: 'Plan retirement savings, future income needs, and monthly contributions with a calculator built for long-term retirement goals.',
         category: 'financial',
         icon: Sunset,
         component: RetirementCalculator,
@@ -558,8 +558,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'salary',
-        name: 'Salary Calculator - Convert Income Instantly (Clean)',
-        description: 'Instantly convert salary across all timeframes. Fast, accurate, and 100% private with a clean interface.',
+        name: 'Salary Calculator - Convert Annual, Monthly, Weekly and Hourly Pay',
+        description: 'Convert salary across annual, monthly, biweekly, weekly, daily, and hourly pay so you can compare offers and budget faster.',
         category: 'financial',
         icon: Briefcase,
         component: SalaryCalculator,
@@ -603,8 +603,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'bmi',
-        name: 'BMI Calculator Online - Private & WHO Standard',
-        description: 'Accurately calculate your Body Mass Index (BMI) using WHO standards. 100% private and health tool.',
+        name: 'BMI Calculator - Check Your Body Mass Index Online',
+        description: 'Calculate BMI from height and weight in seconds and see where you fall in common body mass index ranges.',
         category: 'health',
         icon: Activity,
         component: BMICalculator,
@@ -661,8 +661,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'calorie',
-        name: 'Calorie Calculator - Fast, Private & TDEE Accurate',
-        description: 'Find your daily calorie needs for weight goals. Fast, accurate, and 100% private — no data tracking.',
+        name: 'Calorie Calculator - Estimate Daily Calories and TDEE',
+        description: 'Find your daily calorie needs for maintenance, weight loss, or muscle gain based on activity level, age, height, and weight.',
         category: 'health',
         icon: Flame,
         component: CalorieCalculator,
@@ -705,8 +705,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'body-fat',
-        name: 'Body Fat Calculator - Private Navy Method',
-        description: 'Estimate body fat percentage accurately. Privacy-first design — your health metrics stay strictly on your device.',
+        name: 'Body Fat Calculator - Estimate Body Fat Percentage Online',
+        description: 'Estimate body fat percentage using proven body measurement formulas and get a quick read on body composition goals.',
         category: 'health',
         icon: Ruler,
         component: BodyFatCalculator,
@@ -748,8 +748,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'bmr',
-        name: 'BMR Calculator - Private Metabolic Rate (Clean)',
-        description: 'Find your Basal Metabolic Rate (BMR) instantly. 100% private, clean, and optimized for your fitness journey.',
+        name: 'BMR Calculator - Estimate Basal Metabolic Rate Online',
+        description: 'Calculate basal metabolic rate to estimate how many calories your body needs at rest before activity or exercise.',
         category: 'health',
         icon: Flame,
         component: BMRCalculator,
@@ -796,8 +796,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'ideal-weight',
-        name: 'Ideal Weight Calculator - Private Medical Range',
-        description: 'Find your healthy weight range using medical formulas. 100% Private and Ad-free experience for every user.',
+        name: 'Ideal Weight Calculator - Find a Healthy Weight Range',
+        description: 'Estimate a healthy weight range using popular medical formulas and compare results based on your height and sex.',
         category: 'health',
         icon: Scale,
         component: IdealWeightCalculator,
@@ -839,8 +839,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'pregnancy',
-        name: 'Pregnancy Calculator - Private Due Date & Trimester Tracker',
-        description: 'Instantly calculate your estimated due date. Privacy-first design — your personal timeline stays secure.',
+        name: 'Pregnancy Calculator - Estimate Due Date and Pregnancy Timeline',
+        description: 'Calculate your due date, weeks of pregnancy, and trimester timeline from your last period or conception date.',
         category: 'health',
         icon: Baby,
         component: PregnancyCalculator,
@@ -882,8 +882,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'age',
-        name: 'Age Calculator Online - Fast & Private (1-Click Results)',
-        description: 'Calculate your exact age and next birthday instantly. 100% Ad-free and Private online tool for everyone.',
+        name: 'Age Calculator - Calculate Exact Age Between Two Dates',
+        description: 'Find exact age in years, months, and days from any birth date and calculate time between two dates instantly.',
         category: 'other',
         icon: Calendar,
         component: AgeCalculator,
@@ -926,8 +926,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'gpa',
-        name: 'GPA Calculator India - SGPA & CGPA Calculator Online',
-        description: 'Calculate GPA, SGPA, and CGPA online with a mobile-friendly weighted grade calculator for Indian students and credit-based semesters.',
+        name: 'GPA Calculator - Calculate GPA, SGPA and CGPA Online',
+        description: 'Calculate GPA, SGPA, and CGPA quickly with a flexible grade and credit calculator for school, college, and university use.',
         category: 'other',
         icon: GraduationCap,
         component: GPACalculator,
@@ -978,8 +978,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'password',
-        name: 'Password Generator - 100% Private & Locally Secure',
-        description: 'Generate strong, random passwords instantly. 100% secure as all generation happens locally in your browser.',
+        name: 'Password Generator - Create Strong Random Passwords Online',
+        description: 'Generate strong random passwords with customizable length and character rules to improve account security in seconds.',
         category: 'other',
         icon: Lock,
         component: PasswordGenerator,
@@ -1015,8 +1015,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'converter',
-        name: 'Unit Converter Online - Fast, & Universal',
-        description: 'Instantly convert between Metric and Imperial units. Fast, private, and 100% with zero distractions.',
+        name: 'Unit Converter - Convert Length, Weight, Temperature and More',
+        description: 'Convert common units for length, weight, volume, temperature, speed, and area quickly with one easy online converter.',
         category: 'other',
         icon: ArrowLeftRight,
         component: UnitConverter,
@@ -1050,8 +1050,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'random',
-        name: 'Random Number Generator - 100% Private & Unbiased',
-        description: 'Generate truly random integers instantly for games and lotteries. Fast, biased-free, and completely clean.',
+        name: 'Random Number Generator - Generate Random Numbers Online',
+        description: 'Generate random numbers in any range for games, raffles, classroom use, testing, and everyday picks.',
         category: 'other',
         icon: Dices,
         component: RandomNumberGenerator,
@@ -1085,8 +1085,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'ovulation',
-        name: 'Ovulation Calculator - Private Fertility Tracking',
-        description: 'Estimate your most fertile days and ovulation window. 100% Private — your fertility data is never shared.',
+        name: 'Ovulation Calculator - Estimate Fertile Days and Ovulation',
+        description: 'Predict your fertile window and likely ovulation date based on cycle timing to help with pregnancy planning.',
         category: 'health',
         icon: Heart,
         content: OvulationCalculatorContent,
@@ -1111,8 +1111,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'date-diff',
-        name: 'Date Calculator - Fast & Private duration tool',
-        description: 'Instantly calculate the exact time between two dates. Fast, private, and 100% experience.',
+        name: 'Date Calculator - Calculate Days Between Dates Online',
+        description: 'Count days between dates, add or subtract days, and calculate date differences for planning, deadlines, and schedules.',
         category: 'other',
         icon: Calendar,
         component: DateCalculator,
@@ -1146,8 +1146,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'inflation',
-        name: 'Inflation Calculator - Visualize Purchasing Power (Private & Secure)',
-        description: 'Estimate how inflation impacts your money. 100% private and — your financial planning is secure.',
+        name: 'Inflation Calculator - Measure Buying Power Over Time',
+        description: 'See how inflation changes the value of money over time and compare past amounts with today’s purchasing power.',
         category: 'financial',
         icon: TrendingUp,
         component: InflationCalculator,
@@ -1191,8 +1191,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'tip',
-        name: 'Tip Calculator - Online Bill Split & Global Gratuity Guide',
-        description: 'Instantly calculate tips, split restaurant bills fairly, and explore global tipping etiquette. Advanced options for rounding, tax-deduction, and dynamic tip tables.',
+        name: 'Tip Calculator - Calculate Tip, Total Bill and Split Amount',
+        description: 'Work out tip amount, total bill, and per-person split fast for restaurants, travel, delivery, and group dining.',
         category: 'math',
         icon: DollarSign,
         component: TipCalculator,
@@ -1255,8 +1255,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-fd',
-        name: 'FD Calculator India (2026) - Clean, Private & Accurate',
-        description: 'Instantly calculate maturity for Fixed Deposits (FD). Secure, clean, and updated for FY 2026-27 rules.',
+        name: 'FD Calculator India - Calculate Fixed Deposit Maturity Online',
+        description: 'Calculate FD maturity amount, interest earned, and total returns for fixed deposits with tenure, rate, and compounding.',
         category: 'india',
         icon: Landmark,
         component: FDCalculator,
@@ -1299,8 +1299,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-rd',
-        name: 'RD Calculator India (2026) - Plan Savings',
-        description: 'Calculate RD maturity with quarterly compounding. Fast, private, and updated for latest 2026 banking norms.',
+        name: 'RD Calculator India - Calculate Recurring Deposit Maturity',
+        description: 'Estimate RD maturity value, interest earned, and total savings for monthly recurring deposits with quarterly compounding.',
         category: 'india',
         icon: TrendingUp,
         component: RDCalculator,
@@ -1339,8 +1339,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-ppf',
-        name: 'PPF Calculator India (2026) - Secure Tax-Free Wealth',
-        description: 'Plan 15-year PPF returns with the latest tax benefits. 100% private and wealth planning tool.',
+        name: 'PPF Calculator India - Calculate PPF Returns and Maturity',
+        description: 'Calculate PPF maturity amount, yearly contributions, and long-term tax-free growth under the Public Provident Fund.',
         category: 'india',
         icon: Briefcase,
         component: PPFCalculator,
@@ -1378,8 +1378,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-home-loan-eligibility',
-        name: 'Home Loan Eligibility India (2026) - Private Limit Check',
-        description: 'Check your maximum home loan eligibility instantly. 100% private — your income details stay on your device.',
+        name: 'Home Loan Eligibility Calculator India - Check Loan Eligibility',
+        description: 'Estimate how much home loan you may qualify for based on income, obligations, tenure, and expected interest rate.',
         category: 'india',
         icon: Home,
         component: HomeLoanEligibilityCalculator,
@@ -1419,8 +1419,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-hra',
-        name: 'HRA Calculator India (2026) - Secure Tax Exemption Tool',
-        description: 'Calculate HRA tax exemption accurately for FY 2026-27. Fast, private, and 100% for all users.',
+        name: 'HRA Calculator India - Calculate House Rent Allowance Exemption',
+        description: 'Calculate HRA exemption under Indian income tax rules using salary, rent paid, and metro or non-metro city details.',
         category: 'india',
         icon: DollarSign,
         component: HRACalculator,
@@ -1463,8 +1463,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'compound-interest',
-        name: 'Compound Interest Calculator - Private Wealth Visualizer',
-        description: 'Visualize compounding power for any investment. 100% private and tool for long-term growth.',
+        name: 'Compound Interest Calculator - Calculate Investment Growth Online',
+        description: 'Estimate compound interest, future value, and total earnings for savings and investments with flexible contribution inputs.',
         category: 'financial',
         icon: TrendingUp,
         component: CompoundInterestCalculator,
@@ -1511,8 +1511,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'simple-interest',
-        name: 'Simple Interest Calculator - Fast, & Private',
-        description: 'Calculate simple interest instantly using standard formulas. Fast, accurate, and 100% for all users.',
+        name: 'Simple Interest Calculator - Calculate Interest Online',
+        description: 'Calculate simple interest, total amount, and interest earned for loans, deposits, and classroom problems in seconds.',
         category: 'financial',
         icon: Percent,
         component: SimpleInterestCalculator,
@@ -1546,8 +1546,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'percentage-change',
-        name: 'Percentage Change Calculator - Fast Growth Tracking',
-        description: 'Determine percentage increase or decrease instantly. Fast, private, and 100% online tool.',
+        name: 'Percentage Change Calculator - Calculate Increase or Decrease',
+        description: 'Find percentage increase or percentage decrease between two values quickly for prices, revenue, marks, and metrics.',
         category: 'math',
         icon: TrendingUp,
         component: PercentageIncreaseCalculator,
@@ -1586,8 +1586,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'discount',
-        name: 'Discount Calculator - Secure Shopping Savings',
-        description: 'Calculate final price after discounts and taxes. Fast, private, and 100% with no sign-ups.',
+        name: 'Discount Calculator - Find Sale Price and Savings',
+        description: 'Calculate discount amount, final price, and savings after sale percentage, coupon, or tax so you know the true deal.',
         category: 'math',
         icon: Percent,
         component: DiscountCalculator,
@@ -1632,8 +1632,8 @@ export const calculatorRegistry: CalculatorDef[] = [
 
     {
         id: 'india-gst',
-        name: 'GST Calculator India (2026) - Clean, Private & New Rates',
-        description: 'Instantly calculate GST for goods and services in India, compare inclusive vs exclusive tax, and understand how GST replaced service tax on older invoices.',
+        name: 'GST Calculator India - Calculate Inclusive and Exclusive GST',
+        description: 'Calculate GST on goods and services in India, split inclusive and exclusive tax, and review common GST use cases quickly.',
         category: 'india',
         icon: Percent,
         component: IndiaGSTCalculator,
@@ -1699,22 +1699,22 @@ export const calculatorRegistry: CalculatorDef[] = [
         scenarios: [
             {
                 id: 'hsn-mobile-phones',
-                name: "GST Rate for Mobile Phones & Accessories (2026)",
-                description: "Calculate 18% GST on smartphones and accessories. Updated with latest HSN codes and input tax credit rules for 2026.",
+                name: 'GST on Mobile Phones in India - Calculate Mobile GST',
+                description: 'Calculate GST on smartphones and accessories in India with a quick breakdown for billed amount and tax value.',
                 keywords: ['gst on mobile phones', 'hsn code for smartphones', 'gst rate mobile accessories 2026', 'input tax credit mobile'],
                 initialState: { taxRate: 18 }
             },
             {
                 id: 'luxury-cars-gst',
-                name: "GST on Luxury Cars & SUVs (2026 Tax Act)",
-                description: "Calculate the consolidated 40% GST on luxury vehicles and SUVs. Includes breakdown of base price vs luxury tax.",
+                name: 'GST on Luxury Cars in India - Calculate Luxury Car Tax',
+                description: 'Estimate GST on luxury cars and SUVs in India with a quick breakdown of taxable value and effective tax.',
                 keywords: ['gst on luxury cars', '40% gst suv', 'luxury car tax india 2026', 'car gst calculator'],
                 initialState: { taxRate: 40 }
             },
             {
                 id: 'service-tax-india',
-                name: "Service Tax Calculator India (Legacy Pre-GST)",
-                description: "Use this legacy service tax calculator for pre-GST invoices and learn how service tax was replaced by GST in India from 1 July 2017.",
+                name: 'Service Tax Calculator India - Calculate Pre-GST Service Tax',
+                description: 'Calculate legacy service tax for older invoices and understand how service tax compares with GST after July 1, 2017.',
                 keywords: ['service tax calculator india', 'service tax 15 percent calculator', 'old service tax calculator', 'service tax before gst', 'pre gst invoice calculator'],
                 features: ['Legacy 15% service tax math', 'Pre-GST invoice examples', 'Service tax history in India', 'GST replacement explainer'],
                 initialState: { taxRate: 15, amount: 10000, rateLabel: 'Legacy', rateDescription: 'Service Tax' }
@@ -1723,8 +1723,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-emi',
-        name: 'EMI Calculator India (2026) - Private Loan Tool',
-        description: 'Calculate EMIs for all loan types with a full schedule. 100% private and for accurate planning.',
+        name: 'EMI Calculator India - Calculate Loan EMI and Total Interest',
+        description: 'Calculate EMI, total interest, and total repayment for home, car, personal, and education loans with a full breakdown.',
         category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
@@ -1775,8 +1775,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'sip',
-        name: 'SIP Calculator India (2026) - Private Wealth Planner',
-        description: 'Estimate mutual fund returns via SIP. 100% private and — your investment goals stay secure.',
+        name: 'SIP Calculator India - Calculate Mutual Fund SIP Returns',
+        description: 'Estimate SIP returns, invested amount, and future value for monthly mutual fund investments over your planned tenure.',
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
@@ -1829,8 +1829,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-salary',
-        name: 'In-Hand Salary Calculator India (2026) - & Private',
-        description: 'Convert CTC to in-hand monthly salary for FY 2026-27. Detailed, private, and 100% breakdown.',
+        name: 'In-Hand Salary Calculator India - Convert CTC to Take-Home Pay',
+        description: 'Convert CTC to in-hand salary and estimate monthly take-home pay after common payroll deductions in India.',
         category: 'india',
         icon: Briefcase,
         component: IndiaSalaryCalculator,
@@ -1877,43 +1877,43 @@ export const calculatorRegistry: CalculatorDef[] = [
         scenarios: [
             {
                 id: '3-lpa-in-hand',
-                name: '3 LPA In-Hand Salary in India (2026)',
-                description: 'Estimate monthly in-hand salary for a 3 LPA CTC package in India with PF and professional tax breakdown.',
+                name: '3 LPA In-Hand Salary in India - Monthly Take-Home Estimate',
+                description: 'Estimate monthly in-hand salary for a 3 LPA CTC package in India with PF and professional tax deductions.',
                 keywords: ['3 lpa in hand', '3 lpa in hand salary per month', '3 lakh package in hand salary', 'ctc 3 lakh in hand'],
                 initialState: { ctc: 300000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
             },
             {
                 id: '6-lpa-in-hand',
-                name: '6 LPA In-Hand Salary in India (2026)',
-                description: 'Calculate monthly take-home salary for a 6 LPA package in India with PF and PT deductions.',
+                name: '6 LPA In-Hand Salary in India - Monthly Take-Home Estimate',
+                description: 'Calculate monthly take-home salary for a 6 LPA package in India with common payroll deductions.',
                 keywords: ['6 lpa in hand', '6 lakh salary in hand', '6 lac in hand salary', 'ctc 6 lakh in hand per month'],
                 initialState: { ctc: 600000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
             },
             {
                 id: '9-lpa-in-hand',
-                name: '9 LPA In-Hand Salary in India (2026)',
-                description: 'Check estimated in-hand monthly salary for 9 LPA CTC in India with a detailed salary split.',
+                name: '9 LPA In-Hand Salary in India - Monthly Take-Home Estimate',
+                description: 'Check estimated in-hand monthly salary for a 9 LPA CTC in India with a clear salary breakdown.',
                 keywords: ['9 lpa in hand', '9 lakh in hand salary', '9 lac salary in hand', 'ctc 9 lakh in hand'],
                 initialState: { ctc: 900000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
             },
             {
                 id: '12-lpa-in-hand',
-                name: '12 LPA In-Hand Salary in India (2026)',
-                description: 'Find monthly in-hand salary for a 12 LPA CTC package in India including PF and professional tax.',
+                name: '12 LPA In-Hand Salary in India - Monthly Take-Home Estimate',
+                description: 'Find monthly in-hand salary for a 12 LPA CTC package in India including PF and other payroll deductions.',
                 keywords: ['12 lpa in hand', '12 lakh in hand salary', '12 lac in hand salary', '12 lacs in hand salary', 'ctc 12 lakh in hand'],
                 initialState: { ctc: 1200000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
             },
             {
                 id: '15-lpa-in-hand',
-                name: '15 LPA In-Hand Salary in India (2026)',
-                description: 'Estimate your monthly take-home pay on 15 LPA CTC in India with component-wise breakdown.',
+                name: '15 LPA In-Hand Salary in India - Monthly Take-Home Estimate',
+                description: 'Estimate monthly take-home pay on a 15 LPA CTC in India with a component-wise salary breakdown.',
                 keywords: ['15 lpa in hand', '15 lakh in hand salary', '15 lac salary in hand', '15 lacs in hand', 'ctc 15 lakh in hand'],
                 initialState: { ctc: 1500000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
             },
             {
                 id: '18-lpa-in-hand',
-                name: '18 LPA In-Hand Salary in India (2026)',
-                description: 'Calculate in-hand salary per month for an 18 LPA package in India with payroll deductions.',
+                name: '18 LPA In-Hand Salary in India - Monthly Take-Home Estimate',
+                description: 'Calculate in-hand salary per month for an 18 LPA package in India with common payroll deductions.',
                 keywords: ['18 lpa in hand', '18 lakh in hand salary', '18 lac in hand salary', 'ctc 18 lakh in hand'],
                 initialState: { ctc: 1800000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
             }
@@ -1921,8 +1921,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-tax',
-        name: 'Income Tax Calculator India (2026) - Private & Secure Tool',
-        description: 'Compare tax regimes and calculate liability under the 2026 Tax Act. 100% private and secure for all users.',
+        name: 'Income Tax Calculator India - Compare Old vs New Tax Regime',
+        description: 'Calculate income tax in India, compare old vs new regime, and estimate deductions, cess, and total tax payable.',
         category: 'india',
         icon: DollarSign,
         component: IndiaTaxCalculator,
@@ -1973,15 +1973,15 @@ export const calculatorRegistry: CalculatorDef[] = [
         scenarios: [
             {
                 id: '10-lakh-salary-tax',
-                name: "Income Tax on 10 Lakh Salary (FY 2025-26)",
-                description: "Detailed tax breakdown for ₹10,00,000 annual income. Compare Old vs New regime savings for 10 LPA package.",
+                name: 'Tax on 10 Lakh Salary in India - Old vs New Regime',
+                description: 'Estimate tax on a 10 lakh salary in India and compare old vs new regime to see likely tax payable.',
                 keywords: ['tax on 10 lakh salary', 'income tax for 10 lpa', '10 lakh salary tax savings', 'new regime tax 10 lakh'],
                 initialState: { income: 1000000 }
             },
             {
                 id: '15-lakh-salary-tax',
-                name: "Income Tax on 15 Lakh Salary (2026 Tax Act)",
-                description: "Find out your take-home pay on a ₹15,00,000 CTC. Optimized for the latest rebate limits and standard deductions.",
+                name: 'Tax on 15 Lakh Salary in India - Old vs New Regime',
+                description: 'Estimate tax on a 15 lakh salary in India and compare old vs new regime to review likely tax payable.',
                 keywords: ['tax on 15 lakh salary', '15 lpa tax breakdown', 'take home on 15 lakh', 'income tax 1500000'],
                 initialState: { income: 1500000 }
             }

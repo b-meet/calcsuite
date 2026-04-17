@@ -39,24 +39,6 @@ const IndiaGSTCalculatorContent = () => {
                     {JSON.stringify([
                         {
                             "@context": "https://schema.org",
-                            "@type": "SoftwareApplication",
-                            "name": "India GST Calculator (2026 Tax Act)",
-                            "operatingSystem": "Web",
-                            "applicationCategory": "FinanceApplication",
-                            "aggregateRating": {
-                                "@type": "AggregateRating",
-                                "ratingValue": "4.8",
-                                "ratingCount": "1024"
-                            },
-                            "offers": {
-                                "@type": "Offer",
-                                "price": "0",
-                                "priceCurrency": "INR"
-                            },
-                            "featureList": "Calculate GST, HSN Code Search, Interest Calculator, Live FY 2026-27 Rates, Input Tax Credit"
-                        },
-                        {
-                            "@context": "https://schema.org",
                             "@type": "FAQPage",
                             "mainEntity": [
                                 {

@@ -1,15 +1,18 @@
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
-import { lazy, Suspense, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO, { buildBreadcrumbJsonLd, toAbsoluteUrl } from '../components/SEO';
 import NotFound from './NotFound';
 
 import RelatedCalculators from '../components/RelatedCalculators';
+import { ContextualRelatedCalculatorLinks } from '../components/ContextualRelatedCalculatorLinks';
 import { useFavorites } from '../hooks/useFavorites';
 import { Share2, Star } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { AdBanner } from '../components/AdBanner';
 import { ToolContext } from '../components/ToolContext';
+import { getCalculatorHeroContent } from '../calculators/pageHeroContent';
+import StructuredData from '../components/StructuredData';
 
 const ShareModal = lazy(() =>
     import('../components/ShareModal').then((module) => ({ default: module.ShareModal }))
@@ -29,6 +32,7 @@ export function CalculatorPage() {
     const [clickCount, setClickCount] = useState(0);
     const [showLimitWarning, setShowLimitWarning] = useState(false);
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const calculatorViewportRef = useRef<HTMLDivElement | null>(null);
 
     const scenario = calculatorDef?.scenarios?.find(s => s.id === scenarioId);
 
@@ -52,6 +56,9 @@ export function CalculatorPage() {
 
     const Component = calculatorDef.component;
     const Content = calculatorDef.content;
+    const heroContent = getCalculatorHeroContent(calculatorDef.id, scenario?.id);
+    const sharedVisibleFaqIds = new Set(['bmi', 'sip', 'india-salary']);
+    const showCompactVisibleFaqs = sharedVisibleFaqIds.has(calculatorDef.id) && Boolean(calculatorDef.faqs?.length);
 
     // Map internal category to Schema.org applicationCategory
     const getSchemaCategory = (cat: string) => {
@@ -73,20 +80,34 @@ export function CalculatorPage() {
             : `${calculatorCanonicalPath}/${item.id}`
     })) || [];
 
-    const webApplicationJsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'WebApplication',
+    const baseApplicationSchema = {
         name: pageTitle,
         description: pageDescription,
         url: toAbsoluteUrl(canonicalPath),
         applicationCategory: getSchemaCategory(calculatorDef.category),
         operatingSystem: 'Any',
+        inLanguage: 'en',
+        isAccessibleForFree: true,
         offers: {
             '@type': 'Offer',
             price: '0',
             priceCurrency: 'USD',
         },
+    };
+
+    const webApplicationJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        ...baseApplicationSchema,
+        '@id': `${toAbsoluteUrl(canonicalPath)}#webapplication`,
         featureList: scenario?.features || calculatorDef.features || [`Free ${calculatorDef.name}`, 'Instant Results', 'Mobile Friendly', 'Secure'],
+    };
+
+    const softwareApplicationJsonLd = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        ...baseApplicationSchema,
+        '@id': `${toAbsoluteUrl(canonicalPath)}#softwareapplication`,
     };
 
     const breadcrumbJsonLd = buildBreadcrumbJsonLd([
@@ -147,20 +168,56 @@ export function CalculatorPage() {
         setShowLimitWarning(false);
     };
 
+    useEffect(() => {
+        let frameOne = 0;
+        let frameTwo = 0;
+
+        frameOne = window.requestAnimationFrame(() => {
+            frameTwo = window.requestAnimationFrame(() => {
+                calculatorViewportRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                });
+            });
+        });
+
+        return () => {
+            window.cancelAnimationFrame(frameOne);
+            window.cancelAnimationFrame(frameTwo);
+        };
+    }, [calculatorDef.id, scenario?.id]);
+
     return (
         <div className="max-w-4xl mx-auto">
             <SEO
                 title={pageTitle}
                 description={pageDescription}
                 canonicalPath={canonicalPath}
-                jsonLd={[webApplicationJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : [])]}
+                jsonLd={[webApplicationJsonLd, softwareApplicationJsonLd, breadcrumbJsonLd, ...(howToJsonLd ? [howToJsonLd] : [])]}
             />
 
             <div className="mb-6 max-w-2xl mx-auto">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                     <div className="flex-1 text-center sm:text-left">
                         <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">{pageTitle}</h1>
+                        {heroContent?.utilityLine && (
+                            <p className="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-200 mb-2">
+                                {heroContent.utilityLine}
+                            </p>
+                        )}
                         <p className="text-slate-500 dark:text-slate-400">{pageDescription}</p>
+                        {heroContent?.chips && heroContent.chips.length > 0 && (
+                            <div className="mt-4 flex flex-wrap gap-2 justify-center sm:justify-start">
+                                {heroContent.chips.map((chip) => (
+                                    <span
+                                        key={chip}
+                                        className="inline-flex items-center rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1 text-xs font-semibold text-slate-700 dark:text-slate-200"
+                                    >
+                                        {chip}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
                     </div>
                     <div className="flex gap-2 justify-center sm:justify-end shrink-0">
                         <button
@@ -195,6 +252,48 @@ export function CalculatorPage() {
                     </div>
                 </div>
             </div>
+
+            {heroContent && (
+                <section className="mb-8 max-w-2xl mx-auto">
+                    <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm p-5 sm:p-6">
+                        <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-3">
+                            Quick answer
+                        </h2>
+                        <p className="text-sm sm:text-base leading-7 text-slate-600 dark:text-slate-300 mb-5">
+                            {heroContent.answer}
+                        </p>
+
+                        <div className="rounded-2xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 p-4 sm:p-5">
+                            <div className="mb-4">
+                                <h3 className="text-sm sm:text-base font-semibold text-slate-900 dark:text-white m-0">
+                                    {heroContent.exampleTitle}
+                                </h3>
+                                {heroContent.exampleNote && (
+                                    <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+                                        {heroContent.exampleNote}
+                                    </p>
+                                )}
+                            </div>
+
+                            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                {heroContent.exampleRows.map((row) => (
+                                    <div
+                                        key={`${row.label}-${row.value}`}
+                                        className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-3"
+                                    >
+                                        <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                                            {row.label}
+                                        </dt>
+                                        <dd className="mt-1 text-sm font-medium text-slate-900 dark:text-white">
+                                            {row.value}
+                                        </dd>
+                                    </div>
+                                ))}
+                            </dl>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {hasScenarios && (
                 <section className="mb-8 max-w-2xl mx-auto">
@@ -231,12 +330,42 @@ export function CalculatorPage() {
                 </Suspense>
             )}
 
-            <Component
-                key={`${calculatorDef.id}-${scenario?.id || 'default'}`}
-                scenarioData={scenario?.initialState}
-            />
+            <div ref={calculatorViewportRef}>
+                <Component
+                    key={`${calculatorDef.id}-${scenario?.id || 'default'}`}
+                    scenarioData={scenario?.initialState}
+                />
+            </div>
+
+            {showCompactVisibleFaqs && (
+                <section className="mt-12 max-w-2xl mx-auto">
+                    <StructuredData type="FAQPage" data={calculatorDef.faqs} />
+                    <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm p-5 sm:p-6">
+                        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-5">
+                            Frequently Asked Questions
+                        </h2>
+                        <div className="space-y-4">
+                            {calculatorDef.faqs?.map((faq, idx) => (
+                                <div
+                                    key={`${calculatorDef.id}-faq-${idx}`}
+                                    className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-4"
+                                >
+                                    <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-2">
+                                        {faq.question}
+                                    </h3>
+                                    <p className="text-sm leading-7 text-slate-600 dark:text-slate-300 m-0">
+                                        {faq.answer}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
 
             <AdBanner />
+
+            <ContextualRelatedCalculatorLinks calculatorId={calculatorDef.id} />
 
             <RelatedCalculators
                 currentCalculatorId={calculatorDef.id}

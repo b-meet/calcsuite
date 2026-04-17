@@ -1,6 +1,7 @@
 
 import { calculatorRegistry } from '../calculators/registry';
 import { CalculatorCard } from './CalculatorCard';
+import { RELATED_CALCULATOR_LINKS } from '../constants/relatedCalculatorLinks';
 
 interface RelatedCalculatorsProps {
     currentCalculatorId: string;
@@ -8,12 +9,23 @@ interface RelatedCalculatorsProps {
 }
 
 export default function RelatedCalculators({ currentCalculatorId, category }: RelatedCalculatorsProps) {
-    // 1. Filter by category
-    // 2. Exclude current calculator
-    // 3. Take first 3 results (or random 3 if we wanted to be fancy, but simple is better for SEO stability)
-    const related = calculatorRegistry
-        .filter(c => c.category === category && c.id !== currentCalculatorId)
-        .slice(0, 3);
+    const curatedLinks = RELATED_CALCULATOR_LINKS[currentCalculatorId] || [];
+    const curatedIds = curatedLinks
+        .map((item) => item.to.match(/^\/calculator\/([^/]+)$/)?.[1])
+        .filter((id): id is string => Boolean(id));
+
+    const curatedRelated = curatedIds.reduce<typeof calculatorRegistry>((acc, id) => {
+        const match = calculatorRegistry.find((calc) => calc.id === id);
+        if (match) {
+            acc.push(match);
+        }
+        return acc;
+    }, []);
+
+    const fallbackRelated = calculatorRegistry
+        .filter(c => c.category === category && c.id !== currentCalculatorId && !curatedIds.includes(c.id));
+
+    const related = [...curatedRelated, ...fallbackRelated].slice(0, 3);
 
     if (related.length === 0) return null;
 
