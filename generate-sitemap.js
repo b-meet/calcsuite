@@ -168,7 +168,10 @@ function buildRedirects(paths) {
         .sort((a, b) => b.length - a.length || a.localeCompare(b))
         .flatMap((routePath) => {
             const target = `${routePath}/index.html`.replace(/\/+/g, '/');
-            return [`${routePath} ${target} 200`, `${routePath}/ ${target} 200`];
+            return [
+                `${routePath} ${target} 200`,
+                `${routePath}/ ${routePath} 301`
+            ];
         });
 
     return [
