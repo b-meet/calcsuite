@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate, useParams } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { Home } from './pages/Home';
 import { CalculatorPage } from './pages/CalculatorPage';
@@ -43,6 +43,35 @@ function TrailingSlashRedirect() {
   return null;
 }
 
+function CalculatorCategoryRedirect() {
+  const { calculatorId } = useParams();
+  const categories = ['financial', 'health', 'math', 'other', 'india'];
+
+  if (calculatorId) {
+    const id = calculatorId.toLowerCase();
+
+    // Category redirects
+    if (categories.includes(id)) {
+      return <Navigate to={`/category/${id}`} replace />;
+    }
+
+    // Specific tool redirects for legacy or mistaken URLs
+    const toolRedirects: Record<string, string> = {
+      'converter': 'unit-converter',
+      'date-diff': 'date-calculator',
+      'basic': 'basic-math',
+      'emi': 'india-emi',
+      'health': 'health', // Redundant but safe
+    };
+
+    if (toolRedirects[id]) {
+      return <Navigate to={`/calculator/${toolRedirects[id]}`} replace />;
+    }
+  }
+
+  return <CalculatorPage />;
+}
+
 function App() {
   usePWAInstall();
   return (
@@ -57,7 +86,7 @@ function App() {
             path="calculator/:calculatorId/:scenarioId?"
             element={
               <Suspense fallback={<div className="p-8 text-center">Loading...</div>}>
-                <CalculatorPage />
+                <CalculatorCategoryRedirect />
               </Suspense>
             }
           />
@@ -78,6 +107,9 @@ function App() {
           <Route path="resources" element={<Resources />} />
           <Route path="resources/:articleId" element={<ArticleLayout />} />
           <Route path="directory" element={<Directory />} />
+          <Route path="tools" element={<Directory />} />
+          <Route path="category/basic" element={<Navigate to="/category/math" replace />} />
+          <Route path="salary" element={<Navigate to="/calculator/salary" replace />} />
           <Route path="brain-training/kenken" element={<KenKen />} />
           <Route path="brain-training" element={<BrainTrainingHub />} />
           <Route path="alternatives" element={<Navigate to="/resources" replace />} />

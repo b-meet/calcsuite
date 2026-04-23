@@ -1014,7 +1014,7 @@ export const calculatorRegistry: CalculatorDef[] = [
 
     },
     {
-        id: 'converter',
+        id: 'unit-converter',
         name: 'Unit Converter - Convert Length, Weight, Temperature and More',
         description: 'Convert common units for length, weight, volume, temperature, speed, and area quickly with one easy online converter.',
         category: 'other',
