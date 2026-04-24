@@ -16,7 +16,7 @@ const banners = [
 function JSMSlide({ banner }: { banner: typeof banners[0] }) {
   return (
     <a
-      href="https://jobsecuritymeter.com?ref=calcsuite"
+      href="https://jobsecuritymeter.com"
       target="_blank"
       rel="noopener noreferrer"
       className="relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:p-5 rounded-[2rem] bg-gradient-to-r from-[#2D5F4F]/10 via-emerald-500/10 to-teal-500/10 dark:from-[#2D5F4F]/10 dark:via-emerald-500/5 dark:to-teal-500/5 border border-emerald-200/60 dark:border-emerald-800/30 hover:border-[#2D5F4F] dark:hover:border-[#2D5F4F] transition-all duration-500 overflow-hidden shadow-sm hover:shadow-lg group/jsm"

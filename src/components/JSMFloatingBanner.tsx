@@ -24,7 +24,7 @@ export function JSMFloatingBanner({ isCollapsed }: JSMFloatingBannerProps) {
     // Reset state and pick a new banner on every route change
     setClosing(false);
     setVisible(false);
-    
+
     const randomBanner = banners[Math.floor(Math.random() * banners.length)];
     setActiveBanner(randomBanner);
 
@@ -49,7 +49,7 @@ export function JSMFloatingBanner({ isCollapsed }: JSMFloatingBannerProps) {
       )}
     >
       <a
-        href="https://jobsecuritymeter.com?ref=calcsuite-banner"
+        href="https://jobsecuritymeter.com"
         target="_blank"
         rel="noopener noreferrer"
         className="group relative flex items-center justify-between gap-3 pl-4 pr-10 py-2.5 sm:pl-8 sm:pr-14 sm:py-3 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-[#2D5F4F]/30 rounded-2xl shadow-[0_4px_40px_rgba(0,0,0,0.35)] overflow-hidden"

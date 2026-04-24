@@ -19,7 +19,8 @@ import { cn } from '../utils/cn';
 const hubLinks = [
     {
         title: "Job Security Meter",
-        path: "https://jobsecuritymeter.com?ref=calcsuite-ticker",
+        path: "https://jobsecuritymeter.com",
+        icon: Briefcase,
         isExternal: true,
         badge: "NEW"
     },
