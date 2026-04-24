@@ -3,6 +3,8 @@ import { calculatorRegistry } from '../calculators/registry';
 import { EXTERNAL_LINKS } from '../constants/links';
 import { CALCULATOR_REFERENCES } from '../constants/calculatorReferences';
 
+import { Github, Twitter } from 'lucide-react';
+
 export default function Footer() {
     const currentYear = new Date().getFullYear();
 
@@ -36,6 +38,45 @@ export default function Footer() {
     return (
         <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800 mt-20">
             <div className="container mx-auto px-4">
+
+                {/* Simple Maker Connect */}
+                <div className="flex flex-col items-center text-center gap-4 mb-16 pb-16 border-b border-slate-800/50">
+                    <div className="relative group">
+                        <div className="absolute -inset-0.5 bg-amber-500 rounded-full blur-[1px] opacity-75"></div>
+                        <img 
+                            src="https://github.com/b-meet.png" 
+                            alt="Meet" 
+                            className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full border-[3px] border-amber-600 object-cover shadow-xl" 
+                        />
+                    </div>
+                    
+                    <div className="flex flex-col gap-2">
+                        <h3 className="text-white font-black text-2xl sm:text-3xl tracking-tight">By Meet</h3>
+                        <p className="text-slate-400 text-sm sm:text-base font-medium">
+                            Maker of <a href="https://jobsecuritymeter.com" target="_blank" rel="noopener noreferrer" className="text-white font-bold hover:underline">Job Security Meter</a>, <Link to="/" className="text-white font-bold hover:underline underline-offset-4 decoration-slate-600">CalcSuite</Link> , and 5+ others.
+                        </p>
+                    </div>
+
+                    <div className="flex items-center gap-4 mt-2">
+                        <a 
+                            href="https://github.com/b-meet" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-slate-500 hover:text-white text-[11px] sm:text-xs font-black uppercase tracking-[0.2em] transition-colors"
+                        >
+                            Github
+                        </a>
+                        <span className="w-1 h-1 rounded-full bg-slate-800" />
+                        <a 
+                            href="https://x.com/_b_meet" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-slate-500 hover:text-white text-[11px] sm:text-xs font-black uppercase tracking-[0.2em] transition-colors"
+                        >
+                            X (Twitter)
+                        </a>
+                    </div>
+                </div>
 
                 {/* Top Section: Branding & Mission */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">

@@ -10,6 +10,7 @@ import { AsideAds } from '../components/AsideAds';
 import { ArenaHook } from '../components/ArenaHook';
 import { PWAPrompt } from '../components/PWAPrompt';
 import { PWAUpdatePrompt } from '../components/PWAUpdatePrompt';
+import { JSMFloatingBanner } from '../components/JSMFloatingBanner';
 import { useState, useEffect } from 'react';
 import { cn } from '../utils/cn';
 
@@ -58,6 +59,7 @@ export function MainLayout() {
             <PWAPrompt />
             <PWAUpdatePrompt />
             <FeedbackButton />
+            <JSMFloatingBanner isCollapsed={isCollapsed} />
         </div>
     );
 }
