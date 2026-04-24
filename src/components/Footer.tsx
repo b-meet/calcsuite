@@ -3,7 +3,7 @@ import { calculatorRegistry } from '../calculators/registry';
 import { EXTERNAL_LINKS } from '../constants/links';
 import { CALCULATOR_REFERENCES } from '../constants/calculatorReferences';
 
-import { Github, Twitter } from 'lucide-react';
+
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
