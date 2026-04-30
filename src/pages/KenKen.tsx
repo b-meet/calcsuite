@@ -306,14 +306,14 @@ export function KenKen() {
             <SEO
                 title={`Daily ${size}×${size} KenKen - Brain Arena Challenge`}
                 description={`Solve today's ${size}×${size} KenKen puzzle in the Brain Arena. New logic challenges every day at midnight IST.`}
-                canonicalPath="/brain-training/kenken"
+                canonicalPath="/brain-training/kenken/"
             />
 
             <div className="max-w-2xl mx-auto space-y-5">
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                        <Link to="/brain-training" className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+                        <Link to="/brain-training/" className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
                             <ArrowLeft size={20} />
                         </Link>
                         <div>
@@ -424,7 +424,7 @@ export function KenKen() {
 
                             <div className="flex flex-col sm:flex-row gap-2.5 w-full max-w-sm mb-5">
                                 <Link
-                                    to="/brain-training"
+                                    to="/brain-training/"
                                     className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold shadow-lg shadow-blue-500/20 transition-all active:scale-95 text-sm uppercase italic tracking-widest"
                                 >
                                     <ArrowLeft size={16} />

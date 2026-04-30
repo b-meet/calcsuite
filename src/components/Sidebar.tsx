@@ -141,7 +141,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
 
                         <Tooltip content="Widget Generator" position="right" enabled={effectiveCollapsed}>
                             <NavLink
-                                to="/widget-generator"
+                                to="/widget-generator/"
                                 onClick={() => setIsOpen(false)}
                                 className={({ isActive }) =>
                                     cn(
@@ -160,7 +160,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                         
                         <Tooltip content="Resources & Guides" position="right" enabled={effectiveCollapsed}>
                             <NavLink
-                                to="/resources"
+                                to="/resources/"
                                 onClick={() => setIsOpen(false)}
                                 className={({ isActive }) =>
                                     cn(
@@ -198,7 +198,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
 
                         <Tooltip content="Brain Arena - Daily Logic Games" position="right" enabled={effectiveCollapsed}>
                             <NavLink
-                                to="/brain-training"
+                                to="/brain-training/"
                                 onClick={() => setIsOpen(false)}
                                 className={({ isActive }) =>
                                     cn(
@@ -266,7 +266,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                                 return (
                                     <Tooltip key={category.id} content={category.name} position="right" enabled={effectiveCollapsed}>
                                         <NavLink
-                                            to={`/category/${category.id}`}
+                                            to={`/category/${category.id}/`}
                                             onClick={() => setIsOpen(false)}
                                             className={({ isActive }) =>
                                                 cn(
@@ -300,7 +300,7 @@ export function Sidebar({ isCollapsed = false, onToggle }: SidebarProps) {
                                 {favCalculators.map(calc => (
                                     <Tooltip key={calc.id} content={calc.name} position="right" enabled={effectiveCollapsed}>
                                         <NavLink
-                                            to={`/calculator/${calc.id}`}
+                                            to={`/calculator/${calc.id}/`}
                                             onClick={() => setIsOpen(false)}
                                             className={({ isActive }) =>
                                                 cn(

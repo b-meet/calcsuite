@@ -79,7 +79,7 @@ export const IndiaTaxSavingGuide2026 = () => {
             <div className="bg-blue-600/5 dark:bg-blue-900/10 border-2 border-blue-600/20 dark:border-blue-500/20 p-8 rounded-3xl my-10 text-center shadow-lg hover:shadow-xl transition-shadow not-prose">
                 <h4 className="font-extrabold text-2xl text-slate-900 dark:text-white mb-3 tracking-tight">Stop Guessing Your Tax Liability</h4>
                 <p className="text-slate-600 dark:text-slate-400 mb-6 text-base max-w-lg mx-auto">Don't leave money on the table. Use our advanced 2026 Tax Calculator to precisely compare the Old vs. New regime and find your maximum savings instantly.</p>
-                <Link to="/calculator/india-tax" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 !text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-1 transition-all shadow-md">
+                <Link to="/calculator/india-tax/" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 !text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-1 transition-all shadow-md">
                     Open Tax Calculator
                 </Link>
             </div>
@@ -138,7 +138,7 @@ export const IndiaTaxSavingGuide2026 = () => {
             <div className="text-center py-12 not-prose border-t border-slate-100 dark:border-slate-800 mt-12">
                 <h3 className="text-2xl font-bold mb-6 text-slate-900 dark:text-white">Ready to see your savings?</h3>
                 <Link 
-                    to="/calculator/india-tax"
+                    to="/calculator/india-tax/"
                     className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 !text-white font-extrabold rounded-2xl hover:bg-blue-700 hover:scale-105 transition-all shadow-xl shadow-blue-500/25 active:scale-95"
                 >
                     Calculate Your 2026 Tax Now

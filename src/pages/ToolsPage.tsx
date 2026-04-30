@@ -40,10 +40,10 @@ export const ToolsPage = () => {
             'SIMPLE_INTEREST': 'simple-interest',
             'LUMPSUM': 'investment'
         };
-        if (mapping[calcSlug]) return `/calculator/${mapping[calcSlug]}`;
+        if (mapping[calcSlug]) return `/calculator/${mapping[calcSlug]}/`;
         
         const match = calculatorRegistry.find(c => c.id.replace('india-', '').replace('-', '_').toUpperCase() === calcSlug);
-        if (match) return `/calculator/${match.id}`;
+        if (match) return `/calculator/${match.id}/`;
         
         return null;
     };
@@ -55,7 +55,7 @@ export const ToolsPage = () => {
             <SEO 
                 title={data.title} 
                 description={data.description} 
-                canonicalPath={`/tools/${category}/${slug}`}
+                canonicalPath={`/tools/${category}/${slug}/`}
             />
             <StructuredData 
                 type="FAQPage" 

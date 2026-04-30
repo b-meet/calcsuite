@@ -93,7 +93,7 @@ export function Home() {
             <SEO
                 title={pageTitle}
                 description={pageDescription}
-                canonicalPath={categoryId ? `/category/${categoryId}` : '/'}
+                canonicalPath={categoryId ? `/category/${categoryId}/` : '/'}
             />
             {/* Organization Schema for Home Page */}
             {!categoryId && (
@@ -102,7 +102,7 @@ export function Home() {
                         type="Organization"
                         data={{
                             name: "CalcSuite",
-                            url: "https://calcsuite.in",
+                            url: "https://calcsuite.in/",
                             logo: "https://calcsuite.in/logo.png",
                             sameAs: []
                         }}
@@ -111,7 +111,7 @@ export function Home() {
                         type="WebSite"
                         data={{
                             name: "CalcSuite",
-                            url: "https://calcsuite.in",
+                            url: "https://calcsuite.in/",
                             target: "https://calcsuite.in/?q={search_term_string}"
                         }}
                     />
@@ -124,7 +124,7 @@ export function Home() {
                     type="BreadcrumbList"
                     data={[
                         { name: 'Home', item: 'https://calcsuite.in/' },
-                        { name: categoryId.charAt(0).toUpperCase() + categoryId.slice(1), item: `https://calcsuite.in/category/${categoryId}` }
+                        { name: categoryId.charAt(0).toUpperCase() + categoryId.slice(1), item: `https://calcsuite.in/category/${categoryId}/` }
                     ]}
                 />
             )}

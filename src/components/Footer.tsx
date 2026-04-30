@@ -14,16 +14,16 @@ export default function Footer() {
         const slugKey = calcId.toUpperCase().replace('INDIA-', '').replace('-', '_');
 
         if (CALCULATOR_REFERENCES[catKey]?.[slugKey]) {
-            return `/tools/${catKey.toLowerCase()}/${slugKey.toLowerCase()}`;
+            return `/tools/${catKey.toLowerCase()}/${slugKey.toLowerCase()}/`;
         }
 
         // Check for common variations
         const altSlugKey = calcId.toUpperCase().replace('-', '_');
         if (CALCULATOR_REFERENCES[catKey]?.[altSlugKey]) {
-            return `/tools/${catKey.toLowerCase()}/${altSlugKey.toLowerCase()}`;
+            return `/tools/${catKey.toLowerCase()}/${altSlugKey.toLowerCase()}/`;
         }
 
-        return `/calculator/${calcId}`;
+        return `/calculator/${calcId}/`;
     };
 
     // Group calculators by category
@@ -181,20 +181,20 @@ export default function Footer() {
                 <div className="border-t border-slate-800 pt-8 mt-12 mb-12">
                     <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">Popular Calculators & Guides</h4>
                     <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-                        <Link to="/tools/investment/sip" className="text-slate-400 hover:text-blue-400 transition-colors">SIP Calculator</Link>
-                        <Link to="/tools/investment/lumpsum" className="text-slate-400 hover:text-blue-400 transition-colors">Lumpsum Calculator</Link>
-                        <Link to="/tools/investment/mutual_fund_returns" className="text-slate-400 hover:text-blue-400 transition-colors">Mutual Fund Returns</Link>
-                        <Link to="/tools/taxation/income_tax" className="text-slate-400 hover:text-amber-400 transition-colors">Income Tax Calculator</Link>
-                        <Link to="/tools/taxation/gst" className="text-slate-400 hover:text-amber-400 transition-colors">GST Calculator</Link>
-                        <Link to="/tools/banking_loans/home_loan_emi" className="text-slate-400 hover:text-blue-400 transition-colors">Home Loan EMI</Link>
-                        <Link to="/tools/banking_loans/emi" className="text-slate-400 hover:text-blue-400 transition-colors">EMI Calculator</Link>
-                        <Link to="/tools/banking_loans/ppf" className="text-slate-400 hover:text-blue-400 transition-colors">PPF Calculator</Link>
-                        <Link to="/tools/banking_loans/fd" className="text-slate-400 hover:text-blue-400 transition-colors">FD Calculator</Link>
-                        <Link to="/tools/retirement_salary/epf" className="text-slate-400 hover:text-blue-400 transition-colors">EPF Calculator</Link>
-                        <Link to="/tools/retirement_salary/nps" className="text-slate-400 hover:text-blue-400 transition-colors">NPS Calculator</Link>
-                        <Link to="/tools/retirement_salary/salary" className="text-slate-400 hover:text-blue-400 transition-colors">Salary Calculator</Link>
-                        <Link to="/tools/misc/compound_interest" className="text-slate-400 hover:text-blue-400 transition-colors">Compound Interest</Link>
-                        <Link to="/tools/misc/inflation" className="text-slate-400 hover:text-blue-400 transition-colors">Inflation Calculator</Link>
+                        <Link to="/tools/investment/sip/" className="text-slate-400 hover:text-blue-400 transition-colors">SIP Calculator</Link>
+                        <Link to="/tools/investment/lumpsum/" className="text-slate-400 hover:text-blue-400 transition-colors">Lumpsum Calculator</Link>
+                        <Link to="/tools/investment/mutual_fund_returns/" className="text-slate-400 hover:text-blue-400 transition-colors">Mutual Fund Returns</Link>
+                        <Link to="/tools/taxation/income_tax/" className="text-slate-400 hover:text-amber-400 transition-colors">Income Tax Calculator</Link>
+                        <Link to="/tools/taxation/gst/" className="text-slate-400 hover:text-amber-400 transition-colors">GST Calculator</Link>
+                        <Link to="/tools/banking_loans/home_loan_emi/" className="text-slate-400 hover:text-blue-400 transition-colors">Home Loan EMI</Link>
+                        <Link to="/tools/banking_loans/emi/" className="text-slate-400 hover:text-blue-400 transition-colors">EMI Calculator</Link>
+                        <Link to="/tools/banking_loans/ppf/" className="text-slate-400 hover:text-blue-400 transition-colors">PPF Calculator</Link>
+                        <Link to="/tools/banking_loans/fd/" className="text-slate-400 hover:text-blue-400 transition-colors">FD Calculator</Link>
+                        <Link to="/tools/retirement_salary/epf/" className="text-slate-400 hover:text-blue-400 transition-colors">EPF Calculator</Link>
+                        <Link to="/tools/retirement_salary/nps/" className="text-slate-400 hover:text-blue-400 transition-colors">NPS Calculator</Link>
+                        <Link to="/tools/retirement_salary/salary/" className="text-slate-400 hover:text-blue-400 transition-colors">Salary Calculator</Link>
+                        <Link to="/tools/misc/compound_interest/" className="text-slate-400 hover:text-blue-400 transition-colors">Compound Interest</Link>
+                        <Link to="/tools/misc/inflation/" className="text-slate-400 hover:text-blue-400 transition-colors">Inflation Calculator</Link>
                     </div>
                 </div>
 
@@ -202,16 +202,16 @@ export default function Footer() {
                 <div className="border-t border-slate-800 pt-8 mt-12 mb-12">
                     <h4 className="text-white font-semibold mb-6 text-sm uppercase tracking-wider">Popular Alternatives</h4>
                     <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-                        <Link to="/alternatives/calculator-net" className="text-slate-400 hover:text-blue-400 transition-colors">Calculator.net Alternative</Link>
-                        <Link to="/alternatives/calculator-1" className="text-slate-400 hover:text-blue-400 transition-colors">Calculator-1 Alternative</Link>
-                        <Link to="/alternatives/calculatorsoup" className="text-slate-400 hover:text-blue-400 transition-colors">CalculatorSoup Alternative</Link>
-                        <Link to="/alternatives/gigacalculator" className="text-slate-400 hover:text-blue-400 transition-colors">GigaCalculator Alternative</Link>
-                        <Link to="/alternatives/omni-calculator" className="text-slate-400 hover:text-purple-400 transition-colors">Omni Calculator Alternative</Link>
-                        <Link to="/alternatives/cleartax-calculators" className="text-slate-400 hover:text-amber-400 transition-colors">ClearTax Alternative</Link>
-                        <Link to="/alternatives/quicko" className="text-slate-400 hover:text-amber-400 transition-colors">Quicko Alternative</Link>
-                        <Link to="/alternatives/taxbuddy" className="text-slate-400 hover:text-amber-400 transition-colors">TaxBuddy Alternative</Link>
-                        <Link to="/alternatives/groww" className="text-slate-400 hover:text-emerald-400 transition-colors">Groww Alternative</Link>
-                        <Link to="/alternatives/paisabazaar" className="text-slate-400 hover:text-emerald-400 transition-colors">Paisabazaar Alternative</Link>
+                        <Link to="/alternatives/calculator-net/" className="text-slate-400 hover:text-blue-400 transition-colors">Calculator.net Alternative</Link>
+                        <Link to="/alternatives/calculator-1/" className="text-slate-400 hover:text-blue-400 transition-colors">Calculator-1 Alternative</Link>
+                        <Link to="/alternatives/calculatorsoup/" className="text-slate-400 hover:text-blue-400 transition-colors">CalculatorSoup Alternative</Link>
+                        <Link to="/alternatives/gigacalculator/" className="text-slate-400 hover:text-blue-400 transition-colors">GigaCalculator Alternative</Link>
+                        <Link to="/alternatives/omni-calculator/" className="text-slate-400 hover:text-purple-400 transition-colors">Omni Calculator Alternative</Link>
+                        <Link to="/alternatives/cleartax-calculators/" className="text-slate-400 hover:text-amber-400 transition-colors">ClearTax Alternative</Link>
+                        <Link to="/alternatives/quicko/" className="text-slate-400 hover:text-amber-400 transition-colors">Quicko Alternative</Link>
+                        <Link to="/alternatives/taxbuddy/" className="text-slate-400 hover:text-amber-400 transition-colors">TaxBuddy Alternative</Link>
+                        <Link to="/alternatives/groww/" className="text-slate-400 hover:text-emerald-400 transition-colors">Groww Alternative</Link>
+                        <Link to="/alternatives/paisabazaar/" className="text-slate-400 hover:text-emerald-400 transition-colors">Paisabazaar Alternative</Link>
                     </div>
                 </div>
 
@@ -271,17 +271,17 @@ export default function Footer() {
                             We are not responsible for any decisions or losses incurred based on these calculations.
                         </p>
                         <p className="text-slate-400">
-                            By performing any calculation on this site, you automatically agree to our <Link to="/terms" className="text-blue-400 hover:underline">Terms of Service</Link> and <Link to="/privacy" className="text-blue-400 hover:underline">Privacy Policy</Link>. No further confirmation is required.
+                            By performing any calculation on this site, you automatically agree to our <Link to="/terms/" className="text-blue-400 hover:underline">Terms of Service</Link> and <Link to="/privacy/" className="text-blue-400 hover:underline">Privacy Policy</Link>. No further confirmation is required.
                         </p>
                     </div>
 
                     <div className="flex flex-col md:flex-row justify-between items-center text-xs text-slate-600 gap-4">
                         <p>&copy; {currentYear} CalcSuite. All rights reserved.</p>
                         <div className="flex gap-6 lg:pr-24">
-                            <Link to="/about" className="hover:text-slate-400 transition-colors">About Us</Link>
-                            <Link to="/contact" className="hover:text-slate-400 transition-colors">Contact</Link>
-                            <Link to="/privacy" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
-                            <Link to="/terms" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
+                            <Link to="/about/" className="hover:text-slate-400 transition-colors">About Us</Link>
+                            <Link to="/contact/" className="hover:text-slate-400 transition-colors">Contact</Link>
+                            <Link to="/privacy/" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
+                            <Link to="/terms/" className="hover:text-slate-400 transition-colors">Terms of Service</Link>
                         </div>
                     </div>
                 </div>

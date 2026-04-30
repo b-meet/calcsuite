@@ -8,7 +8,7 @@ export default function NotFound() {
             <SEO
                 title="Page Not Found"
                 description="The page you requested does not exist on CalcSuite."
-                canonicalPath="/404"
+                canonicalPath="/404/"
                 noindex
             />
 
@@ -33,19 +33,19 @@ export default function NotFound() {
                         Popular Tools
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
-                        <Link to="/calculator/compound-interest" className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all group">
+                        <Link to="/calculator/compound-interest/" className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all group">
                             <span className="font-medium text-slate-700 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 block">Compound Interest</span>
                             <span className="text-xs text-slate-500 dark:text-slate-400">Grow your wealth</span>
                         </Link>
-                        <Link to="/calculator/bmi" className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all group">
+                        <Link to="/calculator/bmi/" className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all group">
                             <span className="font-medium text-slate-700 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 block">BMI Calculator</span>
                             <span className="text-xs text-slate-500 dark:text-slate-400">Check your health</span>
                         </Link>
-                        <Link to="/calculator/mortgage" className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all group">
+                        <Link to="/calculator/mortgage/" className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all group">
                             <span className="font-medium text-slate-700 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 block">Mortgage Calculator</span>
                             <span className="text-xs text-slate-500 dark:text-slate-400">Plan home loans</span>
                         </Link>
-                        <Link to="/calculator/percentage" className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all group">
+                        <Link to="/calculator/percentage/" className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-sm transition-all group">
                             <span className="font-medium text-slate-700 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 block">Percentage Calculator</span>
                             <span className="text-xs text-slate-500 dark:text-slate-400">Quick math</span>
                         </Link>

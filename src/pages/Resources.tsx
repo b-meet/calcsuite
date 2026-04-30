@@ -13,7 +13,7 @@ export function Resources() {
             <SEO 
                 title="Resources & Finance Guides - CalcSuite"
                 description="Expert guides on tax planning, GST compliance, and investment strategies. Stay updated with the 2026 Tax Act and maximize your savings."
-                canonicalPath="/resources"
+                canonicalPath="/resources/"
             />
 
             <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -43,7 +43,7 @@ export function Resources() {
                                 </span>
                             </div>
                             <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-3 line-clamp-2">
-                                <Link to={`/resources/${post.id}`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                                <Link to={`/resources/${post.id}/`} className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                                     {post.title}
                                 </Link>
                             </h2>
@@ -56,7 +56,7 @@ export function Resources() {
                                     {post.readTime}
                                 </span>
                                 <Link 
-                                    to={`/resources/${post.id}`} 
+                                    to={`/resources/${post.id}/`} 
                                     className="text-sm font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1 hover:gap-2 transition-all"
                                 >
                                     Read Guide <ArrowRight className="w-4 h-4" />

@@ -51,7 +51,7 @@ function CalculatorCategoryRedirect() {
 
     // Category redirects
     if (categories.includes(id)) {
-      return <Navigate to={`/category/${id}`} replace />;
+      return <Navigate to={`/category/${id}/`} replace />;
     }
 
     // Specific tool redirects for legacy or mistaken URLs
@@ -64,7 +64,7 @@ function CalculatorCategoryRedirect() {
     };
 
     if (toolRedirects[id]) {
-      return <Navigate to={`/calculator/${toolRedirects[id]}`} replace />;
+      return <Navigate to={`/calculator/${toolRedirects[id]}/`} replace />;
     }
   }
 
@@ -107,11 +107,11 @@ function App() {
           <Route path="resources/:articleId" element={<ArticleLayout />} />
           <Route path="directory" element={<Directory />} />
           <Route path="tools" element={<Directory />} />
-          <Route path="category/basic" element={<Navigate to="/category/math" replace />} />
-          <Route path="salary" element={<Navigate to="/calculator/salary" replace />} />
+          <Route path="category/basic" element={<Navigate to="/category/math/" replace />} />
+          <Route path="salary" element={<Navigate to="/calculator/salary/" replace />} />
           <Route path="brain-training/kenken" element={<KenKen />} />
           <Route path="brain-training" element={<BrainTrainingHub />} />
-          <Route path="alternatives" element={<Navigate to="/resources" replace />} />
+          <Route path="alternatives" element={<Navigate to="/resources/" replace />} />
           <Route path="alternatives/:competitorId" element={<AlternativesLayout />} />
           <Route
             path="tools/:category/:slug"
