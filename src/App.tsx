@@ -35,9 +35,8 @@ function TrailingSlashRedirect() {
   const location = useLocation();
   const { pathname, search, hash } = location;
 
-  if (pathname !== '/' && pathname.endsWith('/')) {
-    const cleanPath = pathname.slice(0, -1);
-    return <Navigate to={`${cleanPath}${search}${hash}`} replace />;
+  if (pathname !== '/' && !pathname.endsWith('/')) {
+    return <Navigate to={`${pathname}/${search}${hash}`} replace />;
   }
 
   return null;

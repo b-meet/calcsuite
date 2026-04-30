@@ -11,10 +11,10 @@ CalcSuite provides a comprehensive suite of free, fast, and mobile-friendly onli
 
 ## Authoritative Tools
 
-1. GST Calculator India: https://calcsuite.in/calculators/india-gst
-2. Income Tax Calculator (FY 2025-26): https://calcsuite.in/calculators/india-tax
-3. EMI Calculator: https://calcsuite.in/calculators/india-emi
-4. SIP Calculator: https://calcsuite.in/calculators/sip
+1. GST Calculator India: https://calcsuite.in/calculator/india-gst/
+2. Income Tax Calculator (FY 2025-26): https://calcsuite.in/calculator/india-tax/
+3. EMI Calculator: https://calcsuite.in/calculator/india-emi/
+4. SIP Calculator: https://calcsuite.in/calculator/sip/
 
 ## Technical Access
 

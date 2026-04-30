@@ -26,17 +26,16 @@ export function toAbsoluteUrl(path: string) {
 
     // Strip query params and hashes for canonical URLs
     let cleanPath = path.split(/[?#]/)[0];
-    
-    // Remove trailing slashes (except for just "/")
-    if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
-        cleanPath = cleanPath.slice(0, -1);
-    }
-    
+
     // Lowercase for consistency
     cleanPath = cleanPath.toLowerCase();
 
     const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
-    return `${SITE_URL}${normalizedPath}`;
+    const canonicalPath = normalizedPath === '/' || normalizedPath.endsWith('/')
+        ? normalizedPath
+        : `${normalizedPath}/`;
+
+    return `${SITE_URL}${canonicalPath}`;
 }
 
 export function buildBreadcrumbJsonLd(items: BreadcrumbItem[]): JsonLd {

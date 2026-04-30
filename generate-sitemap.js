@@ -46,7 +46,8 @@ function normalizePath(routePath) {
     }
 
     const withLeadingSlash = routePath.startsWith('/') ? routePath : `/${routePath}`;
-    return withLeadingSlash.replace(/\/+$/, '');
+    const withoutTrailingSlashes = withLeadingSlash.replace(/\/+$/, '');
+    return `${withoutTrailingSlashes}/`;
 }
 
 function toAbsoluteUrl(routePath) {
@@ -167,10 +168,11 @@ function buildRedirects(paths) {
         .filter((routePath) => routePath !== '/')
         .sort((a, b) => b.length - a.length || a.localeCompare(b))
         .flatMap((routePath) => {
-            const target = `${routePath}/index.html`.replace(/\/+/g, '/');
+            const target = `${routePath}index.html`.replace(/\/+/g, '/');
+            const barePath = routePath.endsWith('/') ? routePath.slice(0, -1) : routePath;
             return [
                 `${routePath} ${target} 200`,
-                `${routePath}/ ${routePath} 301`
+                `${barePath} ${routePath} 301`
             ];
         });
 
