@@ -64,7 +64,7 @@ function JSMSlide({ banner }: { banner: typeof banners[0] }) {
 function ArenaSlide() {
   return (
     <Link
-      to="/brain-training"
+      to="/brain-training/"
       className="relative flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:p-5 rounded-[2rem] bg-gradient-to-r from-blue-600/10 to-indigo-600/10 dark:from-blue-500/5 dark:to-indigo-500/5 border border-blue-200/50 dark:border-blue-800/30 hover:border-blue-400 dark:hover:border-blue-700 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md group/hook"
     >
       <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover/hook:bg-blue-500/20 transition-all duration-700" />

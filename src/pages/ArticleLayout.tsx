@@ -67,7 +67,7 @@ export function ArticleLayout() {
             <SEO 
                 title={`${post.title} - CalcSuite Guide`}
                 description={post.excerpt}
-                canonicalPath={`/resources/${post.id}`}
+                canonicalPath={`/resources/${post.id}/`}
             />
 
             <StructuredData 
@@ -77,7 +77,7 @@ export function ArticleLayout() {
                     description: post.excerpt,
                     image: `https://calcsuite.in/blog/${post.id}.jpg`,
                     datePublished: post.date,
-                    url: `https://calcsuite.in/resources/${post.id}`
+                    url: `https://calcsuite.in/resources/${post.id}/`
                 }}
             />
 
@@ -85,8 +85,8 @@ export function ArticleLayout() {
                 type="BreadcrumbList"
                 data={[
                     { name: 'Home', item: 'https://calcsuite.in/' },
-                    { name: 'Resources', item: 'https://calcsuite.in/resources' },
-                    { name: post.title, item: `https://calcsuite.in/resources/${post.id}` }
+                    { name: 'Resources', item: 'https://calcsuite.in/resources/' },
+                    { name: post.title, item: `https://calcsuite.in/resources/${post.id}/` }
                 ]}
             />
 
@@ -98,7 +98,7 @@ export function ArticleLayout() {
             )}
             
             <Link 
-                to="/resources" 
+                to="/resources/" 
                 className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-blue-600 mb-8 transition-colors"
             >
                 <ArrowLeft className="w-4 h-4" /> Back to Resources
@@ -178,9 +178,9 @@ export function ArticleLayout() {
 
                     <div className="flex flex-wrap justify-center gap-2">
                         {[
-                            { name: "GST Tool", path: "/calculator/india-gst", q: "Check GST?" },
-                            { name: "Tax Comparison", path: "/calculator/india-tax", q: "Old vs New?" },
-                            { name: "Salary Calc", path: "/calculator/india-salary", q: "Take-home?" }
+                            { name: "GST Tool", path: "/calculator/india-gst/", q: "Check GST?" },
+                            { name: "Tax Comparison", path: "/calculator/india-tax/", q: "Old vs New?" },
+                            { name: "Salary Calc", path: "/calculator/india-salary/", q: "Take-home?" }
                         ].map((tool, i) => (
                             <Link 
                                 key={i}

@@ -26,91 +26,91 @@ const hubLinks = [
     },
     {
         title: "Brain Arena",
-        path: "/brain-training",
+        path: "/brain-training/",
         icon: Brain,
         color: "text-blue-500",
         bg: "bg-blue-50 dark:bg-blue-900/20"
     },
     {
         title: "BMI Calculator",
-        path: "/calculator/bmi",
+        path: "/calculator/bmi/",
         icon: Activity,
         color: "text-rose-500",
         bg: "bg-rose-50 dark:bg-rose-900/20"
     },
     {
         title: "Scientific Calculator",
-        path: "/calculator/scientific",
+        path: "/calculator/scientific/",
         icon: Calculator,
         color: "text-indigo-500",
         bg: "bg-indigo-50 dark:bg-indigo-900/20"
     },
     {
         title: "Age Calculator",
-        path: "/calculator/age",
+        path: "/calculator/age/",
         icon: Calendar,
         color: "text-amber-500",
         bg: "bg-amber-50 dark:bg-amber-900/20"
     },
     {
         title: "Salary Calculator",
-        path: "/calculator/india-salary",
+        path: "/calculator/india-salary/",
         icon: Briefcase,
         color: "text-purple-500",
         bg: "bg-purple-50 dark:bg-purple-900/20"
     },
     {
         title: "Investment Growth",
-        path: "/calculator/investment",
+        path: "/calculator/investment/",
         icon: TrendingUp,
         color: "text-green-500",
         bg: "bg-green-50 dark:bg-green-900/20"
     },
     {
         title: "Pregnancy Due Date",
-        path: "/calculator/pregnancy",
+        path: "/calculator/pregnancy/",
         icon: Baby,
         color: "text-pink-500",
         bg: "bg-pink-50 dark:bg-pink-900/20"
     },
     {
         title: "Unit Converter",
-        path: "/calculator/unit-converter",
+        path: "/calculator/unit-converter/",
         icon: Ruler,
         color: "text-blue-600",
         bg: "bg-blue-50 dark:bg-blue-900/20"
     },
     {
         title: "EMI Calculator",
-        path: "/calculator/india-emi",
+        path: "/calculator/india-emi/",
         icon: Landmark,
         color: "text-amber-600",
         bg: "bg-amber-50 dark:bg-amber-900/20"
     },
     {
         title: "GPA Calculator",
-        path: "/calculator/gpa",
+        path: "/calculator/gpa/",
         icon: GraduationCap,
         color: "text-violet-500",
         bg: "bg-violet-50 dark:bg-violet-900/20"
     },
     {
         title: "SIP Calculator",
-        path: "/calculator/sip",
+        path: "/calculator/sip/",
         icon: TrendingUp,
         color: "text-rose-600",
         bg: "bg-rose-50 dark:bg-rose-900/20"
     },
     {
         title: "Retirement Plan",
-        path: "/calculator/retirement",
+        path: "/calculator/retirement/",
         icon: Sunset,
         color: "text-orange-500",
         bg: "bg-orange-50 dark:bg-orange-900/20"
     },
     {
         title: "Auto Loan",
-        path: "/calculator/auto-loan",
+        path: "/calculator/auto-loan/",
         icon: Car,
         color: "text-indigo-600",
         bg: "bg-indigo-50 dark:bg-indigo-900/20"

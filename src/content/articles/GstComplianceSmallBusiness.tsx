@@ -60,7 +60,7 @@ export const GstComplianceSmallBusiness = () => {
             <div className="bg-blue-600/5 dark:bg-blue-900/10 border-2 border-blue-600/20 dark:border-blue-500/20 p-8 rounded-3xl my-10 text-center shadow-lg hover:shadow-xl transition-shadow not-prose">
                 <h4 className="font-extrabold text-2xl text-slate-900 dark:text-white mb-3 tracking-tight">Need to Calculate GST Margins?</h4>
                 <p className="text-slate-600 dark:text-slate-400 mb-6 text-base max-w-lg mx-auto">Make sure your pricing includes the new 2026 effective GST rates. Use our exclusive GST Calculator to determine exact Input Tax Credit offsets and output liability.</p>
-                <Link to="/calculator/india-gst" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 !text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-1 transition-all shadow-md">
+                <Link to="/calculator/india-gst/" className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 !text-white font-bold rounded-xl hover:bg-blue-700 hover:-translate-y-1 transition-all shadow-md">
                     Open GST Calculator
                 </Link>
             </div>

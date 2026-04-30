@@ -15,7 +15,7 @@ export function BrainTrainingHub() {
             <SEO
                 title="Brain Arena - Compete with Your Mind"
                 description="Enter the CalcSuite Brain Arena. Solve daily logic puzzles, improve your mental calculation speed, and master high-intensity challenges."
-                canonicalPath="/brain-training"
+                canonicalPath="/brain-training/"
             />
 
             <div className="max-w-5xl mx-auto space-y-12">
@@ -128,7 +128,7 @@ export function BrainTrainingHub() {
                                 </div>
 
                                 <Link
-                                    to={`/brain-training/kenken?size=${selectedSize}`}
+                                    to={`/brain-training/kenken/?size=${selectedSize}`}
                                     className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl flex items-center justify-center gap-2 font-black uppercase italic text-xs tracking-widest shadow-xl shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-0.5 active:translate-y-0 transition-all select-none"
                                 >
                                     <Play size={16} fill="white" />

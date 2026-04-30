@@ -18,42 +18,42 @@ export function TopicHub() {
     const hubLinks = [
         {
             title: "GST Calculator (2026)",
-            path: "/calculator/india-gst",
+            path: "/calculator/india-gst/",
             icon: Percent,
             color: "text-blue-500",
             bg: "bg-blue-50 dark:bg-blue-900/20"
         },
         {
             title: "Income Tax (FY 2025-26)",
-            path: "/calculator/india-tax",
+            path: "/calculator/india-tax/",
             icon: FileText,
             color: "text-emerald-500",
             bg: "bg-emerald-50 dark:bg-emerald-900/20"
         },
         {
             title: "Salary Calculator",
-            path: "/calculator/india-salary",
+            path: "/calculator/india-salary/",
             icon: Briefcase,
             color: "text-purple-500",
             bg: "bg-purple-50 dark:bg-purple-900/20"
         },
         {
             title: "EMI Calculator",
-            path: "/calculator/india-emi",
+            path: "/calculator/india-emi/",
             icon: Landmark,
             color: "text-amber-500",
             bg: "bg-amber-50 dark:bg-amber-900/20"
         },
         {
             title: "SIP Calculator",
-            path: "/calculator/sip",
+            path: "/calculator/sip/",
             icon: TrendingUp,
             color: "text-rose-500",
             bg: "bg-rose-50 dark:bg-rose-900/20"
         },
         {
             title: "Auto Loan",
-            path: "/calculator/auto-loan",
+            path: "/calculator/auto-loan/",
             icon: Car,
             color: "text-indigo-500",
             bg: "bg-indigo-50 dark:bg-indigo-900/20"
@@ -123,7 +123,7 @@ export function TopicHub() {
                         <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-xl px-4 py-2.5 flex items-center gap-3 text-white shadow-lg shadow-blue-500/20 overflow-hidden relative group/btn">
                             <span className="text-[11px] font-black uppercase tracking-wider relative z-10">2026 Tax Rules</span>
                             <Link
-                                to="/calculator/india-tax"
+                                to="/calculator/india-tax/"
                                 className="px-3.5 py-1.5 bg-white text-blue-700 text-[10px] font-black rounded-lg transition-all relative z-10 hover:scale-105 active:scale-95 shadow-sm"
                             >
                                 CHECK NOW

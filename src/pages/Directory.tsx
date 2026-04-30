@@ -7,7 +7,7 @@ import { FolderTree, Calculator, ArrowRightCircle, BookOpen } from 'lucide-react
 export function Directory() {
     // Simplest and most reliable route mapping to our internal calculators
     const getToolRoute = (calcId: string) => {
-        return `/calculator/${calcId}`;
+        return `/calculator/${calcId}/`;
     };
 
     // Grouping
@@ -26,7 +26,7 @@ export function Directory() {
             <SEO
                 title="Master Tool Directory & Sitemap"
                 description="The complete index of every calculator, tax tool, health tracker, and competitor alternative available on CalcSuite."
-                canonicalPath="/directory"
+                canonicalPath="/directory/"
             />
 
             <div className="max-w-6xl mx-auto space-y-16">
@@ -87,7 +87,7 @@ export function Directory() {
                         {alternativesList.map((alt) => (
                             <Link 
                                 key={alt.id} 
-                                to={`/alternatives/${alt.id}`}
+                                to={`/alternatives/${alt.id}/`}
                                 className="text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:translate-x-1 transition-all flex items-start gap-2 group text-sm md:text-base font-semibold py-1 bg-white dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm"
                             >
                                 <ArrowRightCircle className="w-5 h-5 text-blue-500 shrink-0" />

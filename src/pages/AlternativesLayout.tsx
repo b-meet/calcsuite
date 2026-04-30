@@ -41,7 +41,7 @@ export function AlternativesLayout() {
             <SEO 
                 title={competitor.metaTitle.replace(' | CalcSuite', '')} // SEO component attaches suffix
                 description={competitor.metaDescription}
-                canonicalPath={`/alternatives/${competitor.id}`}
+                canonicalPath={`/alternatives/${competitor.id}/`}
                 jsonLd={reviewSchema}
             />
 

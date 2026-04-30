@@ -85,7 +85,7 @@ export const alternativesData: Record<string, CompetitorData> = {
             calcSuite: { speed: 'Instant Load', ads: 'Zero Upsells', mobile: 'Seamless UI', offline: 'Supported', slabs: '2026 Budget Ready' },
             competitor: { speed: 'Slower (Tracking)', ads: 'Lead-Gen Funnel', mobile: 'App-Push Prompts', offline: 'Requires Internet', slabs: 'Updated' }
         },
-        cta: { text: 'Calculate Your 2026 Tax Now', link: '/calculator/india-tax' }
+        cta: { text: 'Calculate Your 2026 Tax Now', link: '/calculator/india-tax/' }
     },
     'groww': {
         id: 'groww',
@@ -114,7 +114,7 @@ export const alternativesData: Record<string, CompetitorData> = {
             calcSuite: { speed: 'Blazing Fast', ads: 'Clean and minimal', mobile: 'Flawless', offline: 'Yes', slabs: 'Advanced Features (Step-Up)' },
             competitor: { speed: 'Fast', ads: 'Promotes Own Funds', mobile: 'Good', offline: 'No', slabs: 'Basic Metrics' }
         },
-        cta: { text: 'Open the Advanced SIP Calculator', link: '/calculator/sip' }
+        cta: { text: 'Open the Advanced SIP Calculator', link: '/calculator/sip/' }
     },
     'omni-calculator': {
         id: 'omni-calculator',
@@ -247,7 +247,7 @@ export const alternativesData: Record<string, CompetitorData> = {
             calcSuite: { speed: 'Instant Load', ads: 'Zero Upsells', mobile: 'Seamless UI', offline: 'Supported', slabs: '2026 Budget Ready' },
             competitor: { speed: 'Fast', ads: 'Nudges to Signup', mobile: 'Excellent', offline: 'No', slabs: 'Updated' }
         },
-        cta: { text: 'Calculate Tax Anonymously', link: '/calculator/india-tax' }
+        cta: { text: 'Calculate Tax Anonymously', link: '/calculator/india-tax/' }
     },
     'taxbuddy': {
         id: 'taxbuddy',
@@ -273,7 +273,7 @@ export const alternativesData: Record<string, CompetitorData> = {
             calcSuite: { speed: 'Instant', ads: 'Zero Sales Calls', mobile: 'App-Like', offline: 'Yes', slabs: '2026 Budget Ready' },
             competitor: { speed: 'Slower', ads: 'Heavy Lead-Gen', mobile: 'Average', offline: 'No', slabs: 'Updated' }
         },
-        cta: { text: 'Try Our Independent Tax Tool', link: '/calculator/india-tax' }
+        cta: { text: 'Try Our Independent Tax Tool', link: '/calculator/india-tax/' }
     },
     'paisabazaar': {
         id: 'paisabazaar',
@@ -299,6 +299,6 @@ export const alternativesData: Record<string, CompetitorData> = {
             calcSuite: { speed: 'Instantaneous', ads: 'Zero Cross-Selling', mobile: 'Perfect', offline: 'Supported', slabs: 'Advanced Amortization' },
             competitor: { speed: 'Slow (Tracking)', ads: 'Aggressive Sales', mobile: 'Cluttered', offline: 'No', slabs: 'Basic' }
         },
-        cta: { text: 'Open Ad-Free EMI Calculator', link: '/calculator/emi' }
+        cta: { text: 'Open Ad-Free EMI Calculator', link: '/calculator/emi/' }
     }
 };
