@@ -169,15 +169,15 @@ function buildRedirects(paths) {
         .flatMap((routePath) => {
             const target = `${routePath}/index.html`.replace(/\/+/g, '/');
             return [
-                `${routePath}/ ${routePath} 301`,
-                `${routePath} ${target} 200`
+                `${routePath}/ ${routePath} 301!`,
+                `${routePath} ${target} 200!`
             ];
         });
 
     return [
-        '/calculator/india-salary/:scenario /salary/:scenario 301',
-        '/alternatives /resources 301',
-        '/alternatives/ /resources 301',
+        '/calculator/india-salary/:scenario /salary/:scenario 301!',
+        '/alternatives /resources 301!',
+        '/alternatives/ /resources 301!',
         ...routeRules,
         '/404 /404.html 404',
         '/404/ /404.html 404',
