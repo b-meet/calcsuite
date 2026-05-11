@@ -42,12 +42,11 @@ function readFile(filePath) {
 
 function normalizePath(routePath) {
     if (!routePath || routePath === '/') {
-        return '/';
+        return '';
     }
 
     const withLeadingSlash = routePath.startsWith('/') ? routePath : `/${routePath}`;
-    const withoutTrailingSlashes = withLeadingSlash.replace(/\/+$/, '');
-    return `${withoutTrailingSlashes}/`;
+    return withLeadingSlash.replace(/\/+$/, '');
 }
 
 function toAbsoluteUrl(routePath) {
@@ -168,35 +167,17 @@ function buildRedirects(paths) {
         .filter((routePath) => routePath !== '/')
         .sort((a, b) => b.length - a.length || a.localeCompare(b))
         .flatMap((routePath) => {
-            const target = `${routePath}index.html`.replace(/\/+/g, '/');
-            const barePath = routePath.endsWith('/') ? routePath.slice(0, -1) : routePath;
+            const target = `${routePath}/index.html`.replace(/\/+/g, '/');
             return [
-                `${routePath} ${target} 200`,
-                `${barePath} ${routePath} 301`
+                `${routePath}/ ${routePath} 301`,
+                `${routePath} ${target} 200`
             ];
         });
 
     return [
-        '/tools /directory/ 301',
-        '/salary /calculator/salary/ 301',
-        '/category/basic /category/math/ 301',
-        '/calculator/health /category/health/ 301',
-        '/calculator/basic /calculator/basic-math/ 301',
-        '/calculator/emi /calculator/india-emi/ 301',
-        '/calculator/financial /category/financial/ 301',
-        '/calculator/health /category/health/ 301',
-        '/calculator/math /category/math/ 301',
-        '/calculator/other /category/other/ 301',
-        '/calculator/india /category/india/ 301',
-        '/calculator/converter /calculator/unit-converter/ 301',
-        '/tools/investment /category/financial/ 301',
-        '/tools/banking_loans /category/india/ 301',
-        '/tools/taxation /category/india/ 301',
-        '/tools/misc /category/other/ 301',
-        '/tools/retirement_salary /category/financial/ 301',
-        '/calculator/india-salary/:scenario /salary/:scenario/ 301',
-        '/alternatives /resources/ 301',
-        '/alternatives/ /resources/ 301',
+        '/calculator/india-salary/:scenario /salary/:scenario 301',
+        '/alternatives /resources 301',
+        '/alternatives/ /resources 301',
         ...routeRules,
         '/404 /404.html 404',
         '/404/ /404.html 404',
@@ -285,7 +266,7 @@ function generateSitemap() {
 
     const sitemapContent = buildSitemapXml(urls);
     const urlsContent = `${urls.map((url) => url.loc).join('\n')}\n`;
-    const robotsContent = `User-agent: *\nAllow: /\nDisallow: /cdn-cgi/\n\nSitemap: ${DOMAIN}/sitemap.xml\n`;
+    const robotsContent = `User-agent: *\nAllow: /\nSitemap: ${DOMAIN}/sitemap.xml\n`;
     const redirectsContent = buildRedirects(routePaths);
 
     writeFileSync(PUBLIC_SITEMAP_PATH, sitemapContent);
