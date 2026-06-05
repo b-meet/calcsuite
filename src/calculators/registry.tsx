@@ -291,52 +291,86 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'percentage',
-        name: 'Percentage Calculator - Find Percentages, Increases and Decreases',
-        description: 'Calculate percentages, percentage change, and percentage difference fast for marks, discounts, tips, finance, and everyday math.',
+        name: 'Percentage Calculator - Calculate Percentages Instantly',
+        description: 'Free percentage calculator to find what is X% of Y, percentage increase or decrease, and percentage difference. Works for marks, discounts, tips, and finance.',
         category: 'math',
         icon: Percent,
         component: PercentageCalculator,
         content: PercentageContent,
         popular: true,
         formula: "P = \\frac{V_1}{V_2} \\times 100",
-        longDescription: "Percentages are a fundamental part of everyday math. From shopping discounts and tax calculations to exam results and financial analysis, percentages help compare values quickly and clearly. This free Percentage Calculator allows you to solve common percentage problems instantly without manual calculations.",
+        longDescription: "This free Percentage Calculator solves all common percentage problems instantly. Find what is X% of a number, calculate percentage increase or decrease between two values, find what percentage one number is of another, and compute percentage difference. Whether you need to calculate exam marks percentage, shopping discounts, salary hikes, tax rates, or tip amounts, this tool gives you accurate results with the formula shown for every calculation.",
         features: [
-            "Solve 'What is X% of Y?' instantly",
-            "Visual formula explanation",
-            "No formulas required",
-            "100% Free & Secure"
+            "What is X% of Y? (e.g., What is 15% of 200?)",
+            "Percentage increase and decrease calculation",
+            "What percentage is X of Y?",
+            "Percentage difference between two values",
+            "Visual formula explanation for every calculation",
+            "Works for marks, discounts, tips, tax, and finance"
         ],
         hideDefaultSections: true,
+        keywords: [
+            'percentage calculator', 'percentage calculator online', 'free percentage calculator',
+            'how to calculate percentage', 'percent calculator',
+            'what is percent of', 'percentage of a number',
+            'percentage increase calculator', 'percentage decrease calculator',
+            'percentage change calculator', 'percentage difference calculator',
+            'marks percentage calculator', 'exam percentage calculator',
+            'discount percentage calculator', 'salary hike percentage',
+            'what percent is X of Y', 'percentage formula',
+            'how to find percentage', 'calculate percentage online',
+            'percentage increase formula', 'percentage decrease formula',
+            'how to calculate percentage of marks'
+        ],
         faqs: [
             {
-                question: "What is the easiest way to calculate percentages?",
-                answer: "Using an online percentage calculator is the fastest and most reliable method."
+                question: "How do I calculate percentage of a number?",
+                answer: "Multiply the number by the percentage and divide by 100. For example, 25% of 200 = 200 × 25 ÷ 100 = 50. This calculator does this instantly — just enter the percentage and the number."
+            },
+            {
+                question: "How do I calculate percentage increase?",
+                answer: "Percentage increase = ((New Value − Old Value) ÷ Old Value) × 100. For example, if a price increased from ₹500 to ₹600: ((600 − 500) ÷ 500) × 100 = 20% increase."
+            },
+            {
+                question: "How do I calculate percentage decrease?",
+                answer: "Percentage decrease = ((Old Value − New Value) ÷ Old Value) × 100. For example, if a price dropped from ₹800 to ₹640: ((800 − 640) ÷ 800) × 100 = 20% decrease."
+            },
+            {
+                question: "What percentage is 45 out of 60?",
+                answer: "To find what percentage 45 is of 60: (45 ÷ 60) × 100 = 75%. The general formula is: (Part ÷ Whole) × 100 = Percentage."
+            },
+            {
+                question: "How do I calculate percentage of marks?",
+                answer: "Divide the marks obtained by the total marks and multiply by 100. For example, if you scored 420 out of 500: (420 ÷ 500) × 100 = 84%. This works for any exam or test score."
+            },
+            {
+                question: "How do I find the original number from a percentage?",
+                answer: "If you know X% of a number equals Y, then the original number = Y × 100 ÷ X. For example, if 20% of a number is 50, the original number = 50 × 100 ÷ 20 = 250."
+            },
+            {
+                question: "What is the difference between percentage and percentile?",
+                answer: "Percentage is a measure of a part out of 100 (e.g., 85% marks). Percentile indicates the rank relative to others (e.g., 90th percentile means you scored better than 90% of test-takers). They measure different things."
+            },
+            {
+                question: "How do I calculate a percentage in reverse?",
+                answer: "To find the original price before a discount: Original = Sale Price ÷ (1 − Discount%). For example, if an item costs ₹750 after a 25% discount, original = 750 ÷ 0.75 = ₹1,000."
             },
             {
                 question: "Can this calculator handle decimals?",
-                answer: "Yes. You can enter decimal percentages and decimal values."
+                answer: "Yes. You can enter decimal percentages (e.g., 7.5%) and decimal values for precise results. The calculator handles all standard mathematical operations with full decimal precision."
             },
             {
-                question: "How do you calculate percentage of a number manually?",
-                answer: "Divide the part by the whole to get a decimal, then multiply by 100. For example, 50 out of 200 is (50 / 200) * 100 = 25%."
-            },
-            {
-                question: "Is this calculator free to use?",
-                answer: "Yes. It is completely free with no usage limits."
-            },
-
-            {
-                question: "Does this calculator work on mobile?",
-                answer: "Yes. It is fully responsive and works on all devices."
+                question: "Is this percentage calculator free?",
+                answer: "Yes. This calculator is completely free with no limits, no sign-up required, and works on all devices including mobile phones, tablets, and desktops."
             }
         ],
         howTo: {
-            name: "How to Use This Percentage Calculator",
-            description: "Calculate percentages in seconds.",
+            name: "How to Calculate Percentages",
+            description: "Solve any percentage problem in 3 steps.",
             steps: [
-                { name: "Enter Percentage", text: "Input the percentage value you want to calculate." },
-                { name: "Enter Total", text: "Input the total number." },
-                { name: "Calculate", text: "Click the button to get the result instantly." }
+                { name: "Choose Calculation Type", text: "Select the type of percentage problem you need to solve (e.g., X% of Y, percentage increase, etc.)." },
+                { name: "Enter Values", text: "Input the numbers into the provided fields." },
+                { name: "View Result", text: "Instantly see the answer with the formula used for the calculation." }
             ]
         }
     },
@@ -603,58 +637,85 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'bmi',
-        name: 'BMI Calculator - Check Your Body Mass Index Online',
-        description: 'Calculate BMI from height and weight in seconds and see where you fall in common body mass index ranges.',
+        name: 'BMI Calculator - Calculate Body Mass Index Instantly',
+        description: 'Free BMI calculator to check your Body Mass Index from height and weight. See your WHO weight category and healthy BMI range for adults.',
         category: 'health',
         icon: Activity,
         component: BMICalculator,
         content: BMICalculatorContent,
-        longDescription: "BMI (Body Mass Index) is a key health metric used by professionals worldwide. This tool calculates your BMI based on height and weight, categorizing results according to WHO standards (Underweight, Normal, Overweight, Obese). It supports both Metric (kg/cm) and Imperial (lbs/in) units for your convenience.",
+        longDescription: "This free BMI Calculator instantly calculates your Body Mass Index from your height and weight. BMI is a widely used screening tool to categorize your weight as Underweight, Normal, Overweight, or Obese based on WHO (World Health Organization) standards. The formula is BMI = Weight (kg) ÷ Height (m)². This tool supports both Metric (kg/cm) and Imperial (lbs/inches) units and shows your healthy weight range based on your height. While BMI does not directly measure body fat, it is a useful first-step indicator for assessing weight-related health risks.",
         keywords: [
-            'bmi calculator',
-            'body mass index',
-            'bmi chart',
-            'bmi for men',
-            'bmi for women',
-            'ideal weight calculator',
-            'obesity calculator',
-            'bmi for indians',
-            'tdee calculator',
-            'bmr calculator'
+            'bmi calculator', 'bmi calculator online', 'free bmi calculator',
+            'body mass index calculator', 'calculate bmi',
+            'bmi calculator for men', 'bmi calculator for women',
+            'bmi calculator with age', 'bmi chart', 'bmi range',
+            'what is my bmi', 'check bmi online', 'bmi checker',
+            'healthy bmi range', 'normal bmi for adults',
+            'bmi calculator india', 'bmi calculator metric',
+            'bmi calculator kg and cm', 'bmi calculator lbs',
+            'overweight bmi', 'obese bmi', 'underweight bmi',
+            'ideal bmi for men', 'ideal bmi for women',
+            'bmi formula', 'how to calculate bmi'
         ],
         hideDefaultSections: true,
         features: [
-            "Metric & Imperial Units",
-            "Weight category screening",
-            "WHO standard classifications",
-            "Healthy weight range output"
+            "Instant BMI calculation from height and weight",
+            "WHO standard weight categories (Underweight, Normal, Overweight, Obese)",
+            "Metric (kg/cm) and Imperial (lbs/in) unit support",
+            "Healthy weight range based on your height",
+            "Color-coded results for easy interpretation",
+            "Works for men and women"
         ],
         formula: "\\text{BMI} = \\frac{\\text{Weight in kg}}{(\\text{Height in meters})^2}",
         faqs: [
             {
-                question: "Is BMI accurate for everyone?",
-                answer: "BMI is a reliable mass screening tool for most adults, but it does not account for muscle mass, meaning athletes might score as 'overweight' despite having low body fat."
+                question: "How do I calculate my BMI?",
+                answer: "Divide your weight in kilograms by your height in meters squared. For example, if you weigh 70 kg and are 1.75 m tall: BMI = 70 ÷ (1.75 × 1.75) = 70 ÷ 3.0625 = 22.9. This calculator does this instantly — just enter your height and weight."
             },
             {
                 question: "What is a healthy BMI range?",
-                answer: "According to the World Health Organization (WHO), a strictly normal BMI range lies between 18.5 and 24.9."
+                answer: "According to the WHO, a healthy (normal) BMI is between 18.5 and 24.9. Below 18.5 is classified as underweight, 25.0 to 29.9 is overweight, and 30.0 or above is classified as obese. These ranges apply to adults aged 20 and older."
             },
             {
-                question: "How do I calculate BMI manually?",
-                answer: "Square your height in meters. Then divide your total weight in kilograms by that squared number."
+                question: "Is BMI the same for men and women?",
+                answer: "The BMI formula is the same for both men and women. However, women naturally carry more body fat than men at the same BMI. For this reason, a BMI of 25 may mean different body fat levels for men vs women. BMI is a screening tool, not a body fat measurement."
             },
             {
-                question: "Is this calculator free?",
-                answer: "Yes. It is completely free with no limitations."
+                question: "Is BMI accurate for athletes and muscular people?",
+                answer: "BMI can overestimate body fat in athletes and muscular individuals because it does not distinguish between muscle mass and fat mass. A bodybuilder might have a BMI of 30 (obese range) but very low body fat. For such cases, body fat percentage or waist-to-hip ratio are better indicators."
+            },
+            {
+                question: "What is a good BMI for Indians and Asians?",
+                answer: "The WHO suggests that Asians face health risks at lower BMI levels. For Indian and Asian populations, a BMI of 23 or above is considered overweight (vs 25 for Western populations), and 27.5+ is considered obese. This is because Asians tend to carry more visceral fat at lower BMI values."
+            },
+            {
+                question: "Does BMI apply to children and teenagers?",
+                answer: "For children and teens (ages 2-19), BMI is calculated the same way but is interpreted using age-specific and sex-specific percentile charts. A child's BMI is compared to other children of the same age and sex. This adult BMI calculator is designed for people aged 20 and older."
+            },
+            {
+                question: "What are the health risks of a high BMI?",
+                answer: "A high BMI (25+) is associated with increased risk of heart disease, type 2 diabetes, high blood pressure, sleep apnea, certain cancers, and joint problems. However, BMI alone does not diagnose any condition — consult a healthcare provider for a complete assessment."
+            },
+            {
+                question: "Can BMI change over time?",
+                answer: "Yes. BMI changes as your weight changes. Regular exercise, dietary changes, aging, and medical conditions can all affect your BMI. It is recommended to check your BMI periodically as part of routine health monitoring."
+            },
+            {
+                question: "What is the difference between BMI and body fat percentage?",
+                answer: "BMI is a ratio of weight to height and does not directly measure body fat. Body fat percentage measures the actual proportion of fat in your body. Two people with the same BMI can have very different body fat levels depending on muscle mass. BMI is a quick screening tool; body fat percentage is a more detailed measurement."
+            },
+            {
+                question: "Is this BMI calculator free?",
+                answer: "Yes. This BMI calculator is completely free, requires no sign-up, and works on all devices. All calculations are performed locally in your browser — no data is stored or sent to any server."
             }
         ],
         howTo: {
             name: "How to Calculate Your BMI",
-            description: "Check your Body Mass Index in 3 steps.",
+            description: "Check your Body Mass Index in 3 simple steps.",
             steps: [
-                { name: "Choose Unit", text: "Select Metric (kg/cm) or Imperial (lbs/in) units." },
-                { name: "Enter Details", text: "Input your current weight and height accurately." },
-                { name: "See Result", text: "View your BMI score and corresponding weight category." }
+                { name: "Choose Units", text: "Select Metric (kg and cm) or Imperial (pounds and inches) based on your preference." },
+                { name: "Enter Height and Weight", text: "Input your current weight and height accurately for the most reliable result." },
+                { name: "View Your BMI", text: "Instantly see your BMI score, weight category (Underweight, Normal, Overweight, Obese), and healthy weight range." }
             ]
         },
         popular: true,
@@ -882,97 +943,163 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'age',
-        name: 'Age Calculator - Calculate Exact Age Between Two Dates',
-        description: 'Find exact age in years, months, and days from any birth date and calculate time between two dates instantly.',
+        name: 'Age Calculator - Find Your Exact Age from Date of Birth',
+        description: 'Free age calculator to find your exact age in years, months, and days from any date of birth. Includes next birthday countdown.',
         category: 'other',
         icon: Calendar,
         component: AgeCalculator,
         content: AgeCalculatorContent,
-        longDescription: "Time flies! Use this Age Calculator to find out exactly how old you are in years, months, weeks, days, and even seconds. It’s perfect for tracking milestones, finding out the day of the week you were born, or calculating the precise age difference between two dates.",
-        keywords: ['age in days', 'chronological age calculator', 'date of birth calculator', 'how old am i', 'birthday calculator'],
+        longDescription: "This free Age Calculator tells you your exact age in years, months, weeks, days, hours, and seconds from any date of birth. Enter your birth date and an optional target date (defaults to today) to instantly see your chronological age broken down into multiple time units. It also shows the day of the week you were born, a countdown to your next birthday, and the total number of days you have lived. Perfect for form submissions, official age verification, birthday planning, or simply knowing your exact age.",
+        keywords: [
+            'age calculator', 'age calculator online', 'free age calculator',
+            'age calculator by date of birth', 'date of birth calculator',
+            'how old am i', 'what is my age', 'exact age calculator',
+            'age in days calculator', 'age in months calculator',
+            'chronological age calculator', 'birthday calculator',
+            'age between two dates', 'age difference calculator',
+            'next birthday calculator', 'how many days old am i',
+            'born day calculator', 'age calculator in years months days',
+            'dob to age calculator', 'calculate age from birth date'
+        ],
         features: [
-            "Exact age calculation",
+            "Exact age in years, months, and days",
+            "Age in weeks, hours, minutes, and seconds",
             "Next birthday countdown",
-            "Day of birth finder",
-            "Leap year adjustment"
+            "Day of the week you were born",
+            "Age between any two dates",
+            "Leap year accurate calculation"
         ],
         faqs: [
             {
-                question: "How does it calculate age so precisely?",
-                answer: "It uses the exact number of days between your birth date and today, accounting for every leap year."
+                question: "How do I calculate my exact age?",
+                answer: "Enter your date of birth in this calculator to instantly see your exact age in years, months, and days. The calculator accounts for varying month lengths and leap years to give you a precise result down to the day."
             },
             {
-                question: "Can I use it to find my next birthday?",
-                answer: "Yes. It shows a countdown to your next birthday in days."
+                question: "How old am I if I was born in 2000?",
+                answer: "If you were born in 2000, you are 25 or 26 years old in 2026, depending on whether your birthday has passed this year. Enter your exact date of birth to see your precise age in years, months, and days."
+            },
+            {
+                question: "How many days old am I?",
+                answer: "Enter your date of birth and this calculator will show your age in total days. For reference, a 25-year-old person has lived approximately 9,125 days (including leap years)."
+            },
+            {
+                question: "How do I calculate age between two dates?",
+                answer: "Enter the start date (e.g., date of birth) and the end date (e.g., a specific target date). The calculator shows the exact difference in years, months, and days between the two dates."
+            },
+            {
+                question: "Does this calculator account for leap years?",
+                answer: "Yes. The calculator correctly handles leap years (years divisible by 4, except centuries not divisible by 400). February 29th birthdays are calculated accurately."
             },
             {
                 question: "What is chronological age?",
-                answer: "Chronological age is the amount of time that has passed from your birth to the given date."
+                answer: "Chronological age is the exact amount of time that has passed from your date of birth to the present date (or any target date). It is the standard age measurement used for official documents, medical records, and legal purposes."
             },
             {
-                question: "Is this calculator free?",
-                answer: "Yes. Completely free to use."
+                question: "How do I find what day of the week I was born?",
+                answer: "Enter your date of birth in this calculator and it will show the day of the week you were born (e.g., Monday, Tuesday). This is calculated using the standard calendar algorithm."
+            },
+            {
+                question: "When is my next birthday?",
+                answer: "This calculator includes a countdown showing how many days remain until your next birthday. It automatically adjusts for the current year and shows the upcoming date."
+            },
+            {
+                question: "Can I use this for age verification?",
+                answer: "Yes. This calculator gives you the exact chronological age which can be used for form submissions, document applications, and age verification purposes. However, always use official documents for legal age proof."
+            },
+            {
+                question: "Is this age calculator free?",
+                answer: "Yes. This calculator is completely free, requires no sign-up, and works on all devices. All calculations are performed locally in your browser."
             }
         ],
         howTo: {
-            name: "How to Calculate Age",
-            description: "Find your exact timeline.",
+            name: "How to Calculate Your Exact Age",
+            description: "Find your age in years, months, and days in 3 steps.",
             steps: [
-                { name: "Date of Birth", text: "Enter your birth date." },
-                { name: "Target Date", text: "Defaults to today, or select a specific date." },
-                { name: "Result", text: "See your age in years, months, and days." }
+                { name: "Enter Date of Birth", text: "Select or type your birth date using the date picker." },
+                { name: "Set Target Date", text: "Leave as today's date for current age, or select a specific date to calculate age at that point." },
+                { name: "View Results", text: "Instantly see your exact age in years, months, days, weeks, hours, and seconds with next birthday countdown." }
             ]
         },
     },
     {
         id: 'gpa',
         name: 'GPA Calculator - Calculate GPA, SGPA and CGPA Online',
-        description: 'Calculate GPA, SGPA, and CGPA quickly with a flexible grade and credit calculator for school, college, and university use.',
+        description: 'Free GPA calculator to compute semester GPA, SGPA, and cumulative CGPA using credits and grades. Supports 4.0 and 10-point scales.',
         category: 'other',
         icon: GraduationCap,
         component: GPACalculator,
         content: GPACalculatorContent,
-        longDescription: "This GPA Calculator India helps students calculate semester GPA, SGPA, and cumulative CGPA using course credits and grade points. It is built for quick mobile use when you want to check semester performance, scholarship targets, or cumulative results without opening a spreadsheet.",
+        longDescription: "This free GPA Calculator helps students calculate semester GPA, SGPA (Semester Grade Point Average), and cumulative CGPA (Cumulative Grade Point Average) using course credits and grade points. It supports both the 4.0 scale (used in the US and many international universities) and the 10-point scale (used by most Indian universities). Simply add your courses, enter credits and grades, and get your GPA instantly. Perfect for tracking academic performance, checking scholarship eligibility, or planning your target CGPA.",
         features: [
-            "Semester GPA / SGPA calculation",
-            "Cumulative GPA / CGPA planning",
-            "4.0 and 10-point scale support",
+            "Semester GPA and SGPA calculation",
+            "Cumulative GPA and CGPA planning",
+            "4.0 scale (A, B, C, D, F) and 10-point scale support",
+            "Credit-weighted grade point calculation",
+            "Add unlimited courses per semester",
             "Mobile-friendly course entry"
         ],
         keywords: [
-            'gpa calculator india',
-            'sgpa calculator',
-            'cgpa calculator',
-            'semester gpa calculator',
-            'college gpa calculator india',
-            'credit based gpa calculator'
+            'gpa calculator', 'gpa calculator online', 'free gpa calculator',
+            'sgpa calculator', 'cgpa calculator', 'cgpa to gpa',
+            'semester gpa calculator', 'college gpa calculator',
+            'gpa calculator india', 'gpa calculator 4.0 scale',
+            'how to calculate gpa', 'how to calculate cgpa',
+            'sgpa to cgpa converter', 'gpa to percentage',
+            'credit based gpa calculator', 'university gpa calculator',
+            'cumulative gpa calculator', 'grade point average calculator',
+            'sgpa calculator online', 'gpa calculator with credits',
+            'high school gpa calculator', 'weighted gpa calculator'
         ],
         faqs: [
             {
-                question: "Is this GPA calculator accurate?",
-                answer: "Yes. It uses standard GPA calculation methods used by most institutions."
+                question: "How do I calculate my GPA?",
+                answer: "Multiply each course's grade point by its credit hours to get quality points. Add all quality points, then divide by total credit hours. For example, if you got an A (4.0) in a 3-credit course and a B (3.0) in a 4-credit course: GPA = (4.0×3 + 3.0×4) ÷ (3+4) = 24÷7 = 3.43."
             },
             {
-                question: "Can I calculate SGPA or CGPA with this tool?",
-                answer: "Yes. Enter one semester to estimate SGPA, or add all completed courses and credits to estimate cumulative GPA or CGPA."
+                question: "What is the difference between SGPA and CGPA?",
+                answer: "SGPA (Semester GPA) is your grade point average for a single semester. CGPA (Cumulative GPA) is your overall GPA across all semesters combined. CGPA gives a complete picture of your academic performance throughout your degree."
             },
             {
-                question: "How do credits affect GPA?",
-                answer: "Higher credit courses weigh more than lower credit ones."
+                question: "How do I convert CGPA to percentage?",
+                answer: "For many Indian universities (like those following AICTE guidelines), the formula is: Percentage = CGPA × 9.5. For example, a CGPA of 8.5 = 80.75%. However, this formula varies by university, so check your institution's official conversion rule."
             },
             {
-                question: "Does every Indian university use the same GPA conversion?",
-                answer: "No. Some colleges use a 10-point scale, others use a 4-point scale, and percentage-to-GPA conversion rules can vary by university."
+                question: "What is a good GPA on a 4.0 scale?",
+                answer: "On a 4.0 scale, 3.5 to 4.0 is considered excellent (Dean's List level), 3.0 to 3.49 is good, 2.5 to 2.99 is average, and below 2.0 may trigger academic probation. For graduate school applications, a GPA of 3.0+ is typically the minimum requirement."
+            },
+            {
+                question: "How do credits affect my GPA?",
+                answer: "Higher credit courses carry more weight in GPA calculation. For example, getting an A in a 4-credit course boosts your GPA more than an A in a 1-credit course. This is called a credit-weighted (or weighted) GPA system."
+            },
+            {
+                question: "Can I convert my 10-point CGPA to a 4.0 GPA?",
+                answer: "There is no universal conversion formula. A rough approximation is: 4.0 GPA = (10-point CGPA − 0.5) × 0.4. For example, a CGPA of 8.0 ≈ 3.0 on a 4.0 scale. However, different universities may have their own conversion tables."
+            },
+            {
+                question: "Does every Indian university use the same grading system?",
+                answer: "No. Some Indian universities use a 10-point scale (e.g., IITs, NITs), while others use percentage-based or letter grade systems. The grade point assignments and conversion formulas can vary significantly between institutions."
+            },
+            {
+                question: "What is a weighted vs unweighted GPA?",
+                answer: "An unweighted GPA uses the standard 4.0 scale for all courses. A weighted GPA gives extra points for honors, AP, or IB courses (e.g., on a 5.0 scale). Most US high schools report both. This calculator uses the standard unweighted method."
+            },
+            {
+                question: "How can I improve my GPA?",
+                answer: "Focus on high-credit courses since they have the biggest impact on your GPA. Retake courses where you scored poorly (if your university allows grade replacement). Prioritize subjects early in the semester when GPA recovery is still possible."
+            },
+            {
+                question: "Is this GPA calculator free?",
+                answer: "Yes. This calculator is completely free, works on all devices, and requires no sign-up. Your data stays in your browser — nothing is stored on any server."
             }
         ],
         howTo: {
-            name: "Calculate Your GPA",
-            description: "Measure semester GPA, SGPA, or cumulative CGPA quickly.",
+            name: "How to Calculate Your GPA",
+            description: "Compute your semester GPA or cumulative CGPA in 4 steps.",
             steps: [
-                { name: "Add Courses", text: "Enter course names and credits." },
-                { name: "Choose Scale", text: "Switch between 4.0 letter grades and 10-point grade points if needed." },
-                { name: "Enter Grades", text: "Select the grade or grade point for each subject." },
-                { name: "Result", text: "See your calculated GPA instantly." }
+                { name: "Add Courses", text: "Enter your course names and credit hours for each subject." },
+                { name: "Choose Scale", text: "Select the 4.0 letter grade scale or 10-point grade point scale based on your university." },
+                { name: "Enter Grades", text: "Select the grade or grade point you received in each course." },
+                { name: "View GPA", text: "Instantly see your calculated GPA with the total credits and quality points breakdown." }
             ]
         },
     },
@@ -1015,36 +1142,81 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'unit-converter',
-        name: 'Unit Converter - Convert Length, Weight, Temperature and More',
-        description: 'Convert common units for length, weight, volume, temperature, speed, and area quickly with one easy online converter.',
+        name: 'Unit Converter - Convert Length, Weight, Temperature Online',
+        description: 'Free unit converter for length, weight, temperature, volume, speed, and area. Convert metric to imperial and back instantly.',
         category: 'other',
         icon: ArrowLeftRight,
         component: UnitConverter,
         content: UnitConverterContent,
-        longDescription: "Bridge the gap between Metric and Imperial. Convert length, weight, temperature, and volume instantly with this all-in-one unit converter. Perfect for students, travelers, and professionals.",
+        longDescription: "This free Unit Converter lets you instantly convert between metric and imperial units for length, weight, temperature, volume, speed, and area. Whether you need to convert kilometers to miles, kilograms to pounds, Celsius to Fahrenheit, or liters to gallons, this tool gives you accurate results with no formulas needed. It is designed for students, travelers, professionals, and anyone who needs quick, reliable unit conversions.",
         features: [
-            "Metric & Imperial",
-            "Multiple categories",
-            "Instant updates",
-            "No formulas needed"
+            "Length conversion (km, m, cm, mm, miles, feet, inches, yards)",
+            "Weight conversion (kg, g, lbs, oz, stone)",
+            "Temperature conversion (Celsius, Fahrenheit, Kelvin)",
+            "Volume conversion (liters, ml, gallons, cups, fl oz)",
+            "Instant real-time conversion as you type",
+            "Metric and Imperial system support"
+        ],
+        keywords: [
+            'unit converter', 'unit converter online', 'free unit converter',
+            'convert units', 'metric to imperial converter',
+            'kg to lbs', 'lbs to kg', 'km to miles', 'miles to km',
+            'cm to inches', 'inches to cm', 'feet to meters', 'meters to feet',
+            'celsius to fahrenheit', 'fahrenheit to celsius',
+            'liters to gallons', 'gallons to liters',
+            'mm to inches', 'yards to meters', 'oz to grams',
+            'temperature converter', 'length converter', 'weight converter',
+            'unit conversion calculator', 'measurement converter'
         ],
         faqs: [
             {
-                question: "Is this converter accurate?",
-                answer: "Yes. All conversions are mathematically standard and precise."
+                question: "How do I convert kg to lbs?",
+                answer: "Multiply the weight in kilograms by 2.20462 to get pounds. For example, 70 kg × 2.20462 = 154.32 lbs. This converter does this instantly — just enter the value and select the units."
             },
             {
-                question: "What units are supported?",
-                answer: "Length, Weight, Temperature, and Volume across Metric and Imperial systems."
+                question: "How do I convert Celsius to Fahrenheit?",
+                answer: "Multiply the Celsius temperature by 9/5 (or 1.8) and then add 32. For example, 37°C × 1.8 + 32 = 98.6°F. To convert Fahrenheit to Celsius, subtract 32 and multiply by 5/9."
+            },
+            {
+                question: "How many centimeters are in an inch?",
+                answer: "One inch equals exactly 2.54 centimeters. To convert inches to cm, multiply by 2.54. To convert cm to inches, divide by 2.54. For example, 5 inches = 12.7 cm."
+            },
+            {
+                question: "How do I convert kilometers to miles?",
+                answer: "Multiply kilometers by 0.621371 to get miles. For example, 10 km × 0.621371 = 6.21 miles. To convert miles to kilometers, multiply by 1.60934."
+            },
+            {
+                question: "What is the difference between metric and imperial?",
+                answer: "The metric system (used globally) uses meters, kilograms, and Celsius. The imperial system (used in the US, UK for some measurements) uses feet, pounds, and Fahrenheit. This converter handles both systems seamlessly."
+            },
+            {
+                question: "How many liters are in a gallon?",
+                answer: "One US gallon equals approximately 3.785 liters. One UK (imperial) gallon equals approximately 4.546 liters. This converter uses US gallons by default, which is the more common standard online."
+            },
+            {
+                question: "How do I convert feet and inches to centimeters?",
+                answer: "Convert feet to inches (multiply by 12), add the remaining inches, then multiply the total inches by 2.54 to get centimeters. For example, 5'9\" = 69 inches × 2.54 = 175.26 cm."
+            },
+            {
+                question: "Is this unit converter accurate?",
+                answer: "Yes. All conversion factors used are mathematically standard and precise to multiple decimal places. The results are equivalent to what you would get using the official conversion formulas."
+            },
+            {
+                question: "Can I use this converter on my phone?",
+                answer: "Yes. This unit converter is fully responsive and works on all devices including mobile phones, tablets, and desktop computers. No app installation is required."
+            },
+            {
+                question: "Is this unit converter free?",
+                answer: "Yes. This converter is completely free with no limits, no ads blocking results, and no sign-up required."
             }
         ],
         howTo: {
-            name: "Convert Units Fast",
-            description: "Simple inputs, instant results.",
+            name: "How to Convert Units Online",
+            description: "Convert between metric and imperial units in 3 steps.",
             steps: [
-                { name: "Input Value", text: "Type the number you want to convert." },
-                { name: "Select Units", text: "Choose the starting unit (e.g., Meters)." },
-                { name: "Result", text: "See the converted value instantly (e.g., Feet)." }
+                { name: "Enter Value", text: "Type the number you want to convert (e.g., 100)." },
+                { name: "Select Units", text: "Choose the source unit (e.g., Kilograms) and the target unit (e.g., Pounds)." },
+                { name: "View Result", text: "See the converted value instantly with full precision." }
             ]
         },
     },
@@ -1191,65 +1363,88 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'tip',
-        name: 'Tip Calculator - Calculate Tip, Total Bill and Split Amount',
-        description: 'Work out tip amount, total bill, and per-person split fast for restaurants, travel, delivery, and group dining.',
+        name: 'Tip Calculator - Calculate Tip and Split Bill Instantly',
+        description: 'Free tip calculator to find gratuity, total bill, and per-person split for restaurants, delivery, and travel. Supports pre-tax tips and group splits.',
         category: 'math',
         icon: DollarSign,
         component: TipCalculator,
         content: TipCalculatorContent,
-        longDescription: "Master the art of tipping with our premium gratuity tool. Whether you're dining in New York, London, or Mumbai, this calculator helps you handle complex bill splits, pre-tax tipping logic, and various rounding preferences. It also includes an up-to-date global guide on tipping customs to help you travel with confidence.",
+        longDescription: "This free Tip Calculator helps you work out how much to tip at restaurants, cafes, bars, hotels, and for delivery or rideshare services. Enter your bill amount, choose a tip percentage, and instantly see the tip amount, total bill, and per-person share when splitting with friends. The calculator supports pre-tax tipping (the industry standard in the US and Canada), multiple rounding preferences, and a dynamic comparison table showing totals at 10%, 15%, 18%, 20%, and 25%. It also includes a global tipping guide covering the US, UK, Canada, Australia, France, Japan, and India so you know the local etiquette wherever you are.",
         features: [
-            "Global tipping etiquette guide",
-            "Advanced pre-tax tipping logic",
-            "Multiple rounding options (None, Tip, Total)",
-            "Dynamic 10-25% comparison table",
-            "Fair bill splitting for any group size"
+            "Instant tip calculation with percentage or fixed amount",
+            "Bill splitting for any group size",
+            "Pre-tax vs post-tax tipping toggle",
+            "Rounding options (round tip, round total, or no rounding)",
+            "Side-by-side comparison at 10%, 15%, 18%, 20%, 25%",
+            "Multi-currency support (USD, EUR, GBP, INR)",
+            "Global tipping etiquette guide for 2026",
+            "Save calculations to history"
         ],
+        formula: "\\text{Tip} = \\text{Bill} \\times \\frac{\\text{Tip \\%}}{100}",
         keywords: [
-            'tip calculator',
-            'gratuity calculator',
-            'bill split calculator',
-            'restaurant tip guide',
-            'tip before tax calculator',
-            'tipping percentage 2026',
-            'how much to tip US UK Canada',
-            'split bill evenly',
-            'waiter tip calculator'
+            'tip calculator', 'tip calculator online', 'free tip calculator',
+            'gratuity calculator', 'restaurant tip calculator',
+            'bill split calculator', 'split bill calculator',
+            'how much to tip', 'how to calculate tip',
+            'tip calculator for restaurants', 'tip calculator app',
+            'tip percentage calculator', 'tip on pre-tax amount',
+            'tipping percentage 2026', 'standard tip percentage',
+            'how much to tip in USA', 'how much to tip in India',
+            'how much to tip delivery driver', 'how much to tip uber',
+            'tip calculator india', 'tip calculator with tax',
+            'calculate tip and split bill', 'waiter tip calculator',
+            'tip guide by country', 'tipping etiquette 2026'
         ],
         faqs: [
             {
+                question: "How do I calculate a tip?",
+                answer: "Multiply your bill amount by the tip percentage and divide by 100. For example, a 15% tip on a $80 bill is $80 × 15 ÷ 100 = $12. Our tip calculator does this instantly and also handles tax, rounding, and bill splitting."
+            },
+            {
+                question: "What is the standard tip percentage in the US?",
+                answer: "In the United States, 15% to 20% of the pre-tax bill is the standard tip for sit-down restaurants. For exceptional service, 20% to 25% is common. At buffets, 10% is typical since table-side service is limited."
+            },
+            {
                 question: "Should I tip on the pre-tax or post-tax amount?",
-                answer: "Industry standard in most countries like the US is to tip based on the pre-tax subtotal. Our calculator includes a specialized toggle for this."
+                answer: "Industry etiquette in the US and Canada recommends tipping on the pre-tax subtotal because the tax portion goes to the government, not the server. Our calculator includes a toggle to switch between pre-tax and post-tax tipping."
             },
             {
-                question: "Can I round my bill to the nearest whole number?",
-                answer: "Yes. You can use the 'Round Up Total' option in the advanced settings to ensure your final payment is a whole number."
+                question: "How much should I tip in India?",
+                answer: "In India, tipping 5% to 10% is common at restaurants. Many restaurants add a service charge of 5% to 10% to the bill. If a service charge is already included, an additional tip is appreciated but not required."
             },
             {
-                question: "What is a standard tip in the United States?",
-                answer: "In the US, 15% to 20% is considered standard for sit-down service, while 10% is common for casual or buffet dining."
+                question: "How do I split a bill with tip evenly?",
+                answer: "Add the tip to the total bill (including any tax), then divide by the number of people. For example, a $100 bill with $18 tip split 3 ways is ($100 + $18) ÷ 3 = $39.33 per person. This calculator handles this automatically."
             },
             {
-                question: "Is service charge the same as a tip?",
-                answer: "No. A service charge is a required fee added by the restaurant, whereas a tip is a voluntary gratuity. If a service charge is included, an extra tip is usually not required."
+                question: "Is a service charge the same as a tip?",
+                answer: "No. A service charge is a mandatory fee added by the establishment and may not go directly to the server. A tip (gratuity) is a voluntary payment given directly to the service staff. If a service charge is already included on your bill, an additional tip is optional."
             },
             {
-                question: "What should I tip for Uber and Lyft?",
-                answer: "A 10-15% tip is standard for rideshare drivers. 100% of the tip goes directly to the driver, making it a vital part of their income."
+                question: "How much should I tip for delivery and rideshare?",
+                answer: "For food delivery, $3 to $5 minimum or 15% to 20% of the order total is standard. For rideshare services like Uber and Lyft, 10% to 15% of the fare is customary. Tip more for heavy orders, bad weather, or long distances."
             },
             {
-                question: "How much should I tip at a Buffet?",
-                answer: "A 10% tip is standard at buffets, primarily for the staff who clear your plates and refill drinks."
+                question: "How much should I tip at a hotel?",
+                answer: "Tip $2 to $5 per night for housekeeping, $1 to $2 per bag for bellhops, and $1 to $3 for valet service. For concierge help with difficult reservations, $5 to $20 is common depending on the effort involved."
+            },
+            {
+                question: "Do I need to tip in Japan or China?",
+                answer: "In Japan, tipping is generally not expected and can sometimes be seen as impolite. Excellent service is considered the standard. In China, tipping is uncommon at local restaurants but may be accepted at international hotels and tourist areas."
+            },
+            {
+                question: "How much should I tip my hairdresser or barber?",
+                answer: "For hairdressers, barbers, and salon services, 15% to 20% of the total service cost is the standard tip. If an assistant shampoos your hair, an additional $3 to $5 for the assistant is customary."
             }
         ],
         howTo: {
-            name: "How to Use This Advanced Tip Calculator",
-            description: "Calculate accurate tips and splits in seconds.",
+            name: "How to Calculate Tip and Split Bill",
+            description: "Get the right tip amount in 4 easy steps.",
             steps: [
-                { name: "Enter Subtotal", text: "Input your bill amount before tax." },
-                { name: "Select Tip", text: "Choose a percentage or enter a custom amount." },
-                { name: "Advanced Options", text: "Add tax or toggle pre-tax tipping if needed." },
-                { name: "Split & Save", text: "Enter group size and save results for later." }
+                { name: "Enter Bill Amount", text: "Type your bill subtotal before tax into the calculator." },
+                { name: "Choose Tip Percentage", text: "Select a preset (10%, 15%, 18%, 20%, 25%) or use the slider for a custom percentage." },
+                { name: "Set Advanced Options", text: "Optionally add tax percentage, toggle pre-tax tipping, or choose rounding preferences." },
+                { name: "Split the Bill", text: "Enter the number of people to see each person's share of the total including tip." }
             ]
         }
     },
@@ -1339,40 +1534,82 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-ppf',
-        name: 'PPF Calculator India - Calculate PPF Returns and Maturity',
-        description: 'Calculate PPF maturity amount, yearly contributions, and long-term tax-free growth under the Public Provident Fund.',
+        name: 'PPF Calculator - Calculate PPF Maturity and Returns Online',
+        description: 'Free PPF calculator to estimate maturity amount, interest earned, and tax-free returns for 15-year Public Provident Fund investments in India.',
         category: 'india',
         icon: Briefcase,
         component: PPFCalculator,
         content: PPFCalculatorContent,
-        longDescription: "Maximize your tax savings. The Public Provident Fund (PPF) is a government-backed scheme offering attractive tax-free returns. Calculate your maturity corpus over the 15-year lock-in period.",
+        longDescription: "This free PPF Calculator helps you estimate the maturity amount and total interest earned on your Public Provident Fund (PPF) investment in India. PPF is a government-backed, tax-free savings scheme with a 15-year lock-in period. It offers EEE (Exempt-Exempt-Exempt) tax benefits — your contribution qualifies for Section 80C deduction, the interest earned is tax-free, and the maturity amount is also tax-free. Enter your annual investment amount, current PPF interest rate, and tenure to see year-by-year growth and final corpus value.",
         features: [
-            "15-year projection",
-            "Tax-free returns (EEE)",
-            "Annual investment planning",
-            "Contribution planner"
+            "15-year and extended tenure projection",
+            "Tax-free returns calculation (EEE benefit)",
+            "Year-by-year interest breakdown",
+            "Annual investment up to ₹1.5 Lakh limit",
+            "Current PPF interest rate support (7.1% for 2026)",
+            "Contribution and maturity planning tool"
+        ],
+        keywords: [
+            'ppf calculator', 'ppf calculator online', 'free ppf calculator',
+            'ppf maturity calculator', 'ppf interest calculator',
+            'ppf returns calculator', 'ppf calculator india',
+            'public provident fund calculator', 'ppf interest rate 2026',
+            'ppf maturity amount', 'ppf investment calculator',
+            'ppf calculator monthly', 'ppf yearly contribution',
+            'ppf tax saving calculator', 'ppf 15 year calculator',
+            'ppf calculator with yearly breakdown', 'ppf account calculator',
+            'how much ppf maturity for 1.5 lakh', 'ppf vs fd calculator'
         ],
         faqs: [
             {
-                question: "Limit per year?",
-                answer: "Max ₹1.5 Lakh per financial year."
+                question: "How is PPF interest calculated?",
+                answer: "PPF interest is calculated on the lowest balance between the 5th and the last day of each month, and compounded annually. This means deposits made before the 5th of any month earn interest for that entire month. The current PPF interest rate is 7.1% per annum (2026)."
             },
             {
-                question: "Is interest taxable?",
-                answer: "No, interest is fully tax-free."
+                question: "What is the maximum PPF investment per year?",
+                answer: "The maximum deposit allowed in a PPF account is ₹1.5 Lakh per financial year. The minimum deposit required is ₹500 per year to keep the account active. You can make deposits in lump sum or up to 12 installments per year."
             },
             {
-                question: "Lock-in period?",
-                answer: "15 years (extendable by 5 years)."
+                question: "Is PPF interest tax-free?",
+                answer: "Yes. PPF enjoys EEE (Exempt-Exempt-Exempt) tax status. Your contribution up to ₹1.5 Lakh qualifies for Section 80C deduction, the interest earned is completely tax-free, and the maturity amount is also fully tax-exempt."
+            },
+            {
+                question: "What is the PPF lock-in period?",
+                answer: "PPF has a mandatory lock-in period of 15 years from the date of account opening. After 15 years, you can either withdraw the full amount or extend the account in blocks of 5 years (with or without contributions)."
+            },
+            {
+                question: "Can I withdraw money from PPF before maturity?",
+                answer: "Partial withdrawal is allowed from the 7th financial year onwards. You can withdraw up to 50% of the balance at the end of the 4th year or the preceding year, whichever is lower. Complete premature closure is allowed only under specific conditions like serious illness."
+            },
+            {
+                question: "How much will I get if I invest ₹1.5 lakh per year in PPF?",
+                answer: "If you invest the maximum ₹1.5 Lakh per year for 15 years at the current rate of 7.1%, your total investment of ₹22.5 Lakh will grow to approximately ₹40.7 Lakh at maturity — earning about ₹18.2 Lakh in tax-free interest."
+            },
+            {
+                question: "Can I have more than one PPF account?",
+                answer: "No. An individual can hold only one PPF account. Having multiple accounts is not allowed under PPF rules. If a second account is discovered, it will be merged with the primary account or closed."
+            },
+            {
+                question: "Is PPF better than Fixed Deposit?",
+                answer: "PPF offers tax-free returns with EEE benefit, while FD interest is fully taxable. At 7.1% tax-free, PPF's effective return is equivalent to about 10% pre-tax return for someone in the 30% tax bracket. However, FD offers more liquidity with shorter lock-in periods."
+            },
+            {
+                question: "Can NRIs open a PPF account?",
+                answer: "No. NRIs cannot open new PPF accounts. However, if you had a PPF account before becoming an NRI, you can continue it until maturity (15 years) but cannot extend it beyond that."
+            },
+            {
+                question: "Is this PPF calculator free?",
+                answer: "Yes. This calculator is completely free, requires no sign-up, and works on all devices. All calculations are performed locally in your browser."
             }
         ],
         howTo: {
-            name: "How to Plan PPF",
-            description: "Estimate your retirement corpus.",
+            name: "How to Calculate PPF Maturity Amount",
+            description: "Estimate your PPF returns in 4 simple steps.",
             steps: [
-                { name: "Investment", text: "Enter annual deposit amount." },
-                { name: "Duration", text: "Set tenure (Min 15 years)." },
-                { name: "Calculate", text: "View total interest and maturity value." }
+                { name: "Annual Investment", text: "Enter the amount you plan to invest each year (max ₹1.5 Lakh)." },
+                { name: "Interest Rate", text: "Enter the current PPF interest rate (currently 7.1% for 2026)." },
+                { name: "Tenure", text: "Set the investment period (minimum 15 years, extendable in 5-year blocks)." },
+                { name: "View Results", text: "See your total investment, interest earned, and maturity amount with year-wise breakdown." }
             ]
         },
     },
@@ -1586,45 +1823,85 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'discount',
-        name: 'Discount Calculator - Find Sale Price and Savings',
-        description: 'Calculate discount amount, final price, and savings after sale percentage, coupon, or tax so you know the true deal.',
+        name: 'Discount Calculator - Calculate Sale Price and Savings Online',
+        description: 'Free discount calculator to find the final price after percentage off, coupon code, and tax. See how much you save before you buy.',
         category: 'math',
         icon: Percent,
         component: DiscountCalculator,
         content: DiscountCalculatorContent,
-        longDescription: "This Discount Calculator helps you calculate the final payable price after applying discounts, taxes, quantities, and additional flat reductions. It is designed for shoppers who want to know exactly how much they save and what they actually pay before checkout.",
+        longDescription: "This free Discount Calculator shows you the exact final price and total savings after applying a percentage discount, flat coupon, and tax. Enter the original price, set the discount percentage, and instantly see how much you save and what you actually pay. It supports multiple quantities, optional sales tax or VAT, and stacked discounts (percentage + flat amount). Use it for online shopping, retail sales, Black Friday deals, seasonal promotions, or wholesale pricing to make sure you are getting the best deal.",
         features: [
-            "Calculate final price & savings",
-            "Support for Tax & Quantity",
-            "Handle extra flat discounts",
-            "Clear cost breakdown"
+            "Instant final price and savings calculation",
+            "Percentage discount and flat coupon support",
+            "Multiple quantity pricing",
+            "Optional sales tax and VAT inclusion",
+            "Stacked discounts (percentage + flat amount)",
+            "Clear cost breakdown with savings highlighted"
+        ],
+        formula: "\\text{Sale Price} = \\text{Original Price} - \\left(\\text{Original Price} \\times \\frac{\\text{Discount \\%}}{100}\\right)",
+        keywords: [
+            'discount calculator', 'discount calculator online', 'free discount calculator',
+            'percentage off calculator', 'sale price calculator',
+            'how to calculate discount', 'how to calculate discount percentage',
+            'calculate percentage off', 'percent off calculator',
+            'discount percentage calculator', 'price after discount',
+            'what is 20 percent off', 'what is 30 percent off',
+            'what is 50 percent off', 'coupon calculator',
+            'shopping discount calculator', 'final price after discount',
+            'discount and tax calculator', 'savings calculator shopping',
+            'sale calculator online', 'bulk discount calculator',
+            'original price from discount', 'double discount calculator'
         ],
         faqs: [
             {
-                question: "Can this calculator handle multiple items?",
-                answer: "Yes. Quantity input allows accurate total price calculation."
+                question: "How do I calculate a discount percentage?",
+                answer: "Multiply the original price by the discount percentage, then divide by 100. For example, 25% off $80 is $80 × 25 ÷ 100 = $20 discount. The final price is $80 − $20 = $60. This calculator does this instantly for any price and percentage."
             },
             {
-                question: "Does it support tax and VAT?",
-                answer: "Yes. Optional tax fields help calculate realistic final bills."
+                question: "What is 20% off of $50?",
+                answer: "20% off $50 is a $10 discount. The sale price is $50 − $10 = $40. To calculate: $50 × 20 ÷ 100 = $10 off."
             },
             {
-                question: "Can I apply a flat discount along with a percentage discount?",
-                answer: "Yes. Both can be combined in the same calculation."
+                question: "How do I find the original price from a discounted price?",
+                answer: "Divide the sale price by (1 − discount rate). For example, if an item costs $60 after a 25% discount, the original price was $60 ÷ 0.75 = $80. This is called a reverse discount calculation."
             },
             {
-                question: "Is this calculator free to use?",
-                answer: "Yes. There are no limits or restrictions."
+                question: "Can I stack multiple discounts?",
+                answer: "Yes. This calculator lets you apply a percentage discount first, then add a flat coupon amount on top. Note that stacking discounts is not the same as adding percentages — a 20% + 10% discount does not equal 30% off."
+            },
+            {
+                question: "Should I calculate tax before or after the discount?",
+                answer: "In most jurisdictions, sales tax is applied after the discount. You pay tax on the reduced price, not the original price. This calculator applies tax after discount, which is the standard method."
+            },
+            {
+                question: "How do I calculate discount for multiple items?",
+                answer: "Enter the per-item price and discount, then set the quantity. The calculator will multiply the discounted unit price by the quantity to give you the correct total for bulk purchases."
+            },
+            {
+                question: "What is the difference between percent off and percent of?",
+                answer: "'Percent off' means the reduction amount (e.g., 30% off $100 = $30 saved, you pay $70). 'Percent of' means the portion you pay (e.g., 70% of $100 = $70). They are complementary — 30% off is the same as paying 70% of the original."
+            },
+            {
+                question: "How do I check if a sale is a good deal?",
+                answer: "Compare the final price (after discount and tax) with prices from other stores. A 50% off on an inflated price may still be more expensive than a competitor's regular price. This calculator helps you see the exact amount you pay."
+            },
+            {
+                question: "Does this calculator work for international currencies?",
+                answer: "Yes. The calculator works with any currency since it calculates percentages and amounts. Simply enter prices in your local currency and the discount math applies universally."
+            },
+            {
+                question: "Is this discount calculator free?",
+                answer: "Yes. This calculator is completely free with no limits, no sign-up required, and works on all devices including mobile phones, tablets, and desktops."
             }
         ],
         howTo: {
-            name: "How to Use the Discount Calculator",
-            description: "Find the real price in seconds.",
+            name: "How to Calculate Discount and Sale Price",
+            description: "Find the final price after discount in 4 steps.",
             steps: [
-                { name: "Original Price", text: "Enter the item's listing price." },
-                { name: "Discount", text: "Add the discount percentage." },
-                { name: "Details", text: "Select quantity and optional tax." },
-                { name: "Result", text: "View final price and total savings." }
+                { name: "Enter Original Price", text: "Type the item's listing or MRP price before any discounts." },
+                { name: "Set Discount Percentage", text: "Enter the sale percentage (e.g., 10%, 25%, 50% off)." },
+                { name: "Add Quantity and Tax", text: "Optionally set the number of items and sales tax or VAT percentage." },
+                { name: "View Final Price", text: "Instantly see the discount amount, total savings, and final price you pay." }
             ]
         }
     },
@@ -1723,106 +2000,171 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-emi',
-        name: 'EMI Calculator India - Calculate Loan EMI and Total Interest',
-        description: 'Calculate EMI, total interest, and total repayment for home, car, personal, and education loans with a full breakdown.',
+        name: 'EMI Calculator - Calculate Loan EMI, Interest and Schedule',
+        description: 'Free EMI calculator for home loan, car loan, and personal loan in India. See monthly EMI, total interest, and amortization schedule instantly.',
         category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
         content: IndiaEMICalculatorContent,
-        longDescription: "Planning a loan? Our India EMI Calculator helps you calculate the exact Equated Monthly Installment (EMI) for Home Loans, Car Loans, Personal Loans, and Education Loans. It uses the standard Reducing Balance Method used by all major Indian banks (SBI, HDFC, ICICI, Axis, Bajaj Finserv). Get a detailed year-wise and month-wise amortization schedule to understand your principal repayment vs. interest payment journey.",
+        longDescription: "This free EMI Calculator helps you calculate the Equated Monthly Installment (EMI) for any loan — home loan, car loan, personal loan, or education loan. Enter the loan amount, interest rate, and tenure to instantly see your monthly EMI, total interest payable, and total repayment amount. The calculator uses the standard Reducing Balance Method used by all major Indian banks (SBI, HDFC, ICICI, Axis, Bajaj Finserv). It also generates a year-wise amortization schedule showing how your principal and interest payments change over the loan tenure.",
         keywords: [
+            'emi calculator', 'emi calculator online', 'free emi calculator',
             'emi calculator india', 'home loan emi calculator', 'car loan emi calculator',
-            'personal loan emi calculator', 'loan calculator india', 'sbi home loan emi',
-            'hdfc personal loan emi', 'icici car loan emi', 'education loan emi calculator',
-            'reducing balance emi calculator', 'flat rate vs reducing balance', 'loan amortization chart',
-            'monthly emi check', 'loan repayment schedule', 'bajaj finserv emi calculator',
-            'housing loan calculator', 'bike loan emi calculator'
+            'personal loan emi calculator', 'education loan emi calculator',
+            'loan emi calculator', 'loan calculator india',
+            'sbi home loan emi calculator', 'hdfc personal loan emi',
+            'icici car loan emi', 'bajaj finserv emi calculator',
+            'how to calculate emi', 'emi formula', 'emi calculation formula',
+            'reducing balance emi calculator', 'flat rate vs reducing balance',
+            'loan amortization schedule', 'loan repayment calculator',
+            'monthly emi calculator', 'housing loan calculator',
+            'bike loan emi calculator', 'loan interest calculator india'
         ],
         features: [
-            "Reducing Balance Method (Bank Standard)",
-            "Visual Amortization Chart (Principal vs Interest)",
-            "Yearly Repayment Schedule",
-            "Home, Car, Personal, Education Loan Support",
-            "Total Interest Payable Analysis"
+            "Reducing Balance Method (bank standard in India)",
+            "Visual amortization chart (principal vs interest split)",
+            "Year-wise repayment schedule",
+            "Home, car, personal, and education loan support",
+            "Total interest payable analysis",
+            "EMI comparison at different rates and tenures"
         ],
         formula: "E = P \\times r \\times \\frac{(1 + r)^n}{(1 + r)^n - 1}",
         faqs: [
             {
-                question: "How is an EMI calculated manually?",
-                answer: "Using the formula E = P × r × (1 + r)^n / ((1 + r)^n - 1), where P is the principal, r is the monthly rate of interest, and n is the tenure in months."
+                question: "How is EMI calculated?",
+                answer: "EMI is calculated using the formula: EMI = P × r × (1+r)^n / ((1+r)^n − 1), where P is the loan principal, r is the monthly interest rate (annual rate ÷ 12 ÷ 100), and n is the tenure in months. For example, a ₹10 Lakh loan at 8.5% for 20 years has an EMI of approximately ₹8,678."
             },
             {
-                question: "Do Indian banks use flat rate or reducing balance?",
-                answer: "Major Indian banks like SBI and HDFC use the reducing balance method, where your interest payment reduces every month as principal shrinks."
+                question: "What is the EMI for a ₹10 lakh home loan?",
+                answer: "For a ₹10 Lakh home loan at 8.5% interest for 20 years, the monthly EMI is approximately ₹8,678. The total interest paid over 20 years would be about ₹10.83 Lakh — meaning you pay back roughly ₹20.83 Lakh in total."
             },
             {
-                question: "Does paying an extra EMI reduce my loan tenure?",
-                answer: "Yes, prepaying even one extra EMI per year heavily targets the principal, drastically reducing both the tenure and the total interest burden over time."
+                question: "What is the difference between flat rate and reducing balance?",
+                answer: "In the flat rate method, interest is calculated on the original loan amount throughout the tenure. In the reducing balance method (used by all major Indian banks), interest is calculated on the outstanding principal, which decreases each month. The reducing balance method results in lower total interest."
+            },
+            {
+                question: "Does prepaying my loan reduce the EMI or tenure?",
+                answer: "Prepayment can reduce either the EMI amount or the loan tenure, depending on your bank's policy and your preference. Reducing the tenure saves more interest in the long run. Most banks allow prepayment of home loans without penalty as per RBI guidelines."
+            },
+            {
+                question: "Which Indian banks offer the lowest home loan rates?",
+                answer: "As of 2026, SBI, Bank of Baroda, and LIC Housing Finance typically offer competitive home loan rates starting from around 8.25% to 8.75%. Rates vary based on loan amount, CIBIL score, and property type. Always compare the latest rates from multiple banks."
+            },
+            {
+                question: "Is there a penalty for prepaying a personal loan?",
+                answer: "Banks may charge a prepayment penalty of 2% to 5% on personal loans. However, for home loans, RBI has mandated that no prepayment penalty can be charged on floating rate loans. Always check your loan agreement for specific terms."
+            },
+            {
+                question: "How does loan tenure affect EMI and total interest?",
+                answer: "A longer tenure reduces your monthly EMI but increases the total interest paid over the loan's lifetime. For example, a ₹20 Lakh loan at 9%: 10-year tenure = ₹25,334 EMI (₹10.4L interest), 20-year tenure = ₹17,995 EMI (₹23.2L interest). Choose based on your cash flow needs."
+            },
+            {
+                question: "What is CIBIL score and how does it affect my loan?",
+                answer: "CIBIL score is your credit score ranging from 300 to 900. A score above 750 qualifies you for the best interest rates. Below 650 may result in loan rejection or significantly higher rates. Check your score before applying to negotiate better terms."
+            },
+            {
+                question: "Can I change my EMI amount after taking a loan?",
+                answer: "Some banks offer step-up EMI options where your EMI increases over time (useful for young professionals expecting salary growth). You can also make partial prepayments to effectively reduce future EMIs. Contact your bank for restructuring options."
+            },
+            {
+                question: "Is this EMI calculator free?",
+                answer: "Yes. This EMI calculator is completely free, requires no sign-up, and works on all devices. All calculations happen locally in your browser — no data is stored or sent to any server."
             }
         ],
-
         howTo: {
             name: "How to Calculate Loan EMI",
-            description: "Estimate your monthly loan burden in seconds.",
+            description: "Estimate your monthly loan payment in 4 steps.",
             steps: [
-                { name: "Loan Amount", text: "Enter the total amount you are borrowing." },
-                { name: "Interest Rate", text: "Input the annual interest rate offered by the bank." },
-                { name: "Tenure", text: "Select the repayment period in Years or Months." },
-                { name: "Analyze", text: "View your Monthly EMI and Total Interest cost instantly." }
+                { name: "Enter Loan Amount", text: "Type the total loan principal you plan to borrow (e.g., ₹10,00,000)." },
+                { name: "Interest Rate", text: "Input the annual interest rate offered by your bank (e.g., 8.5%)." },
+                { name: "Select Tenure", text: "Choose the repayment period in years or months (e.g., 20 years)." },
+                { name: "View Results", text: "See your monthly EMI, total interest payable, and year-wise amortization schedule." }
             ]
         },
         popular: true,
     },
     {
         id: 'sip',
-        name: 'SIP Calculator India - Calculate Mutual Fund SIP Returns',
-        description: 'Estimate SIP returns, invested amount, and future value for monthly mutual fund investments over your planned tenure.',
+        name: 'SIP Calculator - Calculate Mutual Fund SIP Returns Online',
+        description: 'Free SIP calculator to estimate future value, wealth gained, and total returns for monthly mutual fund investments. Plan your financial goals instantly.',
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
         content: SIPCalculatorContent,
-        longDescription: "Wealth creation made simple. A Systematic Investment Plan (SIP) is one of the most disciplined ways to invest in Mutual Funds. Our SIP Calculator helps you visualize the power of compounding. By investing a small fixed amount monthly, you can build a massive corpus over 10, 15, or 20 years. Perfect for planning retirement, child's education, or buying a dream home.",
+        longDescription: "This free SIP Calculator helps you estimate how much wealth you can build by investing a fixed amount every month in mutual funds through a Systematic Investment Plan (SIP). Enter your monthly investment, expected annual return rate, and investment period to instantly see the total invested amount, estimated returns, and future corpus value. SIP works on the principle of rupee cost averaging and the power of compounding — even small monthly investments of ₹500 or ₹5,000 can grow into lakhs or crores over 10 to 20 years. Use this tool to plan for retirement, your child's education, a home down payment, or any long-term financial goal.",
         keywords: [
-            'sip calculator', 'mutual fund calculator', 'systematic investment plan',
-            'sip return calculator', 'mutual fund returns', 'groww sip calculator',
-            'zerodha sip calculator', 'etmoney sip calculator', 'monthly investment calculator',
-            'sip growth chart', 'long term wealth creation', 'best sip plans',
-            'compounding calculator india', 'sip interest rate', 'investment planner'
+            'sip calculator', 'sip calculator online', 'free sip calculator',
+            'mutual fund calculator', 'mutual fund sip calculator',
+            'sip return calculator', 'sip returns calculator online',
+            'how to calculate sip returns', 'sip interest calculator',
+            'systematic investment plan calculator', 'monthly investment calculator',
+            'sip calculator india', 'sip calculator for 1 crore',
+            'sip calculator with step up', 'step up sip calculator',
+            'groww sip calculator', 'zerodha sip calculator', 'et money sip calculator',
+            'sip wealth calculator', 'sip compounding calculator',
+            'best sip calculator', 'sip lumpsum calculator',
+            'sip calculator 5000 per month', 'sip calculator 10000 per month',
+            'how much to invest in sip', 'sip for retirement planning'
         ],
         features: [
-            "Project Future Value of Monthly Investments",
-            "Inflation-Adjusted Returns Estimation",
-            "Visual Growth Chart (Invested vs Wealth Gained)",
-            "Compare Different Return Rates (12%, 15%, etc.)",
-            "Long-term Wealth Planning Tool"
+            "Project future value of monthly SIP investments",
+            "Visual growth chart (Invested vs Wealth Gained)",
+            "Compare returns at different rates (10%, 12%, 15%)",
+            "Inflation-adjusted returns estimation",
+            "Step-up SIP planning support",
+            "Works for any monthly amount (₹500 to ₹1,00,000+)"
         ],
         hideDefaultSections: true,
         faqs: [
             {
-                question: "What is a good SIP return rate?",
-                answer: "Equity mutual funds in India have historically delivered 12-15% annual returns over the long term (10+ years)."
+                question: "How is SIP return calculated?",
+                answer: "SIP returns are calculated using the compound interest formula applied to each monthly installment. Each SIP payment compounds independently from the date it was invested. The formula used is: FV = P × [(1 + r)^n − 1] / r × (1 + r), where P is the monthly investment, r is the monthly rate of return, and n is the total number of months."
             },
             {
-                question: "Can SIP make me a crorepati?",
-                answer: "Yes. Investing ₹15,000/month for 15 years at 15% return can create a corpus of over ₹1 Crore."
+                question: "How much SIP do I need for 1 crore?",
+                answer: "To build a corpus of ₹1 Crore, you need to invest approximately ₹15,000 per month for 15 years at an expected annual return of 15%, or ₹10,000 per month for 20 years at 12% return. The exact amount depends on the return rate and investment duration."
             },
             {
-                question: "Is SIP better than Lumpsum?",
-                answer: "SIP is better for volatile markets. Lumpsum is better when the market is low. SIP promotes discipline."
+                question: "What is a good SIP return rate to expect?",
+                answer: "Equity mutual funds in India have historically delivered 12% to 15% annual returns over the long term (10+ years). Large-cap funds typically return 10% to 12%, while mid-cap and small-cap funds have delivered 14% to 18% historically. Debt funds generally return 6% to 8%."
             },
             {
-                question: "Can I increase my SIP amount?",
-                answer: "Yes, this is called Step-up SIP. A 10% annual increase can double your final corpus."
+                question: "Is SIP better than lumpsum investment?",
+                answer: "SIP is better for volatile markets because it averages out the cost through rupee cost averaging — you buy more units when prices are low and fewer when prices are high. Lumpsum investment can outperform SIP if the market is at a low point. For most investors, SIP is recommended because it promotes discipline and removes the need to time the market."
+            },
+            {
+                question: "What is a Step-up SIP?",
+                answer: "A Step-up SIP (also called a Top-up SIP) is where you increase your monthly SIP amount by a fixed percentage every year, typically 10% to 15%. This strategy can significantly boost your final corpus. For example, a ₹10,000/month SIP with a 10% annual step-up can nearly double the final wealth compared to a flat SIP over 15 years."
+            },
+            {
+                question: "Can I start SIP with just ₹500?",
+                answer: "Yes. Many mutual fund houses in India allow SIPs starting from as low as ₹100 or ₹500 per month. Even small amounts benefit from compounding over long periods. Starting early with a small SIP is far better than waiting to start with a large amount."
+            },
+            {
+                question: "Are SIP returns guaranteed?",
+                answer: "No. SIP returns in mutual funds are subject to market risk and are not guaranteed. Historical returns are not indicative of future performance. However, SIPs in equity funds have historically outperformed fixed deposits and savings accounts over 7+ year periods."
+            },
+            {
+                question: "Is SIP tax-free in India?",
+                answer: "SIP itself is not a tax instrument. Tax treatment depends on the type of mutual fund. Equity fund gains are taxed as STCG (15%) if held less than 1 year, and LTCG above ₹1.25 lakh is taxed at 12.5%. ELSS funds offer tax deduction under Section 80C up to ₹1.5 lakh per year."
+            },
+            {
+                question: "What happens if I miss a SIP installment?",
+                answer: "Missing one or two SIP installments does not cancel your SIP. The fund house simply skips that month's investment. However, consistently missing installments may lead to the SIP being auto-cancelled by some AMCs. There is no penalty for missing payments."
+            },
+            {
+                question: "How is SIP different from a recurring deposit (RD)?",
+                answer: "Both involve regular monthly deposits, but SIP invests in mutual funds (market-linked, potentially higher returns) while RD is a bank product with guaranteed but lower returns (5% to 7%). SIP offers better long-term wealth creation potential but comes with market risk. RD is safer but rarely beats inflation over long periods."
             }
         ],
         howTo: {
-            name: "How to Use SIP Calculator",
-            description: "Plan your financial freedom.",
+            name: "How to Calculate SIP Returns",
+            description: "Estimate your mutual fund SIP growth in 4 steps.",
             steps: [
-                { name: "Monthly Investment", text: "Enter the amount you can save and invest each month." },
-                { name: "Expected Return", text: "Input a conservative annual return rate (e.g., 12%)." },
-                { name: "Time Horizon", text: "Select for how many years you will continue investing." },
-                { name: "See Magic", text: "View your total corpus and the pure profit earned through compounding." }
+                { name: "Monthly Investment", text: "Enter the amount you plan to invest every month (e.g., ₹5,000 or ₹10,000)." },
+                { name: "Expected Return Rate", text: "Input the expected annual return (12% for large-cap, 15% for mid/small-cap as historical average)." },
+                { name: "Investment Duration", text: "Select how many years you plan to continue the SIP (e.g., 10, 15, or 20 years)." },
+                { name: "View Results", text: "See your total invested amount, estimated returns (wealth gained), and future corpus value." }
             ]
         },
         popular: true,

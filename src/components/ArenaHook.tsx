@@ -124,11 +124,6 @@ export function ArenaHook() {
     setActiveBanner(randomBanner);
   }, [location.pathname]);
 
-  // Don't show on the arena pages themselves
-  if (location.pathname.startsWith('/brain-training') || location.pathname.startsWith('/kenken')) {
-    return null;
-  }
-
   const advanceSlide = useCallback(() => {
     elapsedRef.current = 0;
     setProgress(0);
@@ -184,6 +179,11 @@ export function ArenaHook() {
     'linear-gradient(90deg, #2D5F4F, #10b981)',
     'linear-gradient(90deg, #2563eb, #6366f1)',
   ];
+
+  // Don't show on the arena pages themselves
+  if (location.pathname.startsWith('/brain-training') || location.pathname.startsWith('/kenken')) {
+    return null;
+  }
 
   return (
     <div

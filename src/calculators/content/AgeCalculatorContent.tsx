@@ -1,130 +1,151 @@
-import { Calendar, CheckCircle, HelpCircle, Clock, Users, FileText, Globe } from 'lucide-react';
+import React from 'react';
+import { Calendar, CheckCircle, Clock, Users, FileText, Globe, AlertTriangle, Search, Info } from 'lucide-react';
 
 const AgeCalculatorContent = () => {
     return (
-        <div className="space-y-12">
+        <div className="space-y-16 not-prose">
+            {/* Hero SEO Section */}
+            <section className="text-center max-w-3xl mx-auto">
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-6">The Complete Guide to Chronological Age Calculation</h2>
+                <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Knowing your exact age in years, months, and days is crucial for official documents, medical records, and legal eligibility. This guide explains how chronological age is calculated, why leap years matter, and how different cultures measure age, ensuring you always have accurate information for forms and milestones.
+                </p>
+            </section>
 
-            {/* Intro Section */}
-            <section className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 m-0">Age Calculator: Precise Years, Months & Days</h2>
-                <div className="flex flex-col md:flex-row gap-8 items-start">
-                    <div className="flex-1 space-y-4">
-                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                            The Age Calculator helps you calculate your exact age instantly in years, months, and days based on your date of birth. It also allows you to find the difference between two dates with complete accuracy.
+            {/* Core Concepts */}
+            <section className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 dark:border-slate-700">
+                <div className="flex items-center gap-3 mb-8">
+                    <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200 dark:shadow-none">
+                        <Clock className="w-5 h-5 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">What is Chronological Age?</h2>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
+                            <strong>Chronological age</strong> is the exact amount of time that has passed from your birth to a specific date. Unlike "biological age," which measures how healthy your cells are, chronological age is purely mathematical. It is the international standard used for passports, driver's licenses, school admissions, and retirement planning.
                         </p>
-
-                        <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/10 rounded-xl border border-blue-100 dark:border-blue-900/30">
-                            <h3 className="font-semibold text-blue-900 dark:text-blue-200 mb-2 flex items-center gap-2 m-0">
-                                <Clock className="w-5 h-5" />
-                                Why Use an Online Age Calculator?
-                            </h3>
-                            <p className="text-sm text-blue-800 dark:text-blue-300">
-                                Manually calculating age can be confusing due to leap years and varying month lengths. This tool eliminates errors and gives precise results instantly.
+                        <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <h3 className="font-semibold text-slate-900 dark:text-white mb-3 text-lg">Why "Years" Aren't Always Enough</h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Many government exams and visa applications require age verification down to the exact day. Saying you are "25 years old" is often insufficient if the cutoff date is highly specific. You might actually be 25 years, 11 months, and 29 days old, which could disqualify you from certain age-restricted opportunities.
                             </p>
                         </div>
                     </div>
-                    <div className="flex-1 bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800">
-                        <h3 className="font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2 m-0">
-                            <CheckCircle className="w-5 h-5 text-indigo-500" />
-                            What This Tool Does
+                    <div className="bg-indigo-50 dark:bg-indigo-900/10 p-8 rounded-3xl border border-indigo-100 dark:border-indigo-900/30">
+                        <h3 className="font-semibold text-indigo-900 dark:text-indigo-200 mb-4 flex items-center gap-2">
+                            <Calendar className="w-5 h-5" />
+                            How We Calculate It
                         </h3>
-                        <ul className="space-y-3">
-                            <li className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm">
-                                <Calendar className="w-4 h-4 text-emerald-500" /> Calculates exact age from date of birth
+                        <ul className="space-y-4">
+                            <li className="flex items-start gap-3">
+                                <CheckCircle className="w-5 h-5 text-indigo-500 flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-indigo-800 dark:text-indigo-300">
+                                    Subtract the birth day from the target day. If negative, borrow days from the previous month.
+                                </span>
                             </li>
-                            <li className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm">
-                                <Clock className="w-4 h-4 text-emerald-500" /> Shows age in years, months, and days
+                            <li className="flex items-start gap-3">
+                                <CheckCircle className="w-5 h-5 text-indigo-500 flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-indigo-800 dark:text-indigo-300">
+                                    Subtract the birth month from the target month. If negative, borrow 12 months from the year.
+                                </span>
                             </li>
-                            <li className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm">
-                                <Globe className="w-4 h-4 text-emerald-500" /> Works for past and future dates
-                            </li>
-                            <li className="flex items-center gap-2 text-slate-600 dark:text-slate-400 text-sm">
-                                <Users className="w-4 h-4 text-emerald-500" /> Helps find age difference between two people
+                            <li className="flex items-start gap-3">
+                                <CheckCircle className="w-5 h-5 text-indigo-500 flex-shrink-0 mt-0.5" />
+                                <span className="text-sm text-indigo-800 dark:text-indigo-300">
+                                    Subtract the birth year from the target year to get the final exact age.
+                                </span>
                             </li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            {/* Common Uses & Benefits */}
-            <section className="grid md:grid-cols-2 gap-8">
-                <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 m-0">
-                        <FileText className="w-5 h-5 text-purple-500" />
-                        Common Uses
-                    </h3>
-                    <ul className="space-y-3">
-                        <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2"></span>
-                            School and college admissions criteria
-                        </li>
-                        <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2"></span>
-                            Job eligibility and government form applications
-                        </li>
-                        <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2"></span>
-                            Passport, visa, and exam age verification
-                        </li>
-                        <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2"></span>
-                            Track birthday countdowns and milestones
-                        </li>
-                    </ul>
-                </div>
-
-                <div className="bg-indigo-50 dark:bg-indigo-900/10 rounded-2xl p-8 border border-indigo-100 dark:border-indigo-900/30">
-                    <h3 className="text-xl font-bold text-indigo-900 dark:text-indigo-200 mb-4 flex items-center gap-2 m-0">
-                        <CheckCircle className="w-5 h-5" />
-                        Key Benefits
-                    </h3>
-                    <ul className="space-y-3">
-                        <li className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300 text-sm">
-                            <CheckCircle className="w-4 h-4" /> 100% free and instant results
-                        </li>
-                        <li className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300 text-sm">
-                            <CheckCircle className="w-4 h-4" /> No sign-up required
-                        </li>
-                        <li className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300 text-sm">
-                            <CheckCircle className="w-4 h-4" /> Accurate to the day
-                        </li>
-                        <li className="flex items-center gap-2 text-indigo-800 dark:text-indigo-300 text-sm">
-                            <CheckCircle className="w-4 h-4" /> Mobile and desktop friendly
-                        </li>
-                    </ul>
+            {/* The Leap Year Challenge */}
+            <section className="bg-amber-50 dark:bg-amber-900/10 rounded-3xl p-8 md:p-12 border border-amber-100 dark:border-amber-900/30">
+                <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-200 dark:shadow-none">
+                                <AlertTriangle className="w-5 h-5 text-white" />
+                            </div>
+                            <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">The Leap Year Factor</h2>
+                        </div>
+                        <p className="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
+                            A standard year has 365 days, but a leap year has 366 days, with an extra day added to February. This makes manual age calculation highly prone to errors, especially when calculating age in total days.
+                        </p>
+                        <p className="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            If you were born on a leap day (February 29), standard legal definitions usually consider March 1st as your birthday during non-leap years for the purpose of reaching legal age limits like 18 or 21. Our calculator automatically factors in all leap years between your birth date and the target date to ensure maximum precision.
+                        </p>
+                    </div>
+                    <div className="flex-1 w-full bg-white dark:bg-slate-800 p-6 rounded-2xl border border-amber-100 dark:border-slate-700 shadow-sm">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-4">Leap Year Rules</h3>
+                        <ul className="space-y-3">
+                            <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm">
+                                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2"></span>
+                                The year must be evenly divisible by 4.
+                            </li>
+                            <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm">
+                                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2"></span>
+                                If the year can also be evenly divided by 100, it is <strong>not</strong> a leap year.
+                            </li>
+                            <li className="flex items-start gap-2 text-slate-600 dark:text-slate-400 text-sm">
+                                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2"></span>
+                                However, if the year is evenly divisible by 400, it <strong>is</strong> a leap year (e.g., the year 2000).
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-8 border border-slate-100 dark:border-slate-800">
-                <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6 m-0">Frequently Asked Questions</h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                    <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                        <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                            <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                            Is this age calculator accurate?
-                        </h3>
-                        <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">
-                            Yes. It accounts for leap years and exact date differences to provide 100% accurate results.
+            {/* Cultural Differences in Age */}
+            <section className="bg-white dark:bg-slate-800 rounded-3xl p-8 md:p-12 shadow-sm border border-slate-100 dark:border-slate-700">
+                <div className="flex items-center gap-3 mb-8">
+                    <div className="w-10 h-10 bg-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-200 dark:shadow-none">
+                        <Globe className="w-5 h-5 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">Cultural Differences in Age Calculation</h2>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Western Standard Age</h3>
+                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                            Used globally for official documentation. A baby is born at 0 years old, and age increases by exactly one year on the anniversary of their birth date. This is the logic used by this calculator.
                         </p>
                     </div>
-                    <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                        <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                            <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                            Can I calculate age between two dates?
-                        </h3>
-                        <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">
-                            Yes. It works for any date range, allowing you to find the difference between any two dates in history.
+                    <div>
+                        <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">Traditional East Asian Age</h3>
+                        <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                            Historically used in countries like China and Korea. A baby is considered 1 year old at birth (accounting for time in the womb), and everyone's age increases by one year on the Lunar New Year or Solar New Year, regardless of their actual birthday. Note: South Korea officially shifted to the international standard age system in June 2023 for legal and administrative purposes.
                         </p>
                     </div>
-                    <div className="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-100 dark:border-slate-700">
-                        <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                            <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                            How does it handle leap years?
-                        </h3>
-                        <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0">
-                            Our logic automatically detects leap years (years divisible by 4) and adjusts the day count for February accordingly.
-                        </p>
+                </div>
+            </section>
+
+            {/* Common Uses */}
+            <section className="bg-slate-50 dark:bg-slate-900 rounded-3xl p-8 md:p-12 border border-slate-200 dark:border-slate-800">
+                <div className="flex items-center gap-3 mb-8">
+                    <div className="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-200 dark:shadow-none">
+                        <FileText className="w-5 h-5 text-white" />
+                    </div>
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white m-0">When Do You Need Exact Age?</h2>
+                </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Government Jobs</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">Competitive exams often have strict upper age limits calculated as of a specific cutoff date (e.g., August 1st).</p>
+                    </div>
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Life Insurance</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">Premiums are calculated based on your "Age Nearest Birthday" or exact chronological age depending on the policy.</p>
+                    </div>
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Pediatric Care</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">Vaccine schedules and growth charts for infants are strictly measured in weeks and months.</p>
+                    </div>
+                    <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700">
+                        <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Retirement Planning</h3>
+                        <p className="text-sm text-slate-600 dark:text-slate-400">Exact age determines eligibility for pension payouts, senior citizen tax benefits, and Medicare access.</p>
                     </div>
                 </div>
             </section>
