@@ -55,6 +55,9 @@ https://calcsuite.in/calculator/scientific/
 https://calcsuite.in/calculator/simple-interest/
 https://calcsuite.in/calculator/sip/
 https://calcsuite.in/calculator/tip/
+https://calcsuite.in/calculator/tip/delivery/
+https://calcsuite.in/calculator/tip/india/
+https://calcsuite.in/calculator/tip/restaurant/
 https://calcsuite.in/calculator/triangle/
 https://calcsuite.in/calculator/unit-converter/
 https://calcsuite.in/category/financial/

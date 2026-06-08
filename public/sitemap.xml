@@ -343,6 +343,24 @@
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://calcsuite.in/calculator/tip/delivery/</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/tip/india/</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://calcsuite.in/calculator/tip/restaurant/</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://calcsuite.in/calculator/triangle/</loc>
         <lastmod>2026-06-08</lastmod>
         <changefreq>weekly</changefreq>

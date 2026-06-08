@@ -1446,7 +1446,30 @@ export const calculatorRegistry: CalculatorDef[] = [
                 { name: "Set Advanced Options", text: "Optionally add tax percentage, toggle pre-tax tipping, or choose rounding preferences." },
                 { name: "Split the Bill", text: "Enter the number of people to see each person's share of the total including tip." }
             ]
-        }
+        },
+        scenarios: [
+            {
+                id: 'india',
+                name: 'Tip Calculator India - Calculate Restaurant Tip in INR',
+                description: 'Free tip calculator for India. Quickly calculate 5% to 10% restaurant tips, handle service charges, and split bills in Indian Rupees.',
+                keywords: ['tip calculator india', 'how much to tip in india', 'restaurant tip calculator india', 'tip calculator inr', 'tipping in india'],
+                initialState: { tipPercentage: 5, billAmount: 2000, splitCount: 1 }
+            },
+            {
+                id: 'restaurant',
+                name: 'Restaurant Tip Calculator - Calculate Gratuity and Split Bill',
+                description: 'Calculate restaurant tips and split the bill easily. Find the exact gratuity amount for 15%, 18%, or 20% and share the cost with friends.',
+                keywords: ['restaurant tip calculator', 'restaurant gratuity calculator', 'tip calculator for restaurants', 'how much to tip at a restaurant', 'food tip calculator'],
+                initialState: { tipPercentage: 18, billAmount: 100, splitCount: 2 }
+            },
+            {
+                id: 'delivery',
+                name: 'Delivery Tip Calculator - Pizza, UberEats, DoorDash Gratuity',
+                description: 'Calculate how much to tip food delivery drivers. Find the right tip amount for pizza delivery, UberEats, DoorDash, and other services.',
+                keywords: ['delivery tip calculator', 'pizza tip calculator', 'ubereats tip calculator', 'doordash tip calculator', 'how much to tip delivery driver'],
+                initialState: { tipPercentage: 15, billAmount: 40, splitCount: 1 }
+            }
+        ]
     },
     {
         id: 'india-fd',
@@ -1748,26 +1771,59 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'simple-interest',
-        name: 'Simple Interest Calculator - Calculate Interest Online',
-        description: 'Calculate simple interest, total amount, and interest earned for loans, deposits, and classroom problems in seconds.',
+        name: 'Simple Interest Calculator — Calculate Interest on Loans & Savings',
+        description: 'Free simple interest calculator to instantly find the interest amount, total maturity value, and principal. Supports months and years for fast calculation.',
         category: 'financial',
         icon: Percent,
         component: SimpleInterestCalculator,
-        longDescription: "Back to basics. Simple interest is straightforward but essential for understanding loans and basic savings. Unlike compound interest, simple interest is calculated only on the initial principal amount. This tool helps you quickly determine the interest on loans or the return on non-compounding investments.",
-        keywords: ['simple interest formula', 'interest rate calculator', 'SI calculator', 'calculate interest', 'loan interest'],
+        longDescription: "Back to basics. Simple interest is straightforward but essential for understanding short-term loans, personal lending, and basic savings. Unlike compound interest, simple interest is calculated only on the initial principal amount. This tool helps you quickly determine the exact interest owed on loans or the return on non-compounding investments in seconds.",
+        keywords: [
+            'simple interest calculator', 'simple interest formula', 'interest rate calculator', 
+            'SI calculator', 'calculate interest online', 'loan interest calculator', 
+            'simple interest formula calculator', 'principal interest time calculator',
+            'how to calculate simple interest', 'simple vs compound interest'
+        ],
         features: ["Principal, Rate, Time inputs", "Total interest output", "Comparison with compound interest"],
         faqs: [
             {
                 question: "What is the Simple Interest formula?",
-                answer: "The formula is SI = (P × R × T) / 100, where P is Principal, R is Rate of Interest, and T is Time period."
+                answer: "The simple interest formula is SI = (P × R × T) / 100, where P is the Principal amount, R is the Rate of interest per year, and T is the Time period in years."
             },
             {
                 question: "How is Simple Interest different from Compound Interest?",
-                answer: "Simple interest is calculated only on the principal amount, while compound interest is calculated on the principal plus accumulated interest."
+                answer: "Simple interest is calculated only on the original principal amount. Compound interest is calculated on the principal plus any accumulated interest from previous periods. Simple interest grows linearly, while compound interest grows exponentially."
             },
             {
-                question: "Is this calculator free?",
-                answer: "Yes, it is completely free to use."
+                question: "When is simple interest used in real life?",
+                answer: "Simple interest is commonly used for short-term personal loans, car loans, some short-term student loans, and discounting of bills. Most long-term investments and bank accounts use compound interest instead."
+            },
+            {
+                question: "How do I calculate simple interest for months instead of years?",
+                answer: "To calculate simple interest for months, divide the number of months by 12 to convert it into years. For example, 6 months becomes 6/12 or 0.5 years. Then use the standard formula: SI = (P × R × 0.5) / 100."
+            },
+            {
+                question: "Does simple interest change over time?",
+                answer: "No, simple interest remains constant for every period. If you earn $50 in the first year, you will earn exactly $50 in the second year, the third year, and so on, as long as the rate and principal remain the same."
+            },
+            {
+                question: "What happens if I pay off a simple interest loan early?",
+                answer: "If you pay off a simple interest loan early, you generally save money because interest is calculated daily based on your outstanding principal balance. The sooner you pay down the principal, the less interest you will owe overall."
+            },
+            {
+                question: "Can I calculate the principal if I know the interest?",
+                answer: "Yes, you can rearrange the formula to solve for Principal: P = (SI × 100) / (R × T). This calculator handles those reverse calculations automatically."
+            },
+            {
+                question: "Is simple interest better for borrowers or lenders?",
+                answer: "Simple interest is generally better for borrowers because the interest does not compound (grow upon itself), meaning the total amount owed is less compared to a compounding loan. Lenders prefer compound interest to maximize their returns."
+            },
+            {
+                question: "What is the 'Principal' in simple interest?",
+                answer: "The Principal is the initial amount of money borrowed or invested before any interest is applied. It is the base figure upon which the interest rate is calculated."
+            },
+            {
+                question: "How do I find the total amount owed with simple interest?",
+                answer: "The total amount (maturity value) is the sum of the Principal and the Simple Interest. The formula is A = P + SI."
             }
         ],
         howTo: {
