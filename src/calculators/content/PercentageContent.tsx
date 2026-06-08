@@ -1,5 +1,4 @@
-import React from 'react';
-import { Check, MousePointer2, ShieldCheck, Zap, Percent, ArrowRightLeft, Calculator, Target, BookOpen, AlertCircle, HelpCircle } from 'lucide-react';
+import { Check, Percent, ArrowRightLeft, Calculator, Target, BookOpen, HelpCircle } from 'lucide-react';
 import type { CalculatorDef } from '../registry';
 import { FaqAccordion } from '../../components/FaqAccordion';
 

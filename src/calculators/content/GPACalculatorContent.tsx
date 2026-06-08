@@ -1,5 +1,4 @@
-import React from 'react';
-import { BookOpen, TrendingUp, CheckCircle, Award, Target, Smartphone, Globe, GraduationCap, ShieldCheck, HelpCircle } from 'lucide-react';
+import { BookOpen, TrendingUp, CheckCircle, Target, Globe, GraduationCap, ShieldCheck, HelpCircle } from 'lucide-react';
 import type { CalculatorDef } from '../registry';
 import { FaqAccordion } from '../../components/FaqAccordion';
 

@@ -50,7 +50,13 @@ function normalizePath(routePath) {
 }
 
 function toAbsoluteUrl(routePath) {
-    return `${DOMAIN}${normalizePath(routePath)}`;
+    const normalized = normalizePath(routePath);
+    // Homepage gets no trailing slash (DOMAIN already ends without one)
+    if (!normalized) {
+        return DOMAIN;
+    }
+    // All other URLs get trailing slash to match canonical URLs in SEO.tsx
+    return `${DOMAIN}${normalized}/`;
 }
 
 function addUrl(routeMap, { path: routePath, priority, changefreq }) {
@@ -164,13 +170,15 @@ function buildSitemapXml(urls) {
 
 function buildRedirects(paths) {
     const routeRules = [...paths]
-        .filter((routePath) => routePath !== '/')
+        .filter((routePath) => routePath !== '/' && routePath !== '')
         .sort((a, b) => b.length - a.length || a.localeCompare(b))
         .flatMap((routePath) => {
             const target = `${routePath}/index.html`.replace(/\/+/g, '/');
+            // Redirect non-slash → slash (matches canonical URL format)
+            // Then serve the slash version via SPA rewrite
             return [
-                `${routePath}/ ${routePath} 301!`,
-                `${routePath} ${target} 200!`
+                `${routePath} ${routePath}/ 301!`,
+                `${routePath}/ ${target} 200!`
             ];
         });
 
@@ -179,6 +187,7 @@ function buildRedirects(paths) {
         '/alternatives /resources 301!',
         '/alternatives/ /resources 301!',
         ...routeRules,
+        '/ /index.html 200!',
         '/404 /404.html 404',
         '/404/ /404.html 404',
         '/* /404.html 404',

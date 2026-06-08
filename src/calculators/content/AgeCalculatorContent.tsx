@@ -1,5 +1,4 @@
-import React from 'react';
-import { Calendar, CheckCircle, Clock, Users, FileText, Globe, AlertTriangle, Search, Info } from 'lucide-react';
+import { Calendar, CheckCircle, Clock, FileText, Globe, AlertTriangle } from 'lucide-react';
 
 const AgeCalculatorContent = () => {
     return (

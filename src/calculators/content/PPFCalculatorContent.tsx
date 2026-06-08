@@ -1,5 +1,4 @@
-import React from 'react';
-import { Landmark, ShieldCheck, CheckCircle, TrendingUp, Lock, Scale, Info, Briefcase, Calendar, AlertTriangle } from 'lucide-react';
+import { Landmark, ShieldCheck, CheckCircle, TrendingUp, Lock, Scale, AlertTriangle, Calculator } from 'lucide-react';
 
 const ppfInterestHistory = [
     { year: '2020 - Present', rate: '7.10%' },

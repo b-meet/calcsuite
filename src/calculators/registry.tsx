@@ -291,8 +291,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'percentage',
-        name: 'Percentage Calculator - Calculate Percentages Instantly',
-        description: 'Free percentage calculator to find what is X% of Y, percentage increase or decrease, and percentage difference. Works for marks, discounts, tips, and finance.',
+        name: 'Percentage Calculator — What Is X% of Y? Increase & Decrease',
+        description: 'Solve any percentage problem instantly: X% of Y, percentage increase/decrease, what % is X of Y, and percentage difference. With step-by-step formula shown.',
         category: 'math',
         icon: Percent,
         component: PercentageCalculator,
@@ -637,8 +637,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'bmi',
-        name: 'BMI Calculator - Calculate Body Mass Index Instantly',
-        description: 'Free BMI calculator to check your Body Mass Index from height and weight. See your WHO weight category and healthy BMI range for adults.',
+        name: 'BMI Calculator — Check Your Body Mass Index (WHO Standard)',
+        description: 'Enter height and weight → instantly see your BMI score, WHO weight category, and healthy weight range. Supports metric & imperial. Works for men, women & Indian/Asian BMI ranges.',
         category: 'health',
         icon: Activity,
         component: BMICalculator,
@@ -1023,8 +1023,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'gpa',
-        name: 'GPA Calculator - Calculate GPA, SGPA and CGPA Online',
-        description: 'Free GPA calculator to compute semester GPA, SGPA, and cumulative CGPA using credits and grades. Supports 4.0 and 10-point scales.',
+        name: 'GPA Calculator — CGPA & SGPA on 4.0 and 10-Point Scale',
+        description: 'Enter your course credits and grades to instantly calculate GPA, SGPA, or cumulative CGPA. Supports the US 4.0 scale and the Indian 10-point grading system.',
         category: 'other',
         icon: GraduationCap,
         component: GPACalculator,
@@ -1363,8 +1363,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'tip',
-        name: 'Tip Calculator - Calculate Tip and Split Bill Instantly',
-        description: 'Free tip calculator to find gratuity, total bill, and per-person split for restaurants, delivery, and travel. Supports pre-tax tips and group splits.',
+        name: 'Tip Calculator — How Much to Tip? Quick Tip & Bill Splitter',
+        description: 'Enter your bill → instantly see the tip amount, total, and each person\'s share. Pre-tax tips, rounding, bill splitting, and tipping guide for US, India & 7 countries.',
         category: 'math',
         icon: DollarSign,
         component: TipCalculator,
@@ -1823,8 +1823,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'discount',
-        name: 'Discount Calculator - Calculate Sale Price and Savings Online',
-        description: 'Free discount calculator to find the final price after percentage off, coupon code, and tax. See how much you save before you buy.',
+        name: 'Discount Calculator — Sale Price After X% Off (With Tax)',
+        description: 'Enter original price and discount % → instantly see the sale price, savings amount, and final total after tax. Supports coupons, bulk quantities, and multiple discounts.',
         category: 'math',
         icon: Percent,
         component: DiscountCalculator,
@@ -2000,8 +2000,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'india-emi',
-        name: 'EMI Calculator - Calculate Loan EMI, Interest and Schedule',
-        description: 'Free EMI calculator for home loan, car loan, and personal loan in India. See monthly EMI, total interest, and amortization schedule instantly.',
+        name: 'EMI Calculator India — Home, Car & Personal Loan EMI (2026)',
+        description: 'Enter loan amount, rate & tenure → instantly see monthly EMI, total interest, and year-wise amortization. ₹50L home loan at 8.5% for 20yr = ₹43,391/mo.',
         category: 'india',
         icon: Landmark,
         component: IndiaEMICalculator,
@@ -2085,8 +2085,8 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'sip',
-        name: 'SIP Calculator - Calculate Mutual Fund SIP Returns Online',
-        description: 'Free SIP calculator to estimate future value, wealth gained, and total returns for monthly mutual fund investments. Plan your financial goals instantly.',
+        name: 'SIP Calculator — Estimate Mutual Fund Returns & Wealth Growth',
+        description: 'Enter monthly SIP amount → see total invested, estimated returns, and future corpus. ₹10,000/month at 12% for 10 years = ₹23.2 Lakh. Plan your mutual fund goals.',
         category: 'financial',
         icon: TrendingUp,
         component: SIPCalculator,
@@ -2258,6 +2258,69 @@ export const calculatorRegistry: CalculatorDef[] = [
                 description: 'Calculate in-hand salary per month for an 18 LPA package in India with common payroll deductions.',
                 keywords: ['18 lpa in hand', '18 lakh in hand salary', '18 lac in hand salary', 'ctc 18 lakh in hand'],
                 initialState: { ctc: 1800000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '4-lpa-in-hand',
+                name: '4 LPA In-Hand Salary in India - Monthly Take-Home After Deductions',
+                description: 'Find out your monthly in-hand salary for a 4 LPA CTC package. See PF, professional tax, and take-home pay breakdown.',
+                keywords: ['4 lpa in hand', '4 lpa in hand salary', '4 lakh package in hand salary', 'ctc 4 lakh in hand', '4 lpa salary breakdown'],
+                initialState: { ctc: 400000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '5-lpa-in-hand',
+                name: '5 LPA In-Hand Salary in India - Monthly Take-Home Pay Calculator',
+                description: 'Calculate monthly take-home salary for a 5 LPA CTC in India. Includes PF, PT, and TDS deduction breakdown.',
+                keywords: ['5 lpa in hand', '5 lpa in hand salary per month', '5 lakh salary in hand', 'ctc 5 lakh in hand', '5 lpa take home'],
+                initialState: { ctc: 500000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '7-lpa-in-hand',
+                name: '7 LPA In-Hand Salary in India - Monthly Take-Home Estimate',
+                description: 'Estimate in-hand salary per month for a 7 LPA CTC package in India with PF, professional tax, and TDS.',
+                keywords: ['7 lpa in hand', '7 lpa in hand salary', '7 lakh in hand per month', 'ctc 7 lakh in hand', '7 lpa salary breakdown'],
+                initialState: { ctc: 700000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '8-lpa-in-hand',
+                name: '8 LPA In-Hand Salary in India - Monthly Take-Home Pay',
+                description: 'Calculate your monthly take-home pay for an 8 LPA CTC in India with full salary component breakdown.',
+                keywords: ['8 lpa in hand', '8 lpa in hand salary per month', '8 lakh in hand salary', 'ctc 8 lakh in hand', '8 lpa take home'],
+                initialState: { ctc: 800000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '10-lpa-in-hand',
+                name: '10 LPA In-Hand Salary in India - Monthly Take-Home After Tax',
+                description: 'Find your monthly in-hand salary for a 10 LPA CTC in India. See PF, professional tax, TDS, and net take-home pay.',
+                keywords: ['10 lpa in hand', '10 lpa in hand salary', '10 lakh salary in hand', 'ctc 10 lakh in hand', '10 lpa take home per month'],
+                initialState: { ctc: 1000000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '20-lpa-in-hand',
+                name: '20 LPA In-Hand Salary in India - Monthly Take-Home Pay',
+                description: 'Calculate your monthly take-home salary for a 20 LPA CTC package in India with PF, TDS, and tax deductions.',
+                keywords: ['20 lpa in hand', '20 lpa in hand salary', '20 lakh in hand salary', 'ctc 20 lakh in hand', '20 lpa take home'],
+                initialState: { ctc: 2000000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '25-lpa-in-hand',
+                name: '25 LPA In-Hand Salary in India - Monthly Take-Home Estimate',
+                description: 'Estimate monthly in-hand salary for a 25 LPA CTC in India after all deductions including PF, PT, and income tax.',
+                keywords: ['25 lpa in hand', '25 lpa in hand salary', '25 lakh in hand salary', 'ctc 25 lakh in hand', '25 lpa salary breakdown'],
+                initialState: { ctc: 2500000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '30-lpa-in-hand',
+                name: '30 LPA In-Hand Salary in India - Monthly Take-Home After Tax',
+                description: 'Calculate monthly take-home pay for a 30 LPA CTC package in India with detailed tax and deduction breakdown.',
+                keywords: ['30 lpa in hand', '30 lpa in hand salary', '30 lakh salary in hand', 'ctc 30 lakh in hand', '30 lpa take home'],
+                initialState: { ctc: 3000000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
+            },
+            {
+                id: '50-lpa-in-hand',
+                name: '50 LPA In-Hand Salary in India - Monthly Take-Home Pay',
+                description: 'Find your monthly in-hand salary for a 50 LPA CTC in India. Includes surcharge, HRA, PF, and full tax breakdown.',
+                keywords: ['50 lpa in hand', '50 lpa in hand salary', '50 lakh in hand salary', 'ctc 50 lakh in hand', '50 lpa take home per month'],
+                initialState: { ctc: 5000000, bonus: 0, professionalTax: 200, viewMode: 'monthly' }
             }
         ]
     },

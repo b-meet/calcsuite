@@ -84,7 +84,7 @@ export function CalculatorPage() {
     const Component = calculatorDef.component;
     const Content = calculatorDef.content;
     const heroContent = getCalculatorHeroContent(calculatorDef.id, scenario?.id);
-    const sharedVisibleFaqIds = new Set(['bmi', 'sip', 'india-salary']);
+    const sharedVisibleFaqIds = new Set(['bmi', 'sip', 'india-salary', 'tip', 'discount', 'gpa', 'percentage', 'india-emi']);
     const showCompactVisibleFaqs = sharedVisibleFaqIds.has(calculatorDef.id) && Boolean(calculatorDef.faqs?.length);
 
     // Map internal category to Schema.org applicationCategory
