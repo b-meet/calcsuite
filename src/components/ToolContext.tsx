@@ -6,15 +6,17 @@ const FormulaBlock = lazy(() => import('./FormulaBlock'));
 
 interface ToolContextProps {
     calculatorDef: CalculatorDef;
+    hideFaqs?: boolean;
 }
 
-export function ToolContext({ calculatorDef }: ToolContextProps) {
+export function ToolContext({ calculatorDef, hideFaqs }: ToolContextProps) {
     // The "Why": Default to longDescription, fallback to standard description
     const why = calculatorDef.longDescription || calculatorDef.description;
     const formula = calculatorDef.formula;
     const faqs = calculatorDef.faqs;
+    const showFaqs = !hideFaqs && faqs && faqs.length > 0;
 
-    if (!why && !formula && (!faqs || faqs.length === 0)) {
+    if (!why && !formula && !showFaqs) {
         return null;
     }
 
@@ -48,8 +50,8 @@ export function ToolContext({ calculatorDef }: ToolContextProps) {
                 </section>
             )}
 
-            {/* FAQ Block & JSON-LD Scheme */}
-            {faqs && faqs.length > 0 && (
+            {/* FAQ Block & JSON-LD Schema — skipped when compact FAQs already rendered above */}
+            {showFaqs && (
                 <section>
                     <StructuredData type="FAQPage" data={faqs} />
                     <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
@@ -66,3 +68,4 @@ export function ToolContext({ calculatorDef }: ToolContextProps) {
         </div>
     );
 }
+

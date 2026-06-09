@@ -1,4 +1,4 @@
-import { Briefcase, HelpCircle, Calculator, Info } from 'lucide-react';
+import { Briefcase, Calculator, Info } from 'lucide-react';
 
 const SalaryCalculatorContent = () => {
     return (
@@ -46,7 +46,7 @@ const SalaryCalculatorContent = () => {
             </section>
 
             {/* How to Use */}
-            <section className="grid md:grid-cols-2 gap-8">
+            <section>
                 <div>
                     <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                         <Info className="w-5 h-5 text-orange-500" />
@@ -74,23 +74,6 @@ const SalaryCalculatorContent = () => {
                                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">See instant conversions.</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h3>
-                    <div className="space-y-4">
-                        {[
-                            { q: "Does this include taxes?", a: "No. This calculator shows gross income only." },
-                            { q: "Is this calculator free?", a: "Yes. It is completely free to use." }
-                        ].map((faq, idx) => (
-                            <div key={idx} className="bg-white dark:bg-slate-800 p-4 rounded-lg border border-slate-100 dark:border-slate-700">
-                                <h4 className="text-sm font-semibold text-slate-900 dark:text-white mb-1 flex items-center gap-2 m-0">
-                                    <HelpCircle className="w-4 h-4 text-green-500" /> {faq.q}
-                                </h4>
-                                <p className="text-xs text-slate-600 dark:text-slate-400 ml-6 m-0">{faq.a}</p>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </section>

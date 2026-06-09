@@ -10,6 +10,8 @@ import { useFavorites } from '../hooks/useFavorites';
 import { Share2, Star } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { AdBanner } from '../components/AdBanner';
+import { ArticleAds } from '../components/ArticleAds';
+import { StickyAnchorAd } from '../components/StickyAnchorAd';
 import { ToolContext } from '../components/ToolContext';
 import { getCalculatorHeroContent } from '../calculators/pageHeroContent';
 import StructuredData from '../components/StructuredData';
@@ -84,7 +86,7 @@ export function CalculatorPage() {
     const Component = calculatorDef.component;
     const Content = calculatorDef.content;
     const heroContent = getCalculatorHeroContent(calculatorDef.id, scenario?.id);
-    const sharedVisibleFaqIds = new Set(['bmi', 'sip', 'india-salary', 'tip', 'discount', 'gpa', 'percentage', 'india-emi', 'simple-interest']);
+    const sharedVisibleFaqIds = new Set(['bmi', 'sip', 'india-salary', 'tip', 'discount', 'gpa', 'percentage', 'india-emi', 'simple-interest', 'salary', 'india-gst', 'compound-interest']);
     const showCompactVisibleFaqs = sharedVisibleFaqIds.has(calculatorDef.id) && Boolean(calculatorDef.faqs?.length);
 
     // Map internal category to Schema.org applicationCategory
@@ -345,6 +347,9 @@ export function CalculatorPage() {
                 />
             </div>
 
+            {/* In-content ad — highest viewability slot between calculator and FAQs */}
+            <ArticleAds />
+
             {showCompactVisibleFaqs && (
                 <section className="mt-12 max-w-2xl mx-auto">
                     <StructuredData type="FAQPage" data={calculatorDef.faqs} />
@@ -405,7 +410,7 @@ export function CalculatorPage() {
                                     </div>
                                 )}
 
-                                <ToolContext calculatorDef={calculatorDef} />
+                                <ToolContext calculatorDef={calculatorDef} hideFaqs={showCompactVisibleFaqs} />
                             </>
                         )}
 
@@ -415,6 +420,9 @@ export function CalculatorPage() {
                 </div>
             )}
             <AdBanner />
+
+            {/* Mobile sticky anchor ad */}
+            <StickyAnchorAd />
         </div>
     );
 }

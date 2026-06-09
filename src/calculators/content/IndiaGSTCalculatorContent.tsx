@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { HelpCircle, Calculator, FileText, AlertTriangle, Truck, Percent, Building, Info, TrendingUp, ShieldAlert, Globe, Map, Bell, Search, ArrowRight } from 'lucide-react';
-import { Helmet } from 'react-helmet-async';
+import { Calculator, FileText, AlertTriangle, Truck, Percent, Building, Info, TrendingUp, ShieldAlert, Globe, Map, Bell, Search, ArrowRight } from 'lucide-react';
 
 const IndiaGSTCalculatorContent = () => {
     // State for Interest Calculator
@@ -34,50 +33,7 @@ const IndiaGSTCalculatorContent = () => {
 
     return (
         <div className="space-y-12 not-prose">
-            <Helmet>
-                <script type="application/ld+json">
-                    {JSON.stringify([
-                        {
-                            "@context": "https://schema.org",
-                            "@type": "FAQPage",
-                            "mainEntity": [
-                                {
-                                    "@type": "Question",
-                                    "name": "What is the new 40% GST slab for?",
-                                    "acceptedAnswer": {
-                                        "@type": "Answer",
-                                        "text": "The 40% slab is a consolidated rate for luxury and 'sin' goods like luxury cars, tobacco, and aerated drinks, replacing the earlier complex cess structure."
-                                    }
-                                },
-                                {
-                                    "@type": "Question",
-                                    "name": "Is GST applicable on exports?",
-                                    "acceptedAnswer": {
-                                        "@type": "Answer",
-                                        "text": "No. Exports are 'Zero-Rated'. This means you can export goods without tax, or pay tax and claim a full refund to ensure Indian goods remain competitive globally."
-                                    }
-                                },
-                                {
-                                    "@type": "Question",
-                                    "name": "Is service tax still applicable in India?",
-                                    "acceptedAnswer": {
-                                        "@type": "Answer",
-                                        "text": "No. Service tax was subsumed into GST from 1 July 2017, so current service invoices are generally taxed under GST."
-                                    }
-                                },
-                                {
-                                    "@type": "Question",
-                                    "name": "How do I calculate old service tax on a pre-GST invoice?",
-                                    "acceptedAnswer": {
-                                        "@type": "Answer",
-                                        "text": "For older invoices issued before 1 July 2017, the broad final service tax rate was 15%, so tax was commonly calculated as Taxable Value multiplied by 15%."
-                                    }
-                                }
-                            ]
-                        }
-                    ])}
-                </script>
-            </Helmet>
+
 
             {/* 0. Latest News Ticker (SEO "Freshness" Signal) */}
             <div className="bg-gradient-to-r from-blue-900 to-indigo-900 rounded-xl p-4 text-white shadow-lg flex items-center gap-4 animate-fade-in">
@@ -659,30 +615,7 @@ const IndiaGSTCalculatorContent = () => {
                 </div>
             </section>
 
-            {/* FAQs */}
-            <section className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions (2026 Edition)</h2>
-                <div className="grid md:grid-cols-2 gap-4">
-                    {[
-                        { q: "What is the new 40% GST slab for?", a: "The 40% slab is a consolidated rate for luxury and 'sin' goods like luxury cars, tobacco, and aerated drinks, replacing the earlier complex cess structure." },
-                        { q: "Is GST applicable on exports?", a: "No. Exports are 'Zero-Rated'. This means you can export goods without tax, or pay tax and claim a full refund to ensure Indian goods remain competitive globally." },
-                        { q: "Is service tax still applicable in India?", a: "No. Service tax was subsumed into GST from 1 July 2017, so current service invoices are generally taxed under GST instead of the old service tax law." },
-                        { q: "How do I calculate old service tax on a pre-GST invoice?", a: "For legacy invoices raised before 1 July 2017, the broad final service tax rate was 15%, so tax was commonly calculated as Taxable Value multiplied by 15%." },
-                        { q: "Can I edit an invoice after filing GSTR-1?", a: "No, you cannot edit a filed return. However, you can issue a credit/debit note or amend the details in next month's return." },
-                        { q: "What is Reverse Charge (RCM)?", a: "Usually, the supplier pays GST. In RCM, the receiver pays GST. It applies to purchases from unregistered dealers or specific services like legal fees (Advocates) and GTA." },
-                        { q: "How long should I keep GST records?", a: "You must maintain accounts and records for at least 72 months (6 years) from the due date of furnishing the annual return for the year." },
-                        { q: "Is e-Invoicing mandatory for everyone?", a: "As of 2026, e-Invoicing is mandatory for all B2B transactions if your turnover exceeds ₹5 Crores in any preceding financial year." }
-                    ].map((faq, idx) => (
-                        <div key={idx} className="bg-slate-50 dark:bg-slate-900 p-5 rounded-xl border border-slate-100 dark:border-slate-800">
-                            <h3 className="flex items-start gap-3 font-semibold text-slate-900 dark:text-white mb-2 text-sm m-0">
-                                <HelpCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
-                                {faq.q}
-                            </h3>
-                            <p className="text-slate-600 dark:text-slate-400 ml-7 text-sm m-0 leading-relaxed">{faq.a}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
+
 
             {/* Section 8: GST State Codes List */}
             <section className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-sm border border-slate-100 dark:border-slate-700">

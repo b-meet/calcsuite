@@ -592,36 +592,67 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'salary',
-        name: 'Salary Calculator - Convert Annual, Monthly, Weekly and Hourly Pay',
-        description: 'Convert salary across annual, monthly, biweekly, weekly, daily, and hourly pay so you can compare offers and budget faster.',
+        name: 'Salary Calculator — Convert Annual, Monthly, Weekly \u0026 Hourly Pay',
+        description: 'Instantly convert salary between annual, monthly, biweekly, weekly, daily, and hourly. See how much $25/hr is per year or ₹50,000/month is hourly.',
         category: 'financial',
         icon: Briefcase,
         component: SalaryCalculator,
         content: SalaryCalculatorContent,
-        longDescription: "How much is that hourly rate a year? This Salary Calculator instantly converts your income across different timeframes—hourly, daily, weekly, monthly, and annually—giving you a complete picture of your earnings.",
+        longDescription: "How much is that hourly rate per year? This Salary Calculator instantly converts your income across different timeframes—hourly, daily, weekly, biweekly, monthly, and annually—giving you a complete picture of your earnings to compare job offers, plan budgets, and negotiate raises.",
         features: [
             "Full timeframe conversion",
             "Work hours customization",
             "Simple interface",
             "Gross income planning"
         ],
+        keywords: [
+            'salary calculator', 'hourly to annual salary', 'annual salary calculator',
+            'salary converter', 'hourly to yearly calculator', 'monthly to yearly salary',
+            'biweekly pay calculator', 'weekly to annual salary', 'wage calculator',
+            'how much is 25 an hour annually', 'salary to hourly converter',
+            'paycheck calculator', 'pay rate calculator', 'income calculator'
+        ],
         formula: "\\text{Annual Salary} = \\text{Hourly Rate} \\times \\text{Hours per week} \\times 52",
         faqs: [
             {
-                question: "Does this include taxes?",
-                answer: "No. This calculator shows gross income only."
+                question: "How do I calculate annual salary from an hourly wage?",
+                answer: "Multiply your hourly wage by the number of hours you work per week, then multiply by 52 (weeks in a year). For example, $25/hour × 40 hours/week × 52 weeks = $52,000 per year. This calculator handles this conversion instantly."
             },
             {
-                question: "How do I calculate annual salary from an hourly wage?",
-                answer: "Multiply your hourly wage by the number of hours you work per week, then multiply that result by 52 (the number of weeks in a year)."
+                question: "How much is $25 an hour per year?",
+                answer: "At $25 per hour working 40 hours per week for 52 weeks, your annual salary would be $52,000 before taxes. At 37.5 hours per week, it would be $48,750."
+            },
+            {
+                question: "What is the difference between gross and net salary?",
+                answer: "Gross salary is your total earnings before any deductions. Net salary (take-home pay) is what you receive after taxes, insurance premiums, retirement contributions (like 401k or PF), and other deductions are subtracted. This calculator shows gross conversions only."
             },
             {
                 question: "What is a bi-weekly pay cycle?",
-                answer: "Bi-weekly pay means receiving a paycheck every two weeks, resulting in exactly 26 paychecks per year."
+                answer: "Bi-weekly pay means receiving a paycheck every two weeks, resulting in 26 paychecks per year (not 24). This is different from semi-monthly pay, which is exactly twice per month (24 paychecks). Bi-weekly is the most common pay frequency in the US."
             },
             {
-                question: "Is this calculator free?",
-                answer: "Yes. It is completely free to use."
+                question: "How do I convert monthly salary to hourly rate?",
+                answer: "Divide your monthly salary by the average working hours per month. For a standard 40-hour week: Monthly Salary ÷ 173.33 hours = Hourly Rate. For example, ₹50,000/month ÷ 173.33 = approximately ₹288.46 per hour."
+            },
+            {
+                question: "Does this calculator include overtime pay?",
+                answer: "This calculator converts salary at your standard rate. For overtime, the standard US rate is 1.5× your regular hourly rate for hours worked beyond 40 per week. To estimate total pay with overtime, calculate regular and overtime hours separately."
+            },
+            {
+                question: "What is the difference between salary and wage?",
+                answer: "A salary is a fixed annual amount paid regardless of hours worked (common for exempt/salaried employees). A wage is paid per hour worked (common for non-exempt/hourly employees). Salaried employees typically don't receive overtime pay, while hourly workers do."
+            },
+            {
+                question: "How many working days are in a year?",
+                answer: "A standard year has 260 working days (52 weeks × 5 days). After subtracting typical US holidays (10-11 days) and average vacation (10-15 days), the actual number is usually 234 to 240 days. This calculator uses your specified hours per week × 52 weeks."
+            },
+            {
+                question: "How do I use this to compare two job offers?",
+                answer: "Enter each offer's salary in its stated frequency (one might be annual, another hourly). The calculator converts both to the same timeframes so you can make a direct apples-to-apples comparison. Remember to also consider benefits, bonuses, and cost of living."
+            },
+            {
+                question: "Can I use this for freelance rate calculation?",
+                answer: "Yes. If you know your desired annual income, enter it and the calculator will show the equivalent hourly rate. For freelancers, it's common to add 25-30% on top of an equivalent employee hourly rate to cover self-employment taxes, benefits, and unbillable time."
             }
         ],
         howTo: {
@@ -1723,39 +1754,63 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'compound-interest',
-        name: 'Compound Interest Calculator - Calculate Investment Growth Online',
-        description: 'Estimate compound interest, future value, and total earnings for savings and investments with flexible contribution inputs.',
+        name: 'Compound Interest Calculator — See How Your Money Grows Over Time',
+        description: 'Free compound interest calculator with daily, monthly, and yearly compounding. See future value, total earnings, and growth chart for any investment.',
         category: 'financial',
         icon: TrendingUp,
         component: CompoundInterestCalculator,
         content: CompoundInterestCalculatorContent,
         longDescription: "Compound interest is often called the '8th wonder of the world'. Unlike simple interest, where you only earn on your principal, compound interest allows you to earn interest on your interest. This snowball effect can turn small, regular investments into significant wealth over time. Our calculator helps you visualize this growth with customizable frequency settings (daily, monthly, yearly) and additional contribution options.",
         keywords: [
-            'compound interest calculator',
-            'compound interest formula',
-            'daily compounding',
-            'investment growth calculator',
-            'interest on interest',
-            'savings projector',
-            'future value calculator'
+            'compound interest calculator', 'compound interest formula',
+            'daily compounding calculator', 'monthly compounding calculator',
+            'investment growth calculator', 'interest on interest',
+            'savings projector', 'future value calculator',
+            'compound interest calculator online', 'CI calculator',
+            'how to calculate compound interest', 'compound interest examples',
+            'compound interest vs simple interest', 'rule of 72 calculator'
         ],
         features: ["Frequency settings (Daily to Yearly)", "Monthly/Yearly Contributions", "Interactive Growth Chart", "Detailed Breakdown Table"],
         faqs: [
             {
-                question: "What is the Rule of 72?",
-                answer: "The Rule of 72 is a quick way to estimate how long it takes for an investment to double. Divide 72 by your annual interest rate to get the approximate years."
+                question: "What is compound interest?",
+                answer: "Compound interest is interest calculated on both the initial principal and the accumulated interest from previous periods. Unlike simple interest (calculated only on the principal), compound interest grows exponentially. For example, ₹1,00,000 at 10% compounded annually becomes ₹1,10,000 after year 1, then ₹1,21,000 after year 2 (interest earned on ₹1,10,000, not just ₹1,00,000)."
             },
             {
-                question: "What is the difference between Simple and Compound interest?",
-                answer: "Simple interest is calculated only on the principal amount. Compound interest includes the principal plus accumulated interest, leading to faster growth."
+                question: "What is the compound interest formula?",
+                answer: "The standard formula is A = P(1 + r/n)^(nt), where A is the future value, P is the principal, r is the annual interest rate (as a decimal), n is the number of times interest compounds per year, and t is the number of years. This calculator also adjusts for regular additional contributions."
+            },
+            {
+                question: "What is the Rule of 72?",
+                answer: "The Rule of 72 is a quick mental math shortcut to estimate how long it takes for an investment to double at a given interest rate. Simply divide 72 by the annual interest rate. For example, at 8% annual return, your money doubles in approximately 72 ÷ 8 = 9 years. At 12%, it doubles in about 6 years."
             },
             {
                 question: "How does compounding frequency affect my returns?",
-                answer: "The more frequently interest is compounded (e.g., daily vs. yearly), the more interest you earn. Daily compounding yields the highest returns."
+                answer: "The more frequently interest compounds, the more you earn. For ₹1,00,000 at 10% for 10 years: Annual compounding = ₹2,59,374. Monthly compounding = ₹2,70,704. Daily compounding = ₹2,71,791. The difference between annual and daily compounding is about ₹12,417 — significant for large amounts."
             },
             {
-                question: "What is the compound interest formula used?",
-                answer: "We use the standard formula: A = P(1 + r/n)^(nt), adjusting for regular additional contributions."
+                question: "What is the difference between Simple and Compound Interest?",
+                answer: "Simple interest is calculated only on the original principal: SI = P × R × T / 100. Compound interest is calculated on principal plus accumulated interest: CI = P(1 + r/n)^(nt) - P. Over 20 years at 10%, ₹1,00,000 earns ₹2,00,000 in simple interest but ₹5,72,750 in compound interest — nearly 3× more."
+            },
+            {
+                question: "How much will ₹10,000 per month grow in 20 years?",
+                answer: "At 12% annual return compounded monthly, ₹10,000/month for 20 years grows to approximately ₹99.9 Lakh (nearly ₹1 Crore). Your total investment would be ₹24 Lakh, meaning you earn about ₹75.9 Lakh in compound interest alone. This is the power of long-term compounding."
+            },
+            {
+                question: "Is compound interest better for saving or borrowing?",
+                answer: "Compound interest is excellent for saving and investing because your returns accelerate over time. However, it works against you when borrowing — credit card debt at 36% compounded monthly can double in just 2 years. Always try to earn compound interest (invest) and avoid paying it (minimize high-interest debt)."
+            },
+            {
+                question: "What investments use compound interest?",
+                answer: "Most investments and savings vehicles use compound interest: bank savings accounts (daily/quarterly), fixed deposits (quarterly/annually), mutual funds (continuous via NAV), PPF (annually), recurring deposits (quarterly), and bonds (semi-annually). Even real estate appreciates in a compound fashion."
+            },
+            {
+                question: "Does inflation reduce compound interest gains?",
+                answer: "Yes. If your investment earns 10% annually but inflation is 6%, your real (inflation-adjusted) return is approximately 4%. To calculate the true purchasing power of your future wealth, subtract the inflation rate from your expected return rate. This calculator shows nominal returns."
+            },
+            {
+                question: "When should I start investing to maximize compound interest?",
+                answer: "As early as possible. Starting at age 25 with ₹5,000/month at 12% gives you ₹3.24 Crore by age 60. Starting the same SIP at age 35 gives only ₹99 Lakh by age 60 — roughly 3× less. The extra 10 years of compounding make an enormous difference. Time in the market beats timing the market."
             }
         ],
         howTo: {
@@ -1961,29 +2016,31 @@ export const calculatorRegistry: CalculatorDef[] = [
             ]
         }
     },
-
-
     {
         id: 'india-gst',
-        name: 'GST Calculator India - Calculate Inclusive and Exclusive GST',
-        description: 'Calculate GST on goods and services in India, split inclusive and exclusive tax, and review common GST use cases quickly.',
+        name: 'GST Calculator India — Add or Remove GST Instantly (2026 Slabs)',
+        description: 'Free GST calculator for India. Add or remove GST from any amount. Supports 0%, 5%, 12%, 18%, 28% slabs with CGST/SGST split and reverse calculation.',
         category: 'india',
         icon: Percent,
         component: IndiaGSTCalculator,
         content: IndiaGSTCalculatorContent,
         longDescription: "Use this India GST Calculator to add or remove GST from invoices, verify tax on services, and understand legacy service tax math for pre-GST bills. If you are searching for a service tax calculator, this page also explains how service tax was subsumed into GST from 1 July 2017 and how the last broad 15% service tax formula worked on older invoices.",
         keywords: [
+            'gst calculator', 'gst calculator india', 'gst calculator online',
             'gst calculator 2026', 'india gst new rates', '0% gst list',
-            'luxury gst 40%', 'gst exemption calculator', 'gst inclusive exclusive',
-            'gst slabs 2026', 'gst billing software free',
+            'gst exemption calculator', 'gst inclusive exclusive',
+            'gst slabs 2026', 'reverse gst calculator',
+            'cgst sgst calculator', 'igst calculator',
             'service tax calculator india', 'old service tax calculator',
-            'service tax to gst', 'service tax before gst', 'service tax 15 percent calculator'
+            'service tax to gst', 'service tax before gst',
+            'add gst to price', 'remove gst from price',
+            'gst on services', 'gst on goods'
         ],
         features: [
-            "New 2026 Tax Slabs (0%, 5%, 18%, 40%)",
+            "2026 Tax Slabs (0%, 5%, 12%, 18%, 28%)",
             "Exempt Item Calculation (Zero Rated)",
-            "Luxury & Sin Goods Tax (40%)",
             "Reverse GST Calculation",
+            "CGST + SGST Split",
             "Legacy Service Tax reference",
             "Instant Breakdown",
             "Mobile Friendly"
@@ -1991,20 +2048,44 @@ export const calculatorRegistry: CalculatorDef[] = [
         formula: "\\text{GST Amount} = \\text{Original Cost} \\times \\left(\\frac{\\text{GST Rate}}{100}\\right)",
         faqs: [
             {
+                question: "How do I calculate GST on a product?",
+                answer: "To add GST: Multiply the base price by the GST rate and divide by 100. For example, ₹1,000 at 18% GST = ₹1,000 × 18/100 = ₹180 GST. Total = ₹1,180. To remove GST from an inclusive price: Base Price = Total Price ÷ (1 + GST Rate/100). For ₹1,180 at 18%: ₹1,180 ÷ 1.18 = ₹1,000."
+            },
+            {
+                question: "What are the current GST slabs in India?",
+                answer: "India has 5 main GST slabs: 0% (essential items like milk, bread, fresh vegetables), 5% (packaged food, economy travel), 12% (processed food, business class air travel), 18% (most services, electronics, restaurants), and 28% (luxury goods, cars, tobacco, aerated drinks). Some items also attract a GST Compensation Cess."
+            },
+            {
+                question: "What is the difference between CGST, SGST, and IGST?",
+                answer: "For transactions within the same state, GST is split equally into CGST (Central GST) and SGST (State GST). For example, 18% GST = 9% CGST + 9% SGST. For inter-state transactions, IGST (Integrated GST) is charged at the full rate (18%). IGST is also applicable on imports."
+            },
+            {
+                question: "How do I calculate GST in reverse (from total price)?",
+                answer: "To find the base price from a GST-inclusive total: Base Price = Total ÷ (1 + GST%/100). For example, if an item costs ₹5,900 inclusive of 18% GST: Base = ₹5,900 ÷ 1.18 = ₹5,000. GST Amount = ₹5,900 - ₹5,000 = ₹900. Use our 'Inclusive' mode for this."
+            },
+            {
+                question: "What is Input Tax Credit (ITC)?",
+                answer: "Input Tax Credit allows businesses to reduce their GST liability by claiming credit for the GST already paid on purchases (inputs). For example, if you pay ₹1,800 GST on raw materials and collect ₹3,600 GST on sales, you only pay ₹1,800 (₹3,600 - ₹1,800) to the government."
+            },
+            {
+                question: "Is GST applicable on rent?",
+                answer: "Residential rent is exempt from GST if the tenant is an individual for personal use. However, commercial property rent attracts 18% GST. If a registered business rents a residential property, GST is applicable under the reverse charge mechanism (RCM) from July 2022."
+            },
+            {
+                question: "What is the GST on restaurants?",
+                answer: "Non-AC restaurants: 5% GST (no ITC). AC restaurants and those serving alcohol: 5% GST (no ITC). Restaurants in 5-star hotels (room tariff above ₹7,500): 18% GST (with ITC). Cloud kitchens and food delivery platforms: 5% GST."
+            },
+            {
                 question: "Is service tax still applicable in India?",
-                answer: "No. Service tax was subsumed into GST from 1 July 2017, so current service invoices are generally taxed under GST instead of the old service tax rules."
+                answer: "No. Service tax was fully subsumed into GST from 1 July 2017. All services that were previously under service tax (at 15%) are now taxed under GST at their applicable slab (usually 18%). For older invoices from before July 2017, the 15% service tax rate applied."
             },
             {
-                question: "How do I calculate GST manually?",
-                answer: "Multiply the base price of your product by the GST rate (for example 18%), and then divide by 100 to find the tax amount."
+                question: "How often do I need to file GST returns?",
+                answer: "Regular taxpayers file GSTR-3B monthly (by the 20th) and GSTR-1 quarterly or monthly depending on turnover. Composition scheme taxpayers file CMP-08 quarterly and GSTR-4 annually. Annual return GSTR-9 is filed once per year by December 31st."
             },
             {
-                question: "How do I calculate old service tax on a pre-GST invoice?",
-                answer: "For older invoices issued before 1 July 2017, the broad final service tax rate was 15%, so tax was typically calculated as Taxable Value × 15%."
-            },
-            {
-                question: "What rate applies to most services under GST?",
-                answer: "Many standard taxable services are commonly calculated at 18% GST, while the exact rate still depends on the underlying service classification."
+                question: "What items are exempt from GST (0% GST)?",
+                answer: "Major exempt items include: fresh fruits and vegetables, milk, eggs, bread, salt, natural honey, fresh meat and fish, handloom products, books and newspapers, educational services, healthcare services, and agricultural services. The full list is maintained by the GST Council."
             }
         ],
         educationalContent: [
@@ -2250,16 +2331,44 @@ export const calculatorRegistry: CalculatorDef[] = [
         hideDefaultSections: true,
         faqs: [
             {
-                question: "What is CTC?",
-                answer: "CTC (Cost to Company) is the total amount an employer spends on an employee, including direct salary, benefits, and various contributions like PF and Gratuity."
+                question: "What is CTC and how is it different from in-hand salary?",
+                answer: "CTC (Cost to Company) is the total expense an employer bears for you annually, including direct salary, employer PF contribution, gratuity, insurance, and other perks. In-hand salary (net pay) is what you actually receive in your bank account after all deductions like employee PF, professional tax, and TDS are subtracted. Typically, in-hand salary is 65% to 75% of your CTC."
             },
             {
-                question: "Why is In-Hand less than CTC?",
-                answer: "CTC includes non-cash components (Gratuity, Insurance) and deductions (PF, PT, TDS) which are subtracted to get the bank credit amount."
+                question: "Why is my in-hand salary so much less than my CTC?",
+                answer: "CTC includes several non-cash and employer-only components: Employer PF (12% of basic), Gratuity (4.81% of basic), Group Medical Insurance, Performance Bonus (which may not be paid monthly), and sometimes ESOP value. After deducting Employee PF (12%), Professional Tax (₹200/month in most states), and TDS (income tax), the actual bank credit is significantly lower."
             },
             {
-                question: "Is PF mandatory?",
-                answer: "Yes, for Basic Salary up to ₹15,000/month. Above that, it is optional but recommended for tax saving."
+                question: "How is Basic Pay calculated from CTC?",
+                answer: "Most companies set Basic Pay at 40% to 50% of CTC. For example, if your CTC is ₹10 LPA, your basic pay would typically be ₹4 to ₹5 Lakh per annum (₹33,333 to ₹41,667 per month). Basic pay is important because it determines your PF contribution, HRA, and gratuity."
+            },
+            {
+                question: "What is HRA and how much tax can I save with it?",
+                answer: "House Rent Allowance (HRA) is a salary component meant for rental expenses. Under the old tax regime, you can claim HRA exemption which is the minimum of: (a) Actual HRA received, (b) 50% of basic salary for metro cities (40% for non-metros), or (c) Rent paid minus 10% of basic salary. Under the new tax regime, HRA exemption is not available."
+            },
+            {
+                question: "What is Professional Tax and how much is it?",
+                answer: "Professional Tax (PT) is a state-imposed tax on salaried individuals. The maximum amount is ₹2,500 per year. Most states charge ₹200/month (₹2,400/year). States like Maharashtra charge slab-based PT. Some states like Rajasthan and Delhi do not levy professional tax at all."
+            },
+            {
+                question: "New Tax Regime vs Old Tax Regime — which is better?",
+                answer: "The New Tax Regime (default from FY 2023-24) offers lower tax rates but no deductions (80C, HRA, etc.). The Old Tax Regime has higher rates but allows deductions. If your total deductions (PF, HRA, 80C, 80D, home loan, NPS) exceed ₹3.75 to ₹4 Lakh, the Old Regime may save more tax. Use this calculator to compare both regimes for your specific CTC."
+            },
+            {
+                question: "Is PF mandatory for all employees?",
+                answer: "EPF is mandatory for employees earning a basic salary up to ₹15,000/month in establishments with 20+ employees. Both employee and employer contribute 12% of basic salary. For employees earning above ₹15,000 basic, PF can be optional, but most companies default to mandatory PF contribution."
+            },
+            {
+                question: "How is Gratuity calculated from CTC?",
+                answer: "Gratuity = (Last drawn basic salary × 15/26 × years of service). However, in CTC, companies provision gratuity at 4.81% of basic salary annually. You only receive gratuity after completing 5 years of continuous service. If you leave before 5 years, the gratuity component in your CTC is not paid out."
+            },
+            {
+                question: "What is the in-hand salary for 10 LPA CTC in India?",
+                answer: "For a ₹10 LPA CTC, the typical monthly in-hand salary ranges from ₹62,000 to ₹72,000 depending on your tax regime, PF structure, and city. After deducting employer PF (~₹12,000/year), employee PF (~₹12,000/year), professional tax (~₹2,400/year), and estimated TDS, the annual take-home is approximately ₹7.5 to ₹8.6 Lakh."
+            },
+            {
+                question: "Can I reduce my tax by restructuring my salary?",
+                answer: "Yes. Under the old tax regime, you can negotiate with your employer to increase tax-friendly components like HRA (for rent exemption), LTA (for travel claims), meal coupons (₹50/meal), NPS employer contribution (up to 10% of basic), and car lease/fuel reimbursement. This can save ₹50,000 to ₹1,50,000 in taxes annually depending on your CTC."
             }
         ],
         howTo: {
