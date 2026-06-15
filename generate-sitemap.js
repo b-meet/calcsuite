@@ -173,12 +173,11 @@ function buildRedirects(paths) {
         .filter((routePath) => routePath !== '/' && routePath !== '')
         .sort((a, b) => b.length - a.length || a.localeCompare(b))
         .flatMap((routePath) => {
-            const target = `${routePath}/index.html`.replace(/\/+/g, '/');
-            // Redirect non-slash → slash (matches canonical URL format)
-            // Then serve the slash version via SPA rewrite
+            // Serve both non-slash and slash versions directly via SPA rewrite
+            // No 301 redirects — avoids "Page with redirect" in Google Search Console
             return [
-                `${routePath} ${routePath}/ 301!`,
-                `${routePath}/ ${target} 200!`
+                `${routePath} /index.html 200!`,
+                `${routePath}/ /index.html 200!`
             ];
         });
 

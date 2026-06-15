@@ -31,16 +31,8 @@ function ScrollToTop() {
   return null;
 }
 
-function TrailingSlashRedirect() {
-  const location = useLocation();
-  const { pathname, search, hash } = location;
 
-  if (pathname !== '/' && !pathname.endsWith('/')) {
-    return <Navigate to={`${pathname}/${search}${hash}`} replace />;
-  }
 
-  return null;
-}
 
 function CalculatorCategoryRedirect() {
   const { calculatorId } = useParams();
@@ -76,7 +68,7 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <TrailingSlashRedirect />
+
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
