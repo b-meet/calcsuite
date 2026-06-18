@@ -1314,36 +1314,87 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'date-diff',
-        name: 'Date Calculator - Calculate Days Between Dates Online',
-        description: 'Count days between dates, add or subtract days, and calculate date differences for planning, deadlines, and schedules.',
+        name: 'Days Between Dates Calculator — Count Days, Weeks & Months Between Two Dates',
+        description: 'How many days between two dates? Enter a start and end date to instantly count the exact days, weeks, months, and years between them. Includes business days, leap year handling, and add/subtract days from any date.',
         category: 'other',
         icon: Calendar,
         component: DateCalculator,
         content: DateCalculatorContent,
-        longDescription: "The Date Calculator helps you calculate the exact duration between two dates in days, weeks, months, and years. Whether you are planning an event, tracking deadlines, calculating age gaps, or counting days between important milestones, this tool delivers accurate results instantly.",
+        longDescription: "This free Date Calculator counts the exact number of days between any two dates. Enter a start date and an end date to instantly see the difference in days, weeks, months, and years. You can also add or subtract days from a date to find a future or past date. The calculator handles leap years, varying month lengths, and real Gregorian calendar logic. Use it for deadline tracking, notice period calculation, pregnancy date planning, visa processing timelines, project management, contract durations, and any situation where you need to count calendar days accurately.",
+        keywords: [
+            'days between dates', 'days between two dates', 'days between dates calculator',
+            'date calculator', 'date difference calculator', 'date calculator online',
+            'how many days between two dates', 'how many days until',
+            'how many days between', 'calculate days between dates',
+            'count days between dates', 'number of days between two dates',
+            'date duration calculator', 'time between dates',
+            'how many weeks between two dates', 'months between dates',
+            'business days calculator', 'working days between two dates',
+            'add days to date', 'subtract days from date',
+            'how many days until my birthday', 'days until christmas',
+            'days until new year', 'notice period calculator',
+            'how many days in a year', 'days calculator online free',
+            'pregnancy weeks calculator', 'countdown calculator',
+            'days from today calculator', 'how many days ago was',
+            'how many days left in the year', 'exam countdown calculator'
+        ],
         features: [
-            "Exact duration calculation",
-            "Day/Week/Month/Year breakdown",
-            "Leap year adjustment",
-            "Business day calculation (optional)"
+            "Exact day count between any two dates",
+            "Duration in days, weeks, months, and years",
+            "Add or subtract days from any date",
+            "Leap year and varying month length handling",
+            "Business/working days calculation",
+            "Works for past, present, and future dates"
         ],
         faqs: [
             {
-                question: "Does it include the end date?",
-                answer: "You can choose to include or exclude the end date in the calculation."
+                question: "How many days are between two dates?",
+                answer: "Enter both dates in this calculator to instantly see the exact number of days between them. For example, January 1 to December 31 of the same year is 364 days (365 in a leap year). The calculator counts every calendar day including weekends, adjusting for varying month lengths (28, 29, 30, or 31 days) and leap years."
             },
             {
-                question: "How does it handle leap years?",
-                answer: "It accurately accounts for leap years (29 days in February)."
+                question: "How do I calculate the number of days between two dates manually?",
+                answer: "To calculate days between two dates manually, convert both dates to their day-of-year number (e.g., February 1 = day 32), then subtract. For dates across different years, add 365 (or 366 for leap years) for each full year in between. This calculator eliminates all that manual work and gives you the exact answer instantly."
+            },
+            {
+                question: "Does this calculator include the start and end dates?",
+                answer: "By default, the calculator counts the days between the two dates (excluding both the start and end date). This is the standard method used in most applications. If you need to include both dates, simply add 1 to the result."
+            },
+            {
+                question: "How many business days (working days) are between two dates?",
+                answer: "Business days exclude weekends (Saturday and Sunday). For example, a standard month of 30 calendar days typically contains about 22 business days. This calculator can show you working days between your selected dates, which is useful for notice periods, delivery estimates, and project planning."
+            },
+            {
+                question: "How do I calculate my notice period end date?",
+                answer: "Enter your resignation date as the start date, then add your notice period days (e.g., 30, 60, or 90 days) to find your last working day. For example, if you resign on June 1 with a 30-day notice period, your last day would be July 1. Many companies in India count calendar days (including weekends), not business days."
+            },
+            {
+                question: "How many days are in a year?",
+                answer: "A standard year has 365 days. A leap year has 366 days (the extra day is February 29). Leap years occur every 4 years (2024, 2028, 2032...), except for century years not divisible by 400. So 2000 was a leap year, but 1900 was not. This calculator accounts for all leap years automatically."
+            },
+            {
+                question: "How do I calculate how many weeks are between two dates?",
+                answer: "Divide the total number of days by 7 to get weeks. For example, 90 days = 12 weeks and 6 days. This calculator shows the breakdown in weeks automatically, so you don't need to do the division yourself."
+            },
+            {
+                question: "Can I add or subtract days from a specific date?",
+                answer: "Yes. Enter any date and add or subtract a number of days to find the resulting date. For example, 'What date is 90 days from today?' or 'What date was 45 days ago?' — the calculator handles both forward and backward date arithmetic."
+            },
+            {
+                question: "How many days until the end of the year?",
+                answer: "Enter today's date as the start date and December 31 as the end date to see the exact number of days remaining in the year. As of mid-year, there are typically about 180-200 days left, depending on the exact date."
+            },
+            {
+                question: "Is this date calculator free?",
+                answer: "Yes. This calculator is completely free, requires no sign-up, and works on all devices including mobile phones, tablets, and desktops. All calculations happen locally in your browser — no data is stored or sent to any server."
             }
         ],
         howTo: {
-            name: "Calculate Date Difference",
-            description: "Find the gap between moments.",
+            name: "How to Calculate Days Between Two Dates",
+            description: "Count exact days, weeks, and months between any two dates in 3 simple steps.",
             steps: [
-                { name: "Start Date", text: "Select the beginning date." },
-                { name: "End Date", text: "Select the concluding date." },
-                { name: "Result", text: "See the exact time difference." }
+                { name: "Enter Start Date", text: "Select or type the first date using the date picker (e.g., your start date, resignation date, or any reference date)." },
+                { name: "Enter End Date", text: "Select the second date (e.g., deadline, due date, or target date). You can also choose to add/subtract a specific number of days instead." },
+                { name: "View Results", text: "Instantly see the exact difference in days, weeks, months, and years, plus the day of the week for both dates." }
             ]
         },
     },

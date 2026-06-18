@@ -32,7 +32,7 @@ export function StickyAnchorAd() {
       return () => window.removeEventListener('resize', checkMobile);
     }
 
-    // Delay showing by 3s to avoid CLS
+    // Small delay just to ensure the DOM is ready, avoiding CLS on initial paint
     const showTimer = setTimeout(() => {
       setIsVisible(true);
 
@@ -42,7 +42,7 @@ export function StickyAnchorAd() {
       } catch (e) {
         // AdSense blocked — anchor will just not show
       }
-    }, 3000);
+    }, 500);
 
     return () => {
       clearTimeout(showTimer);
@@ -72,11 +72,11 @@ export function StickyAnchorAd() {
         Close
       </button>
 
-      <div className="px-2 py-1 max-h-[100px] overflow-hidden flex items-center justify-center">
+      <div className="px-2 py-1 overflow-hidden flex items-center justify-center">
         <ins
           ref={adRef}
           className="adsbygoogle"
-          style={{ display: 'block', width: '100%', height: '50px' }}
+          style={{ display: 'block', width: '100%', minHeight: '50px' }}
           data-ad-client="ca-pub-5586908237640960"
           data-ad-slot="2978514211"
           data-ad-format="auto"

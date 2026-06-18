@@ -14,6 +14,8 @@ import {
 import { IndiaTaxSavingGuide2026 } from '../content/articles/IndiaTaxSavingGuide2026';
 import { GstComplianceSmallBusiness } from '../content/articles/GstComplianceSmallBusiness';
 import { SipVsLumpsum2026Markets } from '../content/articles/SipVsLumpsum2026Markets';
+import { AgeRequirementsIndia2026 } from '../content/articles/AgeRequirementsIndia2026';
+import { NoticePeriodCalculationGuide } from '../content/articles/NoticePeriodCalculationGuide';
 import { ArticleAds } from '../components/ArticleAds';
 import NotFound from './NotFound';
 
@@ -57,6 +59,10 @@ export function ArticleLayout() {
                 return <GstComplianceSmallBusiness />;
             case 'sip-vs-lumpsum-2026-markets':
                 return <SipVsLumpsum2026Markets />;
+            case 'age-requirements-india-2026':
+                return <AgeRequirementsIndia2026 />;
+            case 'notice-period-calculation-guide':
+                return <NoticePeriodCalculationGuide />;
             default:
                 return null;
         }

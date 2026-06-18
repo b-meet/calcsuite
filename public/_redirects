@@ -1,6 +1,8 @@
 /calculator/india-salary/:scenario /salary/:scenario 301!
 /alternatives /resources 301!
 /alternatives/ /resources 301!
+/resources/notice-period-calculation-guide /index.html 200!
+/resources/notice-period-calculation-guide/ /index.html 200!
 /tools/retirement_salary/leave_encashment /index.html 200!
 /tools/retirement_salary/leave_encashment/ /index.html 200!
 /calculator/india-tax/10-lakh-salary-tax /index.html 200!
@@ -17,6 +19,8 @@
 /calculator/india-home-loan-eligibility/ /index.html 200!
 /tools/banking_loans/education_loan_emi /index.html 200!
 /tools/banking_loans/education_loan_emi/ /index.html 200!
+/resources/age-requirements-india-2026 /index.html 200!
+/resources/age-requirements-india-2026/ /index.html 200!
 /resources/india-tax-saving-guide-2026 /index.html 200!
 /resources/india-tax-saving-guide-2026/ /index.html 200!
 /resources/sip-vs-lumpsum-2026-markets /index.html 200!

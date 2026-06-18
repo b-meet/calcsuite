@@ -96,7 +96,7 @@ export function AdBanner() {
   }
 
   return (
-    <div className="flex flex-col items-center w-full my-8 overflow-hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-4 max-h-[250px] justify-center">
+    <div className="flex flex-col items-center w-full my-8 overflow-hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-4 justify-center">
       {import.meta.env.DEV && (
         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">
           Google AdSense Area

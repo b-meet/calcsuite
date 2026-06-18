@@ -1,7 +1,9 @@
 import { 
     FileText,
     Percent,
-    TrendingUp
+    TrendingUp,
+    Calendar,
+    Clock
 } from 'lucide-react';
 
 export const blogPosts = [
@@ -67,6 +69,50 @@ export const blogPosts = [
         faqs: [
             { question: "What is a Step-Up SIP?", answer: "A Step-Up SIP involves automatically increasing your SIP amount by a fixed percentage (e.g., 10%) every year to compound wealth faster." },
             { question: "Is 1 Crore enough to retire in India 2026?", answer: "Given 6% inflation, ₹1 Crore will lose significant purchasing power over 20 years. Your target depends on the 4% rule relative to your expenses." }
+        ]
+    },
+    {
+        id: 'age-requirements-india-2026',
+        title: "Age Requirements in India 2026: Official Rules for Exams, Aadhaar & Jobs",
+        excerpt: "Are you eligible for UPSC, Bank exams, or school admission? Read the official 2026 rules for age calculation, Aadhaar cutoff dates, and legal eligibility guidelines.",
+        date: "June 18, 2026",
+        category: "Eligibility",
+        readTime: "7 min read",
+        icon: Calendar,
+        color: "text-indigo-500",
+        bg: "bg-indigo-50 dark:bg-indigo-900/20",
+        ctaText: "Calculate Your Exact Age",
+        toc: [
+            { id: "upsc-govt-exams", title: "UPSC & Government Exam Cutoffs" },
+            { id: "school-admission", title: "School Admission Age (NEP 2026 Rules)" },
+            { id: "aadhaar-verification", title: "Aadhaar Card & Identity Documents" },
+            { id: "calculating-chronological", title: "How Chronological Age is Calculated" }
+        ],
+        faqs: [
+            { question: "What is the minimum age for Class 1 admission under NEP in 2026?", answer: "Under the National Education Policy (NEP) guidelines, the minimum age for Class 1 admission is 6 years as of the qualifying cutoff date." },
+            { question: "What is the cutoff date for UPSC age limit calculations?", answer: "UPSC typically calculates the age limit as of August 1st of the exam year." }
+        ]
+    },
+    {
+        id: 'notice-period-calculation-guide',
+        title: "Notice Period Calculation: Indian HR Rules, Calendar Days vs Working Days",
+        excerpt: "Resigned and confused about your last working day? Read the complete guide on notice period calculation, standard HR policies, and buyout options.",
+        date: "June 18, 2026",
+        category: "Career",
+        readTime: "6 min read",
+        icon: Clock,
+        color: "text-amber-500",
+        bg: "bg-amber-50 dark:bg-amber-900/20",
+        ctaText: "Calculate Notice Period Dates",
+        toc: [
+            { id: "calendar-vs-working", title: "Calendar Days vs. Working Days" },
+            { id: "last-working-day", title: "How to Calculate Last Working Day" },
+            { id: "notice-buyout", title: "Notice Buyout & Leaves Adjustment" },
+            { id: "resignation-email", title: "Resignation Date & Official Notice" }
+        ],
+        faqs: [
+            { question: "Do weekends count in 30-day notice periods in India?", answer: "Yes, most Indian private companies calculate notice periods using calendar days, which means Saturdays and Sundays are included." },
+            { question: "Can I adjust my pending leaves against my notice period?", answer: "It depends on your company's HR policy. Some allow you to shorten your notice period using accumulated earned leaves, while others require encashment." }
         ]
     }
 ];

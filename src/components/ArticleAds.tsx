@@ -63,7 +63,7 @@ export function ArticleAds() {
     }
 
     return (
-        <div className="my-12 w-full max-h-[250px] overflow-hidden flex flex-col items-center">
+        <div className="my-12 w-full overflow-hidden flex flex-col items-center">
              <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">Advertisement</p>
              <ins className="adsbygoogle"
                 ref={adRef}

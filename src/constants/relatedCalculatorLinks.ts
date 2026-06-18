@@ -90,7 +90,7 @@ export const RELATED_CALCULATOR_LINKS: Record<string, RelatedCalculatorLinkDef[]
         { to: '/calculator/age', anchorText: 'age calculator' },
     ],
     age: [
-        { to: '/calculator/date-diff', anchorText: 'date calculator' },
+        { to: '/calculator/date-diff', anchorText: 'days between dates calculator' },
         { to: '/calculator/pregnancy', anchorText: 'pregnancy calculator' },
         { to: '/calculator/ovulation', anchorText: 'ovulation calculator' },
     ],
@@ -120,8 +120,8 @@ export const RELATED_CALCULATOR_LINKS: Record<string, RelatedCalculatorLinkDef[]
         { to: '/calculator/age', anchorText: 'age calculator' },
     ],
     'date-diff': [
-        { to: '/calculator/age', anchorText: 'age calculator' },
-        { to: '/calculator/pregnancy', anchorText: 'pregnancy calculator' },
+        { to: '/calculator/age', anchorText: 'age calculator by date of birth' },
+        { to: '/calculator/pregnancy', anchorText: 'pregnancy due date calculator' },
         { to: '/calculator/ovulation', anchorText: 'ovulation calculator' },
     ],
     inflation: [
