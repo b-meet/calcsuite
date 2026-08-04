@@ -114,13 +114,21 @@ export function CalculatorPage() {
         description: pageDescription,
         url: toAbsoluteUrl(canonicalPath),
         applicationCategory: getSchemaCategory(calculatorDef.category),
+        applicationSubCategory: `${pageTitle.split(' — ')[0].split(' - ')[0]}`,
         operatingSystem: 'Any',
+        browserRequirements: 'Requires JavaScript',
         inLanguage: 'en',
         isAccessibleForFree: true,
+        dateModified: new Date().toISOString().split('T')[0],
         offers: {
             '@type': 'Offer',
             price: '0',
             priceCurrency: 'USD',
+        },
+        author: {
+            '@type': 'Organization',
+            name: 'CalcSuite',
+            url: 'https://calcsuite.in',
         },
     };
 

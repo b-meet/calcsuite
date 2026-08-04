@@ -58,6 +58,8 @@ export const RELATED_CALCULATOR_LINKS: Record<string, RelatedCalculatorLinkDef[]
         { to: '/calculator/india-salary', anchorText: 'in-hand salary calculator' },
         { to: '/calculator/india-tax', anchorText: 'income tax calculator' },
         { to: '/calculator/india-hra', anchorText: 'HRA calculator' },
+        { to: '/calculator/percentage-change', anchorText: 'salary hike calculator' },
+        { to: '/calculator/inflation', anchorText: 'inflation calculator' },
     ],
     bmi: [
         { to: '/calculator/calorie', anchorText: 'calorie calculator' },

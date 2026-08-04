@@ -5,7 +5,7 @@ import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function SalaryCalculator() {
     const [amount, setAmount] = useState('');
-    const [period, setPeriod] = useState<'hourly' | 'weekly' | 'monthly' | 'annual'>('annual');
+    const [period, setPeriod] = useState<'hourly' | 'daily' | 'weekly' | 'biweekly' | 'monthly' | 'annual'>('annual');
     const [hoursPerWeek, setHoursPerWeek] = useState('40');
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('salary');
@@ -21,8 +21,14 @@ export default function SalaryCalculator() {
             case 'hourly':
                 annual = val * hours * 52;
                 break;
+            case 'daily':
+                annual = val * 260; // 5 days * 52 weeks
+                break;
             case 'weekly':
                 annual = val * 52;
+                break;
+            case 'biweekly':
+                annual = val * 26;
                 break;
             case 'monthly':
                 annual = val * 12;
@@ -35,6 +41,7 @@ export default function SalaryCalculator() {
         return {
             annual: annual,
             monthly: annual / 12,
+            biweekly: annual / 26,
             weekly: annual / 52,
             daily: annual / 260, // 5 days * 52 weeks
             hourly: annual / (hours * 52)
@@ -44,12 +51,14 @@ export default function SalaryCalculator() {
     const hasInput = amount.length > 0;
     const results = calculate();
 
+    const periodAbbrev: Record<string, string> = { annual: 'y', monthly: 'mo', biweekly: '2w', weekly: 'w', daily: 'd', hourly: 'hr' };
+
     const handleSave = () => {
         if (hasInput) {
             addHistory(
                 { amount, period, hoursPerWeek },
                 `$${results.annual.toLocaleString(undefined, { maximumFractionDigits: 0 })}/y`,
-                `$${amount}/${period === 'annual' ? 'y' : period === 'monthly' ? 'mo' : period === 'weekly' ? 'w' : 'hr'}`
+                `$${amount}/${periodAbbrev[period] || period}`
             );
         }
     };
@@ -82,12 +91,14 @@ export default function SalaryCalculator() {
                             className={inputClass}
                         >
                             <option value="hourly">Hour</option>
+                            <option value="daily">Day</option>
                             <option value="weekly">Week</option>
+                            <option value="biweekly">Biweekly (every 2 weeks)</option>
                             <option value="monthly">Month</option>
                             <option value="annual">Year</option>
                         </select>
                     </div>
-                    {period === 'hourly' && (
+                    {(period === 'hourly' || period === 'biweekly') && (
                         <div className="md:col-span-2">
                             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Hours per Week</label>
                             <input type="number" value={hoursPerWeek} onChange={e => setHoursPerWeek(e.target.value)} className={inputClass} placeholder="40" />
@@ -101,7 +112,9 @@ export default function SalaryCalculator() {
                             {[
                                 { label: 'Annual', value: results.annual },
                                 { label: 'Monthly', value: results.monthly },
+                                { label: 'Biweekly', value: results.biweekly },
                                 { label: 'Weekly', value: results.weekly },
+                                { label: 'Daily', value: results.daily },
                                 { label: 'Hourly', value: results.hourly }
                             ].map((item, i) => (
                                 <div key={i} className="flex justify-between items-center p-4 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
@@ -140,3 +153,4 @@ export default function SalaryCalculator() {
         </div>
     );
 }
+

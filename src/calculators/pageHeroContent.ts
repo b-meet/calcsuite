@@ -149,14 +149,16 @@ const baseHeroContent: Record<string, HeroContent> = {
         ],
     },
     salary: {
-        utilityLine: 'Convert salary across annual, monthly, weekly, daily, and hourly pay formats.',
+        utilityLine: 'Convert your salary between annual, monthly, biweekly, weekly, daily, and hourly pay — instantly and free.',
         answer: 'A salary calculator helps you convert pay between annual, monthly, weekly, daily, and hourly views so you can compare jobs or budget with less guesswork. It is useful when an offer uses one pay format but you need to understand what that number means in another time frame.',
         chips: SHARED_CHIPS,
         exampleTitle: 'Worked example',
         exampleRows: [
             { label: 'Annual salary', value: '$72,000' },
             { label: 'Monthly pay', value: '$6,000' },
+            { label: 'Biweekly pay', value: '$2,769' },
             { label: 'Weekly pay', value: 'About $1,385' },
+            { label: 'Daily pay', value: 'About $277' },
             { label: 'Hourly pay', value: 'About $34.62 at 40 hrs/week' },
         ],
     },

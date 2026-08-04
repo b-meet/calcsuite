@@ -592,17 +592,19 @@ export const calculatorRegistry: CalculatorDef[] = [
     },
     {
         id: 'salary',
-        name: 'Salary Calculator — Convert Annual, Monthly, Weekly \u0026 Hourly Pay',
-        description: 'Instantly convert salary between annual, monthly, biweekly, weekly, daily, and hourly. See how much $25/hr is per year or ₹50,000/month is hourly.',
+        name: 'Salary Calculator — Free Salary to Hourly, Monthly \u0026 Annual Converter',
+        description: 'Free salary calculator — instantly convert your pay between annual, monthly, biweekly, weekly, daily, and hourly. See how much $25/hr is per year. No sign-up needed.',
         category: 'financial',
         icon: Briefcase,
         component: SalaryCalculator,
         content: SalaryCalculatorContent,
         longDescription: "How much is that hourly rate per year? This Salary Calculator instantly converts your income across different timeframes—hourly, daily, weekly, biweekly, monthly, and annually—giving you a complete picture of your earnings to compare job offers, plan budgets, and negotiate raises.",
         features: [
-            "Full timeframe conversion",
-            "Work hours customization",
-            "Simple interface",
+            "Convert salary between annual, monthly, biweekly, weekly, daily, and hourly",
+            "Customizable work hours per week",
+            "Supports multiple currencies",
+            "Free with no sign-up required",
+            "Works on mobile and desktop",
             "Gross income planning"
         ],
         keywords: [
@@ -653,6 +655,18 @@ export const calculatorRegistry: CalculatorDef[] = [
             {
                 question: "Can I use this for freelance rate calculation?",
                 answer: "Yes. If you know your desired annual income, enter it and the calculator will show the equivalent hourly rate. For freelancers, it's common to add 25-30% on top of an equivalent employee hourly rate to cover self-employment taxes, benefits, and unbillable time."
+            },
+            {
+                question: "What is a good salary?",
+                answer: "A 'good salary' depends on location, cost of living, and industry. In the US, the median household income is approximately $75,000 per year (2024 data). In India, a salary of ₹10 LPA or above is generally considered good for salaried professionals. Use this calculator to convert any salary into hourly, daily, or monthly amounts for easier comparison."
+            },
+            {
+                question: "How does income tax affect my take-home salary?",
+                answer: "This calculator shows gross salary conversions (before tax). Your actual take-home pay will be lower after income tax, social security contributions, and other deductions are applied. The gap between gross and net salary typically ranges from 15% to 35% depending on your tax bracket and location."
+            },
+            {
+                question: "What is CTC vs in-hand salary?",
+                answer: "CTC (Cost to Company) is the total annual expense an employer incurs for an employee, including salary, benefits, PF contributions, and insurance. In-hand salary is the amount actually deposited into your bank account after all deductions. CTC is typically 20-40% higher than in-hand salary depending on the salary structure and tax regime."
             }
         ],
         howTo: {
