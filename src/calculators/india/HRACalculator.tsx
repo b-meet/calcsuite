@@ -13,9 +13,9 @@ import { Pie } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function HRACalculator() {
-    const [basicSalary, setBasicSalary] = useState(600000); // Yearly
-    const [hraReceived, setHraReceived] = useState(240000); // Yearly
-    const [rentPaid, setRentPaid] = useState(180000); // Yearly
+    const [basicSalary, setBasicSalary] = useState<number | ''>(600000); // Yearly
+    const [hraReceived, setHraReceived] = useState<number | ''>(240000); // Yearly
+    const [rentPaid, setRentPaid] = useState<number | ''>(180000); // Yearly
     const [isMetro, setIsMetro] = useState(true);
 
     const [result, setResult] = useState<{
@@ -31,11 +31,15 @@ export default function HRACalculator() {
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('hra');
 
     const calculateHRA = () => {
-        const c1 = hraReceived;
-        const c2 = Math.max(0, rentPaid - (0.10 * basicSalary));
-        const c3 = (isMetro ? 0.50 : 0.40) * basicSalary;
+        const basic = Number(basicSalary) || 0;
+        const hra = Number(hraReceived) || 0;
+        const rent = Number(rentPaid) || 0;
+
+        const c1 = hra;
+        const c2 = Math.max(0, rent - (0.10 * basic));
+        const c3 = (isMetro ? 0.50 : 0.40) * basic;
         const exempt = Math.min(c1, c2, c3);
-        const taxable = Math.max(0, hraReceived - exempt);
+        const taxable = Math.max(0, hra - exempt);
 
         setResult({
             exemptHRA: Math.round(exempt),
@@ -55,9 +59,9 @@ export default function HRACalculator() {
     const handleSave = () => {
         if (!result) return;
         addHistory(
-            { basicSalary, hraReceived, rentPaid, isMetro },
+            { basicSalary: Number(basicSalary) || 0, hraReceived: Number(hraReceived) || 0, rentPaid: Number(rentPaid) || 0, isMetro },
             `Exempt: ₹${result.exemptHRA.toLocaleString('en-IN')}`,
-            `${isMetro ? 'Metro' : 'Non-Metro'}, Basic: ₹${(basicSalary / 100000).toFixed(1)}L`
+            `${isMetro ? 'Metro' : 'Non-Metro'}, Basic: ₹${((Number(basicSalary) || 0) / 100000).toFixed(1)}L`
         );
     };
 
@@ -102,11 +106,11 @@ export default function HRACalculator() {
                                     <input
                                         type="number"
                                         value={basicSalary}
-                                        onChange={(e) => setBasicSalary(Number(e.target.value))}
+                                        onChange={(e) => setBasicSalary(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
-                                    <p className="text-xs text-slate-500 mt-1">Enter annual amount</p>
                                 </div>
+                                <p className="text-xs text-slate-500 mt-1">Enter annual amount</p>
                             </div>
 
                             <div>
@@ -120,11 +124,11 @@ export default function HRACalculator() {
                                     <input
                                         type="number"
                                         value={hraReceived}
-                                        onChange={(e) => setHraReceived(Number(e.target.value))}
+                                        onChange={(e) => setHraReceived(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
-                                    <p className="text-xs text-slate-500 mt-1">As per salary slip (Annual)</p>
                                 </div>
+                                <p className="text-xs text-slate-500 mt-1">As per salary slip (Annual)</p>
                             </div>
 
                             <div>
@@ -138,11 +142,11 @@ export default function HRACalculator() {
                                     <input
                                         type="number"
                                         value={rentPaid}
-                                        onChange={(e) => setRentPaid(Number(e.target.value))}
+                                        onChange={(e) => setRentPaid(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
-                                    <p className="text-xs text-slate-500 mt-1">Total rent paid in the financial year</p>
                                 </div>
+                                <p className="text-xs text-slate-500 mt-1">Total rent paid in the financial year</p>
                             </div>
 
                             <div>

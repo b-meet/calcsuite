@@ -37,8 +37,11 @@ export function AsideAds() {
     }, []);
 
     return (
-        <aside className="hidden lg:block w-[320px] shrink-0 sticky top-10 self-start max-h-[calc(100vh-3rem)] flex flex-col">
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-5 shadow-sm flex flex-col min-h-0 overflow-hidden">
+        <aside className="hidden lg:block w-[320px] shrink-0 sticky top-10 self-start">
+            <div 
+                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-5 shadow-sm flex flex-col overflow-hidden w-full"
+                style={{ maxHeight: 'calc(100vh - 130px)' }}
+            >
                 {adStatus !== 'failed' && (
                     <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em] mb-4 text-center shrink-0">
                         Advertisement
@@ -59,33 +62,39 @@ export function AsideAds() {
                     />
 
                     {adStatus === 'failed' && (
-                        <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 py-1">
+                        <div className="flex flex-col gap-3 h-full animate-in fade-in slide-in-from-bottom-4 duration-700 py-1">
                             {PROMOTIONS.map((promo) => (
                                 <div key={promo.id} className={cn(
-                                    "rounded-[1.5rem] p-5 bg-gradient-to-br text-white shadow-lg relative overflow-hidden group transition-all hover:-translate-y-1 hover:shadow-xl",
+                                    "rounded-2xl p-4 bg-gradient-to-br text-white shadow-lg relative overflow-hidden group transition-all hover:-translate-y-1 hover:shadow-xl flex flex-col flex-1 justify-between min-h-[130px]",
                                     promo.color
                                 )}>
                                     {/* Abstract pattern background */}
-                                    <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl transition-transform group-hover:scale-125 duration-700" />
+                                    <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl transition-transform group-hover:scale-125 duration-700 pointer-events-none" />
 
-                                    <div className="bg-white/15 w-12 h-12 rounded-xl flex items-center justify-center mb-6 backdrop-blur-md border border-white/20 shadow-lg transition-transform group-hover:rotate-12">
-                                        <promo.icon size={24} className="text-white" />
+                                    <div className="flex flex-col flex-1 z-10 relative">
+                                        <div className="flex items-center gap-3 mb-2.5">
+                                            <div className="bg-white/15 w-10 h-10 shrink-0 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg transition-transform group-hover:rotate-12">
+                                                <promo.icon size={20} className="text-white" />
+                                            </div>
+                                            <h3 className="font-bold text-base leading-tight tracking-tight line-clamp-2">
+                                                {promo.title}
+                                            </h3>
+                                        </div>
+                                        
+                                        <p className="text-[11px] text-white/80 mb-3 leading-relaxed font-medium line-clamp-2">
+                                            {promo.subtitle}
+                                        </p>
+
+                                        <a
+                                            href={promo.link}
+                                            target={promo.link.startsWith('http') ? '_blank' : '_self'}
+                                            rel="noopener noreferrer"
+                                            className="mt-auto flex items-center justify-center gap-2 bg-white text-slate-900 py-2 px-4 rounded-xl text-[11px] font-extrabold hover:bg-slate-50 transition-all transform hover:scale-[1.02] active:scale-95 shadow-md group/btn w-full"
+                                        >
+                                            {promo.ctaText}
+                                            <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />
+                                        </a>
                                     </div>
-                                    <h3 className="font-bold text-lg mb-2 leading-tight tracking-tight">
-                                        {promo.title}
-                                    </h3>
-                                    <p className="text-xs text-white/80 mb-6 leading-relaxed font-medium">
-                                        {promo.subtitle}
-                                    </p>
-                                    <a
-                                        href={promo.link}
-                                        target={promo.link.startsWith('http') ? '_blank' : '_self'}
-                                        rel="noopener noreferrer"
-                                        className="flex items-center justify-center gap-2 bg-white text-slate-900 py-2.5 px-5 rounded-xl text-xs font-extrabold hover:bg-slate-50 transition-all transform hover:scale-[1.02] active:scale-95 shadow-md group/btn"
-                                    >
-                                        {promo.ctaText}
-                                        <ArrowRight size={18} className="transition-transform group-hover/btn:translate-x-1" />
-                                    </a>
                                 </div>
                             ))}
                         </div>

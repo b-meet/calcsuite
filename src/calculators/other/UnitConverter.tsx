@@ -34,7 +34,7 @@ export default function UnitConverter() {
     const [type, setType] = useState<UnitType>('length');
     const [fromUnit, setFromUnit] = useState(units.length[0].value);
     const [toUnit, setToUnit] = useState(units.length[1].value);
-    const [fromValue, setFromValue] = useState(1);
+    const [fromValue, setFromValue] = useState<number | ''>(1);
     const [toValue, setToValue] = useState(0);
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('unit-converter');
@@ -51,7 +51,7 @@ export default function UnitConverter() {
     }, [fromValue, fromUnit, toUnit, type]);
 
     const convert = () => {
-        let baseValue = fromValue;
+        let baseValue = Number(fromValue) || 0;
 
         if (type === 'length') {
             // Convert to meters first
@@ -81,9 +81,9 @@ export default function UnitConverter() {
         }
         else if (type === 'temperature') {
             // Temp is tricky because of offsets
-            let tempC = fromValue;
-            if (fromUnit === 'f') tempC = (fromValue - 32) * 5 / 9;
-            if (fromUnit === 'k') tempC = fromValue - 273.15;
+            let tempC = Number(fromValue) || 0;
+            if (fromUnit === 'f') tempC = ((Number(fromValue) || 0) - 32) * 5 / 9;
+            if (fromUnit === 'k') tempC = (Number(fromValue) || 0) - 273.15;
 
             if (toUnit === 'f') baseValue = (tempC * 9 / 5) + 32;
             else if (toUnit === 'k') baseValue = tempC + 273.15;
@@ -132,7 +132,7 @@ export default function UnitConverter() {
                         <input
                             type="number"
                             value={fromValue}
-                            onChange={(e) => setFromValue(Number(e.target.value))}
+                            onChange={(e) => setFromValue(e.target.value === '' ? '' : Number(e.target.value))}
                             className="block w-full px-4 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-xl font-bold text-slate-900 dark:text-white"
                         />
                         <select

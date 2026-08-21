@@ -70,7 +70,7 @@ export const NoticePeriodCalculationGuide = () => {
                 <p className="text-slate-600 dark:text-slate-400 mb-6 text-base max-w-lg mx-auto">
                     Count the exact calendar days or calculate what date is 30, 60, or 90 days from today to find your official release date.
                 </p>
-                <Link to="/calculator/date-diff/" className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 !text-white font-bold rounded-xl hover:bg-indigo-700 hover:-translate-y-1 transition-all shadow-md">
+                <Link to="/calculator/date-calculator/" className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-600 !text-white font-bold rounded-xl hover:bg-indigo-700 hover:-translate-y-1 transition-all shadow-md">
                     Open Date Calculator
                 </Link>
             </div>

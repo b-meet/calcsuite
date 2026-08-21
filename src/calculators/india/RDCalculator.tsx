@@ -36,9 +36,9 @@ interface YearBreakdown {
 }
 
 export default function RDCalculator() {
-    const [monthlyDeposit, setMonthlyDeposit] = useState(5000);
-    const [rate, setRate] = useState(7.0);
-    const [tenureMonths, setTenureMonths] = useState(12);
+    const [monthlyDeposit, setMonthlyDeposit] = useState<number | ''>(5000);
+    const [rate, setRate] = useState<number | ''>(7.0);
+    const [tenureMonths, setTenureMonths] = useState<number | ''>(12);
     const [compounding, setCompounding] = useState<CompoundingFrequency>('QUARTERLY');
 
     const [result, setResult] = useState<{
@@ -51,9 +51,9 @@ export default function RDCalculator() {
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('rd');
 
     const calculateRD = () => {
-        const P = monthlyDeposit;
-        const r = rate / 100;
-        const months = tenureMonths;
+        const P = Number(monthlyDeposit) || 0;
+        const r = (Number(rate) || 0) / 100;
+        const months = Number(tenureMonths) || 0;
         const breakdown: YearBreakdown[] = [];
         const n = compounding === 'QUARTERLY' ? 4 : (compounding === 'HALF_YEARLY' ? 2 : (compounding === 'YEARLY' ? 1 : 12));
         let balanceSim = 0;
@@ -91,9 +91,9 @@ export default function RDCalculator() {
     const handleSave = () => {
         if (!result) return;
         addHistory(
-            { monthlyDeposit, rate, tenureMonths, compounding },
+            { monthlyDeposit: Number(monthlyDeposit) || 0, rate: Number(rate) || 0, tenureMonths: Number(tenureMonths) || 0, compounding },
             `₹${result.maturityAmount.toLocaleString('en-IN')}`,
-            `${tenureMonths}mo, ₹${monthlyDeposit.toLocaleString('en-IN')}/mo`
+            `${Number(tenureMonths) || 0}mo, ₹${(Number(monthlyDeposit) || 0).toLocaleString('en-IN')}/mo`
         );
     };
 
@@ -127,12 +127,12 @@ export default function RDCalculator() {
                                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Monthly Deposit</label>
                                 <div className="relative">
                                     <span className="absolute left-3 top-2 text-slate-500">₹</span>
-                                    <input type="number" value={monthlyDeposit} onChange={(e) => setMonthlyDeposit(Number(e.target.value))} className="block w-full pl-8 pr-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800 text-slate-900 dark:text-white" />
+                                    <input type="number" value={monthlyDeposit} onChange={(e) => setMonthlyDeposit(e.target.value === '' ? '' : Number(e.target.value))} className="block w-full pl-8 pr-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800 text-slate-900 dark:text-white" />
                                 </div>
                             </div>
                             <div className="grid grid-cols-2 gap-4">
-                                <div><label className="block text-sm font-medium">Rate (%)</label><input type="number" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800" step="0.1" /></div>
-                                <div><label className="block text-sm font-medium">Months</label><input type="number" value={tenureMonths} onChange={(e) => setTenureMonths(Number(e.target.value))} className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800" /></div>
+                                <div><label className="block text-sm font-medium">Rate (%)</label><input type="number" value={rate} onChange={(e) => setRate(e.target.value === '' ? '' : Number(e.target.value))} className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800" step="0.1" /></div>
+                                <div><label className="block text-sm font-medium">Months</label><input type="number" value={tenureMonths} onChange={(e) => setTenureMonths(e.target.value === '' ? '' : Number(e.target.value))} className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg dark:bg-slate-800" /></div>
                             </div>
                             <div className="flex justify-center mt-6">
                                 <button

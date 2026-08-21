@@ -54,7 +54,7 @@ export function CalculatorPage() {
             frameTwo = window.requestAnimationFrame(() => {
                 calculatorViewportRef.current?.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'center',
+                    block: 'start',
                 });
             });
         });
@@ -86,7 +86,7 @@ export function CalculatorPage() {
     const Component = calculatorDef.component;
     const Content = calculatorDef.content;
     const heroContent = getCalculatorHeroContent(calculatorDef.id, scenario?.id);
-    const sharedVisibleFaqIds = new Set(['bmi', 'sip', 'india-salary', 'tip', 'discount', 'gpa', 'percentage', 'india-emi', 'simple-interest', 'salary', 'india-gst', 'compound-interest', 'age', 'date-diff']);
+    const sharedVisibleFaqIds = new Set(['bmi', 'sip', 'india-salary', 'tip', 'discount', 'gpa', 'percentage', 'india-emi', 'simple-interest', 'salary', 'india-gst', 'compound-interest', 'age', 'date-calculator']);
     const showCompactVisibleFaqs = sharedVisibleFaqIds.has(calculatorDef.id) && Boolean(calculatorDef.faqs?.length);
 
     // Map internal category to Schema.org applicationCategory
@@ -348,7 +348,7 @@ export function CalculatorPage() {
                 </Suspense>
             )}
 
-            <div ref={calculatorViewportRef}>
+            <div ref={calculatorViewportRef} className="scroll-mt-24 lg:scroll-mt-8">
                 <Component
                     key={`${calculatorDef.id}-${scenario?.id || 'default'}`}
                     scenarioData={scenario?.initialState}

@@ -13,10 +13,10 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function HomeLoanEligibilityCalculator() {
-    const [monthlyIncome, setMonthlyIncome] = useState(100000);
-    const [obligations, setObligations] = useState(20000);
-    const [rate, setRate] = useState(9.0);
-    const [tenure, setTenure] = useState(20);
+    const [monthlyIncome, setMonthlyIncome] = useState<number | ''>(100000);
+    const [obligations, setObligations] = useState<number | ''>(20000);
+    const [rate, setRate] = useState<number | ''>(9.0);
+    const [tenure, setTenure] = useState<number | ''>(20);
     const [foir, setFoir] = useState(50); // FOIR percentage
 
     const [result, setResult] = useState<{
@@ -28,7 +28,9 @@ export default function HomeLoanEligibilityCalculator() {
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('home-loan-eligibility');
 
     const calculateEligibility = () => {
-        const maxAllowedEMI = (monthlyIncome * (foir / 100)) - obligations;
+        const income = Number(monthlyIncome) || 0;
+        const obs = Number(obligations) || 0;
+        const maxAllowedEMI = (income * (foir / 100)) - obs;
 
         if (maxAllowedEMI <= 0) {
             setResult({
@@ -39,13 +41,17 @@ export default function HomeLoanEligibilityCalculator() {
             return;
         }
 
-        const r = rate / 12 / 100; // Monthly rate
-        const n = tenure * 12; // Months
+        const r = (Number(rate) || 0) / 12 / 100; // Monthly rate
+        const n = (Number(tenure) || 0) * 12; // Months
 
-        const numerator = Math.pow(1 + r, n) - 1;
-        const denominator = r * Math.pow(1 + r, n);
-
-        const eligibleLoan = maxAllowedEMI * (numerator / denominator);
+        let eligibleLoan = 0;
+        if (r > 0) {
+            const numerator = Math.pow(1 + r, n) - 1;
+            const denominator = r * Math.pow(1 + r, n);
+            eligibleLoan = maxAllowedEMI * (numerator / denominator);
+        } else {
+            eligibleLoan = maxAllowedEMI * n;
+        }
 
         setResult({
             eligibleLoanAmount: Math.round(eligibleLoan),
@@ -61,7 +67,7 @@ export default function HomeLoanEligibilityCalculator() {
     const handleSave = () => {
         if (!result) return;
         addHistory(
-            { monthlyIncome, obligations, rate, tenure, foir },
+            { monthlyIncome: Number(monthlyIncome) || 0, obligations: Number(obligations) || 0, rate: Number(rate) || 0, tenure: Number(tenure) || 0, foir },
             `Eligible: ₹${result.eligibleLoanAmount.toLocaleString('en-IN')}`,
             `EMI: ₹${result.maxAffordableEMI.toLocaleString('en-IN')}/mo`
         );
@@ -81,8 +87,8 @@ export default function HomeLoanEligibilityCalculator() {
             {
                 data: result ? [
                     result.maxAffordableEMI,
-                    obligations,
-                    Math.max(0, monthlyIncome - result.maxAffordableEMI - obligations)
+                    Number(obligations) || 0,
+                    Math.max(0, (Number(monthlyIncome) || 0) - result.maxAffordableEMI - (Number(obligations) || 0))
                 ] : [1, 1, 1],
                 backgroundColor: ['#3b82f6', '#ef4444', '#e2e8f0'],
                 borderColor: ['#2563eb', '#dc2626', '#cbd5e1'],
@@ -113,7 +119,7 @@ export default function HomeLoanEligibilityCalculator() {
                                     <input
                                         type="number"
                                         value={monthlyIncome}
-                                        onChange={(e) => setMonthlyIncome(Number(e.target.value))}
+                                        onChange={(e) => setMonthlyIncome(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
                                 </div>
@@ -130,7 +136,7 @@ export default function HomeLoanEligibilityCalculator() {
                                     <input
                                         type="number"
                                         value={obligations}
-                                        onChange={(e) => setObligations(Number(e.target.value))}
+                                        onChange={(e) => setObligations(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
                                 </div>
@@ -139,11 +145,11 @@ export default function HomeLoanEligibilityCalculator() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Interest Rate (%)</label>
-                                    <input type="number" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500" step="0.1" />
+                                    <input type="number" value={rate} onChange={(e) => setRate(e.target.value === '' ? '' : Number(e.target.value))} className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500" step="0.1" />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tenure (Years)</label>
-                                    <input type="number" value={tenure} onChange={(e) => setTenure(Number(e.target.value))} className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500" />
+                                    <input type="number" value={tenure} onChange={(e) => setTenure(e.target.value === '' ? '' : Number(e.target.value))} className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500" />
                                 </div>
                             </div>
 

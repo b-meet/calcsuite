@@ -380,11 +380,12 @@ export default function BMRCalculator() {
                         <UnitToggle unit={unit} onChange={setUnit} />
                     </div>
 
-                    <div className="grid gap-5 md:grid-cols-2">
-                        <div className="md:col-span-2">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                        <div className="sm:col-span-2">
                             <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Sex</label>
                             <GenderToggle gender={gender} onChange={setGender} />
                         </div>
+
                         <InputField
                             label="Age"
                             icon={Activity}
@@ -393,18 +394,9 @@ export default function BMRCalculator() {
                             placeholder="30"
                             suffix="yr"
                             error={validation.errors.age}
+                            className="sm:col-span-1"
                         />
-                        <div>
-                            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Activity level</label>
-                            <ActivityPicker
-                                value={activity}
-                                onChange={setActivity}
-                                error={validation.errors.activity}
-                            />
-                        </div>
-                    </div>
 
-                    <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                         {unit === 'metric' ? (
                             <>
                                 <InputField
@@ -438,7 +430,7 @@ export default function BMRCalculator() {
                                     placeholder="154"
                                     suffix="lb"
                                     error={validation.errors.imperialWeight}
-                                    className="sm:col-span-2 lg:col-span-1"
+                                    className="sm:col-span-1"
                                 />
                                 <InputField
                                     label="Height"
@@ -448,6 +440,7 @@ export default function BMRCalculator() {
                                     placeholder="5"
                                     suffix="ft"
                                     error={validation.errors.feet}
+                                    className="sm:col-span-1"
                                 />
                                 <InputField
                                     label="Inches"
@@ -457,9 +450,19 @@ export default function BMRCalculator() {
                                     placeholder="9"
                                     suffix="in"
                                     error={validation.errors.inches}
+                                    className="sm:col-span-1"
                                 />
                             </>
                         )}
+
+                        <div className="sm:col-span-2">
+                            <label className="mb-2 block text-sm font-medium text-slate-700 dark:text-slate-300">Activity level</label>
+                            <ActivityPicker
+                                value={activity}
+                                onChange={setActivity}
+                                error={validation.errors.activity}
+                            />
+                        </div>
                     </div>
                 </section>
 

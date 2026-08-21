@@ -16,9 +16,9 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 type TimeUnit = 'YEARS' | 'MONTHS' | 'DAYS';
 
 export default function SimpleInterestCalculator() {
-    const [principal, setPrincipal] = useState(10000);
-    const [rate, setRate] = useState(5.0);
-    const [time, setTime] = useState(2);
+    const [principal, setPrincipal] = useState<number | ''>(10000);
+    const [rate, setRate] = useState<number | ''>(5.0);
+    const [time, setTime] = useState<number | ''>(2);
     const [timeUnit, setTimeUnit] = useState<TimeUnit>('YEARS');
 
     const [result, setResult] = useState<{
@@ -29,9 +29,9 @@ export default function SimpleInterestCalculator() {
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('simple-interest');
 
     const calculate = () => {
-        const P = principal;
-        const R = rate / 100;
-        let T = time;
+        const P = Number(principal) || 0;
+        const R = (Number(rate) || 0) / 100;
+        let T = Number(time) || 0;
 
         if (timeUnit === 'MONTHS') T = time / 12;
         if (timeUnit === 'DAYS') T = time / 365;
@@ -48,9 +48,9 @@ export default function SimpleInterestCalculator() {
     const handleSave = () => {
         if (result) {
             addHistory(
-                { principal, rate, time, timeUnit },
+                { principal: Number(principal) || 0, rate: Number(rate) || 0, time: Number(time) || 0, timeUnit },
                 new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(result.totalAmount),
-                `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(principal)}, ${rate}%, ${time} ${timeUnit.toLowerCase()}`
+                `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(principal) || 0)}, ${Number(rate) || 0}%, ${Number(time) || 0} ${timeUnit.toLowerCase()}`
             );
         }
     };
@@ -70,7 +70,7 @@ export default function SimpleInterestCalculator() {
         labels: ['Principal', 'Total Interest'],
         datasets: [
             {
-                data: result ? [principal, result.interest] : [1, 1],
+                data: result ? [Number(principal) || 0, result.interest] : [1, 1],
                 backgroundColor: ['#e2e8f0', '#3b82f6'],
                 borderColor: ['#cbd5e1', '#2563eb'],
                 borderWidth: 1,
@@ -94,7 +94,7 @@ export default function SimpleInterestCalculator() {
                                 <input
                                     type="number"
                                     value={principal}
-                                    onChange={(e) => setPrincipal(Number(e.target.value))}
+                                    onChange={(e) => setPrincipal(e.target.value === '' ? '' : Number(e.target.value))}
                                     className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                 />
                             </div>
@@ -105,7 +105,7 @@ export default function SimpleInterestCalculator() {
                                     <input
                                         type="number"
                                         value={rate}
-                                        onChange={(e) => setRate(Number(e.target.value))}
+                                        onChange={(e) => setRate(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                     />
                                     <Percent className="absolute right-3 top-2.5 w-4 h-4 text-slate-400 dark:text-slate-500" />
@@ -118,7 +118,7 @@ export default function SimpleInterestCalculator() {
                                     <input
                                         type="number"
                                         value={time}
-                                        onChange={(e) => setTime(Number(e.target.value))}
+                                        onChange={(e) => setTime(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                     />
                                 </div>
@@ -153,7 +153,7 @@ export default function SimpleInterestCalculator() {
                                 <div>
                                     <p className="text-slate-400 dark:text-slate-500 text-sm mb-1">Principal</p>
                                     <p className="text-xl font-semibold">
-                                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(principal)}
+                                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(principal) || 0)}
                                     </p>
                                 </div>
                                 <div>

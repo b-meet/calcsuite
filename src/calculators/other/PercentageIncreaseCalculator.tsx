@@ -67,15 +67,15 @@ function buildCopyText(original: number, newValue: number, result: ChangeResult)
 }
 
 export default function PercentageIncreaseCalculator() {
-    const [original, setOriginal] = useState(100);
-    const [newValue, setNewValue] = useState(150);
+    const [original, setOriginal] = useState<number | ''>(100);
+    const [newValue, setNewValue] = useState<number | ''>(150);
     const [result, setResult] = useState<ChangeResult | null>(null);
     const [copyState, setCopyState] = useState<'idle' | 'copied' | 'error'>('idle');
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('percentage-increase');
 
     useEffect(() => {
-        setResult(calculatePercentageChange(original, newValue));
+        setResult(calculatePercentageChange(Number(original) || 0, Number(newValue) || 0));
     }, [original, newValue]);
 
     const handleExample = (example: Example) => {
@@ -88,19 +88,19 @@ export default function PercentageIncreaseCalculator() {
     };
 
     const handleSave = () => {
-        if (!result || original === 0) return;
+        if (!result || Number(original) === 0) return;
 
         addHistory(
-            { original, newValue },
+            { original: Number(original) || 0, newValue: Number(newValue) || 0 },
             `${result.percentChange > 0 ? '+' : ''}${formatNumber(result.percentChange)}%`,
-            `${formatNumber(original)} → ${formatNumber(newValue)}`
+            `${formatNumber(Number(original) || 0)} → ${formatNumber(Number(newValue) || 0)}`
         );
     };
 
     const handleCopy = async () => {
-        if (!result || original === 0) return;
+        if (!result || Number(original) === 0) return;
 
-        const copied = await copyTextToClipboard(buildCopyText(original, newValue, result));
+        const copied = await copyTextToClipboard(buildCopyText(Number(original) || 0, Number(newValue) || 0, result));
         setCopyState(copied ? 'copied' : 'error');
 
         if (copied) {
@@ -145,7 +145,7 @@ export default function PercentageIncreaseCalculator() {
                             type="number"
                             inputMode="decimal"
                             value={original}
-                            onChange={(e) => setOriginal(Number(e.target.value))}
+                            onChange={(e) => setOriginal(e.target.value === '' ? '' : Number(e.target.value))}
                             className="block w-full rounded-lg border border-slate-200 bg-white px-4 py-2 text-lg text-slate-900 focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                         />
                     </div>
@@ -157,7 +157,7 @@ export default function PercentageIncreaseCalculator() {
                             type="number"
                             inputMode="decimal"
                             value={newValue}
-                            onChange={(e) => setNewValue(Number(e.target.value))}
+                            onChange={(e) => setNewValue(e.target.value === '' ? '' : Number(e.target.value))}
                             className="block w-full rounded-lg border border-slate-200 bg-white px-4 py-2 text-lg text-slate-900 focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:bg-slate-800 dark:text-white"
                         />
                     </div>
@@ -175,7 +175,7 @@ export default function PercentageIncreaseCalculator() {
                     <button
                         type="button"
                         onClick={handleCopy}
-                        disabled={!result || original === 0}
+                        disabled={!result || Number(original) === 0}
                         className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 font-semibold text-slate-700 transition-colors hover:border-blue-500 hover:text-blue-600 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:text-blue-400"
                     >
                         <Copy className="h-4 w-4" />
@@ -194,7 +194,7 @@ export default function PercentageIncreaseCalculator() {
                     role="status"
                     aria-live="polite"
                 >
-                    {original === 0 ? (
+                    {Number(original) === 0 || original === '' ? (
                         <p className="m-0 text-slate-500 dark:text-slate-400">
                             Cannot calculate percentage change from 0.
                         </p>

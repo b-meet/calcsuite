@@ -53,14 +53,13 @@ export function MainLayout() {
                         </div>
                     )}
                 </div>
-                
+
                 <Footer />
             </div>
             <PWAPrompt />
             <PWAUpdatePrompt />
             <FeedbackButton />
-            <JSMFloatingBanner isCollapsed={isCollapsed} />
+            <JSMFloatingBanner isCollapsed={isCollapsed} hasAside={showAds} />
         </div>
     );
 }
-

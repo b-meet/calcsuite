@@ -39,9 +39,9 @@ interface YearBreakdown {
 }
 
 export default function PPFCalculator() {
-    const [yearlyContribution, setYearlyContribution] = useState(150000);
-    const [years, setYears] = useState(15);
-    const [rate, setRate] = useState(7.1);
+    const [yearlyContribution, setYearlyContribution] = useState<number | ''>(150000);
+    const [years, setYears] = useState<number | ''>(15);
+    const [rate, setRate] = useState<number | ''>(7.1);
     const [contributionTiming, setContributionTiming] = useState<'START_OF_YEAR' | 'END_OF_YEAR'>('START_OF_YEAR');
 
     const [result, setResult] = useState<{
@@ -57,28 +57,30 @@ export default function PPFCalculator() {
         let balance = 0;
         let totalInvested = 0;
         const breakdown: YearBreakdown[] = [];
-        const r = rate / 100;
+        const r = (Number(rate) || 0) / 100;
+        const numYears = Number(years) || 0;
+        const contribution = Number(yearlyContribution) || 0;
 
-        for (let i = 1; i <= years; i++) {
+        for (let i = 1; i <= numYears; i++) {
             const opening = balance;
             let interest = 0;
 
             if (contributionTiming === 'START_OF_YEAR') {
-                balance += yearlyContribution;
+                balance += contribution;
                 interest = balance * r;
                 balance += interest;
             } else {
                 interest = balance * r;
                 balance += interest;
-                balance += yearlyContribution;
+                balance += contribution;
             }
 
-            totalInvested += yearlyContribution;
+            totalInvested += contribution;
 
             breakdown.push({
                 year: i,
                 openingBalance: Math.round(opening),
-                contribution: yearlyContribution,
+                contribution: contribution,
                 interestEarned: Math.round(interest),
                 closingBalance: Math.round(balance)
             });
@@ -99,9 +101,9 @@ export default function PPFCalculator() {
     const handleSave = () => {
         if (!result) return;
         addHistory(
-            { yearlyContribution, years, rate, contributionTiming },
+            { yearlyContribution: Number(yearlyContribution) || 0, years: Number(years) || 0, rate: Number(rate) || 0, contributionTiming },
             `₹${result.maturityAmount.toLocaleString('en-IN')}`,
-            `${years}y, ₹${yearlyContribution.toLocaleString('en-IN')}/yr`
+            `${Number(years) || 0}y, ₹${(Number(yearlyContribution) || 0).toLocaleString('en-IN')}/yr`
         );
     };
 
@@ -141,18 +143,18 @@ export default function PPFCalculator() {
                                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Yearly Contribution</label>
                                 <div className="relative">
                                     <span className="absolute left-3 top-2 text-slate-500">₹</span>
-                                    <input type="number" value={yearlyContribution} onChange={(e) => setYearlyContribution(Number(e.target.value))} className="block w-full pl-8 pr-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white dark:bg-slate-800" step="500" />
+                                    <input type="number" value={yearlyContribution} onChange={(e) => setYearlyContribution(e.target.value === '' ? '' : Number(e.target.value))} className="block w-full pl-8 pr-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white dark:bg-slate-800" step="500" />
                                 </div>
                             </div>
 
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Duration (Years): {years}</label>
-                                <input type="range" min="15" max="50" step="5" value={years} onChange={(e) => setYears(Number(e.target.value))} className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer" />
+                                <input type="range" min="15" max="50" step="5" value={years} onChange={(e) => setYears(e.target.value === '' ? '' : Number(e.target.value))} className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer" />
                             </div>
 
                             <div>
                                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Interest Rate (%)</label>
-                                <input type="number" value={rate} onChange={(e) => setRate(Number(e.target.value))} className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white dark:bg-slate-800" step="0.1" />
+                                <input type="number" value={rate} onChange={(e) => setRate(e.target.value === '' ? '' : Number(e.target.value))} className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white dark:bg-slate-800" step="0.1" />
                             </div>
 
                             <div className="flex justify-center mt-6">

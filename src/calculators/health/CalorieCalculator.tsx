@@ -5,9 +5,9 @@ import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function CalorieCalculator() {
     const [gender, setGender] = useState<'male' | 'female'>('male');
-    const [age, setAge] = useState(30);
-    const [weight, setWeight] = useState(70); // kg
-    const [height, setHeight] = useState(175); // cm
+    const [age, setAge] = useState<number | ''>(30);
+    const [weight, setWeight] = useState<number | ''>(70); // kg
+    const [height, setHeight] = useState<number | ''>(175); // cm
     const [activityLevel, setActivityLevel] = useState(1.2);
     const [calories, setCalories] = useState({ maintain: 0, lose: 0, gain: 0 });
 
@@ -18,12 +18,16 @@ export default function CalorieCalculator() {
     }, [gender, age, weight, height, activityLevel]);
 
     const calculateCalories = () => {
+        const a = Number(age) || 0;
+        const w = Number(weight) || 0;
+        const h = Number(height) || 0;
+
         // Mifflin-St Jeor Equation
         let bmr = 0;
         if (gender === 'male') {
-            bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            bmr = 10 * w + 6.25 * h - 5 * a + 5;
         } else {
-            bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            bmr = 10 * w + 6.25 * h - 5 * a - 161;
         }
 
         const tdee = bmr * activityLevel;
@@ -90,7 +94,7 @@ export default function CalorieCalculator() {
                                     min="15"
                                     max="100"
                                     value={age}
-                                    onChange={(e) => setAge(Number(e.target.value))}
+                                    onChange={(e) => setAge(e.target.value === '' ? '' : Number(e.target.value))}
                                     className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
                                 />
                             </div>
@@ -107,7 +111,7 @@ export default function CalorieCalculator() {
                                 <input
                                     type="number"
                                     value={weight}
-                                    onChange={(e) => setWeight(Number(e.target.value))}
+                                    onChange={(e) => setWeight(e.target.value === '' ? '' : Number(e.target.value))}
                                     className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
                                 />
                             </div>
@@ -122,7 +126,7 @@ export default function CalorieCalculator() {
                                 <input
                                     type="number"
                                     value={height}
-                                    onChange={(e) => setHeight(Number(e.target.value))}
+                                    onChange={(e) => setHeight(e.target.value === '' ? '' : Number(e.target.value))}
                                     className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 hover:bg-white dark:hover:bg-slate-700 transition-all text-slate-900 dark:text-white"
                                 />
                             </div>

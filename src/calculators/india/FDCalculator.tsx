@@ -36,10 +36,10 @@ interface YearBreakdown {
 }
 
 export default function FDCalculator() {
-    const [principal, setPrincipal] = useState(100000);
-    const [rate, setRate] = useState(7.0);
+    const [principal, setPrincipal] = useState<number | ''>(100000);
+    const [rate, setRate] = useState<number | ''>(7.0);
     const [tenureType, setTenureType] = useState<'years' | 'months'>('years');
-    const [tenure, setTenure] = useState(5);
+    const [tenure, setTenure] = useState<number | ''>(5);
     const [compounding, setCompounding] = useState<CompoundingFrequency>('QUARTERLY');
 
     const [result, setResult] = useState<{
@@ -51,10 +51,12 @@ export default function FDCalculator() {
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('fd');
 
     const calculateFD = () => {
-        const P = principal;
-        const r = rate / 100;
-
-        const t = tenureType === 'years' ? tenure : tenure / 12;
+        const P = Number(principal) || 0;
+        const r_val = Number(rate) || 0;
+        const t_val = Number(tenure) || 0;
+        
+        const r = r_val / 100;
+        const t = tenureType === 'years' ? t_val : t_val / 12;
 
         let maturity = 0;
         let n = 1;
@@ -83,8 +85,8 @@ export default function FDCalculator() {
             const timeAtEnd = Math.min(i, t);
 
             if (compounding === 'SIMPLE') {
-                const interestForPeriod = (principal * r) * timeAtEnd;
-                closing = principal + interestForPeriod;
+                const interestForPeriod = (P * r) * timeAtEnd;
+                closing = P + interestForPeriod;
             } else {
                 closing = P * Math.pow(1 + r / n, n * timeAtEnd);
             }
@@ -133,7 +135,7 @@ export default function FDCalculator() {
         labels: ['Principal', 'Total Interest'],
         datasets: [
             {
-                data: result ? [principal, result.totalInterest] : [1, 1],
+                data: result ? [Number(principal) || 0, result.totalInterest] : [1, 1],
                 backgroundColor: ['#e2e8f0', '#3b82f6'],
                 borderColor: ['#cbd5e1', '#2563eb'],
                 borderWidth: 1,
@@ -156,25 +158,27 @@ export default function FDCalculator() {
                                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
                                     Total Investment (Principal)
                                 </label>
-                                <div className="relative">
-                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <span className="text-slate-500 dark:text-slate-400">₹</span>
+                                <div>
+                                    <div className="relative">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <span className="text-slate-500 dark:text-slate-400">₹</span>
+                                        </div>
+                                        <input
+                                            type="number"
+                                            value={principal}
+                                            onChange={(e) => setPrincipal(e.target.value === '' ? '' : Number(e.target.value))}
+                                            className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                            placeholder="100000"
+                                        />
                                     </div>
-                                    <input
-                                        type="number"
-                                        value={principal}
-                                        onChange={(e) => setPrincipal(Number(e.target.value))}
-                                        className="block w-full pl-8 pr-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                                        placeholder="100000"
-                                    />
                                     <input
                                         type="range"
                                         min="1000"
                                         max="10000000"
                                         step="1000"
-                                        value={principal}
+                                        value={Number(principal) || 0}
                                         onChange={(e) => setPrincipal(Number(e.target.value))}
-                                        className="w-full mt-2 h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer"
+                                        className="w-full mt-3 h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer"
                                     />
                                 </div>
                             </div>
@@ -187,7 +191,7 @@ export default function FDCalculator() {
                                     <input
                                         type="number"
                                         value={rate}
-                                        onChange={(e) => setRate(Number(e.target.value))}
+                                        onChange={(e) => setRate(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         step="0.1"
                                     />
@@ -205,7 +209,7 @@ export default function FDCalculator() {
                                     <input
                                         type="number"
                                         value={tenure}
-                                        onChange={(e) => setTenure(Number(e.target.value))}
+                                        onChange={(e) => setTenure(e.target.value === '' ? '' : Number(e.target.value))}
                                         className="block w-full px-4 py-2 text-slate-900 dark:text-white bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                     />
                                 </div>
@@ -268,7 +272,7 @@ export default function FDCalculator() {
                                 <div>
                                     <p className="text-slate-400 text-sm mb-1">Principal</p>
                                     <p className="text-xl font-semibold">
-                                        {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(principal)}
+                                        {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(Number(principal) || 0)}
                                     </p>
                                 </div>
                                 <div>

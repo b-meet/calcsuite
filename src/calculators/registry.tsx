@@ -1327,7 +1327,7 @@ export const calculatorRegistry: CalculatorDef[] = [
 
     },
     {
-        id: 'date-diff',
+        id: 'date-calculator',
         name: 'Days Between Dates Calculator — Count Days, Weeks & Months Between Two Dates',
         description: 'How many days between two dates? Enter a start and end date to instantly count the exact days, weeks, months, and years between them. Includes business days, leap year handling, and add/subtract days from any date.',
         category: 'other',

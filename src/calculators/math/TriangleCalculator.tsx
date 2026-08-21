@@ -95,7 +95,7 @@ export default function TriangleCalculator() {
                 <div className="flex justify-center pt-2">
                     <button
                         onClick={handleSave}
-                        className="w-full py-4 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-700 transition-colors shadow-lg shadow-violet-200 flex items-center justify-center gap-2"
+                        className="w-full py-4 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-700 transition-colors shadow-lg shadow-violet-200 dark:shadow-violet-900/20 flex items-center justify-center gap-2"
                     >
                         <TrendingUp size={20} />
                         Save to History

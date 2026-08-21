@@ -4,26 +4,29 @@ import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function InflationCalculator() {
-    const [amount, setAmount] = useState(100);
-    const [rate, setRate] = useState(3.5);
-    const [years, setYears] = useState(10);
+    const [amount, setAmount] = useState<number | ''>(100);
+    const [rate, setRate] = useState<number | ''>(3.5);
+    const [years, setYears] = useState<number | ''>(10);
     const [result, setResult] = useState<{ futureValue: string; purchasingPower: string } | null>(null);
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('inflation');
 
     const calculateInflation = () => {
+        const p = Number(amount) || 0;
+        const r = Number(rate) || 0;
+        const t = Number(years) || 0;
         // Compound interest formula: A = P(1 + r/100)^t
-        const futureVal = amount * Math.pow((1 + rate / 100), years);
+        const futureVal = p * Math.pow((1 + r / 100), t);
 
         setResult({
             futureValue: futureVal.toFixed(2),
-            purchasingPower: (amount / Math.pow((1 + rate / 100), years)).toFixed(2)
+            purchasingPower: (p / Math.pow((1 + r / 100), t)).toFixed(2)
         });
 
         addHistory(
-            { amount, rate, years },
+            { amount: p, rate: r, years: t },
             `$${futureVal.toFixed(2)}`,
-            `$${amount}, ${rate}%, ${years}y`
+            `$${p}, ${r}%, ${t}y`
         );
     };
 
@@ -42,7 +45,7 @@ export default function InflationCalculator() {
                         <input
                             type="number"
                             value={amount}
-                            onChange={(e) => setAmount(Number(e.target.value))}
+                            onChange={(e) => setAmount(e.target.value === '' ? '' : Number(e.target.value))}
                             className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-green-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                         />
                     </div>
@@ -54,7 +57,7 @@ export default function InflationCalculator() {
                                 type="number"
                                 step="0.1"
                                 value={rate}
-                                onChange={(e) => setRate(Number(e.target.value))}
+                                onChange={(e) => setRate(e.target.value === '' ? '' : Number(e.target.value))}
                                 className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-green-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                             />
                         </div>
@@ -63,7 +66,7 @@ export default function InflationCalculator() {
                             <input
                                 type="number"
                                 value={years}
-                                onChange={(e) => setYears(Number(e.target.value))}
+                                onChange={(e) => setYears(e.target.value === '' ? '' : Number(e.target.value))}
                                 className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-green-500 outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                             />
                         </div>

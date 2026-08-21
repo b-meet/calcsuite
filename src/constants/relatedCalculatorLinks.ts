@@ -88,11 +88,11 @@ export const RELATED_CALCULATOR_LINKS: Record<string, RelatedCalculatorLinkDef[]
     ],
     pregnancy: [
         { to: '/calculator/ovulation', anchorText: 'ovulation calculator' },
-        { to: '/calculator/date-diff', anchorText: 'date calculator' },
+        { to: '/calculator/date-calculator', anchorText: 'date calculator' },
         { to: '/calculator/age', anchorText: 'age calculator' },
     ],
     age: [
-        { to: '/calculator/date-diff', anchorText: 'days between dates calculator' },
+        { to: '/calculator/date-calculator', anchorText: 'days between dates calculator' },
         { to: '/calculator/pregnancy', anchorText: 'pregnancy calculator' },
         { to: '/calculator/ovulation', anchorText: 'ovulation calculator' },
     ],
@@ -107,21 +107,21 @@ export const RELATED_CALCULATOR_LINKS: Record<string, RelatedCalculatorLinkDef[]
         { to: '/calculator/converter', anchorText: 'unit converter' },
     ],
     converter: [
-        { to: '/calculator/date-diff', anchorText: 'date calculator' },
+        { to: '/calculator/date-calculator', anchorText: 'date calculator' },
         { to: '/calculator/basic-math', anchorText: 'basic calculator' },
         { to: '/calculator/random', anchorText: 'random number generator' },
     ],
     random: [
         { to: '/calculator/password', anchorText: 'password generator' },
         { to: '/calculator/basic-math', anchorText: 'basic calculator' },
-        { to: '/calculator/date-diff', anchorText: 'date calculator' },
+        { to: '/calculator/date-calculator', anchorText: 'date calculator' },
     ],
     ovulation: [
         { to: '/calculator/pregnancy', anchorText: 'pregnancy calculator' },
-        { to: '/calculator/date-diff', anchorText: 'date calculator' },
+        { to: '/calculator/date-calculator', anchorText: 'date calculator' },
         { to: '/calculator/age', anchorText: 'age calculator' },
     ],
-    'date-diff': [
+    'date-calculator': [
         { to: '/calculator/age', anchorText: 'age calculator by date of birth' },
         { to: '/calculator/pregnancy', anchorText: 'pregnancy due date calculator' },
         { to: '/calculator/ovulation', anchorText: 'ovulation calculator' },

@@ -4,8 +4,8 @@ import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function RandomNumberGenerator() {
-    const [min, setMin] = useState(1);
-    const [max, setMax] = useState(100);
+    const [min, setMin] = useState<number | ''>(1);
+    const [max, setMax] = useState<number | ''>(100);
     const [count, setCount] = useState(1);
     const [results, setResults] = useState<number[]>([]);
     const [allowDuplicates, setAllowDuplicates] = useState(true);
@@ -13,12 +13,15 @@ export default function RandomNumberGenerator() {
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('random-number');
 
     const generate = () => {
-        if (min >= max) {
+        const minVal = Number(min) || 0;
+        const maxVal = Number(max) || 0;
+
+        if (minVal >= maxVal) {
             alert("Min must be less than Max");
             return;
         }
 
-        if (!allowDuplicates && (max - min + 1) < count) {
+        if (!allowDuplicates && (maxVal - minVal + 1) < count) {
             alert("Range is too small for the requested number of unique values.");
             return;
         }
@@ -27,7 +30,7 @@ export default function RandomNumberGenerator() {
         const used = new Set<number>();
 
         while (newResults.length < count) {
-            const num = Math.floor(Math.random() * (max - min + 1)) + min;
+            const num = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
 
             if (!allowDuplicates) {
                 if (!used.has(num)) {
@@ -41,9 +44,9 @@ export default function RandomNumberGenerator() {
 
         setResults(newResults);
         addHistory(
-            { min, max, count, allowDuplicates },
+            { min: minVal, max: maxVal, count, allowDuplicates },
             newResults.join(', '),
-            `Range: ${min}-${max}, Count: ${count}`
+            `Range: ${minVal}-${maxVal}, Count: ${count}`
         );
     };
 
@@ -62,7 +65,7 @@ export default function RandomNumberGenerator() {
                     <input
                         type="number"
                         value={min}
-                        onChange={e => setMin(Number(e.target.value))}
+                        onChange={e => setMin(e.target.value === '' ? '' : Number(e.target.value))}
                         className="w-full p-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white"
                     />
                 </div>
@@ -71,7 +74,7 @@ export default function RandomNumberGenerator() {
                     <input
                         type="number"
                         value={max}
-                        onChange={e => setMax(Number(e.target.value))}
+                        onChange={e => setMax(e.target.value === '' ? '' : Number(e.target.value))}
                         className="w-full p-3 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-slate-900 dark:text-white"
                     />
                 </div>

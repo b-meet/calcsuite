@@ -166,7 +166,7 @@ export default function GPACalculator() {
                             </div>
                             <button
                                 onClick={addCourse}
-                                className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+                                className="shrink-0 whitespace-nowrap inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium bg-blue-600 text-white hover:bg-blue-700 transition-colors"
                             >
                                 <Plus size={16} />
                                 Add Course
@@ -218,9 +218,9 @@ export default function GPACalculator() {
                                         </button>
                                     </div>
 
-                                    <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_160px_110px]">
-                                        <label className="block">
-                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Course Name</span>
+                                    <div className="grid gap-3 grid-cols-2 sm:grid-cols-[minmax(0,1fr)_90px_90px]">
+                                        <label className="block col-span-2 sm:col-span-1">
+                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">Course Name</span>
                                             <input
                                                 type="text"
                                                 value={course.name}
@@ -230,12 +230,12 @@ export default function GPACalculator() {
                                             />
                                         </label>
 
-                                        <label className="block">
-                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Grade</span>
+                                        <label className="block col-span-1">
+                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">Grade</span>
                                             <select
                                                 value={course.grade}
                                                 onChange={(e) => updateCourse(course.id, 'grade', e.target.value)}
-                                                className="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-sm font-medium text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 sm:px-3 py-2.5 text-sm font-medium text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                                             >
                                                 {gradeOptions.map((option) => (
                                                     <option key={option.value} value={option.value}>
@@ -245,15 +245,15 @@ export default function GPACalculator() {
                                             </select>
                                         </label>
 
-                                        <label className="block">
-                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400">Credits</span>
+                                        <label className="block col-span-1">
+                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">Credits</span>
                                             <input
                                                 type="number"
                                                 min="0"
                                                 step="0.5"
                                                 value={course.credits}
                                                 onChange={(e) => updateCourse(course.id, 'credits', e.target.value)}
-                                                className="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                className="mt-1 w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2 sm:px-3 py-2.5 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                                             />
                                         </label>
                                     </div>

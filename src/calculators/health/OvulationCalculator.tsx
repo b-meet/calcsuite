@@ -5,7 +5,7 @@ import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function OvulationCalculator() {
     const [lastPeriod, setLastPeriod] = useState('');
-    const [cycleLength, setCycleLength] = useState(28);
+    const [cycleLength, setCycleLength] = useState<number | ''>(28);
     const [result, setResult] = useState<{ ovulationDate: string; fertileWindow: string; nextPeriod: string } | null>(null);
 
     const { history, addHistory, clearHistory, removeHistoryItem } = useCalculatorHistory('ovulation');
@@ -15,8 +15,10 @@ export default function OvulationCalculator() {
 
         const lastDate = new Date(lastPeriod);
 
+        const cycleLen = Number(cycleLength) || 28;
+
         // Ovulation usually occurs 14 days before the next period
-        const ovulationDayOffset = cycleLength - 14;
+        const ovulationDayOffset = cycleLen - 14;
         const ovulationDate = new Date(lastDate);
         ovulationDate.setDate(lastDate.getDate() + ovulationDayOffset);
 
@@ -25,7 +27,7 @@ export default function OvulationCalculator() {
         fertileStartDate.setDate(ovulationDate.getDate() - 5);
 
         const nextPeriodDate = new Date(lastDate);
-        nextPeriodDate.setDate(lastDate.getDate() + cycleLength);
+        nextPeriodDate.setDate(lastDate.getDate() + cycleLen);
 
         const newResult = {
             ovulationDate: ovulationDate.toDateString(),
@@ -36,9 +38,9 @@ export default function OvulationCalculator() {
         setResult(newResult);
 
         addHistory(
-            { lastPeriod, cycleLength },
+            { lastPeriod, cycleLength: cycleLen },
             `Next Ovulation: ${ovulationDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`,
-            `Cycle: ${cycleLength} days`
+            `Cycle: ${cycleLen} days`
         );
     };
 
@@ -71,7 +73,7 @@ export default function OvulationCalculator() {
                             min="20"
                             max="45"
                             value={cycleLength}
-                            onChange={(e) => setCycleLength(Number(e.target.value))}
+                            onChange={(e) => setCycleLength(e.target.value === '' ? '' : Number(e.target.value))}
                             className="w-full px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-pink-500 focus:border-transparent outline-none bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                         />
                         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Usually 28 days</p>

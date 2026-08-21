@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TrendingUp, Calendar, Coins } from 'lucide-react';
+import { TrendingUp, Calendar, Coins, ChevronDown } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
@@ -198,7 +198,7 @@ export default function CompoundInterestCalculator() {
                             </div>
 
                             {/* Rate & Tenure */}
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Interest Rate (%)</label>
                                     <input
@@ -208,26 +208,29 @@ export default function CompoundInterestCalculator() {
                                         className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
                                     />
                                 </div>
-                                <div className="flex gap-2">
-                                    <div className="flex-1">
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tenure</label>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Tenure</label>
+                                    <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-transparent overflow-hidden">
                                         <input
                                             type="number"
                                             value={tenure}
                                             onChange={(e) => setTenure(e.target.value)}
-                                            className="block w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
+                                            className="block w-full min-w-0 px-3 py-2 border-0 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-0"
                                         />
-                                    </div>
-                                    <div className="w-32">
-                                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">&nbsp;</label>
-                                        <select
-                                            value={tenureType}
-                                            onChange={(e) => setTenureType(e.target.value as any)}
-                                            className="block w-full px-2 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-white"
-                                        >
-                                            <option value="years">Years</option>
-                                            <option value="months">Months</option>
-                                        </select>
+                                        <div className="relative w-16 shrink-0 border-l border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
+                                            <div className="absolute inset-0 flex items-center justify-between px-2 text-sm font-medium text-slate-900 dark:text-white pointer-events-none">
+                                                <span>{tenureType === 'years' ? 'Yr' : 'Mo'}</span>
+                                                <ChevronDown size={14} className="opacity-50" />
+                                            </div>
+                                            <select
+                                                value={tenureType}
+                                                onChange={(e) => setTenureType(e.target.value as any)}
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                                            >
+                                                <option value="years">Year (Yr)</option>
+                                                <option value="months">Month (Mo)</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -313,7 +313,7 @@ const baseHeroContent: Record<string, HeroContent> = {
             { label: 'Fertile window', value: 'The few days leading up to ovulation' },
         ],
     },
-    'date-diff': {
+    'date-calculator': {
         utilityLine: 'Instantly count the exact number of days, weeks, and months between any two dates.',
         answer: 'To find the number of days between two dates, enter both dates in the calculator above. For example, January 1, 2026 to June 17, 2026 is exactly 167 days (23 weeks and 6 days, or 5 months and 16 days). The formula subtracts the earlier date from the later date while accounting for varying month lengths (28–31 days) and leap years. This is the standard method used in contracts, notice periods, project timelines, and deadline tracking.',
         chips: SHARED_CHIPS,
