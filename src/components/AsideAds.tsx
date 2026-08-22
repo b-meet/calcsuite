@@ -37,9 +37,9 @@ export function AsideAds() {
     }, []);
 
     return (
-        <aside className="hidden lg:block w-[320px] shrink-0 sticky top-10 self-start">
+        <aside className="hidden lg:block w-[280px] shrink-0 sticky top-10 self-start">
             <div 
-                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-5 shadow-sm flex flex-col overflow-hidden w-full"
+                className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-3 shadow-sm flex flex-col overflow-hidden w-full"
                 style={{ height: 'calc(100vh - 130px)' }}
             >
                 {adStatus !== 'failed' && (
@@ -62,18 +62,18 @@ export function AsideAds() {
                     />
 
                     {adStatus === 'failed' && (
-                        <div className="flex flex-col gap-3 h-full animate-in fade-in slide-in-from-bottom-4 duration-700 py-1">
+                        <div className="flex flex-col gap-2 h-full animate-in fade-in slide-in-from-bottom-4 duration-700 py-1">
                             {PROMOTIONS.map((promo) => (
                                 <div key={promo.id} className={cn(
-                                    "rounded-2xl p-4 bg-gradient-to-br text-white shadow-lg relative overflow-hidden group transition-all hover:-translate-y-1 hover:shadow-xl flex flex-col flex-1 justify-between min-h-[130px]",
+                                    "rounded-xl p-3 bg-gradient-to-br text-white shadow-lg relative overflow-hidden flex flex-col flex-1 justify-between min-h-[130px]",
                                     promo.color
                                 )}>
                                     {/* Abstract pattern background */}
-                                    <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl transition-transform group-hover:scale-125 duration-700 pointer-events-none" />
+                                    <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none" />
 
                                     <div className="flex flex-col flex-1 z-10 relative">
                                         <div className="flex items-center gap-3 mb-2.5">
-                                            <div className="bg-white/15 w-10 h-10 shrink-0 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg transition-transform group-hover:rotate-12">
+                                            <div className="bg-white/15 w-10 h-10 shrink-0 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg">
                                                 <promo.icon size={20} className="text-white" />
                                             </div>
                                             <h3 className="font-bold text-base leading-tight tracking-tight line-clamp-2">
@@ -89,7 +89,7 @@ export function AsideAds() {
                                             href={promo.link}
                                             target={promo.link.startsWith('http') ? '_blank' : '_self'}
                                             rel="noopener noreferrer"
-                                            className="mt-auto flex items-center justify-center gap-2 bg-white text-slate-900 py-2 px-4 rounded-xl text-[11px] font-extrabold hover:bg-slate-50 transition-all transform hover:scale-[1.02] active:scale-95 shadow-md group/btn w-full"
+                                            className="mt-auto flex items-center justify-center gap-2 bg-white text-slate-900 py-2 px-4 rounded-xl text-[11px] font-extrabold hover:bg-slate-50 transition-all shadow-md group/btn w-full"
                                         >
                                             {promo.ctaText}
                                             <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />

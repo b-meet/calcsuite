@@ -3,7 +3,9 @@ import {
     Percent,
     TrendingUp,
     Calendar,
-    Clock
+    Clock,
+    Home,
+    Briefcase
 } from 'lucide-react';
 
 export const blogPosts = [
@@ -135,6 +137,50 @@ export const blogPosts = [
         faqs: [
             { question: "Do weekends count in 30-day notice periods in India?", answer: "Yes, most Indian private companies calculate notice periods using calendar days, which means Saturdays and Sundays are included." },
             { question: "Can I adjust my pending leaves against my notice period?", answer: "It depends on your company's HR policy. Some allow you to shorten your notice period using accumulated earned leaves, while others require encashment." }
+        ]
+    },
+    {
+        id: 'home-loan-emi-hacks-2026',
+        title: "Home Loan EMI Hacks 2026: How to Prepay and Save Lakhs",
+        excerpt: "Learn the secrets to reducing your Home Loan EMI. Discover how strategic prepayments can shave years off your loan tenure and save you lakhs in interest.",
+        date: "August 22, 2026",
+        category: "Real Estate & Debt Management",
+        readTime: "8 min read",
+        icon: Home,
+        color: "text-purple-500",
+        bg: "bg-purple-50 dark:bg-purple-900/20",
+        ctaText: "Calculate EMI Savings",
+        toc: [
+            { id: "emi-basics", title: "Understanding EMI Components" },
+            { id: "prepayment-benefits", title: "The Magic of Prepayments" },
+            { id: "tenure-vs-emi", title: "Reduce Tenure vs Reduce EMI" },
+            { id: "tax-benefits", title: "Home Loan Tax Benefits" }
+        ],
+        faqs: [
+            { question: "Is it better to reduce EMI or tenure when making a prepayment?", answer: "Reducing the tenure saves significantly more interest in the long run compared to reducing the EMI amount." },
+            { question: "Are there prepayment charges on home loans?", answer: "As per RBI guidelines, there are no prepayment or foreclosure charges on floating rate home loans for individual borrowers." }
+        ]
+    },
+    {
+        id: 'maximizing-take-home-pay-2026',
+        title: "Maximizing Take-Home Pay: Understanding HRA, PF, and Allowances",
+        excerpt: "Navigate appraisal season like a pro. Learn how to structure your salary components, maximize HRA exemptions, and optimize your flexible benefit plans (FBP) for higher in-hand pay.",
+        date: "August 22, 2026",
+        category: "Salary & Compensation",
+        readTime: "9 min read",
+        icon: Briefcase,
+        color: "text-teal-500",
+        bg: "bg-teal-50 dark:bg-teal-900/20",
+        ctaText: "Calculate Take-Home Pay",
+        toc: [
+            { id: "salary-components", title: "Basic vs Allowances" },
+            { id: "hra-calculation", title: "HRA Exemption Rules" },
+            { id: "pf-and-gratuity", title: "Understanding PF and Gratuity" },
+            { id: "flexible-benefits", title: "Flexible Benefit Plans (FBP)" }
+        ],
+        faqs: [
+            { question: "How is HRA exemption calculated?", answer: "HRA exemption is the minimum of: 1) Actual HRA received, 2) 50% of Basic for metro (40% non-metro), or 3) Rent paid minus 10% of Basic." },
+            { question: "Is PF deduction mandatory?", answer: "EPF contribution is mandatory if your basic salary is up to ₹15,000 per month, though most companies apply it to higher salaries as well." }
         ]
     }
 ];

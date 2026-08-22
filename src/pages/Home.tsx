@@ -89,7 +89,7 @@ export function Home() {
     const currentCategoryContent = categoryId ? categoryContent[categoryId] : null;
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-5">
             <SEO
                 title={pageTitle}
                 description={pageDescription}

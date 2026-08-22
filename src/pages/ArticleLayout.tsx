@@ -17,6 +17,8 @@ import { GstComplianceSmallBusiness } from '../content/articles/GstComplianceSma
 import { SipVsLumpsum2026Markets } from '../content/articles/SipVsLumpsum2026Markets';
 import { AgeRequirementsIndia2026 } from '../content/articles/AgeRequirementsIndia2026';
 import { NoticePeriodCalculationGuide } from '../content/articles/NoticePeriodCalculationGuide';
+import { HomeLoanEmiHacks2026 } from '../content/articles/HomeLoanEmiHacks2026';
+import { MaximizingTakeHomePay2026 } from '../content/articles/MaximizingTakeHomePay2026';
 import { ArticleAds } from '../components/ArticleAds';
 import NotFound from './NotFound';
 
@@ -66,6 +68,10 @@ export function ArticleLayout() {
                 return <AgeRequirementsIndia2026 />;
             case 'notice-period-calculation-guide':
                 return <NoticePeriodCalculationGuide />;
+            case 'home-loan-emi-hacks-2026':
+                return <HomeLoanEmiHacks2026 />;
+            case 'maximizing-take-home-pay-2026':
+                return <MaximizingTakeHomePay2026 />;
             default:
                 return null;
         }

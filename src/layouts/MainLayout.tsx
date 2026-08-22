@@ -38,16 +38,16 @@ export function MainLayout() {
                 <TickerHub />
 
                 <div className="flex-1 flex flex-col lg:flex-row max-w-[1600px] w-full mx-auto relative">
-                    <main className="flex-1 min-w-0 px-2 py-4 sm:px-4 lg:p-8 w-full">
+                    <main className="flex-1 min-w-0 px-2 py-4 sm:px-3 lg:px-4 lg:pb-6 lg:pt-4 w-full">
                         <Breadcrumbs />
-                        <div className="mt-4">
+                        <div>
                             <ArenaHook />
                             <Outlet />
                         </div>
                     </main>
 
                     {showAds && (
-                        <div className="hidden lg:block lg:w-[360px] lg:p-8 lg:pl-0">
+                        <div className="hidden lg:block lg:w-[296px] lg:px-4 lg:pl-0 lg:pb-6 lg:pt-4">
                             <AsideAds />
                         </div>
                     )}
