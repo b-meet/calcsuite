@@ -65,7 +65,7 @@ export function CalculatorCard({ id, name, description, icon: Icon, category, po
     return (
         <Link
             to={`/calculator/${id}`}
-            className="group relative flex flex-col p-5 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all duration-300"
+            className="group relative flex flex-col p-3 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-md hover:border-blue-100 dark:hover:border-blue-900 transition-all duration-300"
         >
             <div className="flex justify-between items-start mb-4">
                 <div className="flex items-center gap-3">

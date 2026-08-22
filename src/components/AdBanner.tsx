@@ -24,7 +24,7 @@ export function AdBanner() {
       // Check if AdSense pushed anything or if the element has height
       const hasContent = adRef.current && adRef.current.innerHTML.trim().length > 0;
       const hasHeight = adRef.current && adRef.current.offsetHeight > 0;
-      
+
       if (!hasContent || !hasHeight) {
         setIsBlocked(true);
       }
@@ -58,34 +58,34 @@ export function AdBanner() {
     };
 
     return (
-      <a 
+      <a
         href={showcase.link}
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleBannerClick}
-        className="group relative flex flex-col md:flex-row items-center justify-between w-full my-8 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 max-h-[250px] transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 cursor-pointer"
+        className="group relative flex flex-col md:flex-row items-center justify-between w-full my-2 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 max-h-[250px] transition-all duration-300 hover:-translate-y-1 cursor-pointer"
       >
         {/* Aesthetic Background Effect */}
         <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${showcase.color} opacity-[0.03] dark:opacity-[0.07] blur-3xl -mr-20 -mt-20 group-hover:opacity-10 transition-opacity`} />
-        
+
         <div className="flex items-center gap-5 z-10">
-          <div className={`flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${showcase.color} text-white shadow-lg shadow-indigo-500/20`}>
+          <div className={`flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${showcase.color} text-white`}>
             <Icon className="w-7 h-7" />
           </div>
           <div className="flex flex-col">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            <div className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-tight mb-1">
               {showcase.title}
-            </h3>
-            <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md">
+            </div>
+            <div className="text-slate-500 dark:text-slate-400 text-sm max-w-md leading-snug">
               {showcase.subtitle}
-            </p>
+            </div>
           </div>
         </div>
 
         <div className="mt-4 md:mt-0 z-10">
-          <button 
+          <button
             type="button"
-            className="flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold transition-all group-hover:gap-4 hover:opacity-90"
+            className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold transition-all group-hover:gap-3 hover:opacity-90"
           >
             {showcase.ctaText}
             <ArrowRight className="w-4 h-4" />
@@ -96,7 +96,7 @@ export function AdBanner() {
   }
 
   return (
-    <div className="flex flex-col items-center w-full my-8 overflow-hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-4 justify-center">
+    <div className="flex flex-col items-center w-full my-4 overflow-hidden rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-3 justify-center">
       {import.meta.env.DEV && (
         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2">
           Google AdSense Area
