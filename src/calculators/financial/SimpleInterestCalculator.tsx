@@ -33,8 +33,8 @@ export default function SimpleInterestCalculator() {
         const R = (Number(rate) || 0) / 100;
         let T = Number(time) || 0;
 
-        if (timeUnit === 'MONTHS') T = time / 12;
-        if (timeUnit === 'DAYS') T = time / 365;
+        if (timeUnit === 'MONTHS') T = T / 12;
+        if (timeUnit === 'DAYS') T = T / 365;
 
         const interest = P * R * T;
         const totalAmount = P + interest;

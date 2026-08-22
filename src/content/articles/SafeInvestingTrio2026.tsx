@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ShieldCheck, TrendingUp, Lock, Percent } from 'lucide-react';
+import { ShieldCheck, TrendingUp, Lock } from 'lucide-react';
 
 export const SafeInvestingTrio2026 = () => {
     return (
