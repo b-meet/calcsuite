@@ -8,6 +8,28 @@ import {
 
 export const blogPosts = [
     {
+        id: 'ppf-vs-fd-vs-rd-safe-investing-2026',
+        title: "PPF vs FD vs RD: The 2026 Tax-Free Compounding Guide",
+        excerpt: "Confused about where to park your safe money? Compare the latest 2026 interest rates, tax benefits, and lock-in periods to maximize your risk-free returns.",
+        date: "August 22, 2026",
+        category: "Investing",
+        readTime: "7 min read",
+        icon: TrendingUp,
+        color: "text-emerald-500",
+        bg: "bg-emerald-50 dark:bg-emerald-900/20",
+        ctaText: "Compare Your Returns",
+        toc: [
+            { id: "the-safe-trio", title: "The Safe Trio: PPF, FD, and RD" },
+            { id: "tax-implications", title: "Tax Implications under New 2026 Regime" },
+            { id: "lock-in-and-liquidity", title: "Lock-in Periods & Liquidity" },
+            { id: "which-one-to-choose", title: "Verdict: Which one to choose?" }
+        ],
+        faqs: [
+            { question: "Is PPF still tax-free in the new tax regime 2026?", answer: "Yes, the maturity amount and interest earned in a Public Provident Fund (PPF) remain completely tax-free (EEE status) regardless of the tax regime you choose." },
+            { question: "Can I break my 5-year tax-saving FD prematurely?", answer: "No, a 5-year tax-saving Fixed Deposit comes with a strict lock-in period of 5 years and cannot be withdrawn prematurely." }
+        ]
+    },
+    {
         id: 'india-tax-saving-guide-2026',
         title: "The 2026 Tax Act: Maximizing Savings & Regime Selection",
         excerpt: "Are you paying too much tax by choosing the default? See the 2026 Slab updates and how to save ₹35,000+ by picking the right regime.",

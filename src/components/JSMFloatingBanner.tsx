@@ -4,10 +4,11 @@ import { useLocation } from 'react-router-dom';
 import { cn } from '../utils/cn';
 
 const banners = [
-  { title: "AI IS REPLACING JOBS IN 2026", sub: "How safe is YOUR job? Find out in 60 seconds — free." },
-  { title: "YOUR ROLE. YOUR RISK. YOUR SCORE.", sub: "Get your personalized AI Job Security Score before it's too late." },
-  { title: "73% OF DESK JOBS ARE AT RISK", sub: "Is yours one of them? Check your AI job safety score — free." },
-  { title: "FUTURE-PROOF YOUR CAREER", sub: "See how AI-proof your job is and what skills to build next." },
+  { title: "AI IS REPLACING JOBS IN 2026", sub: "How safe is YOUR job? Find out in 60 seconds — free.", href: "https://jobsecuritymeter.com", cta: "Check Now", ctaShort: "Check" },
+  { title: "YOUR ROLE. YOUR RISK. YOUR SCORE.", sub: "Get your personalized AI Job Security Score before it's too late.", href: "https://jobsecuritymeter.com", cta: "Check Now", ctaShort: "Check" },
+  { title: "73% OF DESK JOBS ARE AT RISK", sub: "Is yours one of them? Check your AI job safety score — free.", href: "https://jobsecuritymeter.com", cta: "Check Now", ctaShort: "Check" },
+  { title: "FUTURE-PROOF YOUR CAREER", sub: "See how AI-proof your job is and what skills to build next.", href: "https://jobsecuritymeter.com", cta: "Check Now", ctaShort: "Check" },
+  { title: "APPLY TO JOBS 10X FASTER", sub: "Automate job applications with our free AI Job Autofill extension.", href: "https://chromewebstore.google.com/detail/job-autofill-by-job-secur/hadjcomlmkhgmhoaocbpaphpgceffbck", cta: "Get Extension", ctaShort: "Get It" },
 ];
 
 interface JSMFloatingBannerProps {
@@ -61,10 +62,10 @@ export function JSMFloatingBanner({ isCollapsed, hasAside = false }: JSMFloating
               )}
             >
               <a
-                href="https://jobsecuritymeter.com"
+                href={activeBanner.href || "https://jobsecuritymeter.com"}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative flex items-center justify-between gap-3 pl-4 pr-10 py-2.5 sm:pl-8 sm:pr-14 sm:py-3 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-[#2D5F4F]/30 rounded-2xl shadow-[0_4px_40px_rgba(0,0,0,0.35)] overflow-hidden w-full"
+                className="group relative flex items-center justify-between gap-3 pl-4 pr-10 py-2 sm:pl-6 sm:pr-12 sm:py-2.5 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-[#2D5F4F]/30 rounded-xl sm:rounded-2xl shadow-[0_4px_40px_rgba(0,0,0,0.35)] overflow-hidden w-full"
               >
                 {/* Animated accent line at top */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#2D5F4F] to-transparent opacity-60" />
@@ -73,26 +74,26 @@ export function JSMFloatingBanner({ isCollapsed, hasAside = false }: JSMFloating
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-16 bg-[#2D5F4F]/10 rounded-full blur-3xl" />
 
                 {/* Left content */}
-                <div className="flex items-center gap-3 sm:gap-4 relative z-10 min-w-0">
-                  <div className="shrink-0 w-9 h-9 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-lg group-hover:scale-105 group-hover:-rotate-2 transition-transform duration-300">
+                <div className="flex items-center gap-3 relative z-10 min-w-0">
+                  <div className="shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl overflow-hidden shadow-lg group-hover:scale-105 group-hover:-rotate-2 transition-transform duration-300">
                     <img src="/jsm-logo.png" alt="JSM Logo" className="w-full h-full object-cover" />
                   </div>
 
                   <div className="min-w-0">
-                    <p className="text-[10px] sm:text-[11px] font-black text-emerald-400 uppercase tracking-[0.15em] leading-none mb-0.5">
+                    <p className="text-[9px] sm:text-[10px] font-black text-emerald-400 uppercase tracking-[0.15em] leading-none mb-0.5">
                       {activeBanner.title}
                     </p>
-                    <p className="text-sm sm:text-[15px] font-semibold text-white leading-tight truncate">
+                    <p className="text-xs sm:text-sm font-semibold text-white leading-tight truncate">
                       {activeBanner.sub}
                     </p>
                   </div>
                 </div>
 
                 {/* CTA button */}
-                <div className="shrink-0 flex items-center gap-1.5 bg-[#2D5F4F] hover:bg-[#3a7c67] text-white py-2 px-4 sm:px-5 rounded-xl text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all group-hover:translate-x-0.5 shadow-lg shadow-[#2D5F4F]/25 relative z-10">
-                  <span className="hidden sm:inline">Check Now</span>
-                  <span className="sm:hidden">Check</span>
-                  <ArrowRight size={14} className="transition-transform group-hover:translate-x-0.5" />
+                <div className="shrink-0 flex items-center gap-1.5 bg-[#2D5F4F] hover:bg-[#3a7c67] text-white py-1.5 px-3 sm:py-2 sm:px-4 rounded-lg sm:rounded-xl text-[10px] sm:text-[11px] font-black uppercase tracking-wider transition-all group-hover:translate-x-0.5 shadow-lg shadow-[#2D5F4F]/25 relative z-10">
+                  <span className="hidden sm:inline">{activeBanner.cta}</span>
+                  <span className="sm:hidden">{activeBanner.ctaShort}</span>
+                  <ArrowRight size={12} className="transition-transform group-hover:translate-x-0.5" />
                 </div>
 
                 {/* Close button */}

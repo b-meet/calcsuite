@@ -4,7 +4,6 @@ import { TickerHub } from '../components/TickerHub';
 import Footer from '../components/Footer';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { KofiWidget } from '../components/KofiWidget';
-import { FeedbackButton } from '../components/FeedbackButton';
 import { AsideAds } from '../components/AsideAds';
 
 import { ArenaHook } from '../components/ArenaHook';
@@ -25,11 +24,11 @@ export function MainLayout() {
         localStorage.setItem('sidebar-collapsed', JSON.stringify(isCollapsed));
     }, [isCollapsed]);
 
-    const excludedPaths = ['/terms', '/privacy', '/about', '/contact', '/kenken', '/brain-training'];
+    const excludedPaths = ['/terms', '/privacy', '/about', '/contact', '/kenken', '/brain-training', '/widget-generator'];
     const showAds = !excludedPaths.some(path => location.pathname.startsWith(path));
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col transition-colors duration-300">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col">
             <Sidebar isCollapsed={isCollapsed} onToggle={() => setIsCollapsed(!isCollapsed)} />
             <KofiWidget />
             <div className={cn(
@@ -58,7 +57,6 @@ export function MainLayout() {
             </div>
             <PWAPrompt />
             <PWAUpdatePrompt />
-            <FeedbackButton />
             <JSMFloatingBanner isCollapsed={isCollapsed} hasAside={showAds} />
         </div>
     );

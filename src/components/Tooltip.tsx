@@ -5,6 +5,7 @@ interface TooltipProps {
     content: string;
     children: React.ReactNode;
     className?: string;
+    wrapperClassName?: string;
     position?: 'right' | 'top' | 'bottom' | 'left';
     enabled?: boolean;
 }
@@ -13,6 +14,7 @@ export function Tooltip({
     content, 
     children, 
     className, 
+    wrapperClassName,
     position = 'right',
     enabled = true 
 }: TooltipProps) {
@@ -78,7 +80,7 @@ export function Tooltip({
     return (
         <div 
             ref={targetRef}
-            className="flex items-center"
+            className={cn("flex items-center", wrapperClassName)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={() => setIsVisible(false)}
         >

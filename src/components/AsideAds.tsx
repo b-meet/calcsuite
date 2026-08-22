@@ -40,7 +40,7 @@ export function AsideAds() {
         <aside className="hidden lg:block w-[320px] shrink-0 sticky top-10 self-start">
             <div 
                 className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[2.5rem] p-5 shadow-sm flex flex-col overflow-hidden w-full"
-                style={{ maxHeight: 'calc(100vh - 130px)' }}
+                style={{ height: 'calc(100vh - 130px)' }}
             >
                 {adStatus !== 'failed' && (
                     <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em] mb-4 text-center shrink-0">

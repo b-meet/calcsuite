@@ -11,6 +11,7 @@ import {
     ArrowRight,
     Zap
 } from 'lucide-react';
+import { SafeInvestingTrio2026 } from '../content/articles/SafeInvestingTrio2026';
 import { IndiaTaxSavingGuide2026 } from '../content/articles/IndiaTaxSavingGuide2026';
 import { GstComplianceSmallBusiness } from '../content/articles/GstComplianceSmallBusiness';
 import { SipVsLumpsum2026Markets } from '../content/articles/SipVsLumpsum2026Markets';
@@ -53,6 +54,8 @@ export function ArticleLayout() {
     // Dynamic Article Content based on ID
     const renderArticleContent = () => {
         switch (post.id) {
+            case 'ppf-vs-fd-vs-rd-safe-investing-2026':
+                return <SafeInvestingTrio2026 />;
             case 'india-tax-saving-guide-2026':
                 return <IndiaTaxSavingGuide2026 />;
             case 'gst-compliance-small-business':

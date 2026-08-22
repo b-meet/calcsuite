@@ -1,4 +1,5 @@
 import { Moon, Sun } from "lucide-react"
+import { flushSync } from "react-dom"
 
 import { useTheme } from "../context/ThemeContext"
 
@@ -11,15 +12,18 @@ export function ThemeToggle() {
             return
         }
 
-        const x = e.clientX
-        const y = e.clientY
+        const rect = e.currentTarget.getBoundingClientRect()
+        const x = rect.left + rect.width / 2
+        const y = rect.top + rect.height / 2
         const endRadius = Math.hypot(
             Math.max(x, innerWidth - x),
             Math.max(y, innerHeight - y)
         )
 
         const transition = document.startViewTransition(() => {
-            setTheme(theme === "light" ? "dark" : "light")
+            flushSync(() => {
+                setTheme(theme === "light" ? "dark" : "light")
+            })
         })
 
         transition.ready.then(() => {
@@ -33,8 +37,8 @@ export function ThemeToggle() {
                     clipPath: clipPath,
                 },
                 {
-                    duration: 400,
-                    easing: "ease-in-out",
+                    duration: 500,
+                    easing: "cubic-bezier(0.22, 1, 0.36, 1)",
                     pseudoElement: "::view-transition-new(root)",
                 }
             )
