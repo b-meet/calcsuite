@@ -27,7 +27,7 @@ export function AsideAds() {
                         setAdStatus('filled');
                     }
                 }
-            }, 8000);
+            }, 3000);
 
             return () => clearTimeout(timer);
         } catch (e) {
