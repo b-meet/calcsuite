@@ -38,8 +38,8 @@ export function AdBanner() {
       setIsBlocked(true);
     }
 
-    // Wait 2.5s for Google to actually render before declaring it blocked
-    const timer = setTimeout(checkAdBlock, 2500);
+    // Wait 8s for Google to actually render before declaring it blocked
+    const timer = setTimeout(checkAdBlock, 8000);
 
     return () => clearTimeout(timer);
   }, []);

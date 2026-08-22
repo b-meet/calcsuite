@@ -24,7 +24,7 @@ export function ArticleAds() {
                         setAdStatus('filled');
                     }
                 }
-            }, 3000);
+            }, 8000);
 
             return () => clearTimeout(timer);
         } catch (e) {
