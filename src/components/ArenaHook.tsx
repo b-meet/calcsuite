@@ -235,8 +235,10 @@ export function ArenaHook() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Slide container */}
-      <div className="relative overflow-hidden rounded-2xl">
+      {/* Inner wrapper so arrows center vertically correctly relative to just the slides */}
+      <div className="relative">
+        {/* Slide container */}
+        <div className="relative overflow-hidden rounded-2xl">
         <div
           className="flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
           style={{ transform: `translateX(-${activeSlide * 100}%)` }}
@@ -264,6 +266,7 @@ export function ArenaHook() {
       >
         <ChevronRight size={14} />
       </button>
+      </div>
 
       {/* Dot indicators with live progress */}
       <div className="flex items-center justify-center gap-2 mt-3">
