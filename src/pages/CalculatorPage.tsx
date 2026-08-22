@@ -5,7 +5,7 @@ import SEO, { buildBreadcrumbJsonLd, toAbsoluteUrl } from '../components/SEO';
 import NotFound from './NotFound';
 
 import RelatedCalculators from '../components/RelatedCalculators';
-import { ContextualRelatedCalculatorLinks } from '../components/ContextualRelatedCalculatorLinks';
+
 import { useFavorites } from '../hooks/useFavorites';
 import { Share2, Star } from 'lucide-react';
 import { cn } from '../utils/cn';
@@ -396,7 +396,6 @@ export function CalculatorPage() {
 
             <AdBanner />
 
-            <ContextualRelatedCalculatorLinks calculatorId={calculatorDef.id} />
 
             <RelatedCalculators
                 currentCalculatorId={calculatorDef.id}

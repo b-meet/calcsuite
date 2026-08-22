@@ -63,32 +63,32 @@ export function AdBanner() {
         target="_blank"
         rel="noopener noreferrer"
         onClick={handleBannerClick}
-        className="group relative flex flex-col md:flex-row items-center justify-between w-full my-2 overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 max-h-[250px] transition-all duration-300 hover:-translate-y-1 cursor-pointer"
+        className="group relative flex flex-row items-center justify-between w-full my-4 overflow-hidden rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 sm:p-4 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
       >
         {/* Aesthetic Background Effect */}
-        <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${showcase.color} opacity-[0.03] dark:opacity-[0.07] blur-3xl -mr-20 -mt-20 group-hover:opacity-10 transition-opacity`} />
+        <div className={`absolute top-0 right-0 w-48 h-48 bg-gradient-to-br ${showcase.color} opacity-[0.03] dark:opacity-[0.07] blur-2xl -mr-10 -mt-10 group-hover:opacity-10 transition-opacity`} />
 
-        <div className="flex items-center gap-5 z-10">
-          <div className={`flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${showcase.color} text-white`}>
-            <Icon className="w-7 h-7" />
+        <div className="flex items-center gap-2 sm:gap-3 z-10 min-w-0">
+          <div className={`shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br ${showcase.color} text-white`}>
+            <Icon className="w-5 h-5" />
           </div>
-          <div className="flex flex-col">
-            <div className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-tight mb-1">
+          <div className="flex flex-col min-w-0">
+            <div className="text-base sm:text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors leading-none m-0 p-0 truncate">
               {showcase.title}
             </div>
-            <div className="text-slate-500 dark:text-slate-400 text-sm max-w-md leading-snug">
+            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md leading-none m-0 p-0 truncate mt-0.5">
               {showcase.subtitle}
             </div>
           </div>
         </div>
 
-        <div className="mt-4 md:mt-0 z-10">
+        <div className="ml-2 sm:ml-3 shrink-0 z-10 hidden sm:block">
           <button
             type="button"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-sm font-semibold transition-all group-hover:gap-3 hover:opacity-90"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs sm:text-sm font-bold transition-all group-hover:gap-2 hover:opacity-90"
           >
             {showcase.ctaText}
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </button>
         </div>
       </a>

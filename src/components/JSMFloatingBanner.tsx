@@ -22,6 +22,16 @@ export function JSMFloatingBanner({ isCollapsed, hasAside = false }: JSMFloating
   const location = useLocation();
 
   useEffect(() => {
+    // Check if dismissed within the last 24 hours
+    const dismissedAt = localStorage.getItem('jsm-banner-dismissed-at');
+    if (dismissedAt) {
+      const dismissedTime = parseInt(dismissedAt, 10);
+      const hoursSinceDismiss = (Date.now() - dismissedTime) / (1000 * 60 * 60);
+      if (hoursSinceDismiss < 24) {
+        return;
+      }
+    }
+
     // Reset state and pick a new banner on every route change
     setClosing(false);
     setVisible(false);
@@ -37,6 +47,7 @@ export function JSMFloatingBanner({ isCollapsed, hasAside = false }: JSMFloating
   const handleDismiss = () => {
     setClosing(true);
     setTimeout(() => setVisible(false), 400);
+    localStorage.setItem('jsm-banner-dismissed-at', Date.now().toString());
   };
 
   if (!visible) return null;

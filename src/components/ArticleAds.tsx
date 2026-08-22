@@ -36,26 +36,26 @@ export function ArticleAds() {
     if (adStatus === 'failed' && promo) {
         const Icon = promo.icon;
         return (
-            <div className={`my-12 p-6 md:p-8 rounded-3xl bg-gradient-to-br ${promo.color} text-white shadow-xl relative overflow-hidden group max-h-[250px]`}>
+            <div className={`my-6 p-3 sm:p-4 rounded-xl bg-gradient-to-br ${promo.color} text-white shadow-md relative overflow-hidden group`}>
                 {/* Background Decor */}
-                <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white/10 rounded-full blur-3xl transition-transform group-hover:scale-110 duration-1000" />
+                <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-white/10 rounded-full blur-2xl transition-transform group-hover:scale-110 duration-1000" />
                 
-                <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 h-full">
-                    <div className="flex items-center gap-6">
-                        <div className="bg-white/20 w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 backdrop-blur-md border border-white/30 shadow-lg">
-                            <Icon size={32} className="text-white" />
+                <div className="relative z-10 flex flex-row items-center justify-between gap-2 sm:gap-3 h-full w-full">
+                    <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+                        <div className="bg-white/20 w-10 h-10 rounded-lg flex items-center justify-center shrink-0 backdrop-blur-md border border-white/30 shadow-sm hidden sm:flex">
+                            <Icon size={20} className="text-white" />
                         </div>
-                        <div>
-                            <h3 className="text-xl md:text-2xl font-bold mb-2 tracking-tight">{promo.title}</h3>
-                            <p className="text-white/80 text-sm md:text-base max-w-xl line-clamp-2">{promo.subtitle}</p>
+                        <div className="min-w-0 flex flex-col">
+                            <div className="text-base sm:text-lg font-bold tracking-tight leading-none m-0 p-0 truncate">{promo.title}</div>
+                            <div className="text-white/80 text-xs sm:text-sm max-w-xl leading-none m-0 p-0 truncate">{promo.subtitle}</div>
                         </div>
                     </div>
                     <a 
                         href={promo.link}
-                        className="bg-white text-slate-900 py-3 px-8 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2 shadow-lg hover:shadow-xl active:scale-95 shrink-0"
+                        className="bg-white text-slate-900 py-1.5 px-3 sm:px-4 rounded-lg text-xs sm:text-sm font-bold hover:bg-slate-50 transition-all flex items-center gap-1.5 shadow-sm hover:shadow-md active:scale-95 shrink-0"
                     >
-                        {promo.ctaText}
-                        <ArrowRight size={18} />
+                        <span className="hidden sm:block">{promo.ctaText}</span>
+                        <ArrowRight size={16} />
                     </a>
                 </div>
             </div>
