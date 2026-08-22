@@ -67,6 +67,13 @@ const hubLinks = [
         bg: "bg-green-50 dark:bg-green-900/20"
     },
     {
+        title: "Job Autofill",
+        path: "https://chromewebstore.google.com/detail/job-autofill-by-job-secur/hadjcomlmkhgmhoaocbpaphpgceffbck",
+        icon: Briefcase,
+        isExternal: true,
+        badge: "EXTENSION"
+    },
+    {
         title: "Pregnancy Due Date",
         path: "/calculator/pregnancy/",
         icon: Baby,
@@ -127,17 +134,20 @@ export function TickerHub() {
                 {items.map((link, idx) => {
                     const Icon = link.icon;
                     const isJSM = link.title === "Job Security Meter";
+                    const isJobAutofill = link.title === "Job Autofill";
+                    const isSpecial = isJSM || isJobAutofill;
 
                     const content = (
                         <div className={cn(
                             "flex items-center gap-2 transition-all duration-300",
-                            isJSM && "bg-[#2D5F4F] dark:bg-[#1a3a30] px-3 py-0.5 rounded-full shadow-sm hover:bg-[#3a7c67] transform hover:scale-105"
+                            isJSM && "bg-[#2D5F4F] dark:bg-[#1a3a30] px-3 py-0.5 rounded-full shadow-sm hover:bg-[#3a7c67] transform hover:scale-105",
+                            isJobAutofill && "bg-[#181512] px-3 py-0.5 rounded-full shadow-sm hover:bg-[#2a2520] transform hover:scale-105"
                         )}>
                             <div className={cn(
                                 "w-5 h-5 rounded-md flex items-center justify-center shrink-0 transition-transform overflow-hidden",
-                                isJSM ? "bg-white" : `${link.bg} ${link.color} group-hover:scale-110`
+                                isSpecial ? "bg-white" : `${link.bg} ${link.color} group-hover:scale-110`
                             )}>
-                                {isJSM ? (
+                                {isSpecial ? (
                                     <img src="/jsm-logo.png" alt="JSM" className="w-full h-full object-cover" />
                                 ) : (
                                     <Icon size={14} />
@@ -145,11 +155,14 @@ export function TickerHub() {
                             </div>
                             <span className={cn(
                                 "text-[10px] font-bold uppercase tracking-wider whitespace-nowrap flex items-center gap-1.5",
-                                isJSM ? "text-white" : "text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                                isSpecial ? "text-white" : "text-slate-600 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400"
                             )}>
                                 {link.title}
                                 {link.badge && (
-                                    <span className="bg-white text-[#2D5F4F] text-[7px] px-1 rounded-sm leading-tight flex items-center justify-center font-black">
+                                    <span className={cn(
+                                        "bg-white text-[7px] px-1 rounded-sm leading-tight flex items-center justify-center font-black",
+                                        isJSM ? "text-[#2D5F4F]" : (isJobAutofill ? "text-[#181512]" : "text-slate-900")
+                                    )}>
                                         {link.badge}
                                     </span>
                                 )}
@@ -169,8 +182,8 @@ export function TickerHub() {
                                 className={cn(linkClasses, "cursor-pointer")}
                             >
                                 {content}
-                                {!isJSM && <div className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700 ml-6 group-hover:hidden" />}
-                                {!isJSM && <ArrowRight size={12} className="hidden group-hover:block ml-4 text-blue-500 animate-in slide-in-from-left-2" />}
+                                {!isSpecial && <div className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700 ml-6 group-hover:hidden" />}
+                                {!isSpecial && <ArrowRight size={12} className="hidden group-hover:block ml-4 text-blue-500 animate-in slide-in-from-left-2" />}
                             </a>
                         );
                     }
