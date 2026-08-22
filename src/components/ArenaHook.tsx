@@ -38,12 +38,12 @@ function JSMSlide({ banner }: { banner: typeof banners[0] }) {
               <span className="text-[7px] font-bold text-[#2D5F4F] dark:text-emerald-400">{banner.danger}</span>
             </div>
           </div>
-          <h3 className="text-xs sm:text-sm font-black text-slate-900 dark:text-white leading-none tracking-tight">
+          <div className="text-xs sm:text-sm font-black text-slate-900 dark:text-white leading-none tracking-tight mb-1">
             {banner.title}
-          </h3>
-          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">
+          </div>
+          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0">
             {banner.sub}
-          </p>
+          </div>
         </div>
       </div>
 
@@ -85,12 +85,12 @@ function AutofillSlide() {
               <span className="text-[7px] font-bold text-purple-600 dark:text-purple-400">AUTOMATE</span>
             </div>
           </div>
-          <h3 className="text-xs sm:text-sm font-black text-slate-900 dark:text-white leading-none tracking-tight">
+          <div className="text-xs sm:text-sm font-black text-slate-900 dark:text-white leading-none tracking-tight mb-1">
             APPLY TO JOBS 10X FASTER
-          </h3>
-          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">
+          </div>
+          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0">
             Automate job applications with our free AI Job Autofill extension.
-          </p>
+          </div>
         </div>
       </div>
 
@@ -126,12 +126,12 @@ function ArenaSlide() {
               <span className="text-[7px] font-bold text-blue-600 dark:text-blue-400">LIVE</span>
             </div>
           </div>
-          <h3 className="text-xs sm:text-sm font-black text-slate-900 dark:text-white leading-none italic uppercase tracking-tight">
+          <div className="text-xs sm:text-sm font-black text-slate-900 dark:text-white leading-none italic uppercase tracking-tight mb-1">
             Brain Arena <span className="text-blue-600 dark:text-blue-400">is Waiting</span>
-          </h3>
-          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0.5">
+          </div>
+          <div className="text-[10px] text-slate-500 dark:text-slate-400 font-medium mt-0">
             Daily 5x5 logic puzzles. Fresh levels every midnight.
-          </p>
+          </div>
         </div>
       </div>
 
@@ -231,7 +231,7 @@ export function ArenaHook() {
 
   return (
     <div
-      className="mb-8 relative group/carousel"
+      className="mb-4 relative group/carousel"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
