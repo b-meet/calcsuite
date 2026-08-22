@@ -91,7 +91,7 @@ export function PWAPrompt() {
 
     return (
         <div className="fixed bottom-4 right-4 z-[100] w-[calc(100%-2rem)] md:max-w-sm animate-in slide-in-from-bottom-5 fade-in duration-500">
-            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-black/50 p-5 border border-slate-100 dark:border-slate-700 relative overflow-hidden ring-1 ring-slate-900/5 dark:ring-white/10">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-black/50 p-4 border border-slate-100 dark:border-slate-700 relative overflow-hidden ring-1 ring-slate-900/5 dark:ring-white/10">
 
                 {/* Background Decoration */}
                 <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-50 dark:bg-blue-900/20 rounded-full blur-3xl z-0"></div>
@@ -104,31 +104,31 @@ export function PWAPrompt() {
                     <X size={18} />
                 </button>
 
-                <div className="flex flex-col gap-4 relative z-10">
-                    <div className="flex items-start gap-4">
-                        <div className="bg-blue-100 dark:bg-blue-500/20 p-3 rounded-xl text-blue-600 dark:text-blue-400 shadow-sm">
-                            <Download size={24} />
+                <div className="flex flex-col gap-3 relative z-10">
+                    <div className="flex items-start gap-3">
+                        <div className="bg-blue-100 dark:bg-blue-500/20 p-2 rounded-xl text-blue-600 dark:text-blue-400 shadow-sm">
+                            <Download size={20} />
                         </div>
                         <div className="pt-0.5">
-                            <h3 className="font-bold text-slate-900 dark:text-white text-base mb-1">Install App</h3>
-                            <p className="text-sm text-slate-600 dark:text-slate-400 leading-snug">
+                            <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-0.5">Install App</h3>
+                            <p className="text-xs text-slate-600 dark:text-slate-400 leading-snug">
                                 Add <span className="font-semibold text-slate-900 dark:text-white">CalcSuite</span> to your home screen for instant offline access.
                             </p>
                         </div>
                     </div>
 
-                    <div className="flex gap-2.5 pt-1">
+                    <div className="flex gap-2 pt-1">
                         <button
                             onClick={handleDismiss}
-                            className="flex-1 px-4 py-2.5 rounded-xl font-medium text-sm text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                            className="flex-1 px-3 py-2 rounded-xl font-medium text-xs text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                         >
                             Later
                         </button>
                         <button
                             onClick={handleInstallClick}
-                            className="flex-[1.5] bg-blue-600 text-white hover:bg-blue-700 dark:hover:bg-blue-500 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 component-focus-ring"
+                            className="flex-[1.5] bg-blue-600 text-white hover:bg-blue-700 dark:hover:bg-blue-500 py-2 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 component-focus-ring"
                         >
-                            <Download size={16} />
+                            <Download size={14} />
                             Install Now
                         </button>
                     </div>
