@@ -27,6 +27,14 @@ export function CalculatorPage() {
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
     const isSalaryLanding = location.pathname.startsWith('/salary/');
+    const isHighEngagement = [
+        '/calculator/percentage',
+        '/calculator/percentage/',
+        '/calculator/investment',
+        '/calculator/investment/',
+        '/salary/9-lpa-in-hand',
+        '/salary/9-lpa-in-hand/'
+    ].includes(location.pathname);
     const effectiveCalculatorId = calculatorId || (isSalaryLanding ? 'india-salary' : undefined);
     const calculatorDef = calculatorRegistry.find(c => c.id === effectiveCalculatorId);
     
@@ -271,6 +279,8 @@ export function CalculatorPage() {
                 </div>
             </div>
 
+            {isHighEngagement && <AdBanner />}
+
             {heroContent && (
                 <section className="mb-8 max-w-2xl mx-auto">
                     <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 shadow-sm p-5 sm:p-6">
@@ -418,6 +428,7 @@ export function CalculatorPage() {
                                     </div>
                                 )}
 
+                                {isHighEngagement && <ArticleAds />}
                                 <ToolContext calculatorDef={calculatorDef} hideFaqs={showCompactVisibleFaqs} />
                             </>
                         )}

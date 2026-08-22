@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO from '../components/SEO';
 import StructuredData from '../components/StructuredData';
@@ -11,6 +11,8 @@ import NotFound from './NotFound';
 
 export const ToolsPage = () => {
     const { category, slug } = useParams<{ category: string; slug: string }>();
+    const location = useLocation();
+    const isHighEngagement = location.pathname === '/tools/investment/sip/' || location.pathname === '/tools/investment/sip';
 
     if (!category || !slug) return <NotFound />;
 
@@ -84,6 +86,8 @@ export const ToolsPage = () => {
                         </p>
                     )}
                 </header>
+
+                {isHighEngagement && <AdBanner />}
 
                 <div className="grid grid-cols-1 md:grid-cols-1 gap-8 mb-12">
                     <div className="bg-primary-50 dark:bg-primary-900/10 rounded-2xl p-6 border border-primary-100 dark:border-primary-900/20">

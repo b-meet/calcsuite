@@ -1,4 +1,4 @@
-import { useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams, useLocation } from 'react-router-dom';
 import { calculatorRegistry } from '../calculators/registry';
 import { CalculatorCard } from '../components/CalculatorCard';
 import { SearchInput } from '../components/SearchInput';
@@ -12,6 +12,8 @@ import NotFound from './NotFound';
 
 export function Home() {
     const { categoryId } = useParams();
+    const location = useLocation();
+    const isHighEngagement = location.pathname === '/category/financial/' || location.pathname === '/category/financial';
     const [searchParams, setSearchParams] = useSearchParams();
     const searchQuery = searchParams.get('q') || '';
     const validCategories = new Set<string>(calculatorRegistry.map((calculator) => calculator.category));
@@ -161,6 +163,7 @@ export function Home() {
                 )}
 
             </div>
+            {isHighEngagement && <AdBanner />}
             <section>
                 <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-6 md:gap-4">
                     <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-3 shrink-0">
@@ -189,7 +192,7 @@ export function Home() {
                                     category={calc.category}
                                     popular={calc.popular}
                                 />
-                                {(index + 1) % 12 === 0 && (
+                                {(index + 1) % (isHighEngagement ? 6 : 12) === 0 && (
                                     <div className="col-span-full">
                                         <AdBanner />
                                     </div>
