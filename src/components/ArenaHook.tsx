@@ -19,7 +19,7 @@ function JSMSlide({ banner }: { banner: typeof banners[0] }) {
       href={banner.href || "https://jobsecuritymeter.com"}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative flex flex-col sm:flex-row items-center justify-between gap-2.5 p-2 sm:p-2.5 rounded-2xl bg-gradient-to-r from-[#2D5F4F]/10 via-emerald-500/10 to-teal-500/10 dark:from-[#2D5F4F]/10 dark:via-emerald-500/5 dark:to-teal-500/5 border border-emerald-200/60 dark:border-emerald-800/30 hover:border-[#2D5F4F] dark:hover:border-[#2D5F4F] transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md group/jsm"
+      className="relative flex flex-col sm:flex-row items-center justify-between gap-2.5 py-2 px-10 sm:py-2.5 sm:px-12 rounded-2xl bg-gradient-to-r from-[#2D5F4F]/10 via-emerald-500/10 to-teal-500/10 dark:from-[#2D5F4F]/10 dark:via-emerald-500/5 dark:to-teal-500/5 border border-emerald-200/60 dark:border-emerald-800/30 hover:border-[#2D5F4F] dark:hover:border-[#2D5F4F] transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md group/jsm"
     >
       {/* Animated background pulses */}
       <div className="absolute -top-16 -right-16 w-32 h-32 bg-[#2D5F4F]/10 rounded-full blur-3xl group-hover/jsm:bg-[#2D5F4F]/20 transition-all duration-700 animate-pulse" />
@@ -67,7 +67,7 @@ function AutofillSlide() {
       href="https://chromewebstore.google.com/detail/job-autofill-by-job-secur/hadjcomlmkhgmhoaocbpaphpgceffbck"
       target="_blank"
       rel="noopener noreferrer"
-      className="relative flex flex-col sm:flex-row items-center justify-between gap-2.5 p-2 sm:p-2.5 rounded-2xl bg-gradient-to-r from-purple-600/10 via-fuchsia-500/10 to-pink-500/10 dark:from-purple-500/5 dark:via-fuchsia-500/5 dark:to-pink-500/5 border border-purple-200/50 dark:border-purple-800/30 hover:border-purple-400 dark:hover:border-purple-700 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md group/autofill"
+      className="relative flex flex-col sm:flex-row items-center justify-between gap-2.5 py-2 px-10 sm:py-2.5 sm:px-12 rounded-2xl bg-gradient-to-r from-purple-600/10 via-fuchsia-500/10 to-pink-500/10 dark:from-purple-500/5 dark:via-fuchsia-500/5 dark:to-pink-500/5 border border-purple-200/50 dark:border-purple-800/30 hover:border-purple-400 dark:hover:border-purple-700 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md group/autofill"
     >
       <div className="absolute -top-12 -right-12 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl group-hover/autofill:bg-purple-500/20 transition-all duration-700" />
       <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-fuchsia-500/10 rounded-full blur-2xl group-hover/autofill:bg-fuchsia-500/20 transition-all duration-700" />
@@ -108,7 +108,7 @@ function ArenaSlide() {
   return (
     <Link
       to="/brain-training/"
-      className="relative flex flex-col sm:flex-row items-center justify-between gap-2.5 p-2 sm:p-2.5 rounded-2xl bg-gradient-to-r from-blue-600/10 to-indigo-600/10 dark:from-blue-500/5 dark:to-indigo-500/5 border border-blue-200/50 dark:border-blue-800/30 hover:border-blue-400 dark:hover:border-blue-700 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md group/hook"
+      className="relative flex flex-col sm:flex-row items-center justify-between gap-2.5 py-2 px-10 sm:py-2.5 sm:px-12 rounded-2xl bg-gradient-to-r from-blue-600/10 to-indigo-600/10 dark:from-blue-500/5 dark:to-indigo-500/5 border border-blue-200/50 dark:border-blue-800/30 hover:border-blue-400 dark:hover:border-blue-700 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md group/hook"
     >
       <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl group-hover/hook:bg-blue-500/20 transition-all duration-700" />
       <div className="absolute -bottom-12 -left-12 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover/hook:bg-indigo-500/20 transition-all duration-700" />
