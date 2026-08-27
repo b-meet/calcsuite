@@ -3,23 +3,27 @@ import { MainLayout } from './layouts/MainLayout';
 import { Home } from './pages/Home';
 import { CalculatorPage } from './pages/CalculatorPage';
 import NotFound from './pages/NotFound';
-import TermsOfService from './pages/legal/TermsOfService';
-import PrivacyPolicy from './pages/legal/PrivacyPolicy';
-import About from './pages/legal/About';
-import EditorialPolicy from './pages/legal/EditorialPolicy';
-import Contact from './pages/legal/Contact';
-import { WidgetGenerator } from './pages/WidgetGenerator';
-import { Resources } from './pages/Resources';
-import { ArticleLayout } from './pages/ArticleLayout';
-import { AlternativesLayout } from './pages/AlternativesLayout';
-import { Directory } from './pages/Directory';
-import { KenKen } from './pages/KenKen';
-import { BrainTrainingHub } from './pages/BrainTrainingHub';
-import { Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { usePWAInstall } from './hooks/usePWAInstall';
 
 import ReactGA from 'react-ga4';
-import { ToolsPage } from './pages/ToolsPage';
+
+// Routes below the main traffic paths are split out of the entry chunk: a
+// visitor reading a calculator should not be downloading the KenKen game,
+// the widget generator or the alternatives content to get there.
+const WidgetGenerator = lazy(() => import('./pages/WidgetGenerator').then(m => ({ default: m.WidgetGenerator })));
+const Resources = lazy(() => import('./pages/Resources').then(m => ({ default: m.Resources })));
+const ArticleLayout = lazy(() => import('./pages/ArticleLayout').then(m => ({ default: m.ArticleLayout })));
+const AlternativesLayout = lazy(() => import('./pages/AlternativesLayout').then(m => ({ default: m.AlternativesLayout })));
+const Directory = lazy(() => import('./pages/Directory').then(m => ({ default: m.Directory })));
+const KenKen = lazy(() => import('./pages/KenKen').then(m => ({ default: m.KenKen })));
+const BrainTrainingHub = lazy(() => import('./pages/BrainTrainingHub').then(m => ({ default: m.BrainTrainingHub })));
+const ToolsPage = lazy(() => import('./pages/ToolsPage').then(m => ({ default: m.ToolsPage })));
+const TermsOfService = lazy(() => import('./pages/legal/TermsOfService'));
+const PrivacyPolicy = lazy(() => import('./pages/legal/PrivacyPolicy'));
+const About = lazy(() => import('./pages/legal/About'));
+const EditorialPolicy = lazy(() => import('./pages/legal/EditorialPolicy'));
+const Contact = lazy(() => import('./pages/legal/Contact'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -70,6 +74,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
 
+      <Suspense fallback={null}>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
@@ -118,6 +123,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
