@@ -3,6 +3,9 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO, { buildBreadcrumbJsonLd, toAbsoluteUrl } from '../components/SEO';
 import { AuthorByline } from '../components/AuthorByline';
+import { ShareBar } from '../components/ShareBar';
+import { ShareableResultProvider } from '../context/ShareableResultProvider';
+import { decodeResultState, RESULT_PARAM } from '../utils/resultLink';
 import { AUTHOR } from '../constants/author';
 import { SITE_URL } from '../config/site';
 import NotFound from './NotFound';
@@ -221,6 +224,10 @@ export function CalculatorPage() {
         setShowLimitWarning(false);
     };
 
+    const sharedResultState = decodeResultState(
+        new URLSearchParams(location.search).get(RESULT_PARAM)
+    );
+
     return (
         <div className="max-w-4xl mx-auto">
             <SEO
@@ -367,12 +374,20 @@ export function CalculatorPage() {
                 </Suspense>
             )}
 
-            <div ref={calculatorViewportRef} className="scroll-mt-24 lg:scroll-mt-8">
-                <Component
-                    key={`${calculatorDef.id}-${scenario?.id || 'default'}`}
-                    scenarioData={scenario?.initialState}
+            <ShareableResultProvider>
+                <div ref={calculatorViewportRef} className="scroll-mt-24 lg:scroll-mt-8">
+                    <Component
+                        key={`${calculatorDef.id}-${scenario?.id || 'default'}-${sharedResultState ? 'shared' : 'own'}`}
+                        scenarioData={sharedResultState ?? scenario?.initialState}
+                    />
+                </div>
+
+                <ShareBar
+                    calculatorId={calculatorDef.id}
+                    calculatorName={calculatorDef.name}
+                    canonicalPath={canonicalPath}
                 />
-            </div>
+            </ShareableResultProvider>
 
             {/* In-content ad — highest viewability slot between calculator and FAQs */}
             <ArticleAds />

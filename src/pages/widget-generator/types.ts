@@ -47,10 +47,4 @@ export interface CalculatorOption {
     icon: LucideIcon;
 }
 
-/**
- * Registry names are long SEO titles ("Basic Calculator - Free Online ...").
- * Everything user-facing wants the short, human half.
- */
-export function shortCalculatorName(name: string): string {
-    return name.split(/\s+[-–—:|]\s+/)[0].trim();
-}
+export { shortCalculatorName } from '../../utils/calculatorName';
