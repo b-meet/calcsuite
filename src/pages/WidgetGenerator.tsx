@@ -1,10 +1,10 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { calculatorRegistry } from '../calculators/registry';
-import { Helmet } from 'react-helmet-async';
+import SEO, { buildBreadcrumbJsonLd } from '../components/SEO';
 import {
     Check, Copy, Zap, Globe, Smartphone, ShieldCheck,
-    AlignLeft, PanelBottom, PanelRight, Sun, Moon,
+    AlignLeft, PanelBottom, PanelRight, Sun, Moon, AlertTriangle,
 } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { WidgetProvider } from '../context/WidgetContext';
@@ -14,6 +14,9 @@ import { SitePreview } from './widget-generator/SitePreview';
 import { Field, RangeControl, Segmented, ToggleRow } from './widget-generator/Controls';
 import { buildEmbedCode, tokenizeHtml } from './widget-generator/embed';
 import { minWidthFor } from './widget-generator/minWidths';
+import { EmbedDocs } from './widget-generator/EmbedDocs';
+import { buildWidgetJsonLd } from './widget-generator/schema';
+import { isEmbeddable } from '../widget/supportedCalculators';
 import {
     DEFAULT_APPEARANCE, PLACEMENTS, shortCalculatorName,
     type Appearance, type CalculatorOption, type Placement,
@@ -209,6 +212,7 @@ export function WidgetGenerator() {
         calculatorRegistry.find(c => c.id === selectedCalculatorId) ?? calculatorRegistry[0];
     const SelectedComponent = selectedCalculator.component;
     const calculatorName = shortCalculatorName(selectedCalculator.name);
+    const embeddable = isEmbeddable(selectedCalculatorId);
 
     // Placements narrower than the calculator's measured minimum would overflow
     // on the embedder's page, so they are not offered at all.
@@ -254,10 +258,18 @@ export function WidgetGenerator() {
 
     return (
         <div className="space-y-8 pb-16">
-            <Helmet>
-                <title>Free Calculator Widget for Your Website | CalcSuite</title>
-                <meta name="description" content="Embed a free calculator widget on your site. Pick the calculator, match it to your layout, tune the type and spacing, and copy one line of code." />
-            </Helmet>
+            <SEO
+                title="Free Calculator Widget for Your Website"
+                description="Embed a free calculator widget on any website with one HTML snippet. Shadow DOM isolated, responsive from a 320px sidebar, light and dark themes, no account or API key."
+                canonicalPath="/widget-generator/"
+                jsonLd={[
+                    ...buildWidgetJsonLd(),
+                    buildBreadcrumbJsonLd([
+                        { name: 'Home', path: '/' },
+                        { name: 'Calculator Widgets', path: '/widget-generator/' },
+                    ]),
+                ]}
+            />
 
             <header className="text-center space-y-3 pt-8 pb-2">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 rounded-full text-[11px] font-bold uppercase tracking-wider">
@@ -413,12 +425,24 @@ export function WidgetGenerator() {
                             </button>
                         </div>
                         <CodeBlock code={embedCode} />
-                        <div className="flex items-start gap-2 px-4 sm:px-5 py-3 border-t border-white/5 text-[11px] text-white/40 leading-relaxed">
-                            <ShieldCheck size={13} className="mt-px shrink-0 text-white/30" />
-                            <span>
-                                The credit line is required. If it is removed or hidden, widget.js puts it
-                                back — and if it is kept from rendering, the calculator stops working.
-                            </span>
+                        <div className="border-t border-white/5">
+                            {!embeddable && (
+                                <div className="flex items-start gap-2 px-4 sm:px-5 py-3 border-b border-white/5 text-[11px] text-amber-300/80 leading-relaxed">
+                                    <AlertTriangle size={13} className="mt-px shrink-0" />
+                                    <span>
+                                        {calculatorName} is not in the widget runtime yet. This snippet will
+                                        render a link to the calculator on CalcSuite instead of the calculator
+                                        itself.
+                                    </span>
+                                </div>
+                            )}
+                            <div className="flex items-start gap-2 px-4 sm:px-5 py-3 text-[11px] text-white/40 leading-relaxed">
+                                <ShieldCheck size={13} className="mt-px shrink-0 text-white/30" />
+                                <span>
+                                    The credit line is required. If it is removed or hidden, widget.js puts it
+                                    back — and if it is kept from rendering, the calculator stops working.
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </main>
@@ -427,8 +451,8 @@ export function WidgetGenerator() {
             <section className="grid sm:grid-cols-3 gap-4 pt-6 max-w-4xl mx-auto">
                 {[
                     { icon: Globe, title: 'Zero-leak CSS', body: 'Renders in Shadow DOM, so your styles and ours never collide.' },
-                    { icon: Smartphone, title: 'Auto-responsive', body: 'Fills whatever column you drop it into, down to a 300px sidebar.' },
-                    { icon: Zap, title: 'Loads async', body: 'The script is deferred and will not block your page render.' },
+                    { icon: Smartphone, title: 'Auto-responsive', body: 'Fills whatever column you drop it into, down to a 320px sidebar.' },
+                    { icon: Zap, title: 'Loads async', body: 'The script tag is async, so it never blocks your page render.' },
                 ].map(({ icon: Icon, title, body }) => (
                     <div key={title} className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800">
                         <Icon size={16} className="text-blue-500 mb-2.5" />
@@ -437,6 +461,8 @@ export function WidgetGenerator() {
                     </div>
                 ))}
             </section>
+
+            <EmbedDocs />
         </div>
     );
 }

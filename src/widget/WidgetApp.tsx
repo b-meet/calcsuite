@@ -19,6 +19,8 @@ const WidgetApp: React.FC<WidgetAppProps> = ({
     const { theme, fontSize, padding, radius, border, shadow } = appearance;
     const isDark = theme === 'dark';
 
+    // Every id handled here must also appear in WIDGET_SUPPORTED_CALCULATORS,
+    // which is what the generator reads to decide what it can offer as an embed.
     const getCalculator = () => {
         switch (calculatorType.toLowerCase()) {
             case 'bmi':

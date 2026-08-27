@@ -16,6 +16,18 @@ CalcSuite provides a comprehensive suite of free, fast, and mobile-friendly onli
 3. EMI Calculator: https://calcsuite.in/calculator/india-emi/
 4. SIP Calculator: https://calcsuite.in/calculator/sip/
 
+## Embeddable Calculator Widget
+
+CalcSuite offers a free calculator widget that any website can embed with one HTML snippet and one async script tag.
+
+- Widget generator: https://calcsuite.in/widget-generator/
+- Runtime script: https://calcsuite.in/widget.js
+- Cost: free, no account, no API key, no usage limits.
+- Licence condition: the credit link included in the snippet must stay visible and followable. The runtime restores it if removed, and the calculator does not load if it is blocked entirely.
+- Isolation: renders in a Shadow DOM, so host page CSS and widget CSS cannot affect each other.
+- Sizing: responsive from a 320px sidebar to a full-width article. A few calculators need 375px or 480px.
+- Configuration: data-type, data-theme, data-font-size, data-padding, data-radius, data-border, data-shadow, data-max-width, data-branding.
+
 ## Technical Access
 
 - Sitemap: https://calcsuite.in/sitemap.xml

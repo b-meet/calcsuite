@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Check, ChevronDown, Search } from 'lucide-react';
 import { categories } from '../../calculators/registry';
 import { cn } from '../../utils/cn';
+import { isEmbeddable } from '../../widget/supportedCalculators';
 import type { CalculatorOption } from './types';
 
 interface Props {
@@ -178,6 +179,14 @@ export function CalculatorPicker({ options, value, onChange }: Props) {
                                             <span className="min-w-0 flex-1 truncate text-sm text-slate-700 dark:text-slate-200">
                                                 {option.name}
                                             </span>
+                                            {!isEmbeddable(option.id) && (
+                                                <span
+                                                    title="Previewable, but not in the widget runtime yet"
+                                                    className="shrink-0 px-1.5 py-px rounded text-[10px] font-bold uppercase tracking-wide bg-slate-100 dark:bg-slate-800 text-slate-400"
+                                                >
+                                                    Preview
+                                                </span>
+                                            )}
                                             {isSelected && <Check size={14} className="shrink-0 text-blue-600 dark:text-blue-400" />}
                                         </button>
                                     );
