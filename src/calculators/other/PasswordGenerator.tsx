@@ -61,7 +61,10 @@ export default function PasswordGenerator() {
     return (
         <div className="max-w-xl mx-auto space-y-6">
             <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-slate-100 dark:border-slate-800 flex items-center justify-between gap-4">
-                <div className="flex-1 font-mono text-xl md:text-2xl text-slate-800 dark:text-white break-all">
+                {/* overflow-wrap:anywhere breaks a long generated password, but
+                    only when a token genuinely does not fit — break-all split the
+                    placeholder mid-word ("Click Ge / nerate") in narrow columns. */}
+                <div className="flex-1 min-w-0 font-mono text-lg sm:text-xl md:text-2xl text-slate-800 dark:text-white [overflow-wrap:anywhere]">
                     {password || 'Click Generate'}
                 </div>
                 <div className="flex items-center gap-2">
@@ -102,16 +105,20 @@ export default function PasswordGenerator() {
                 <div className="space-y-3">
                     <label className="text-sm font-medium text-slate-700 dark:text-slate-300 block mb-2">Include Characters</label>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    {/* Single column until there is room for two: at a 320px sidebar
+                        (and on phones) the labels overflowed their boxes. Inside the
+                        widget iframe the viewport is the column width, so the sm:
+                        breakpoint tracks the slot the embedder actually gave us. */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         {Object.keys(options).map((key) => (
-                            <label key={key} className="flex items-center space-x-3 cursor-pointer p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <label key={key} className="flex items-center gap-3 min-w-0 cursor-pointer p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
                                 <input
                                     type="checkbox"
                                     checked={options[key as keyof typeof options]}
                                     onChange={() => setOptions(prev => ({ ...prev, [key]: !prev[key as keyof typeof options] }))}
-                                    className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 border-gray-300 dark:border-slate-600"
+                                    className="w-5 h-5 shrink-0 text-blue-600 rounded focus:ring-blue-500 border-gray-300 dark:border-slate-600"
                                 />
-                                <span className="text-slate-700 dark:text-slate-300 capitalize">{key}</span>
+                                <span className="min-w-0 truncate text-slate-700 dark:text-slate-300 capitalize">{key}</span>
                             </label>
                         ))}
                     </div>
