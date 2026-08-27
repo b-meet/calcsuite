@@ -146,3 +146,53 @@ p {
 .ticker-mask {
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
+
+/* Range inputs in the widget generator's appearance panel. Styled by hand
+   because the native control ignores most utility classes. */
+.calcsuite-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 9999px;
+  background: rgb(226 232 240);
+  outline: none;
+  cursor: pointer;
+}
+
+.dark .calcsuite-range {
+  background: rgb(51 65 85);
+}
+
+.calcsuite-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: rgb(37 99 235);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 0.3);
+  transition: transform 0.12s ease;
+}
+
+.calcsuite-range::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.calcsuite-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: rgb(37 99 235);
+  border: 2px solid #fff;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 0.3);
+}
+
+.dark .calcsuite-range::-webkit-slider-thumb,
+.dark .calcsuite-range::-moz-range-thumb {
+  border-color: rgb(15 23 42);
+}
+
+.calcsuite-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgb(37 99 235 / 0.2);
+}
