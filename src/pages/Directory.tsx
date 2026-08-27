@@ -81,7 +81,7 @@ export function Directory() {
                         </span>
                     </h2>
                     <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-3xl">
-                        Looking for a faster, ad-free alternative to the old industry standards? Check out how CalcSuite compares against the big names.
+                        Looking for a faster, less cluttered alternative to the old industry standards? Check out how CalcSuite compares against the big names.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
                         {alternativesList.map((alt) => (

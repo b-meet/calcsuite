@@ -5,6 +5,23 @@ import { Helmet } from 'react-helmet-async';
 import { Check, Copy, Zap, Globe, DollarSign, Layout, Info, Smartphone, Code as CodeIcon } from 'lucide-react';
 import { cn } from '../utils/cn';
 import { WidgetProvider } from '../context/WidgetContext';
+import { SITE_URL, WIDGET_SCRIPT_URL } from '../config/site';
+
+/**
+ * Registry names are long SEO titles ("Basic Calculator - Free Online ...").
+ * The embed credit link wants the short, human name as its anchor text.
+ */
+function shortCalculatorName(name: string): string {
+    return name.split(/\s+[-\u2013\u2014:|]\s+/)[0].trim();
+}
+
+function escapeHtml(value: string): string {
+    return value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
 
 function IsolatedPreview({ children, theme }: { children: React.ReactNode, theme: 'light' | 'dark' }) {
     const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -82,8 +99,20 @@ export function WidgetGenerator() {
     const selectedCalculator = calculatorRegistry.find(c => c.id === selectedCalculatorId) || calculatorRegistry[0];
     const SelectedComponent = selectedCalculator.component;
 
+    const calculatorName = shortCalculatorName(selectedCalculator.name);
+    const calculatorUrl = `${SITE_URL}/calculator/${selectedCalculatorId}/`;
+    const creditAnchor = escapeHtml(calculatorName);
+    const creditTitle = escapeHtml(`${calculatorName} by CalcSuite`);
+
+    // The credit paragraph is plain, server-visible HTML on purpose: the widget
+    // itself renders inside a Shadow DOM after JS runs, so a link in there is
+    // not a reliable backlink. Both anchors are dofollow (rel="noopener" only).
     const widgetCode = `<div class="calcsuite-widget" data-type="${selectedCalculatorId}" data-theme="${theme}"></div>
-<script async src="https://calcsuite.com/widget.js"></script>`;
+<script async src="${WIDGET_SCRIPT_URL}"></script>
+<p class="calcsuite-credit" style="font-size:12px;text-align:center;margin:6px 0 0">
+  <a href="${calculatorUrl}" title="${creditTitle}" target="_blank" rel="noopener">${creditAnchor}</a>
+  powered by <a href="${SITE_URL}/" title="CalcSuite - Free Online Calculators" target="_blank" rel="noopener">CalcSuite</a>
+</p>`;
 
     const handleCopy = () => {
         navigator.clipboard.writeText(widgetCode);
@@ -181,6 +210,9 @@ export function WidgetGenerator() {
                         <p className="text-[13px] sm:text-sm text-blue-50 leading-relaxed">
                             Place the `&lt;div&gt;` wherever you want the widget to appear. The script can be anywhere, but the end of the `&lt;body&gt;` is best for performance.
                         </p>
+                        <p className="text-[13px] sm:text-sm text-blue-50/90 leading-relaxed mt-3 pt-3 border-t border-white/20">
+                            Please keep the credit link in the snippet — it is the only thing we ask in return, and it is what keeps these widgets free for everyone.
+                        </p>
                     </div>
                 </aside>
 
@@ -207,7 +239,7 @@ export function WidgetGenerator() {
                                     </div>
                                     <div className="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800 text-center">
                                         <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 flex items-center justify-center gap-2">
-                                            ⚡ Powered by <span className="text-blue-500">CalcSuite</span>
+                                            ⚡ {calculatorName} powered by <span className="text-blue-500">CalcSuite</span>
                                         </span>
                                     </div>
                                 </div>
@@ -239,10 +271,25 @@ export function WidgetGenerator() {
                                         </div>
 
                                         <span className="text-slate-500 opacity-50 block mb-2">// 2. The core runtime library</span>
-                                        <div className="bg-white/5 p-3 rounded-xl text-blue-400 whitespace-nowrap overflow-x-auto">
+                                        <div className="bg-white/5 p-3 rounded-xl mb-4 text-blue-400 whitespace-nowrap overflow-x-auto">
                                             <span className="text-pink-400">&lt;script</span>{' '}
                                             <span className="text-green-400">async</span>{' '}
-                                            <span className="text-green-400">src</span>="https://calcsuite.com/widget.js"<span className="text-pink-400">&gt;&lt;/script&gt;</span>
+                                            <span className="text-green-400">src</span>="{WIDGET_SCRIPT_URL}"<span className="text-pink-400">&gt;&lt;/script&gt;</span>
+                                        </div>
+
+                                        <span className="text-slate-500 opacity-50 block mb-2">// 3. The credit link (please keep it)</span>
+                                        <div className="bg-white/5 p-3 rounded-xl text-blue-400 whitespace-nowrap overflow-x-auto">
+                                            <span className="text-pink-400">&lt;p</span>{' '}
+                                            <span className="text-green-400">class</span>="calcsuite-credit"<span className="text-pink-400">&gt;</span>
+                                            <span className="text-pink-400">&lt;a</span>{' '}
+                                            <span className="text-green-400">href</span>="{calculatorUrl}"<span className="text-pink-400">&gt;</span>
+                                            <span className="text-slate-300">{calculatorName}</span>
+                                            <span className="text-pink-400">&lt;/a&gt;</span>
+                                            <span className="text-slate-300"> powered by </span>
+                                            <span className="text-pink-400">&lt;a</span>{' '}
+                                            <span className="text-green-400">href</span>="{SITE_URL}/"<span className="text-pink-400">&gt;</span>
+                                            <span className="text-slate-300">CalcSuite</span>
+                                            <span className="text-pink-400">&lt;/a&gt;&lt;/p&gt;</span>
                                         </div>
                                     </code>
                                 </pre>

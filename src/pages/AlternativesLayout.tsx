@@ -80,7 +80,7 @@ export function AlternativesLayout() {
                         <div>
                             <p className="text-emerald-700 dark:text-emerald-400 font-bold text-sm uppercase tracking-wide mb-1">CalcSuite Load Time</p>
                             <h3 className="text-4xl font-black text-slate-900 dark:text-white">&lt; 0.5s</h3>
-                            <p className="text-slate-500 font-medium text-sm mt-1">Instant & 100% Ad-Free Core</p>
+                            <p className="text-slate-500 font-medium text-sm mt-1">Instant & Minimal Ads</p>
                         </div>
                         <Zap className="w-16 h-16 text-emerald-500 opacity-20" />
                     </div>
@@ -215,6 +215,15 @@ export function AlternativesLayout() {
                             </tbody>
                         </table>
                     </div>
+
+                    {/* Ad disclosure: we do run ads, so say so plainly rather than
+                        letting the comparison imply otherwise. */}
+                    <p className="mt-4 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                        <strong className="font-semibold text-slate-600 dark:text-slate-300">How we stay free:</strong>{' '}
+                        CalcSuite is funded by a small number of clearly labelled display ads. We keep them
+                        minimal and non-intrusive — no pop-ups, no interstitials, and no ads that cover or
+                        delay your result.
+                    </p>
                 </div>
 
                 {/* Honest Review Section */}
@@ -225,7 +234,7 @@ export function AlternativesLayout() {
                 {/* Bottom CTA / The Switch Hook */}
                 <div className="mt-16 text-center bg-blue-50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900 p-10 rounded-3xl shadow-sm">
                     <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
-                        Tired of ads and slow calculators?
+                        Tired of ad clutter and slow calculators?
                     </h3>
                     <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 max-w-xl mx-auto font-medium">
                         Try the lightweight, modern alternative. Join thousands of users who have switched to CalcSuite for their personal and professional financial modeling.

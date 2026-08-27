@@ -24,3 +24,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Widget library build output (published into dist/widget.js by the main build)
+dist-widget

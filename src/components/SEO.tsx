@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
+import { SITE_NAME, SITE_URL } from '../config/site';
 
-const SITE_NAME = 'CalcSuite';
-const SITE_URL = 'https://calcsuite.in';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/pwa-512x512.png`;
 
 type JsonLd = Record<string, unknown>;
