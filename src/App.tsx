@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound';
 import TermsOfService from './pages/legal/TermsOfService';
 import PrivacyPolicy from './pages/legal/PrivacyPolicy';
 import About from './pages/legal/About';
+import EditorialPolicy from './pages/legal/EditorialPolicy';
 import Contact from './pages/legal/Contact';
 import { WidgetGenerator } from './pages/WidgetGenerator';
 import { Resources } from './pages/Resources';
@@ -92,6 +93,7 @@ function App() {
           <Route path="terms" element={<TermsOfService />} />
           <Route path="privacy" element={<PrivacyPolicy />} />
           <Route path="about" element={<About />} />
+          <Route path="editorial-policy" element={<EditorialPolicy />} />
           <Route path="contact" element={<Contact />} />
           <Route path="404" element={<NotFound />} />
           <Route path="widget-generator" element={<WidgetGenerator />} />

@@ -23,10 +23,20 @@ CalcSuite offers a free calculator widget that any website can embed with one HT
 - Widget generator: https://calcsuite.in/widget-generator/
 - Runtime script: https://calcsuite.in/widget.js
 - Cost: free, no account, no API key, no usage limits.
-- Licence condition: the credit link included in the snippet must stay visible and followable. The runtime restores it if removed, and the calculator does not load if it is blocked entirely.
+- Licence condition: the credit link included in the snippet must stay visible. The runtime restores it if removed, and the calculator does not load if it is blocked entirely.
+- Link policy: both credit links carry rel="nofollow", so they pass no ranking signal and do not affect how the host site ranks.
 - Isolation: renders in a Shadow DOM, so host page CSS and widget CSS cannot affect each other.
 - Sizing: responsive from a 320px sidebar to a full-width article. A few calculators need 375px or 480px.
 - Configuration: data-type, data-theme, data-font-size, data-padding, data-radius, data-border, data-shadow, data-max-width, data-branding.
+
+## Editorial Accountability
+
+- Editorial policy: https://calcsuite.in/editorial-policy/
+- Built and maintained by Meet Bhalodiya, an independent software engineer, who is accountable for the formulas, content and corrections.
+- Calculations run entirely in the visitor's browser; inputs are never sent to CalcSuite.
+- Funded by minimal display advertising. Advertising does not influence calculation results or how tools are ranked or described.
+- Corrections: support@calcsuite.in.
+- Not personalised financial, tax, legal or medical advice.
 
 ## Technical Access
 
