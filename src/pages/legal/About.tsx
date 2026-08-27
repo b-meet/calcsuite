@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { Calculator, ShieldCheck, Heart } from 'lucide-react';
+import { AUTHOR } from '../../constants/author';
 
 const About = () => {
     return (
@@ -40,7 +42,7 @@ const About = () => {
                             Built for You
                         </h2>
                         <p className="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed">
-                            CalcSuite is developed and maintained by a passionate team of developers who were tired of cluttered, slow, and confusing calculator sites. We wanted to build something better—a suite of tools that we would want to use ourselves.
+                            CalcSuite is built and maintained by <strong className="text-slate-800 dark:text-slate-200">{AUTHOR.name}</strong>, an independent software engineer who was tired of cluttered, slow, and confusing calculator sites. One person is accountable for every formula and every correction on this site — you can read exactly how the tools are built, checked and funded in our <Link to="/editorial-policy/" className="text-blue-600 dark:text-blue-400 font-medium hover:underline">editorial policy</Link>.
                         </p>
                         <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                             We are constantly updating our algorithms to ensure they align with the latest standards, such as the 2025 Tax Regime updates for India or the latest WHO health guidelines.

@@ -10,7 +10,7 @@ const CreditRemoved: React.FC<{ calculatorType: string }> = ({ calculatorType })
             <a
                 href={`${SITE_URL}/widget-generator/?calculator=${encodeURIComponent(calculatorType)}`}
                 target="_blank"
-                rel="noopener"
+                rel="nofollow noopener"
                 className="text-blue-600 dark:text-blue-400 underline"
             >
                 Get a working embed

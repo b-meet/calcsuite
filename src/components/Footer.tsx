@@ -279,6 +279,7 @@ export default function Footer() {
                         <p>&copy; {currentYear} CalcSuite. All rights reserved.</p>
                         <div className="flex gap-6 lg:pr-24">
                             <Link to="/about/" className="hover:text-slate-400 transition-colors">About Us</Link>
+                            <Link to="/editorial-policy/" className="hover:text-slate-400 transition-colors">Editorial Policy</Link>
                             <Link to="/contact/" className="hover:text-slate-400 transition-colors">Contact</Link>
                             <Link to="/privacy/" className="hover:text-slate-400 transition-colors">Privacy Policy</Link>
                             <Link to="/terms/" className="hover:text-slate-400 transition-colors">Terms of Service</Link>

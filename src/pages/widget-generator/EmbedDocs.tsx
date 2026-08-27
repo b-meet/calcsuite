@@ -114,11 +114,17 @@ export function EmbedDocs() {
             <Section id="attribution" title="Attribution and licence">
                 <p>
                     The widget is free to use on commercial and personal sites. In return, the credit
-                    link that ships with the snippet must stay visible and followable on the page where
-                    the widget appears. If it is removed, hidden or changed to{' '}
+                    link that ships with the snippet must stay visible on the page where the widget
+                    appears. If it is removed, hidden or repointed at another domain, the runtime
+                    restores a working one. If it is prevented from rendering entirely, the calculator
+                    is replaced by a short notice instead of loading.
+                </p>
+                <p>
+                    Both credit links carry{' '}
                     <code className="px-1 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-[12px]">rel="nofollow"</code>,
-                    the runtime restores a working one. If it is prevented from rendering entirely, the
-                    calculator is replaced by a short notice instead of loading.
+                    so they pass no ranking signal and cannot affect how your pages rank. Google treats
+                    widget links distributed at volume as a link scheme rather than an editorial
+                    endorsement, so we mark them nofollow by default rather than asking you to.
                 </p>
             </Section>
 

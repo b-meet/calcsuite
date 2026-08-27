@@ -2,6 +2,9 @@ import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO, { buildBreadcrumbJsonLd, toAbsoluteUrl } from '../components/SEO';
+import { AuthorByline } from '../components/AuthorByline';
+import { AUTHOR } from '../constants/author';
+import { SITE_URL } from '../config/site';
 import NotFound from './NotFound';
 
 import RelatedCalculators from '../components/RelatedCalculators';
@@ -134,9 +137,14 @@ export function CalculatorPage() {
             priceCurrency: 'USD',
         },
         author: {
+            '@type': 'Person',
+            name: AUTHOR.name,
+            url: AUTHOR.profileUrl,
+        },
+        publisher: {
             '@type': 'Organization',
             name: 'CalcSuite',
-            url: 'https://calcsuite.in',
+            url: SITE_URL,
         },
     };
 
@@ -232,6 +240,7 @@ export function CalculatorPage() {
                             </p>
                         )}
                         <p className="text-slate-500 dark:text-slate-400">{pageDescription}</p>
+                        <AuthorByline className="mt-3 justify-center sm:justify-start" />
                         {heroContent?.chips && heroContent.chips.length > 0 && (
                             <div className="mt-4 flex flex-wrap gap-2 justify-center sm:justify-start">
                                 {heroContent.chips.map((chip) => (
