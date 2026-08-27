@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import WidgetApp from './WidgetApp';
+import CreditRemoved from './CreditRemoved';
 import styleString from './styles.css?inline';
 import { SITE_URL } from '../config/site';
 import type { WidgetAppearance } from './appearance';
@@ -66,28 +67,96 @@ function buildCredit(calculatorType: string, label: string): HTMLElement {
 }
 
 /**
- * Keeps the attribution link alive next to the widget.
- *
- * The embed snippet ships the credit as static HTML because that is the version
- * search engines index most reliably. This is the backstop: if it never got
- * pasted, or gets stripped or hidden later, we re-insert a working one into the
- * light DOM. A MutationObserver on the parent re-checks after page scripts run.
+ * Rebuilds the credit if it is missing, hidden or de-followed.
+ * Returns whether an intact credit exists once we are done.
  */
-function ensureCredit(container: HTMLElement, calculatorType: string, label: string) {
+function repairCredit(container: HTMLElement, calculatorType: string, label: string): boolean {
+    const parent = container.parentElement;
+    if (!parent) return false;
+
+    const existing = parent.querySelector(`.${CREDIT_CLASS}`);
+    if (creditIsIntact(existing)) return true;
+
+    existing?.remove();
+    const fresh = buildCredit(calculatorType, label);
+    container.insertAdjacentElement('afterend', fresh);
+    return creditIsIntact(fresh);
+}
+
+/** More rebuilds than this in the window means something is deleting it on a loop. */
+const MAX_REPAIRS = 5;
+const REPAIR_WINDOW_MS = 10_000;
+
+/**
+ * Makes the attribution link load-bearing.
+ *
+ * The embed snippet ships the credit as static HTML, because that is the
+ * version search engines index most reliably. If it is edited out, hidden or
+ * rewritten to nofollow we rebuild it into the light DOM. If it cannot be kept
+ * intact the calculator is replaced with a notice: no credit, no widget.
+ *
+ * Giving up is not optional politeness — a host script that strips the credit
+ * on every mutation would otherwise ping-pong with this observer forever and
+ * peg the page's main thread. Past MAX_REPAIRS we stop repairing, disconnect,
+ * and leave the widget disabled.
+ */
+function guardCredit(
+    container: HTMLElement,
+    calculatorType: string,
+    label: string,
+    onChange: (allowed: boolean) => void
+) {
     const parent = container.parentElement;
     if (!parent) return;
 
-    const repair = () => {
-        const existing = parent.querySelector(`.${CREDIT_CLASS}`);
-        if (creditIsIntact(existing)) return;
-        existing?.remove();
-        container.insertAdjacentElement('afterend', buildCredit(calculatorType, label));
+    let allowed: boolean | null = null;
+    let gaveUp = false;
+    let repairs = 0;
+    let windowStartedAt = Date.now();
+
+    const publish = (next: boolean) => {
+        if (next === allowed) return;
+        allowed = next;
+        onChange(next);
     };
 
-    repair();
+    const evaluate = () => {
+        if (gaveUp) return;
 
-    const observer = new MutationObserver(repair);
-    observer.observe(parent, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class', 'rel'] });
+        if (creditIsIntact(parent.querySelector(`.${CREDIT_CLASS}`))) {
+            publish(true);
+            return;
+        }
+
+        const now = Date.now();
+        if (now - windowStartedAt > REPAIR_WINDOW_MS) {
+            repairs = 0;
+            windowStartedAt = now;
+        }
+        repairs += 1;
+
+        if (repairs > MAX_REPAIRS) {
+            gaveUp = true;
+            observer.disconnect();
+            publish(false);
+            return;
+        }
+
+        publish(repairCredit(container, calculatorType, label));
+    };
+
+    const observer = new MutationObserver(evaluate);
+
+    evaluate();
+
+    if (!gaveUp) {
+        observer.observe(parent, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['style', 'class', 'rel', 'href'],
+        });
+    }
 }
 
 /** Maps the appearance settings onto CSS variables the widget's styles read. */
@@ -124,15 +193,20 @@ function init() {
         applyAppearance(container, rootElement, appearance);
 
         const root = createRoot(rootElement);
-        root.render(
-            <React.StrictMode>
-                <WidgetApp calculatorType={type} appearance={appearance} showBrand={branding} />
-            </React.StrictMode>
-        );
+        const label = container.dataset.label || 'Calculator';
 
         // Independent of `data-branding`: hiding the in-widget footer is a
-        // styling choice, dropping the backlink is not.
-        ensureCredit(container, type, container.dataset.label || 'Calculator');
+        // styling choice, dropping the backlink is not. The guard renders the
+        // calculator only while an intact credit is on the page.
+        guardCredit(container, type, label, (allowed) => {
+            root.render(
+                <React.StrictMode>
+                    {allowed
+                        ? <WidgetApp calculatorType={type} appearance={appearance} showBrand={branding} />
+                        : <CreditRemoved calculatorType={type} />}
+                </React.StrictMode>
+            );
+        });
     });
 }
 

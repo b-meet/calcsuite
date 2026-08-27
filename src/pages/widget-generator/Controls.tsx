@@ -19,6 +19,9 @@ interface SegmentedOption<T extends string> {
     value: T;
     label: string;
     icon?: ReactNode;
+    disabled?: boolean;
+    /** Shown on hover when the option is unavailable. */
+    disabledReason?: string;
 }
 
 export function Segmented<T extends string>({
@@ -44,9 +47,12 @@ export function Segmented<T extends string>({
                         type="button"
                         role="tab"
                         aria-selected={active}
+                        disabled={option.disabled}
+                        title={option.disabled ? option.disabledReason : undefined}
                         onClick={() => onChange(option.value)}
                         className={cn(
                             'flex items-center justify-center gap-1.5 py-1.5 px-1 rounded-lg text-[12px] font-semibold transition-all',
+                            option.disabled && 'opacity-40 cursor-not-allowed',
                             active
                                 ? 'bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-400 shadow-sm'
                                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'

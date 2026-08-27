@@ -13,6 +13,7 @@ import { RotatingTips } from './widget-generator/RotatingTips';
 import { SitePreview } from './widget-generator/SitePreview';
 import { Field, RangeControl, Segmented, ToggleRow } from './widget-generator/Controls';
 import { buildEmbedCode, tokenizeHtml } from './widget-generator/embed';
+import { minWidthFor } from './widget-generator/minWidths';
 import {
     DEFAULT_APPEARANCE, PLACEMENTS, shortCalculatorName,
     type Appearance, type CalculatorOption, type Placement,
@@ -23,7 +24,25 @@ import {
  * the calculator's own styles cannot reach each other — the same isolation the
  * real widget gets from its Shadow DOM.
  */
-function IsolatedPreview({ children, appearance }: { children: React.ReactNode; appearance: Appearance }) {
+const MIN_PREVIEW_HEIGHT = 80;
+const PREVIEW_CONTENT_ID = 'calcsuite-preview-content';
+
+const PLACEMENT_ICONS: Record<Placement, React.ReactNode> = {
+    article: <AlignLeft size={13} />,
+    end: <PanelBottom size={13} />,
+    aside: <PanelRight size={13} />,
+};
+
+function IsolatedPreview({
+    children,
+    appearance,
+    resetKey,
+}: {
+    children: React.ReactNode;
+    appearance: Appearance;
+    /** Changing this collapses the frame first, so a shorter calculator can shrink. */
+    resetKey: string;
+}) {
     const iframeRef = useRef<HTMLIFrameElement>(null);
     const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
 
@@ -45,7 +64,21 @@ function IsolatedPreview({ children, appearance }: { children: React.ReactNode; 
             doc.body.style.backgroundColor = 'transparent';
             doc.body.className = 'overflow-hidden';
 
-            setMountNode(doc.body);
+            // Portal into a wrapper rather than <body>. body.scrollHeight is
+            // clamped to the iframe's own viewport height, so measuring it
+            // ratchets the frame upward and it can never shrink again when a
+            // shorter calculator is selected. A plain content-sized div
+            // reports the real height in both directions.
+            // Reuse an existing wrapper: StrictMode runs this effect twice in
+            // development, and appending blindly leaves an orphaned empty div.
+            let wrapper = doc.getElementById(PREVIEW_CONTENT_ID);
+            if (!wrapper) {
+                wrapper = doc.createElement('div');
+                wrapper.id = PREVIEW_CONTENT_ID;
+                doc.body.appendChild(wrapper);
+            }
+
+            setMountNode(wrapper);
         };
 
         const doc = iframe.contentDocument || iframe.contentWindow?.document;
@@ -61,19 +94,26 @@ function IsolatedPreview({ children, appearance }: { children: React.ReactNode; 
         if (!mountNode || !iframeRef.current) return;
         const iframe = iframeRef.current;
         const doc = mountNode.ownerDocument;
-        const root = doc.documentElement;
 
-        root.classList.remove('light', 'dark');
-        root.classList.add(appearance.theme);
+        doc.documentElement.classList.remove('light', 'dark');
+        doc.documentElement.classList.add(appearance.theme);
 
-        const observer = new ResizeObserver(() => {
-            if (doc.body) {
-                iframe.style.height = `${doc.body.scrollHeight}px`;
-            }
-        });
-        observer.observe(doc.body);
+        const sync = () => {
+            const height = Math.max(MIN_PREVIEW_HEIGHT, Math.ceil(mountNode.getBoundingClientRect().height));
+            iframe.style.height = `${height}px`;
+        };
+
+        const observer = new ResizeObserver(sync);
+        observer.observe(mountNode);
+        sync();
         return () => observer.disconnect();
     }, [mountNode, appearance.theme]);
+
+    // Collapse on calculator change so the frame grows into the new content
+    // instead of holding the previous calculator's taller box.
+    useEffect(() => {
+        if (iframeRef.current) iframeRef.current.style.height = `${MIN_PREVIEW_HEIGHT}px`;
+    }, [resetKey]);
 
     return (
         <iframe
@@ -81,7 +121,7 @@ function IsolatedPreview({ children, appearance }: { children: React.ReactNode; 
             title="Widget preview"
             scrolling="no"
             className="w-full border-0 bg-transparent block"
-            style={{ height: 'auto', minHeight: '140px' }}
+            style={{ height: MIN_PREVIEW_HEIGHT }}
         >
             {mountNode && createPortal(children, mountNode)}
         </iframe>
@@ -170,9 +210,33 @@ export function WidgetGenerator() {
     const SelectedComponent = selectedCalculator.component;
     const calculatorName = shortCalculatorName(selectedCalculator.name);
 
+    // Placements narrower than the calculator's measured minimum would overflow
+    // on the embedder's page, so they are not offered at all.
+    const minWidth = minWidthFor(selectedCalculatorId);
+    const placementOptions = useMemo(
+        () =>
+            PLACEMENTS.map(slot => ({
+                ...slot,
+                fits: slot.maxWidth >= minWidth,
+            })),
+        [minWidth]
+    );
+    // Derive the slot in use rather than storing an invalid one: picking a
+    // wide-only calculator while on Sidebar just falls through to the first
+    // slot that fits, and the original choice is restored if they switch back.
+    const selectedPlacement = placementOptions.find(p => p.id === placement) ?? placementOptions[0];
+    const activePlacement = selectedPlacement.fits
+        ? selectedPlacement
+        : placementOptions.find(p => p.fits) ?? placementOptions[0];
+
     const embedCode = useMemo(
-        () => buildEmbedCode({ calculatorId: selectedCalculatorId, calculatorName, placement, appearance }),
-        [selectedCalculatorId, calculatorName, placement, appearance]
+        () => buildEmbedCode({
+            calculatorId: selectedCalculatorId,
+            calculatorName,
+            placement: activePlacement.id,
+            appearance,
+        }),
+        [selectedCalculatorId, calculatorName, activePlacement.id, appearance]
     );
 
     const set = <K extends keyof Appearance>(key: K, value: Appearance[K]) =>
@@ -220,16 +284,23 @@ export function WidgetGenerator() {
                             />
                         </Field>
 
-                        <Field label="Placement" hint={PLACEMENTS.find(p => p.id === placement)?.hint}>
+                        <Field label="Placement" hint={activePlacement.hint}>
                             <Segmented<Placement>
-                                value={placement}
+                                value={activePlacement.id}
                                 onChange={setPlacement}
-                                options={[
-                                    { value: 'article', label: 'Article', icon: <AlignLeft size={13} /> },
-                                    { value: 'end', label: 'Page end', icon: <PanelBottom size={13} /> },
-                                    { value: 'aside', label: 'Sidebar', icon: <PanelRight size={13} /> },
-                                ]}
+                                options={placementOptions.map(slot => ({
+                                    value: slot.id,
+                                    label: slot.label,
+                                    icon: PLACEMENT_ICONS[slot.id],
+                                    disabled: !slot.fits,
+                                    disabledReason: `${calculatorName} needs at least ${minWidth}px — this slot is ${slot.maxWidth}px.`,
+                                }))}
                             />
+                            {placementOptions.some(p => !p.fits) && (
+                                <p className="mt-1.5 text-[11px] leading-relaxed text-amber-600 dark:text-amber-500/90">
+                                    {calculatorName} needs at least {minWidth}px, so narrower slots are unavailable.
+                                </p>
+                            )}
                         </Field>
 
                         <Field label="Theme">
@@ -310,13 +381,13 @@ export function WidgetGenerator() {
                             How it looks on your page
                         </h2>
                         <span className="text-[11px] text-slate-400">
-                            {PLACEMENTS.find(p => p.id === placement)?.label}
+                            {activePlacement.label}
                         </span>
                     </div>
 
-                    <SitePreview placement={placement}>
+                    <SitePreview placement={activePlacement.id}>
                         <WidgetFrame appearance={appearance}>
-                            <IsolatedPreview appearance={appearance}>
+                            <IsolatedPreview appearance={appearance} resetKey={selectedCalculatorId}>
                                 <WidgetProvider isWidget={true}>
                                     <React.Suspense
                                         fallback={<div className="h-52 flex items-center justify-center text-slate-400 text-sm">Loading calculator…</div>}
@@ -345,8 +416,8 @@ export function WidgetGenerator() {
                         <div className="flex items-start gap-2 px-4 sm:px-5 py-3 border-t border-white/5 text-[11px] text-white/40 leading-relaxed">
                             <ShieldCheck size={13} className="mt-px shrink-0 text-white/30" />
                             <span>
-                                The credit line is part of the widget licence. If it is edited out or hidden,
-                                widget.js restores it automatically.
+                                The credit line is required. If it is removed or hidden, widget.js puts it
+                                back — and if it is kept from rendering, the calculator stops working.
                             </span>
                         </div>
                     </div>
