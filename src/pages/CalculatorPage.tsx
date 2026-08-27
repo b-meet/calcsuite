@@ -4,6 +4,7 @@ import { calculatorRegistry } from '../calculators/registry';
 import SEO, { buildBreadcrumbJsonLd, toAbsoluteUrl } from '../components/SEO';
 import { AuthorByline } from '../components/AuthorByline';
 import { ShareBar } from '../components/ShareBar';
+import { LazyCalculator } from '../components/LazyCalculator';
 import { ShareableResultProvider } from '../context/ShareableResultProvider';
 import { decodeResultState, RESULT_PARAM } from '../utils/resultLink';
 import { AUTHOR } from '../constants/author';
@@ -376,10 +377,12 @@ export function CalculatorPage() {
 
             <ShareableResultProvider>
                 <div ref={calculatorViewportRef} className="scroll-mt-24 lg:scroll-mt-8">
-                    <Component
-                        key={`${calculatorDef.id}-${scenario?.id || 'default'}-${sharedResultState ? 'shared' : 'own'}`}
-                        scenarioData={sharedResultState ?? scenario?.initialState}
-                    />
+                    <LazyCalculator>
+                        <Component
+                            key={`${calculatorDef.id}-${scenario?.id || 'default'}-${sharedResultState ? 'shared' : 'own'}`}
+                            scenarioData={sharedResultState ?? scenario?.initialState}
+                        />
+                    </LazyCalculator>
                 </div>
 
                 <ShareBar
@@ -457,7 +460,11 @@ export function CalculatorPage() {
                         )}
 
                         {/* Fallback for legacy content */}
-                        {Content && <Content calculatorDef={calculatorDef} />}
+                        {Content && (
+                            <Suspense fallback={null}>
+                                <Content calculatorDef={calculatorDef} />
+                            </Suspense>
+                        )}
                     </article>
                 </div>
             )}
