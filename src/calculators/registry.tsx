@@ -1,43 +1,43 @@
 import { Calculator, DollarSign, Activity, Calendar, Lock, Divide, Percent, Scale, Flame, Ruler, TrendingUp, Briefcase, Car, Sunset, GraduationCap, Baby, Triangle, Heart, ArrowLeftRight, Dices, MoreHorizontal, Landmark, Home } from 'lucide-react';
 import { lazy } from 'react';
-import PercentageContent from './content/PercentageContent';
-import BasicCalculatorContent from './content/BasicCalculatorContent';
-import ScientificCalculatorContent from './content/ScientificCalculatorContent';
-import FractionCalculatorContent from './content/FractionCalculatorContent';
-import TipCalculatorContent from './content/TipCalculatorContent';
-import PercentageChangeContent from './content/PercentageChangeContent';
-import DiscountCalculatorContent from './content/DiscountCalculatorContent';
-import IndiaEMICalculatorContent from './content/IndiaEMICalculatorContent';
-import BMICalculatorContent from './content/BMICalculatorContent';
-import SIPCalculatorContent from './content/SIPCalculatorContent';
-import MortgageCalculatorContent from './content/MortgageCalculatorContent';
-import LoanCalculatorContent from './content/LoanCalculatorContent';
-import AutoLoanCalculatorContent from './content/AutoLoanCalculatorContent';
-import InvestmentCalculatorContent from './content/InvestmentCalculatorContent';
-import RetirementCalculatorContent from './content/RetirementCalculatorContent';
-import SalaryCalculatorContent from './content/SalaryCalculatorContent';
-import InflationCalculatorContent from './content/InflationCalculatorContent';
-import CompoundInterestCalculatorContent from './content/CompoundInterestCalculatorContent';
-import CalorieCalculatorContent from './content/CalorieCalculatorContent';
-import BodyFatCalculatorContent from './content/BodyFatCalculatorContent';
-import BMRCalculatorContent from './content/BMRCalculatorContent';
-import IdealWeightCalculatorContent from './content/IdealWeightCalculatorContent';
-import PregnancyCalculatorContent from './content/PregnancyCalculatorContent';
-import OvulationCalculatorContent from './content/OvulationCalculatorContent';
-import FDCalculatorContent from './content/FDCalculatorContent';
-import RDCalculatorContent from './content/RDCalculatorContent';
-import HRACalculatorContent from './content/HRACalculatorContent';
-import IndiaTaxCalculatorContent from './content/IndiaTaxCalculatorContent';
-import IndiaSalaryCalculatorContent from './content/IndiaSalaryCalculatorContent';
-import IndiaGSTCalculatorContent from './content/IndiaGSTCalculatorContent';
-import PPFCalculatorContent from './content/PPFCalculatorContent';
-import HomeLoanEligibilityCalculatorContent from './content/HomeLoanEligibilityCalculatorContent';
-import AgeCalculatorContent from './content/AgeCalculatorContent';
-import GPACalculatorContent from './content/GPACalculatorContent';
-import PasswordGeneratorContent from './content/PasswordGeneratorContent';
-import UnitConverterContent from './content/UnitConverterContent';
-import RandomNumberGeneratorContent from './content/RandomNumberGeneratorContent';
-import DateCalculatorContent from './content/DateCalculatorContent';
+const PercentageContent = lazy(() => import('./content/PercentageContent'));
+const BasicCalculatorContent = lazy(() => import('./content/BasicCalculatorContent'));
+const ScientificCalculatorContent = lazy(() => import('./content/ScientificCalculatorContent'));
+const FractionCalculatorContent = lazy(() => import('./content/FractionCalculatorContent'));
+const TipCalculatorContent = lazy(() => import('./content/TipCalculatorContent'));
+const PercentageChangeContent = lazy(() => import('./content/PercentageChangeContent'));
+const DiscountCalculatorContent = lazy(() => import('./content/DiscountCalculatorContent'));
+const IndiaEMICalculatorContent = lazy(() => import('./content/IndiaEMICalculatorContent'));
+const BMICalculatorContent = lazy(() => import('./content/BMICalculatorContent'));
+const SIPCalculatorContent = lazy(() => import('./content/SIPCalculatorContent'));
+const MortgageCalculatorContent = lazy(() => import('./content/MortgageCalculatorContent'));
+const LoanCalculatorContent = lazy(() => import('./content/LoanCalculatorContent'));
+const AutoLoanCalculatorContent = lazy(() => import('./content/AutoLoanCalculatorContent'));
+const InvestmentCalculatorContent = lazy(() => import('./content/InvestmentCalculatorContent'));
+const RetirementCalculatorContent = lazy(() => import('./content/RetirementCalculatorContent'));
+const SalaryCalculatorContent = lazy(() => import('./content/SalaryCalculatorContent'));
+const InflationCalculatorContent = lazy(() => import('./content/InflationCalculatorContent'));
+const CompoundInterestCalculatorContent = lazy(() => import('./content/CompoundInterestCalculatorContent'));
+const CalorieCalculatorContent = lazy(() => import('./content/CalorieCalculatorContent'));
+const BodyFatCalculatorContent = lazy(() => import('./content/BodyFatCalculatorContent'));
+const BMRCalculatorContent = lazy(() => import('./content/BMRCalculatorContent'));
+const IdealWeightCalculatorContent = lazy(() => import('./content/IdealWeightCalculatorContent'));
+const PregnancyCalculatorContent = lazy(() => import('./content/PregnancyCalculatorContent'));
+const OvulationCalculatorContent = lazy(() => import('./content/OvulationCalculatorContent'));
+const FDCalculatorContent = lazy(() => import('./content/FDCalculatorContent'));
+const RDCalculatorContent = lazy(() => import('./content/RDCalculatorContent'));
+const HRACalculatorContent = lazy(() => import('./content/HRACalculatorContent'));
+const IndiaTaxCalculatorContent = lazy(() => import('./content/IndiaTaxCalculatorContent'));
+const IndiaSalaryCalculatorContent = lazy(() => import('./content/IndiaSalaryCalculatorContent'));
+const IndiaGSTCalculatorContent = lazy(() => import('./content/IndiaGSTCalculatorContent'));
+const PPFCalculatorContent = lazy(() => import('./content/PPFCalculatorContent'));
+const HomeLoanEligibilityCalculatorContent = lazy(() => import('./content/HomeLoanEligibilityCalculatorContent'));
+const AgeCalculatorContent = lazy(() => import('./content/AgeCalculatorContent'));
+const GPACalculatorContent = lazy(() => import('./content/GPACalculatorContent'));
+const PasswordGeneratorContent = lazy(() => import('./content/PasswordGeneratorContent'));
+const UnitConverterContent = lazy(() => import('./content/UnitConverterContent'));
+const RandomNumberGeneratorContent = lazy(() => import('./content/RandomNumberGeneratorContent'));
+const DateCalculatorContent = lazy(() => import('./content/DateCalculatorContent'));
 
 // Lazy load calculators
 const BasicCalculator = lazy(() => import('./basic/BasicCalculator'));
@@ -86,6 +86,11 @@ const SimpleInterestCalculator = lazy(() => import('./financial/SimpleInterestCa
 const PercentageIncreaseCalculator = lazy(() => import('./other/PercentageIncreaseCalculator'));
 const DiscountCalculator = lazy(() => import('./other/DiscountCalculator'));
 
+/** Long-form page content, static or lazily imported. */
+type CalculatorContentComponent =
+    | React.ComponentType<any>
+    | React.LazyExoticComponent<React.ComponentType<any>>;
+
 export interface CalculatorDef {
     id: string;
     name: string;
@@ -93,7 +98,7 @@ export interface CalculatorDef {
     category: CalculatorCategory;
     icon: any;
     component: React.LazyExoticComponent<React.ComponentType<any>>;
-    content?: React.ComponentType<any>;
+    content?: CalculatorContentComponent;
     longDescription?: string;
     features?: string[];
     formula?: string;
