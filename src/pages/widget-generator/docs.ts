@@ -54,7 +54,11 @@ export const EMBED_FAQ: EmbedFaq[] = [
     },
     {
         question: 'Can I remove the "powered by CalcSuite" link?',
-        answer: 'No. The credit link is a required part of the licence. If it is deleted, hidden with CSS or changed to rel="nofollow", widget.js restores a working one automatically. If it is prevented from rendering at all, the calculator is replaced with a short notice instead of loading.',
+        answer: 'No. The credit link is a required part of the licence. If it is deleted, hidden with CSS or repointed at another domain, widget.js restores a working one automatically. If it is prevented from rendering at all, the calculator is replaced with a short notice instead of loading.',
+    },
+    {
+        question: 'Is the credit link dofollow? Will it affect my site\u2019s SEO?',
+        answer: 'No. Both credit links ship with rel="nofollow", so they pass no ranking signal in either direction and cannot affect how your pages rank. Google treats widget links distributed at volume as a link scheme rather than an editorial endorsement, so we mark them nofollow by default. The link is there for attribution and referral traffic.',
     },
     {
         question: 'Will the widget interfere with my site styles?',

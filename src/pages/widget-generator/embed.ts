@@ -40,10 +40,15 @@ function appearanceAttributes(appearance: Appearance): string[] {
  * Builds the single block an embedder copies.
  *
  * The credit paragraph ships inside the snippet on purpose: static markup in
- * the host page's source is the backlink that actually carries weight, since
- * the calculator itself renders into a Shadow DOM after JS runs. If it is
- * edited out, widget.js re-inserts it at runtime — see ensureCredit() in
- * src/widget/index.tsx — so the link survives either way.
+ * the host page's source is what search engines see most reliably, since the
+ * calculator itself renders into a Shadow DOM after JS runs. If it is edited
+ * out, widget.js re-inserts it at runtime — see guardCredit() in
+ * src/widget/index.tsx — so the credit survives either way.
+ *
+ * Both anchors carry rel="nofollow". Google's link-scheme guidance treats
+ * keyword links distributed through a widget at volume as link building rather
+ * than editorial endorsement, and the credit is here for referral traffic and
+ * brand exposure, which nofollow does not affect.
  */
 export function buildEmbedCode({ calculatorId, calculatorName, placement, appearance }: EmbedInput): string {
     const slot = PLACEMENTS.find(p => p.id === placement) ?? PLACEMENTS[0];
@@ -62,7 +67,7 @@ export function buildEmbedCode({ calculatorId, calculatorName, placement, appear
 
     return [
         `<div ${attrs.join(' ')}></div>`,
-        `<p class="calcsuite-credit"><a href="${calculatorUrlFor(calculatorId)}" title="${title}" target="_blank" rel="noopener">${anchor}</a> powered by <a href="${SITE_URL}/" title="CalcSuite - Free Online Calculators" target="_blank" rel="noopener">CalcSuite</a></p>`,
+        `<p class="calcsuite-credit"><a href="${calculatorUrlFor(calculatorId)}" title="${title}" target="_blank" rel="nofollow noopener">${anchor}</a> powered by <a href="${SITE_URL}/" title="CalcSuite - Free Online Calculators" target="_blank" rel="nofollow noopener">CalcSuite</a></p>`,
         `<script async src="${WIDGET_SCRIPT_URL}"></script>`,
     ].join('\n');
 }
@@ -91,15 +96,21 @@ export function tokenizeHtml(code: string): CodeToken[] {
             const [, open, name, body, close] = inner;
             tokens.push({ text: open, kind: 'punct' });
             tokens.push({ text: name, kind: 'tag' });
-            const attrPattern = /([\w-]+)(=)("[^"]*")|(\s+)/g;
+            // Three alternatives: name="value", a valueless attribute such as
+            // `async`, then whitespace. The bare-attribute branch matters —
+            // without it `async` matched nothing and was dropped from the
+            // rendered snippet while still being present in the copied one.
+            const attrPattern = /([\w-]+)=("[^"]*")|([\w-]+)|(\s+)/g;
             let am: RegExpExecArray | null;
             while ((am = attrPattern.exec(body))) {
                 if (am[4]) {
                     tokens.push({ text: am[4], kind: 'text' });
+                } else if (am[3]) {
+                    tokens.push({ text: am[3], kind: 'attr' });
                 } else {
                     tokens.push({ text: am[1], kind: 'attr' });
-                    tokens.push({ text: am[2], kind: 'punct' });
-                    tokens.push({ text: am[3], kind: 'value' });
+                    tokens.push({ text: '=', kind: 'punct' });
+                    tokens.push({ text: am[2], kind: 'value' });
                 }
             }
             tokens.push({ text: close, kind: 'punct' });

@@ -2,6 +2,13 @@ import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { calculatorRegistry } from '../calculators/registry';
 import SEO, { buildBreadcrumbJsonLd, toAbsoluteUrl } from '../components/SEO';
+import { AuthorByline } from '../components/AuthorByline';
+import { ShareBar } from '../components/ShareBar';
+import { LazyCalculator } from '../components/LazyCalculator';
+import { ShareableResultProvider } from '../context/ShareableResultProvider';
+import { decodeResultState, RESULT_PARAM } from '../utils/resultLink';
+import { AUTHOR } from '../constants/author';
+import { SITE_URL } from '../config/site';
 import NotFound from './NotFound';
 
 import RelatedCalculators from '../components/RelatedCalculators';
@@ -134,9 +141,14 @@ export function CalculatorPage() {
             priceCurrency: 'USD',
         },
         author: {
+            '@type': 'Person',
+            name: AUTHOR.name,
+            url: AUTHOR.profileUrl,
+        },
+        publisher: {
             '@type': 'Organization',
             name: 'CalcSuite',
-            url: 'https://calcsuite.in',
+            url: SITE_URL,
         },
     };
 
@@ -213,6 +225,10 @@ export function CalculatorPage() {
         setShowLimitWarning(false);
     };
 
+    const sharedResultState = decodeResultState(
+        new URLSearchParams(location.search).get(RESULT_PARAM)
+    );
+
     return (
         <div className="max-w-4xl mx-auto">
             <SEO
@@ -232,6 +248,7 @@ export function CalculatorPage() {
                             </p>
                         )}
                         <p className="text-slate-500 dark:text-slate-400">{pageDescription}</p>
+                        <AuthorByline className="mt-3 justify-center sm:justify-start" />
                         {heroContent?.chips && heroContent.chips.length > 0 && (
                             <div className="mt-4 flex flex-wrap gap-2 justify-center sm:justify-start">
                                 {heroContent.chips.map((chip) => (
@@ -358,12 +375,22 @@ export function CalculatorPage() {
                 </Suspense>
             )}
 
-            <div ref={calculatorViewportRef} className="scroll-mt-24 lg:scroll-mt-8">
-                <Component
-                    key={`${calculatorDef.id}-${scenario?.id || 'default'}`}
-                    scenarioData={scenario?.initialState}
+            <ShareableResultProvider>
+                <div ref={calculatorViewportRef} className="scroll-mt-24 lg:scroll-mt-8">
+                    <LazyCalculator>
+                        <Component
+                            key={`${calculatorDef.id}-${scenario?.id || 'default'}-${sharedResultState ? 'shared' : 'own'}`}
+                            scenarioData={sharedResultState ?? scenario?.initialState}
+                        />
+                    </LazyCalculator>
+                </div>
+
+                <ShareBar
+                    calculatorId={calculatorDef.id}
+                    calculatorName={calculatorDef.name}
+                    canonicalPath={canonicalPath}
                 />
-            </div>
+            </ShareableResultProvider>
 
             {/* In-content ad — highest viewability slot between calculator and FAQs */}
             <ArticleAds />
@@ -433,7 +460,11 @@ export function CalculatorPage() {
                         )}
 
                         {/* Fallback for legacy content */}
-                        {Content && <Content calculatorDef={calculatorDef} />}
+                        {Content && (
+                            <Suspense fallback={null}>
+                                <Content calculatorDef={calculatorDef} />
+                            </Suspense>
+                        )}
                     </article>
                 </div>
             )}

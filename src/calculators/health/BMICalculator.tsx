@@ -1,6 +1,7 @@
 import { type ComponentType, useMemo, useState } from 'react';
 import { Activity, Scale, Ruler, TrendingUp } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { useShareableResult } from '../../hooks/useShareableResult';
 import { CalculationHistory } from '../../components/CalculationHistory';
 import { healthBoilerplateNoSnippetProps } from '../../constants/searchSnippet';
 import {
@@ -187,6 +188,15 @@ export default function BMICalculator() {
             heightCm: validation.values.heightCm,
         };
     }, [validation.values]);
+
+    useShareableResult(
+        result?.category
+            ? {
+                inputs: { unit, metricWeight, metricHeight, imperialWeight, feet, inches },
+                summary: `${result.bmi.toFixed(1)} — ${result.category.label}`,
+            }
+            : null
+    );
 
     const handleSave = () => {
         if (!result || !result.category) {

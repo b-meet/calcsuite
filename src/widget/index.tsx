@@ -12,9 +12,16 @@ const CREDIT_CLASS = 'calcsuite-credit';
 const CREDIT_HOST = new URL(SITE_URL).hostname;
 
 /**
- * A credit block counts as intact only if it is present, actually visible, and
- * still carries a followable link to us. Anything else — deleted, display:none,
- * faded out, rel="nofollow" — is treated as missing and rebuilt.
+ * A credit block counts as intact only if it is present, visible, and still
+ * links to us. Anything else — deleted, display:none, faded out, pointed at
+ * another domain — is treated as missing and rebuilt.
+ *
+ * The rel value is deliberately not checked. Our own links ship as
+ * rel="nofollow" (Google treats widget links distributed at scale as a link
+ * scheme), so rejecting nofollow here would make the guard fight its own
+ * output: rebuild, see nofollow, rebuild again, hit MAX_REPAIRS, and disable
+ * the widget on every site that embeds it. A host that chooses to make the
+ * link dofollow editorially is fine and left alone.
  */
 function creditIsIntact(element: Element | null): boolean {
     if (!(element instanceof HTMLElement) || !element.isConnected) return false;
@@ -28,7 +35,6 @@ function creditIsIntact(element: Element | null): boolean {
         }
     });
     if (!ours) return false;
-    if (ours.rel.toLowerCase().includes('nofollow')) return false;
 
     const style = window.getComputedStyle(element);
     if (style.display === 'none' || style.visibility === 'hidden') return false;
@@ -51,14 +57,14 @@ function buildCredit(calculatorType: string, label: string): HTMLElement {
     const tool = document.createElement('a');
     tool.href = `${SITE_URL}/calculator/${encodeURIComponent(calculatorType)}/`;
     tool.target = '_blank';
-    tool.rel = 'noopener';
+    tool.rel = 'nofollow noopener';
     tool.title = `${label} by CalcSuite`;
     tool.textContent = label;
 
     const brand = document.createElement('a');
     brand.href = `${SITE_URL}/`;
     brand.target = '_blank';
-    brand.rel = 'noopener';
+    brand.rel = 'nofollow noopener';
     brand.title = 'CalcSuite - Free Online Calculators';
     brand.textContent = 'CalcSuite';
 
@@ -91,9 +97,10 @@ const REPAIR_WINDOW_MS = 10_000;
  * Makes the attribution link load-bearing.
  *
  * The embed snippet ships the credit as static HTML, because that is the
- * version search engines index most reliably. If it is edited out, hidden or
- * rewritten to nofollow we rebuild it into the light DOM. If it cannot be kept
- * intact the calculator is replaced with a notice: no credit, no widget.
+ * version search engines see most reliably. If it is edited out, hidden or
+ * repointed at another domain we rebuild it into the light DOM. If it cannot
+ * be kept intact the calculator is replaced with a notice: no credit, no
+ * widget.
  *
  * Giving up is not optional politeness — a host script that strips the credit
  * on every mutation would otherwise ping-pong with this observer forever and

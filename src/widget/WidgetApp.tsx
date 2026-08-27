@@ -35,7 +35,7 @@ const WidgetApp: React.FC<WidgetAppProps> = ({
                         <a
                             href={`${SITE_URL}/calculator/${encodeURIComponent(calculatorType)}/`}
                             target="_blank"
-                            rel="noopener"
+                            rel="nofollow noopener"
                             className="text-blue-600 dark:text-blue-400 underline"
                         >
                             Open it on CalcSuite
@@ -82,7 +82,7 @@ const WidgetApp: React.FC<WidgetAppProps> = ({
                         <a
                             href={SITE_URL}
                             target="_blank"
-                            rel="noopener"
+                            rel="nofollow noopener"
                             title="CalcSuite - Free Online Calculators"
                             className="font-bold hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                         >
@@ -92,7 +92,7 @@ const WidgetApp: React.FC<WidgetAppProps> = ({
                     <a
                         href={`${SITE_URL}/widget-generator/`}
                         target="_blank"
-                        rel="noopener"
+                        rel="nofollow noopener"
                         title="Free calculator widgets for your website"
                         className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                     >

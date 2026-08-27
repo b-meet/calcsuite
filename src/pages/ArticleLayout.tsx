@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { AuthorByline } from '../components/AuthorByline';
 import StructuredData from '../components/StructuredData';
 import { blogPosts } from '../constants/blogPosts';
 import { 
@@ -128,6 +129,8 @@ export function ArticleLayout() {
                         {post.title}
                     </h1>
                     
+                    <AuthorByline />
+
                     <div className="flex flex-wrap items-center gap-6 text-slate-500 dark:text-slate-400 text-sm border-b border-slate-100 dark:border-slate-800 pb-8">
                         <div className="flex items-center gap-2">
                             <Calendar className="w-4 h-4" />
