@@ -203,7 +203,14 @@ export function WidgetGenerator() {
         []
     );
 
-    const [selectedCalculatorId, setSelectedCalculatorId] = useState(options[0].id);
+    // Deep link target for "Embed" on a calculator page and for the notice the
+    // widget renders when a calculator is not in the runtime yet.
+    const requestedId = typeof window !== 'undefined'
+        ? new URLSearchParams(window.location.search).get('calculator')
+        : null;
+    const [selectedCalculatorId, setSelectedCalculatorId] = useState(
+        options.some(o => o.id === requestedId) ? requestedId! : options[0].id
+    );
     const [placement, setPlacement] = useState<Placement>('article');
     const [appearance, setAppearance] = useState<Appearance>(DEFAULT_APPEARANCE);
     const [copied, setCopied] = useState(false);

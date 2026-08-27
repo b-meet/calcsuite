@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Landmark, TrendingUp, ChevronDown, ChevronUp, Users, PiggyBank, Calendar, Home } from 'lucide-react';
 import { useCalculatorHistory } from '../../hooks/useCalculatorHistory';
+import { useShareableResult } from '../../hooks/useShareableResult';
 import { CalculationHistory } from '../../components/CalculationHistory';
 
 export default function IndiaEMICalculator() {
@@ -105,6 +106,16 @@ export default function IndiaEMICalculator() {
     const formatIndianCurrency = (num: number) => {
         return num.toLocaleString('en-IN', { maximumFractionDigits: 0 });
     };
+
+    useShareableResult(
+        calculation
+            ? {
+                inputs: { loanAmount, interestRate, tenure, prepayment },
+                summary: `₹${formatIndianCurrency(calculation.emi)}/mo`,
+            }
+            : null
+    );
+
 
     return (
         <div className="max-w-4xl mx-auto space-y-8">
